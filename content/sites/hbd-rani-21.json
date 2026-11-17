@@ -1,0 +1,57 @@
+{
+  "slug": "hbd-rani-21",
+  "templateId": "ultah-interaktif",
+  "title": "Selamat Ulang Tahun ke-21, Rani",
+  "seoDescription": "Kejutan ulang tahun interaktif tiup lilin, buka voucher hadiah, dan ucapan sahabat untuk Rani.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Ultah Tiup Lilin Interaktif",
+  "musicTrack": "builtin:birthday",
+  "data": {
+    "celebrantName": "Rani",
+    "turningAge": 21,
+    "birthDateLabel": "18 November 2026",
+    "senderName": "Dimas",
+    "heroWish": "Selamat menginjak usia 21, Rani. Semoga semua rencana baikmu tahun ini berjalan lancar, skripsinya dimudahkan, rezekinya mengalir terus, dan kamu selalu dikelilingi orang-orang yang tulus menyayangimu.",
+    "giftVoucher": {
+      "title": "Voucher Traktiran Dinner & Dessert Bebas Pilih",
+      "description": "Berlaku untuk 1 kali makan malam spesial plus es krim favoritmu akhir pekan ini. Tidak ada batas minimal menu, langsung pesan saja apa yang paling kamu mau.",
+      "redeemNote": "Tunjukkan halaman voucher yang sudah terbuka ini ke Dimas sebelum 30 November 2026."
+    },
+    "memories": [
+      {
+        "imageUrl": "/demo/ultah-1.webp",
+        "caption": "Kue ulang tahun pertama yang sudah disiapkan diam-diam sejak pagi hari"
+      },
+      {
+        "imageUrl": "/demo/ultah-2.webp",
+        "caption": "Momen tawa lepas sebelum acara tiup lilin dimulai bareng teman-teman"
+      },
+      {
+        "imageUrl": "/demo/ultah-3.webp",
+        "caption": "Kado kecil dan kartu ucapan tulisan tangan yang siap dibuka malam ini"
+      }
+    ],
+    "friendWishes": [
+      {
+        "from": "Dimas",
+        "role": "Pasangan",
+        "message": "Selamat ulang tahun ke-21, Ran. Terima kasih sudah selalu sabar dan jadi tempat cerita terbaik sepanjang tahun ini. Yuk rayakan dengan makan enak nanti malam."
+      },
+      {
+        "from": "Salsa",
+        "role": "Sahabat Kuliah",
+        "message": "Panjang umur dan sehat selalu, Rani. Semoga revisi bab empat cepat ACC dan kita bisa foto wisuda bareng tahun depan."
+      },
+      {
+        "from": "Nando",
+        "role": "Teman Satu Kelas",
+        "message": "Happy level up 21, Ran. Jangan kebanyakan begadang ngerjain tugas kelompok, jaga kesehatan terus dan ditunggu traktiran kopinya."
+      },
+      {
+        "from": "Tari",
+        "role": "Tetangga & Bestie",
+        "message": "Selamat bertambah usia, Rani sayang. Tetap jadi pribadi yang hangat, ceria, dan selalu bikin suasana kumpul jadi seru."
+      }
+    ]
+  }
+}

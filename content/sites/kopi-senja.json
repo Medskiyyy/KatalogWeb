@@ -1,0 +1,111 @@
+{
+  "slug": "kopi-senja",
+  "templateId": "umkm-katalog",
+  "title": "Kopi Senja Bekasi - Katalog Menu & Order WhatsApp",
+  "seoDescription": "Katalog menu kopi susu gula aren, minuman non-kopi, croissant panggang, dan paket hantaran harian Kopi Senja di Bekasi Barat.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Etalase UMKM Order WA",
+  "musicTrack": "none",
+  "data": {
+    "businessName": "Kopi Senja",
+    "categoryLabel": "Kedai Kopi & Roti Harian",
+    "tagline": "Racikan kopi susu aren dan croissant mentega panggang setiap pagi.",
+    "description": "Pesan langsung dari katalog tanpa biaya aplikasi tambahan. Tersedia gelas saji harian, botol 250ml anti tumpah, hingga paket hantaran rapat area Bekasi Barat.",
+    "heroImageUrl": "/demo/umkm-hero.webp",
+    "cityLabel": "Bekasi Barat",
+    "openHoursLabel": "Setiap hari, 08.00 - 21.00 WIB",
+    "whatsappNumber": "6281234567890",
+    "address": "Jl. Patriot Raya No. 19, Jakasampurna, Bekasi Barat, Kota Bekasi 17145",
+    "mapsUrl": "https://maps.google.com/?q=Jl.+Patriot+Raya+Jakasampurna+Bekasi+Barat",
+    "highlights": [
+      {
+        "title": "Seduh Baru Setiap Pagi",
+        "description": "Biji arabika-robusta pilihan disangrai mingguan dan diekstrak segar saat pesanan masuk agar rasa tetap seimbang."
+      },
+      {
+        "title": "Pesan Praktis via WhatsApp",
+        "description": "Pilih menu, atur jumlah, dan kirim rincian pesanan otomatis ke WhatsApp kasir tanpa potongan komisi platform."
+      },
+      {
+        "title": "Kemasan Rapat Aman Antar",
+        "description": "Botol 250ml tersegel rapat dan boks roti khusus menjaga suhu serta kerenyahan sampai di rumah atau kantor."
+      }
+    ],
+    "products": [
+      {
+        "id": "kopi-aren",
+        "name": "Es Kopi Susu Aren",
+        "category": "Kopi",
+        "price": 22000,
+        "unitLabel": "botol 250ml",
+        "description": "Espresso ganda house blend dipadukan susu segar dan gula aren organik cair.",
+        "imageUrl": "/demo/umkm-kopi-aren.webp",
+        "featured": true
+      },
+      {
+        "id": "sea-salt-latte",
+        "name": "Sea Salt Latte",
+        "category": "Kopi",
+        "price": 25000,
+        "unitLabel": "botol 250ml",
+        "description": "Kopi susu lembut dengan krim gurih sejumput garam laut dan aroma karamel.",
+        "imageUrl": "/demo/umkm-hero.webp"
+      },
+      {
+        "id": "matcha-oat",
+        "name": "Iced Matcha Oat",
+        "category": "Non-Kopi",
+        "price": 26000,
+        "unitLabel": "botol 250ml",
+        "description": "Bubuk matcha Uji murni dikocok bersama susu gandum creamy yang ringan.",
+        "imageUrl": "/demo/umkm-matcha.webp",
+        "featured": true
+      },
+      {
+        "id": "butter-croissant",
+        "name": "Butter Croissant",
+        "category": "Roti",
+        "price": 24000,
+        "unitLabel": "pcs",
+        "description": "Lapisan renyah keemasan di luar dan berongga lembut bermentega di dalam.",
+        "imageUrl": "/demo/umkm-croissant.webp",
+        "featured": true
+      },
+      {
+        "id": "pain-au-chocolat",
+        "name": "Pain au Chocolat",
+        "category": "Roti",
+        "price": 27000,
+        "unitLabel": "pcs",
+        "description": "Pastry panggang pagi dengan isian dua batang cokelat hitam pekat.",
+        "imageUrl": "/demo/umkm-croissant.webp"
+      },
+      {
+        "id": "paket-hantaran-4",
+        "name": "Paket Hantaran 4 Botol",
+        "category": "Paket",
+        "price": 85000,
+        "unitLabel": "box",
+        "description": "Isi 2 Es Kopi Susu Aren dan 2 Iced Matcha Oat lengkap dengan kartu ucapan.",
+        "imageUrl": "/demo/umkm-hampers.webp"
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Kopi arennya seimbang, manisnya pas dan tidak bikin enek diminum siang hari di kantor.",
+        "author": "Fajar Nugroho",
+        "role": "Karyawan Swasta"
+      },
+      {
+        "quote": "Order paket hantaran buat rapat di Bekasi Barat cepat banget sampainya dan kemasan rapi.",
+        "author": "Rika Wulandari",
+        "role": "Admin HRD"
+      },
+      {
+        "quote": "Croissant-nya masih renyah waktu sampai rumah, harganya juga ramah untuk langganan.",
+        "author": "Bagas Pradipta",
+        "role": "Pelanggan Tetap"
+      }
+    ]
+  }
+}

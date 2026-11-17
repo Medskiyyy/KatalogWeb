@@ -1,0 +1,51 @@
+{
+  "slug": "arka-nisa",
+  "templateId": "bucin-scrapbook",
+  "title": "Catatan Kecil Arka & Nisa",
+  "seoDescription": "Kado scrapbook digital berisi kenangan, penghitung waktu bersama, kartu alasan sayang, dan surat kecil untuk Nisa.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi Scrapbook Kado Bucin",
+  "musicTrack": "builtin:romance",
+  "data": {
+    "partnerOne": "Arka",
+    "partnerTwo": "Nisa",
+    "anniversaryDate": "2024-05-12",
+    "passcodePin": "1205",
+    "heroHeadline": "Catatan Kecil Tentang Kita",
+    "openingNote": "Dari obrolan sore yang awalnya canggung sampai akhirnya punya banyak hal kecil untuk ditertawakan bersama. Ini arsip sederhana buat kamu simpan.",
+    "memories": [
+      {
+        "imageUrl": "/demo/bucin-1.webp",
+        "caption": "Ngopi sore pertama setelah hujan reda",
+        "dateLabel": "Mei 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-2.webp",
+        "caption": "Jalan kaki sore mengejar matahari terbenam",
+        "dateLabel": "Agustus 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-3.webp",
+        "caption": "Foto dadakan di dalam photobox kecil",
+        "dateLabel": "November 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-4.webp",
+        "caption": "Makan malam santai merayakan hari biasa",
+        "dateLabel": "Februari 2025"
+      }
+    ],
+    "loveReasons": [
+      "Selalu sabar mendengarkan ceritaku sepulang kerja meski harimu sendiri juga panjang.",
+      "Hafal pesanan kopi favoritku tanpa perlu kutanya dua kali.",
+      "Selalu berhasil bikin suasana canggung langsung cair lewat tawa kecilmu.",
+      "Tidak pernah ragu memberi kabar sederhana yang selalu bikin hariku lebih tenang.",
+      "Bisa bikin hal paling biasa sekalipun terasa layak dirayakan saat dijalani berdua."
+    ],
+    "closingLetter": "Terima kasih sudah betah berjalan pelan-pelan bersamaku sejauh ini.\n\nKalau suatu hari kamu lagi capek atau merasa hari berjalan terlalu cepat, semoga halaman kecil ini selalu mengingatkanmu bahwa kamu punya tempat pulang yang hangat.",
+    "songDedication": {
+      "title": "Bertaut",
+      "artist": "Nadin Amizah"
+    }
+  }
+}

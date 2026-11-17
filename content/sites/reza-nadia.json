@@ -1,0 +1,78 @@
+{
+  "slug": "reza-nadia",
+  "templateId": "nikah-garden",
+  "title": "Pernikahan Reza & Nadia",
+  "seoDescription": "Undangan pernikahan digital Reza Pratama Kusuma dan Nadia Putri Larasati.",
+  "createdAt": "2026-11-17",
+  "orderNote": "Demo resmi Template Undangan Garden Botanical",
+  "musicTrack": "builtin:wedding",
+  "data": {
+    "bride": {
+      "nickname": "Nadia",
+      "fullName": "Nadia Putri Larasati",
+      "parents": "Putri kedua dari Bapak Hendra Wijaya & Ibu Ratna Sari",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Reza",
+      "fullName": "Reza Pratama Kusuma",
+      "parents": "Putra pertama dari Bapak Bambang Kusuma & Ibu Siti Aminah",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2026-12-20T08:00:00+07:00",
+    "blessingQuote": {
+      "text": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup bagimu agar kamu merasa tenteram bersamanya, serta menjadikan kasih dan sayang di antara kamu.",
+      "source": "QS. Ar-Rum: 21"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 20 Desember 2026",
+      "timeLabel": "08.00 - 10.00 WIB",
+      "venueName": "Taman Pendopo Kalimalang",
+      "address": "Jl. Raya Kalimalang No. 48, Jakasampurna, Bekasi Selatan",
+      "mapsUrl": "https://maps.google.com/?q=Taman+Pendopo+Kalimalang+Bekasi+Selatan"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 20 Desember 2026",
+      "timeLabel": "11.00 - 14.00 WIB",
+      "venueName": "Taman Pendopo Kalimalang",
+      "address": "Jl. Raya Kalimalang No. 48, Jakasampurna, Bekasi Selatan",
+      "mapsUrl": "https://maps.google.com/?q=Taman+Pendopo+Kalimalang+Bekasi+Selatan"
+    },
+    "storyTimeline": [
+      {
+        "year": "2022",
+        "title": "Pertemuan Pertama",
+        "description": "Berawal dari proyek panitia acara kampus yang mempertemukan kami dalam diskusi sore yang selalu berlanjut hingga kedai kopi tutup."
+      },
+      {
+        "year": "2024",
+        "title": "Komitmen Bersama",
+        "description": "Memutuskan melangkah lebih serius setelah menyelesaikan kuliah, merintis karier masing-masing, dan mengenalkan kedua keluarga."
+      },
+      {
+        "year": "2026",
+        "title": "Menuju Pelaminan",
+        "description": "Dengan penuh rasa syukur, kami memohon doa restu keluarga dan sahabat untuk memulai langkah baru membangun rumah tangga."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5420198821",
+        "accountHolder": "Nadia Putri Larasati"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1560004819201",
+        "accountHolder": "Reza Pratama Kusuma"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890"
+  }
+}
