@@ -283,8 +283,8 @@ export function StorefrontLanding() {
         <section className="flex min-h-[100dvh] items-center border-b border-zinc-200 pt-20 pb-14">
           <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
             <div className="flex flex-col items-start gap-6 lg:col-span-6">
-              <h1 className="font-sans text-3xl font-bold leading-[1.15] tracking-tight text-[#121212] sm:text-4xl lg:text-[42px]">
-                Website Kado, Undangan &amp; UMKM dengan Subdomain Sendiri
+              <h1 className="font-sans text-3xl font-bold leading-[1.15] tracking-tight text-[#121212] sm:text-4xl xl:text-[40px]">
+                Web Kado, Undangan &amp; UMKM dengan Subdomain Sendiri
               </h1>
               <p className="max-w-xl text-base leading-relaxed text-[#52525B] sm:text-lg">
                 Pesan lewat Shopee, pilih nama subdomain impianmu, kirim foto

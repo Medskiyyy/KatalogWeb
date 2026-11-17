@@ -187,7 +187,6 @@ export function QrPrintSheet({
         <div className="print-sheet grid grid-cols-1 gap-6 sm:grid-cols-2 print:grid-cols-2">
           {selectedSites.map((site) => {
             const qrUri = qrMap[site.slug];
-            const fullUrl = getSubdomainUrl(site.slug);
             const hostLabel = getSubdomainHost(site.slug);
 
             if (cardStyle === "polaroid") {
@@ -214,8 +213,8 @@ export function QrPrintSheet({
                         <h3 className="truncate text-base font-bold text-zinc-900">
                           {site.title}
                         </h3>
-                        <p className="font-mono text-xs text-zinc-700 break-all">
-                          {fullUrl}
+                        <p className="truncate font-mono text-[11px] text-zinc-700">
+                          {hostLabel}
                         </p>
                       </div>
 

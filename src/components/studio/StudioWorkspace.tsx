@@ -643,12 +643,12 @@ export function StudioWorkspace({ initialSites }: StudioWorkspaceProps) {
                             </td>
                             <td className="px-4 py-3.5">
                               <span
-                                className={`inline-flex rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${meta.badgeClass}`}
+                                className={`inline-flex whitespace-nowrap rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${meta.badgeClass}`}
                               >
                                 {meta.label}
                               </span>
                             </td>
-                            <td className="px-4 py-3.5 font-mono text-xs text-zinc-600 tabular-nums">
+                            <td className="whitespace-nowrap px-4 py-3.5 font-mono text-xs text-zinc-600 tabular-nums">
                               {site.createdAt}
                             </td>
                             <td className="px-4 py-3.5 text-xs text-zinc-600">
