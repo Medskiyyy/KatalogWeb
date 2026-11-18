@@ -2,7 +2,7 @@
   "slug": "arka-nisa",
   "templateId": "bucin-scrapbook",
   "title": "Catatan Kecil Arka & Nisa",
-  "seoDescription": "Kado scrapbook digital berisi kenangan, penghitung waktu bersama, kartu alasan sayang, dan surat kecil untuk Nisa.",
+  "seoDescription": "Scrapbook digital berisi foto-foto favorit, cerita dari awal kenal, hal-hal receh yang aku hafal, kupon anti-ngambek, dan surat kecil buat Nisa.",
   "createdAt": "2026-11-18",
   "orderNote": "Demo resmi Scrapbook Kado Bucin",
   "musicTrack": "builtin:romance",
@@ -11,38 +11,103 @@
     "partnerTwo": "Nisa",
     "anniversaryDate": "2024-05-12",
     "passcodePin": "1205",
-    "heroHeadline": "Catatan Kecil Tentang Kita",
-    "openingNote": "Dari obrolan sore yang awalnya canggung sampai akhirnya punya banyak hal kecil untuk ditertawakan bersama. Ini arsip sederhana buat kamu simpan.",
+    "heroHeadline": "Hal-Hal Kecil yang Bikin Aku Betah Sama Kamu",
+    "openingNote": "Dari chat yang awalnya sok jaim sampai sekarang apa-apa selalu pengen cerita ke kamu duluan. Aku kumpulin beberapa foto, kebiasaan receh kamu, sama hal-hal kecil tentang kita di sini buat kamu simpan.",
     "memories": [
       {
         "imageUrl": "/demo/bucin-1.webp",
-        "caption": "Ngopi sore pertama setelah hujan reda",
+        "caption": "Ngopi pertama yang niatnya cuma sebentar, eh malah ketawa terus sampai lupa waktu",
         "dateLabel": "Mei 2024"
       },
       {
         "imageUrl": "/demo/bucin-2.webp",
-        "caption": "Jalan kaki sore mengejar matahari terbenam",
+        "caption": "Jalan sore pegangan tangan nungguin sunset sambil bahas hal nggak penting",
         "dateLabel": "Agustus 2024"
       },
       {
         "imageUrl": "/demo/bucin-3.webp",
-        "caption": "Foto dadakan di dalam photobox kecil",
+        "caption": "Ketawa paling lepas gara-gara rebutan potongan kue terakhir",
         "dateLabel": "November 2024"
       },
       {
         "imageUrl": "/demo/bucin-4.webp",
-        "caption": "Makan malam santai merayakan hari biasa",
+        "caption": "Nunggu hujan reda bareng sambil ngopi hangat dan nulis list random",
         "dateLabel": "Februari 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-5.webp",
+        "caption": "Niatnya cuma lihat-lihat buku, ujung-ujungnya malah baca bareng di lorong",
+        "dateLabel": "Mei 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-6.webp",
+        "caption": "Sepatu kembar yang paling sering nemenin kita jalan kaki sore-sore",
+        "dateLabel": "Oktober 2025"
       }
     ],
     "loveReasons": [
-      "Selalu sabar mendengarkan ceritaku sepulang kerja meski harimu sendiri juga panjang.",
-      "Hafal pesanan kopi favoritku tanpa perlu kutanya dua kali.",
-      "Selalu berhasil bikin suasana canggung langsung cair lewat tawa kecilmu.",
-      "Tidak pernah ragu memberi kabar sederhana yang selalu bikin hariku lebih tenang.",
-      "Bisa bikin hal paling biasa sekalipun terasa layak dirayakan saat dijalani berdua."
+      "Kamu selalu sabar dengerin ocehan aku sepulang kerja, padahal hari kamu sendiri juga sama capeknya.",
+      "Kamu nggak pernah lupa pesanin kopi kesukaan aku duluan kalau lagi nyampe kafe sebelum aku.",
+      "Mau suasana lagi canggung atau aku lagi bad mood, ketawa kamu selalu berhasil bikin semuanya cair lagi.",
+      "Kamu nggak pernah lupa ngasih kabar sesimpel 'udah nyampe ya', dan itu selalu bikin aku tenang.",
+      "Kamu masih suka inget hal-hal receh yang aku omongin sambil lalu, padahal aku sendiri udah lupa.",
+      "Sama kamu, hal paling biasa kayak beli mie ayam pinggir jalan aja bisa kerasa seru banget."
     ],
-    "closingLetter": "Terima kasih sudah betah berjalan pelan-pelan bersamaku sejauh ini.\n\nKalau suatu hari kamu lagi capek atau merasa hari berjalan terlalu cepat, semoga halaman kecil ini selalu mengingatkanmu bahwa kamu punya tempat pulang yang hangat.",
+    "milestones": [
+      {
+        "dateLabel": "12 Mei 2024",
+        "title": "Ngopi Sore Pertama",
+        "description": "Janji ketemu bentar doang sepulang kerja, eh malah ngobrol ngalor-ngidul sampai diusir halus karena kafe mau tutup."
+      },
+      {
+        "dateLabel": "17 Agustus 2024",
+        "title": "Nyasar Berujung Mie Ayam",
+        "description": "Pergi sore tanpa tujuan jelas, sempat salah belok di jalan kecil, terus malah ketemu tukang mie ayam enak yang jadi langganan."
+      },
+      {
+        "dateLabel": "24 Desember 2024",
+        "title": "Tukar Kado Akhir Tahun",
+        "description": "Surat tulisan tangan kamu sama foto-foto random kita yang sampai sekarang masih aku simpen rapi di dompet dan laci meja."
+      },
+      {
+        "dateLabel": "12 Mei 2025",
+        "title": "Genap Setahun Bareng",
+        "description": "Udah makin hafal kebiasaan aneh masing-masing, makin jarang jaim, dan makin betah jalanin hari-hari biasa bareng kamu."
+      }
+    ],
+    "littleThings": [
+      {
+        "label": "Pesanan Kopi Wajib",
+        "detail": "Es kopi susu less sugar, esnya sedikit aja, dan nggak pernah mau kalau dikasih bubuk kayu manis."
+      },
+      {
+        "label": "Kebiasaan Sebelum Minum",
+        "detail": "Selalu goyangin atau muter sedotan dulu dua kali sebelum nyedot es kopi sambil mainin HP."
+      },
+      {
+        "label": "Kode Kalau Bilang 'Terserah'",
+        "detail": "Kalau ditanya mau makan apa terus jawab 'terserah', artinya 90% kamu lagi pengen mie ayam atau makanan kuah hangat."
+      },
+      {
+        "label": "Jam Begadang Favorit",
+        "detail": "Teleponan lewat jam sepuluh malam pas udah sama-sama rebahan, bahas dari chat random sampai ketiduran."
+      }
+    ],
+    "coupons": [
+      {
+        "title": "Kupon Anti-'Terserah' Pas Cari Makan",
+        "note": "Kamu bebas nunjuk tempat makan apa aja minggu ini. Aku nggak bakal debat, tinggal jalan."
+      },
+      {
+        "title": "Kupon Bujuk Pas Lagi Ngambek",
+        "note": "Langsung berlaku buat satu kali ngambek. Aku beliin es krim atau jajanan favorit kamu plus peluk sampai baikan."
+      },
+      {
+        "title": "Kupon Begadang Nonton Bareng",
+        "note": "Kamu bebas pilih tiga film berturut-turut buat kita tonton malam minggu, lengkap sama stok jajan kesukaan kamu."
+      }
+    ],
+    "closingLetter": "Makasih ya udah betah jalan pelan-pelan sama aku sejauh ini, Nisa.\n\nNggak kerasa udah banyak banget hal yang kita lewatin bareng. Mulai dari obrolan nggak jelas di chat pas baru kenal, macet-macetan sore pulang kerja, sampai rencana-rencana kecil yang masih kita obrolin buat tahun depan.\n\nKalau suatu hari kamu lagi capek banget sama kerjaan atau ngerasa hari kamu lagi berat, buka lagi halaman ini ya. Jangan lupa kalau kamu selalu punya aku buat tempat cerita, tempat ngeluh, dan tempat pulang.",
     "songDedication": {
       "title": "Bertaut",
       "artist": "Nadin Amizah"

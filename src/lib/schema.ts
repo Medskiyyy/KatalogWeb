@@ -323,39 +323,39 @@ export function createDefaultSiteConfig(
           partnerTwo: "Nisa",
           anniversaryDate: "2024-05-12",
           passcodePin: "1205",
-          heroHeadline: "Catatan Kecil Tentang Kita",
+          heroHeadline: "Hal-Hal Kecil yang Bikin Aku Betah Sama Kamu",
           openingNote:
-            "Terima kasih sudah menemaniku melewati hari biasa hingga momen yang paling berkesan.",
+            "Dari chat singkat yang awalnya malu-malu sampai sekarang punya segudang inside joke berdua. Biar semua kenangan kita nggak tenggelam di galeri HP.",
           memories: [
             {
               imageUrl: "/demo/bucin-1.webp",
-              caption: "Ngopi sore pertama setelah hujan reda",
+              caption: "Ngopi sore pertama, masih sama-sama jaim",
               dateLabel: "Mei 2024",
             },
             {
               imageUrl: "/demo/bucin-2.webp",
-              caption: "Jalan kaki sore mengejar matahari terbenam",
+              caption: "Jalan santai nungguin sunset kesukaanmu",
               dateLabel: "Agustus 2024",
             },
             {
               imageUrl: "/demo/bucin-3.webp",
-              caption: "Foto dadakan di dalam studio kecil",
+              caption: "Ketawa lepas di kedai deket kampus",
               dateLabel: "November 2024",
             },
             {
               imageUrl: "/demo/bucin-4.webp",
-              caption: "Makan malam santai merayakan hari biasa",
+              caption: "Nunggu hujan reda berdua sambil ngobrol ngalor-ngidul",
               dateLabel: "Februari 2025",
             },
           ],
           loveReasons: [
-            "Selalu sabar mendengarkan ceritaku sepulang kerja.",
-            "Tahu persis menu kopi favoritku tanpa perlu ditanya.",
-            "Bisa bikin suasana canggung langsung cair lewat tawa kecil.",
-            "Selalu kasih kabar ringan yang bikin hariku jauh lebih tenang.",
+            "Selalu mau dengerin keluh kesahku sepulang kerja walau harimu sendiri udah capek.",
+            "Udah hafal pesanan kopiku tanpa perlu kutanya lagi.",
+            "Suka tiba-tiba ngirim foto random pas lagi kangen.",
+            "Selalu kasih kabar sepele yang entah kenapa bikin hariku jauh lebih tenang.",
           ],
           closingLetter:
-            "Semoga halaman sederhana ini selalu mengingatkanmu bahwa di hari apa pun, kamu selalu punya tempat pulang yang hangat.",
+            "Makasih ya udah betah jalan bareng aku sejauh ini. Kalau lagi capek sama kerjaan atau kuliah, buka lagi halaman ini biar inget kalau kamu selalu punya aku di pihakmu.",
           songDedication: {
             title: "Bertaut",
             artist: "Nadin Amizah",
@@ -363,50 +363,50 @@ export function createDefaultSiteConfig(
           milestones: [
             {
               dateLabel: "12 Mei 2024",
-              title: "Pertama Kali Jalan Berdua",
-              description: "Berawal dari janji ngopi sebentar yang berlanjut sampai malam.",
+              title: "Ketemuan Pertama",
+              description: "Bilangnya cuma ngopi sejam, eh pulangnya pas kedai udah mau tutup.",
             },
             {
               dateLabel: "18 Oktober 2024",
-              title: "Kejutan Ulang Tahun Pertama",
-              description: "Lilin kue kecil dan tawa di sudut kedai favorit.",
+              title: "Ngerayain Ultah Bareng",
+              description: "Pertama kali niup lilin bareng dan tukeran kado kecil.",
             },
             {
               dateLabel: "12 Mei 2025",
-              title: "Genap Satu Tahun Bersama",
-              description: "Mulai terbiasa saling menjaga dan merayakan hal-hal kecil.",
+              title: "Anniversary Pertama Kita",
+              description: "Udah hafal kebiasaan masing-masing, termasuk kalau kamu lagi laper.",
             },
           ],
           littleThings: [
             {
-              label: "Pesanan Kopi Favorit",
+              label: "Menu Kopi Andalan",
               detail: "Es kopi susu less sugar, wajib tanpa kayu manis.",
             },
             {
-              label: "Kebiasaan Lucu",
-              detail: "Selalu mengaduk sedotan dua kali sebelum minum.",
+              label: "Kebiasaan Pas Makan",
+              detail: "Bilangnya terserah, tapi ujung-ujungnya milih mie ayam.",
             },
             {
-              label: "Makanan Andalan",
-              detail: "Mie kuah hangat saat hujan turun sore hari.",
+              label: "Obat Bad Mood",
+              detail: "Seblak atau mie kuah hangat pas lagi mendung sore.",
             },
             {
-              label: "Jam Paling Tenang",
-              detail: "Ngobrol santai jam sembilan malam sambil dengar lagu.",
+              label: "Jam Paling Ditunggu",
+              detail: "Telepon malem sebelum tidur cerita soal hari masing-masing.",
             },
           ],
           coupons: [
             {
-              title: "Kupon Pilih Tempat Makan",
-              note: "Bebas pilih menu makan malam akhir pekan ini tanpa debat.",
+              title: "Kupon Bebas Pilih Makan",
+              note: "Kamu yang tentuin mau makan di mana minggu ini, aku yang bayarin.",
             },
             {
-              title: "Kupon Jajan & Jalan Malam",
-              note: "Keliling kota malam minggu plus es krim favoritmu.",
+              title: "Kupon Jalan Malam & Jajan",
+              note: "Keliling kota malam minggu plus beli es krim kesukaanmu.",
             },
             {
-              title: "Kupon Nonton Film Pilihanmu",
-              note: "Bebas pilih judul film maraton di rumah sambil ngemil.",
+              title: "Kupon Nonton Tanpa Protes",
+              note: "Bebas pilih film maraton di rumah sambil ngemil sepuasnya.",
             },
           ],
         },
@@ -416,8 +416,8 @@ export function createDefaultSiteConfig(
       return {
         slug: cleanedSlug,
         templateId: "ultah-interaktif",
-        title: "Selamat Ulang Tahun ke-21",
-        seoDescription: "Kejutan ulang tahun interaktif tiup lilin dan voucher hadiah.",
+        title: "Happy Birthday ke-21!",
+        seoDescription: "Kejutan ulang tahun interaktif tiup lilin dan voucher traktiran.",
         createdAt: today,
         orderNote: "Order baru Shopee",
         musicTrack: "builtin:birthday",
@@ -427,44 +427,44 @@ export function createDefaultSiteConfig(
           birthDateLabel: "18 November 2026",
           senderName: "Dimas & Geng Kampus",
           heroWish:
-            "Semoga di usia baru ini semua rencana baikmu berjalan mulus, sehat terus, dan makin bahagia setiap harinya.",
+            "Cie resmi kepala dua plus satu! Semoga makin lancar kuliah atau kerjaannya, badan selalu fit, dan semua wishlist kamu tahun ini beneran kejadian satu-satu.",
           cakeImageUrl: "/demo/ultah-cake-stage.webp",
           giftVoucher: {
-            title: "Voucher Traktiran Dinner Bebas Pilih",
-            description: "Berlaku untuk 1 kali makan malam berdua di tempat favoritmu akhir pekan ini.",
-            redeemNote: "Tunjukkan halaman ini ke pengirim sebelum akhir bulan.",
+            title: "Voucher Traktiran Makan Malam Bebas Pilih",
+            description: "Berlaku buat 1x makan malam plus dessert kesukaanmu weekend ini, tanpa batas minimal.",
+            redeemNote: "Tunjukin tiket ini pas ketemu nanti ya, anti wacana!",
           },
           memories: [
             {
               imageUrl: "/demo/ultah-1.webp",
-              caption: "Kue spesial untuk perayaan hari ini",
+              caption: "Kue cantik buat orang yang paling ditunggu traktirannya",
             },
             {
               imageUrl: "/demo/ultah-2.webp",
-              caption: "Tawa lepas sebelum potong kue",
+              caption: "Momen ketawa rame-rame sebelum tiup lilin",
             },
             {
               imageUrl: "/demo/ultah-3.webp",
-              caption: "Hadiah kecil yang sudah disiapkan dari jauh hari",
+              caption: "Kado kecil yang udah diumpetin dari minggu lalu",
             },
           ],
           friendWishes: [
             {
               from: "Dimas",
               role: "Pasangan",
-              message: "Selamat bertambah usia. Terima kasih sudah jadi orang paling suportif tahun ini.",
+              message: "Happy birthday sayang! Makasih udah jadi partner cerita paling asik tahun ini.",
             },
             {
               from: "Salsa",
-              role: "Teman Kuliah",
-              message: "Panjang umur dan lancar terus skripsinya. Jangan lupa traktiran mie ayam.",
+              role: "Bestie Kuliah",
+              message: "Panjang umur bestie, skripsi cepet ACC biar bisa foto wisuda bareng.",
             },
           ],
           wishChecklist: [
-            "Sidang skripsi lancar tanpa revisi berulang",
-            "Kesehatan dan energi selalu terjaga sepanjang tahun",
-            "Liburan singkat bareng orang-orang tersayang",
-            "Karier atau magang impian segera terwujud",
+            "Skripsi atau target kerjaan beres tanpa drama",
+            "Tetap sehat dan sempat istirahat di sela kesibukan",
+            "Liburan singkat bareng orang-orang terdekat",
+            "Duit jajan dan tabungan aman sampai akhir tahun",
           ],
           playlistSong: {
             title: "Selamat Ulang Tahun",
@@ -486,18 +486,18 @@ export function createDefaultSiteConfig(
           bride: {
             nickname: "Nadia",
             fullName: "Nadia Putri Larasati",
-            parents: "Putri dari Bapak Hendra Wijaya & Ibu Ratna Sari",
+            parents: "Putri kedua dari Bapak Hendra Wijaya & Ibu Ratna Sari",
             photoUrl: "/demo/nikah-bride.webp",
           },
           groom: {
             nickname: "Reza",
             fullName: "Reza Pratama Kusuma",
-            parents: "Putra dari Bapak Bambang Kusuma & Ibu Siti Aminah",
+            parents: "Putra pertama dari Bapak Bambang Kusuma & Ibu Siti Aminah",
             photoUrl: "/demo/nikah-groom.webp",
           },
           weddingDateIso: "2026-12-20T09:00:00+07:00",
           blessingQuote: {
-            text: "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup agar kamu merasa tenteram bersamanya.",
+            text: "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup bagimu agar kamu merasa tenteram bersamanya.",
             source: "QS. Ar-Rum: 21",
           },
           akad: {
@@ -518,17 +518,17 @@ export function createDefaultSiteConfig(
             {
               year: "2022",
               title: "Pertemuan Pertama",
-              description: "Berawal dari proyek panitia acara kampus yang memaksa kami sering diskusi sore.",
+              description: "Berawal dari proyek panitia acara kampus yang membawa kami pada obrolan hangat di penghujung sore.",
             },
             {
               year: "2024",
-              title: "Komitmen Bersama",
-              description: "Memutuskan melangkah lebih serius setelah sama-sama lulus dan mulai bekerja.",
+              title: "Melangkah Lebih Serius",
+              description: "Saling menguatkan di awal dunia kerja dan memperkenalkan niat baik kepada kedua orang tua.",
             },
             {
               year: "2026",
               title: "Menuju Pelaminan",
-              description: "Memohon doa restu keluarga dan sahabat untuk memulai rumah tangga baru.",
+              description: "Dengan penuh syukur, kami memohon doa restu Bapak/Ibu/Saudara/i untuk memulai hidup baru.",
             },
           ],
           gallery: [
@@ -564,14 +564,14 @@ export function createDefaultSiteConfig(
           },
           initialPrayers: [
             {
-              name: "Budi Santoso",
+              name: "Bapak Budi Santoso",
               relation: "Keluarga Besar",
-              message: "Semoga menjadi keluarga yang sakinah, mawaddah, warahmah sampai akhir hayat.",
+              message: "Semoga senantiasa menjadi keluarga yang sakinah, mawaddah, warahmah hingga akhir hayat.",
             },
             {
               name: "Rina Kartika",
               relation: "Sahabat Kuliah",
-              message: "Selamat Reza dan Nadia! Akhirnya berlabuh di pelaminan juga, lancar sampai hari H.",
+              message: "Selamat Reza dan Nadia! Akhirnya berlabuh di pelaminan juga, lancar terus sampai hari H.",
             },
           ],
         },
@@ -582,16 +582,16 @@ export function createDefaultSiteConfig(
         slug: cleanedSlug,
         templateId: "umkm-katalog",
         title: "Kopi Senja Bekasi",
-        seoDescription: "Katalog menu kopi susu dan pastry harian Kopi Senja Bekasi.",
+        seoDescription: "Katalog menu kopi susu gula aren dingin dan croissant panggang pagi Kopi Senja Bekasi.",
         createdAt: today,
         orderNote: "Order baru Shopee",
         musicTrack: "none",
         data: {
           businessName: "Kopi Senja",
           categoryLabel: "Kopi & Roti Harian",
-          tagline: "Racikan kopi susu aren dan croissant mentega panggang setiap pagi.",
+          tagline: "Kopi Susu Aren Dingin & Croissant Panggang Pagi, Harga Asli Kedai",
           description:
-            "Pesan langsung lewat katalog tanpa aplikasi tambahan. Pilihan minuman botolan 250ml hingga paket hantaran acara kantor area Bekasi.",
+            "Pesan langsung dari katalog tanpa biaya aplikasi tambahan. Tersedia botol 250ml buat stok kulkas hingga paket hantaran rapat area Bekasi.",
           heroImageUrl: "/demo/umkm-hero.webp",
           cityLabel: "Bekasi Barat",
           openHoursLabel: "Setiap hari, 08.00 - 21.00 WIB",
@@ -602,17 +602,17 @@ export function createDefaultSiteConfig(
             {
               title: "Seduh Baru Setiap Pagi",
               description:
-                "Biji arabika-robusta disangrai mingguan dan diracik segar saat pesanan masuk.",
+                "Biji arabika-robusta disangrai rutin tiap minggu, bikin rasa kopi tetap creamy dan nendang tanpa pahit gosong.",
             },
             {
-              title: "Pesan Mudah via WhatsApp",
+              title: "Harga Asli Kedai via WhatsApp",
               description:
-                "Pilih menu di keranjang lalu kirim rincian otomatis tanpa biaya admin aplikasi.",
+                "Order langsung di katalog tanpa mark-up komisi aplikasi, tinggal klik kirim dan bayar sesuai kesepakatan.",
             },
             {
-              title: "Kemasan Botol Aman Antar",
+              title: "Segel Rapat Aman Dikirim",
               description:
-                "Tersedia ukuran gelas harian dan botol rapat anti tumpah untuk kurir instan.",
+                "Botol 250ml tersegel higienis dan boks roti khusus menjaga suhu dingin dan kerenyahan sampai tujuan.",
             },
           ],
           products: [
@@ -622,7 +622,7 @@ export function createDefaultSiteConfig(
               category: "Kopi",
               price: 22000,
               unitLabel: "botol 250ml",
-              description: "Espresso ganda dengan susu segar dan gula aren organik cair.",
+              description: "Double espresso house blend ketemu susu segar dingin dan gula aren organik yang wangi legit.",
               imageUrl: "/demo/umkm-kopi-aren.webp",
               featured: true,
             },
@@ -632,7 +632,7 @@ export function createDefaultSiteConfig(
               category: "Roti",
               price: 24000,
               unitLabel: "pcs",
-              description: "Lapisan renyah di luar, lembut bermentega di dalam, hangat dari oven.",
+              description: "Kulit renyah berlapis-lapis dengan wangi mentega panggang hangat, pas banget dicocol kopi.",
               imageUrl: "/demo/umkm-croissant.webp",
             },
             {
@@ -641,7 +641,7 @@ export function createDefaultSiteConfig(
               category: "Non-Kopi",
               price: 26000,
               unitLabel: "botol 250ml",
-              description: "Bubuk matcha Uji murni dikocok dengan susu gandum creamy.",
+              description: "Matcha Jepang pekat dikocok bareng oat milk gurih yang creamy dan ringan di tenggorokan.",
               imageUrl: "/demo/umkm-matcha.webp",
             },
             {
@@ -650,25 +650,25 @@ export function createDefaultSiteConfig(
               category: "Paket",
               price: 85000,
               unitLabel: "box",
-              description: "Isi 2 Kopi Susu Aren dan 2 Matcha Oat lengkap dengan kartu ucapan.",
+              description: "Isi 2 Kopi Susu Aren dan 2 Matcha Oat dingin, lengkap boks rapi dan kartu ucapan.",
               imageUrl: "/demo/umkm-hampers.webp",
             },
           ],
           testimonials: [
             {
-              quote: "Kopi arennya seimbang, manisnya pas dan tidak bikin enek diminum siang hari.",
+              quote: "Kopi arennya juara, manisnya nggak bikin serik di tenggorokan dan kopinya masih berasa.",
               author: "Fajar Nugroho",
-              role: "Karyawan Swasta",
+              role: "Anak Kantoran Bekasi",
             },
             {
-              quote: "Order paket hantaran buat rapat kantor di Bekasi cepat banget sampainya.",
+              quote: "Sering pesan paket hantaran buat rapat tim di kantor, datangnya cepet dan kemasannya niat.",
               author: "Rika Wulandari",
               role: "Admin HRD",
             },
             {
-              quote: "Croissant-nya masih renyah waktu sampai rumah, harganya ramah di kantong.",
+              quote: "Croissant-nya masih garing waktu sampai rumah, harganya juga jauh lebih hemat beli langsung di sini.",
               author: "Bagas Pradipta",
-              role: "Pelanggan Tetap",
+              role: "Langganan Mingguan",
             },
           ],
           stats: [
@@ -678,18 +678,18 @@ export function createDefaultSiteConfig(
           ],
           promoBanner: {
             title: "Paket Hantaran Rapat & Keluarga (4 Botol)",
-            description: "Bebas pilih kombinasi Kopi Susu Aren dan Matcha Oat, lengkap pita serta kartu ucapan.",
+            description: "Bebas pilih isi Kopi Susu Aren dan Matcha Oat 250ml, udah termasuk boks rapi plus kartu ucapan.",
             priceLabel: "Rp85.000",
             productId: "paket-hampers",
           },
           faqs: [
             {
-              question: "Berapa lama minuman botol tahan di kulkas?",
-              answer: "Simpan di suhu kulkas 4 derajat Celsius, minuman tetap segar hingga 3 hari.",
+              question: "Botol 250ml tahan berapa lama di kulkas?",
+              answer: "Selama segel belum dibuka dan masuk kulkas dingin, rasanya tetap segar sampai 3 hari.",
             },
             {
-              question: "Apakah melayani pesanan rapat kantor jumlah besar?",
-              answer: "Ya, pemesanan di atas 20 botol atau box roti bisa dikirim lewat WhatsApp H-1.",
+              question: "Bisa pesan banyak untuk acara kantor?",
+              answer: "Bisa banget, untuk pesanan di atas 20 botol disarankan konfirmasi H-1 lewat WhatsApp.",
             },
           ],
         },

@@ -1,34 +1,54 @@
 {
   "slug": "kopi-senja",
   "templateId": "umkm-katalog",
-  "title": "Kopi Senja Bekasi - Katalog Menu & Order WhatsApp",
-  "seoDescription": "Katalog menu kopi susu gula aren, minuman non-kopi, croissant panggang, dan paket hantaran harian Kopi Senja di Bekasi Barat.",
+  "title": "Kopi Senja Bekasi - Kopi Susu Aren & Croissant Harga Kedai",
+  "seoDescription": "Pesan langsung kopi susu gula aren dingin, matcha oat, cokelat Belgia, dan butter croissant panggang pagi dari Kopi Senja Bekasi Barat. Harga asli kedai tanpa biaya aplikasi.",
   "createdAt": "2026-11-18",
   "orderNote": "Demo resmi template Etalase UMKM Order WA",
   "musicTrack": "none",
   "data": {
     "businessName": "Kopi Senja",
     "categoryLabel": "Kedai Kopi & Roti Harian",
-    "tagline": "Racikan kopi susu aren dan croissant mentega panggang setiap pagi.",
-    "description": "Pesan langsung dari katalog tanpa biaya aplikasi tambahan. Tersedia gelas saji harian, botol 250ml anti tumpah, hingga paket hantaran rapat area Bekasi Barat.",
+    "tagline": "Kopi Susu Aren Dingin & Croissant Panggang Pagi, Harga Asli Kedai",
+    "description": "Racikan kopi susu creamy dan pastry renyah siap dinikmati di rumah atau kantor. Pesan langsung lewat katalog dengan harga asli kedai tanpa biaya aplikasi, praktis untuk stok kulkas harian maupun jamuan rapat.",
     "heroImageUrl": "/demo/umkm-hero.webp",
     "cityLabel": "Bekasi Barat",
     "openHoursLabel": "Setiap hari, 08.00 - 21.00 WIB",
     "whatsappNumber": "6281234567890",
     "address": "Jl. Patriot Raya No. 19, Jakasampurna, Bekasi Barat, Kota Bekasi 17145",
     "mapsUrl": "https://maps.google.com/?q=Jl.+Patriot+Raya+Jakasampurna+Bekasi+Barat",
+    "stats": [
+      {
+        "value": "1.500+",
+        "label": "Botol Terjual Tiap Bulan"
+      },
+      {
+        "value": "Rp0",
+        "label": "Biaya Layanan Aplikasi"
+      },
+      {
+        "value": "3 Hari",
+        "label": "Segar di Dalam Kulkas"
+      }
+    ],
+    "promoBanner": {
+      "title": "Paket Rapat & Hantaran Kantor (4 Botol 250ml)",
+      "description": "Solusi jamuan rapat anti ribet. Berisi 2 Es Kopi Susu Aren dan 2 Iced Matcha Oat dalam boks rapi bersegel dingin, lengkap dengan kartu ucapan. Harga langsung kedai, jauh lebih hemat dibanding pesan satuan di aplikasi ojol.",
+      "priceLabel": "Rp85.000",
+      "productId": "paket-hantaran-4"
+    },
     "highlights": [
       {
-        "title": "Seduh Baru Setiap Pagi",
-        "description": "Biji arabika-robusta pilihan disangrai mingguan dan diekstrak segar saat pesanan masuk agar rasa tetap seimbang."
+        "title": "Harga Asli Kedai Tanpa Biaya Aplikasi",
+        "description": "Semua harga menu sama persis seperti beli langsung di meja kasir. Bebas mark-up 20 sampai 30 persen dan bebas potongan komisi platform."
       },
       {
-        "title": "Pesan Praktis via WhatsApp",
-        "description": "Pilih menu, atur jumlah, dan kirim rincian pesanan otomatis ke WhatsApp kasir tanpa potongan komisi platform."
+        "title": "Botol 250ml Tersegel Rapat, Awet di Kulkas",
+        "description": "Dikemas dalam botol food-grade tersegel yang tetap segar dan creamy hingga 3 hari di suhu kulkas. Tinggal tuang ke gelas berisi es kapan pun butuh teman kerja."
       },
       {
-        "title": "Kemasan Rapat Aman Antar",
-        "description": "Botol 250ml tersegel rapat dan boks roti khusus menjaga suhu serta kerenyahan sampai di rumah atau kantor."
+        "title": "Siap Layani Stok Harian & Rapat Kantor",
+        "description": "Beli 1 botol tetap kami proses cepat, pesan belasan hingga puluhan box untuk rapat kantor atau kumpul keluarga juga siap kirim tepat waktu."
       }
     ],
     "products": [
@@ -38,17 +58,27 @@
         "category": "Kopi",
         "price": 22000,
         "unitLabel": "botol 250ml",
-        "description": "Espresso ganda house blend dipadukan susu segar dan gula aren organik cair.",
+        "description": "Espresso ganda house blend arabika-robusta berpadu susu segar full cream dan lelehan gula aren organik. Aromanya wangi karamel alami dengan body kopi tebal, creamy, dan manis pas tanpa bikin enek.",
         "imageUrl": "/demo/umkm-kopi-aren.webp",
         "featured": true
       },
       {
         "id": "sea-salt-latte",
-        "name": "Sea Salt Latte",
+        "name": "Sea Salt Caramel Latte",
         "category": "Kopi",
         "price": 25000,
         "unitLabel": "botol 250ml",
-        "description": "Kopi susu lembut dengan krim gurih sejumput garam laut dan aroma karamel.",
+        "description": "Espresso lembut disiram saus karamel panggang harum, lalu ditutup krim susu gurih dengan sejumput garam laut. Kontras rasa manis legit dan gurih halus terasa di setiap tegukan.",
+        "imageUrl": "/demo/umkm-sea-salt.webp",
+        "featured": true
+      },
+      {
+        "id": "house-cold-brew",
+        "name": "House Blend Cold Brew",
+        "category": "Kopi",
+        "price": 24000,
+        "unitLabel": "botol 250ml",
+        "description": "Seduhan dingin 14 jam dari biji arabika Jawa Barat dengan tekstur ringan dan bersih di tenggorokan. Aroma cokelat gelap serta kacang panggangnya kuat, namun tingkat keasamannya tetap rendah.",
         "imageUrl": "/demo/umkm-hero.webp"
       },
       {
@@ -57,9 +87,18 @@
         "category": "Non-Kopi",
         "price": 26000,
         "unitLabel": "botol 250ml",
-        "description": "Bubuk matcha Uji murni dikocok bersama susu gandum creamy yang ringan.",
+        "description": "Bubuk matcha Uji Jepang hijau pekat dikocok bersama susu gandum lembut yang kaya rasa gurih alami. Wangi teh hijaunya segar, teksturnya silky, dan seimbang tanpa jejak pahit berlebih.",
         "imageUrl": "/demo/umkm-matcha.webp",
         "featured": true
+      },
+      {
+        "id": "es-cokelat-belgia",
+        "name": "Es Cokelat Belgia",
+        "category": "Non-Kopi",
+        "price": 24000,
+        "unitLabel": "botol 250ml",
+        "description": "Cokelat hitam 70 persen yang dilelehkan perlahan lalu dipadu susu segar dingin. Menghasilkan rasa cokelat pekat, lembut di lidah, dan manis seimbang yang disukai anak-anak hingga orang dewasa.",
+        "imageUrl": "/demo/umkm-es-cokelat.webp"
       },
       {
         "id": "butter-croissant",
@@ -67,7 +106,7 @@
         "category": "Roti",
         "price": 24000,
         "unitLabel": "pcs",
-        "description": "Lapisan renyah keemasan di luar dan berongga lembut bermentega di dalam.",
+        "description": "Dipanggang segar setiap pagi dengan mentega impor pilihan. Lapisan luarnya renyah keemasan dengan serpihan flaky saat digigit, sementara bagian dalamnya berongga empuk dan harum mentega hangat.",
         "imageUrl": "/demo/umkm-croissant.webp",
         "featured": true
       },
@@ -77,8 +116,8 @@
         "category": "Roti",
         "price": 27000,
         "unitLabel": "pcs",
-        "description": "Pastry panggang pagi dengan isian dua batang cokelat hitam pekat.",
-        "imageUrl": "/demo/umkm-croissant.webp"
+        "description": "Pastry lipat berlapis tipis yang renyah di luar dan lembut di dalam, memeluk dua batang dark chocolate Belgia yang lumer hangat saat digigit. Paling nikmat disantap bersama kopi hitam atau latte.",
+        "imageUrl": "/demo/umkm-pain-chocolat.webp"
       },
       {
         "id": "paket-hantaran-4",
@@ -86,25 +125,48 @@
         "category": "Paket",
         "price": 85000,
         "unitLabel": "box",
-        "description": "Isi 2 Es Kopi Susu Aren dan 2 Iced Matcha Oat lengkap dengan kartu ucapan.",
+        "description": "Paket praktis untuk rapat kantor, kumpul keluarga, atau buah tangan. Berisi 2 Es Kopi Susu Aren dan 2 Iced Matcha Oat ukuran 250ml dalam boks rapi lengkap dengan pita serta kartu ucapan.",
         "imageUrl": "/demo/umkm-hampers.webp"
       }
     ],
     "testimonials": [
       {
-        "quote": "Kopi arennya seimbang, manisnya pas dan tidak bikin enek diminum siang hari di kantor.",
-        "author": "Fajar Nugroho",
-        "role": "Karyawan Swasta"
+        "quote": "Sejak tahu bisa order langsung lewat web ini, saya selalu stok 4 botol kopi aren di kulkas kos buat teman begadang nugas. Harganya jauh lebih hemat dibanding pesan di aplikasi ojol.",
+        "author": "Daffa Pratama",
+        "role": "Mahasiswa Bekasi"
       },
       {
-        "quote": "Order paket hantaran buat rapat di Bekasi Barat cepat banget sampainya dan kemasan rapi.",
+        "quote": "Sering pesan Paket Rapat 4 botol untuk meeting mingguan tim. Botolnya tersegel rapi, es tidak mencair duluan, dan sampai ke kantor tepat sebelum jam rapat mulai.",
         "author": "Rika Wulandari",
-        "role": "Admin HRD"
+        "role": "HRD & General Affairs"
       },
       {
-        "quote": "Croissant-nya masih renyah waktu sampai rumah, harganya juga ramah untuk langganan.",
-        "author": "Bagas Pradipta",
-        "role": "Pelanggan Tetap"
+        "quote": "Croissant-nya masih kriuk dan wangi butter pas sampai rumah. Anak-anak paling rebutan Es Cokelat Belgia karena rasanya pekat tapi tidak bikin serik di tenggorokan.",
+        "author": "Ibu Ratna Dewi",
+        "role": "Pelanggan Keluarga"
+      },
+      {
+        "quote": "Suka banget sama Sea Salt Caramel Latte-nya, manis gurihnya dapet. Tinggal klik pilih menu terus langsung masuk WhatsApp kasir, praktis banget buat jam istirahat kerja.",
+        "author": "Bagas Adi",
+        "role": "Karyawan Swasta"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Berapa lama minuman botol 250ml tahan di kulkas?",
+        "answer": "Selama segel botol belum dibuka dan disimpan di kulkas bersuhu dingin stabil sekitar 4 derajat Celsius, minuman kopi maupun non-kopi tetap segar, creamy, dan nikmat hingga 3 hari sejak tanggal produksi."
+      },
+      {
+        "question": "Kenapa harga di web ini bisa lebih hemat dari aplikasi pesan antar?",
+        "answer": "Karena Anda memesan langsung ke kasir kedai kami tanpa perantara aplikasi, sehingga tidak ada tambahan biaya layanan atau komisi platform. Harga yang tertera sama persis dengan harga beli di kedai."
+      },
+      {
+        "question": "Apakah bisa pesan untuk rapat kantor, arisan, atau acara mendadak?",
+        "answer": "Bisa. Pemesanan harian mulai 1 botol tetap kami proses langsung. Untuk kebutuhan rapat kantor atau acara di atas 15 botol atau 15 box pastry, silakan konfirmasi H-1 lewat WhatsApp agar kami siapkan batch panggang dan seduhan khusus."
+      },
+      {
+        "question": "Bagaimana cara pengiriman dan pembayarannya?",
+        "answer": "Setelah klik Kirim Pesanan ke WhatsApp, kasir akan mengonfirmasi total beserta opsi ambil langsung di kedai atau pengiriman kurir instan dari Jl. Patriot Raya. Pembayaran bisa melalui QRIS atau transfer bank sesuai arahan kasir."
       }
     ]
   }

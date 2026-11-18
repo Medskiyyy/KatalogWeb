@@ -1,8 +1,8 @@
 {
   "slug": "hbd-rani-21",
   "templateId": "ultah-interaktif",
-  "title": "Selamat Ulang Tahun ke-21, Rani",
-  "seoDescription": "Kejutan ulang tahun interaktif tiup lilin, buka voucher hadiah, dan ucapan sahabat untuk Rani.",
+  "title": "Happy Birthday ke-21, Rani!",
+  "seoDescription": "Kejutan ulang tahun interaktif buat Rani: tiup lilin online, tiket traktiran anti wacana, dump foto, wishlist, dan titipan ucapan orang terdekat.",
   "createdAt": "2026-11-18",
   "orderNote": "Demo resmi template Ultah Tiup Lilin Interaktif",
   "musicTrack": "builtin:birthday",
@@ -11,47 +11,77 @@
     "turningAge": 21,
     "birthDateLabel": "18 November 2026",
     "senderName": "Dimas",
-    "heroWish": "Selamat menginjak usia 21, Rani. Semoga semua rencana baikmu tahun ini berjalan lancar, skripsinya dimudahkan, rezekinya mengalir terus, dan kamu selalu dikelilingi orang-orang yang tulus menyayangimu.",
+    "heroWish": "Cie yang resmi masuk kepala dua! Happy birthday ke-21 ya, Rani sayang. Makasih udah jadi rumah paling nyaman buat cerita apa aja tahun ini. Semoga skripsimu sat-set beres tanpa drama revisi, rezekinya ngalir terus, dan semua hal baik yang kamu semogakan satu per satu kejadian. Siap-siap ditraktir habis ini!",
+    "cakeImageUrl": "/demo/ultah-cake-stage.webp",
     "giftVoucher": {
-      "title": "Voucher Traktiran Dinner & Dessert Bebas Pilih",
-      "description": "Berlaku untuk 1 kali makan malam spesial plus es krim favoritmu akhir pekan ini. Tidak ada batas minimal menu, langsung pesan saja apa yang paling kamu mau.",
-      "redeemNote": "Tunjukkan halaman voucher yang sudah terbuka ini ke Dimas sebelum 30 November 2026."
+      "title": "Tiket Traktiran Dinner + Gelato Sepuasnya",
+      "description": "Berlaku buat 1x makan malam enak plus es krim favorit kamu weekend ini. Gak usah lihat harga di menu, tinggal tunjuk aja mau pesan apa!",
+      "redeemNote": "Screenshot tiket yang udah kebuka ini terus kirim ke Dimas sebelum 30 November 2026. Anti wacana!"
     },
     "memories": [
       {
         "imageUrl": "/demo/ultah-1.webp",
-        "caption": "Kue ulang tahun pertama yang sudah disiapkan diam-diam sejak pagi hari"
+        "caption": "Kue ultah kejutan yang udah diumpetin dari pagi biar gak ketahuan pas kamu bangun"
       },
       {
         "imageUrl": "/demo/ultah-2.webp",
-        "caption": "Momen tawa lepas sebelum acara tiup lilin dimulai bareng teman-teman"
+        "caption": "Ketawa ngakak sebelum acara tiup lilin beneran dimulai bareng geng"
       },
       {
         "imageUrl": "/demo/ultah-3.webp",
-        "caption": "Kado kecil dan kartu ucapan tulisan tangan yang siap dibuka malam ini"
+        "caption": "Kado kecil plus surat tulisan tangan yang sengaja disiapin buat kamu buka malam ini"
+      },
+      {
+        "imageUrl": "/demo/ultah-4.webp",
+        "caption": "Nongkrong ngopi sore abis kelas sambil ngehalu liburan abis UAS nanti"
+      },
+      {
+        "imageUrl": "/demo/ultah-5.webp",
+        "caption": "Foto candid di teras kedai langganan pas langitnya lagi cakep-cakepnya"
       }
+    ],
+    "wishChecklist": [
+      "Sidang skripsi sekali jadi, dosen pembimbing langsung ACC",
+      "Badan tetap fit meski deadline numpuk, anti tumbang-tumbang club",
+      "Wacana staycation atau liburan bareng beneran kejadian tahun ini",
+      "Berani gas ambil kesempatan baru buat karier impian abis lulus",
+      "Makin sering me-time, baca buku, atau jajan enak tanpa rasa bersalah"
     ],
     "friendWishes": [
       {
         "from": "Dimas",
-        "role": "Pasangan",
-        "message": "Selamat ulang tahun ke-21, Ran. Terima kasih sudah selalu sabar dan jadi tempat cerita terbaik sepanjang tahun ini. Yuk rayakan dengan makan enak nanti malam."
+        "role": "Pacar",
+        "message": "HBD ke-21, Ran! Cie kepala dua nih sekarang. Makasih udah selalu sabar ngadepin tingkahku dan jadi partner paling asik buat diajak kulineran. Malam ini siap-siap makan enak, aku yang bayar!"
       },
       {
         "from": "Salsa",
-        "role": "Sahabat Kuliah",
-        "message": "Panjang umur dan sehat selalu, Rani. Semoga revisi bab empat cepat ACC dan kita bisa foto wisuda bareng tahun depan."
+        "role": "Bestie Kuliah",
+        "message": "Happy birthday Raaan! Panjang umur, sehat terus, dan plis banget semoga bab empat kita cepet di-ACC biar tahun depan bisa foto toga bareng di depan rektorat!"
       },
       {
         "from": "Nando",
-        "role": "Teman Satu Kelas",
-        "message": "Happy level up 21, Ran. Jangan kebanyakan begadang ngerjain tugas kelompok, jaga kesehatan terus dan ditunggu traktiran kopinya."
+        "role": "Temen Sekelas",
+        "message": "Selamat level up ke-21, Ran! Kurang-kurangin begadang ngerjain tugas kelompok, awas mata panda. Jangan lupa ya traktiran es kopinya masih ditunggu satu geng!"
       },
       {
         "from": "Tari",
-        "role": "Tetangga & Bestie",
-        "message": "Selamat bertambah usia, Rani sayang. Tetap jadi pribadi yang hangat, ceria, dan selalu bikin suasana kumpul jadi seru."
+        "role": "Bestie Rumah",
+        "message": "HBD Rani! Tetep jadi orang paling rame, paling hangat, dan yang paling cepet nyambung kalau diajak gibah di teras rumah. Sukses terus pokoknya di umur baru!"
+      },
+      {
+        "from": "Bima",
+        "role": "Anak Himpunan",
+        "message": "Happy birthday, Ran! Semoga di umur 21 ini makin banyak project keren yang tembus, makin lancar kuliahnya, dan tetep jadi andalan kita pas acara lagi hectic!"
+      },
+      {
+        "from": "Dina",
+        "role": "Kakak Sepupu",
+        "message": "Selamat ulang tahun ke-21 ya, Dek Rani. Gak kerasa banget udah gede aja sekarang. Semoga langkahmu selalu dimudahkan, hatinya tenang terus, dan makin banyak kabar baik yang datang buat kamu."
       }
-    ]
+    ],
+    "playlistSong": {
+      "title": "Selamat Ulang Tahun",
+      "artist": "Versi Akustik Kotak Musik"
+    }
   }
 }

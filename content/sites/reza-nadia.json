@@ -38,28 +38,52 @@
       "address": "Jl. Raya Kalimalang No. 48, Jakasampurna, Bekasi Selatan",
       "mapsUrl": "https://maps.google.com/?q=Taman+Pendopo+Kalimalang+Bekasi+Selatan"
     },
+    "dresscode": {
+      "note": "Agar serasi dengan suasana taman yang asri, kami mengundang Bapak/Ibu/Saudara/i untuk mengenakan busana bernuansa hijau sage, putih gading, atau cokelat pasir.",
+      "colors": [
+        {
+          "label": "Hijau Sage",
+          "hex": "#6B8E78"
+        },
+        {
+          "label": "Putih Gading",
+          "hex": "#F5F2EB"
+        },
+        {
+          "label": "Cokelat Pasir",
+          "hex": "#B69B74"
+        }
+      ]
+    },
     "storyTimeline": [
       {
-        "year": "2022",
-        "title": "Pertemuan Pertama",
-        "description": "Berawal dari proyek panitia acara kampus yang mempertemukan kami dalam diskusi sore yang selalu berlanjut hingga kedai kopi tutup."
+        "year": "2021",
+        "title": "Pertemuan di Ruang Panitia",
+        "description": "Semua bermula dari kepanitiaan acara kampus yang mempertemukan kami di meja rapat yang sama. Obrolan ringan sepulang diskusi sore perlahan menjadi alasan mengapa jarak terasa selalu ingin didekatkan, sering kali hingga kedai kopi langganan menutup pintunya."
       },
       {
-        "year": "2024",
-        "title": "Komitmen Bersama",
-        "description": "Memutuskan melangkah lebih serius setelah menyelesaikan kuliah, merintis karier masing-masing, dan mengenalkan kedua keluarga."
+        "year": "2023",
+        "title": "Tumbuh Bersama di Kota yang Sama",
+        "description": "Selepas wisuda dan mulai menapaki dunia kerja, ritme hari tidak lagi semudah masa kuliah. Di antara tenggat pekerjaan dan macetnya jalanan kota, kami belajar menjadi tempat pulang yang tenang bagi satu sama lain."
+      },
+      {
+        "year": "2025",
+        "title": "Restu Dua Keluarga",
+        "description": "Dengan niat tulus untuk melangkah lebih jauh, kedua keluarga kami duduk bersama dalam sebuah pertemuan khitbah yang sederhana. Doa dan senyum hangat orang tua menjadi peneguh hati kami hari itu."
       },
       {
         "year": "2026",
-        "title": "Menuju Pelaminan",
-        "description": "Dengan penuh rasa syukur, kami memohon doa restu keluarga dan sahabat untuk memulai langkah baru membangun rumah tangga."
+        "title": "Menuju Hari Bahagia",
+        "description": "Kini, dengan penuh rasa syukur atas setiap proses yang telah dilalui, kami memohon doa restu Bapak/Ibu/Saudara/i untuk mengikat janji suci dan memulai babak baru sebagai satu keluarga."
       }
     ],
     "gallery": [
       "/demo/nikah-couple.webp",
       "/demo/nikah-gallery-1.webp",
       "/demo/nikah-gallery-2.webp",
-      "/demo/nikah-gallery-3.webp"
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp",
+      "/demo/nikah-gallery-5.webp"
     ],
     "digitalEnvelopes": [
       {
@@ -71,6 +95,32 @@
         "bankName": "Mandiri",
         "accountNumber": "1560004819201",
         "accountHolder": "Reza Pratama Kusuma"
+      }
+    ],
+    "giftAddress": {
+      "recipient": "Nadia Putri Larasati (0812-3456-7890)",
+      "address": "Jl. Kemang Pratama Raya No. 14, Bojong Rawalumbu, Bekasi 17116"
+    },
+    "initialPrayers": [
+      {
+        "name": "Pak Budi Santoso",
+        "relation": "Keluarga Besar",
+        "message": "Alhamdulillah, ikut bersyukur dan berbahagia melihat Reza dan Nadia melangkah ke jenjang pernikahan. Semoga Allah SWT senantiasa melimpahkan keberkahan, ketenteraman, dan menjadikan rumah tangga kalian keluarga yang sakinah, mawaddah, warahmah."
+      },
+      {
+        "name": "Rina Kartika",
+        "relation": "Sahabat Kuliah",
+        "message": "Reza, Nadia, akhirnya hari yang ditunggu-tunggu datang juga! Rasanya baru kemarin lihat kalian masih sibuk diskusi acara di kedai kopi. Turut bahagia banget, semoga selalu kompak, saling jaga, dan langgeng sampai menua bersama."
+      },
+      {
+        "name": "Dimas Pratama",
+        "relation": "Rekan Kerja",
+        "message": "Selamat menempuh hidup baru, Reza dan Nadia! Ikut senang luar biasa dengar kabar baik ini. Semoga pernikahan kalian selalu hangat, dilancarkan segala urusan hingga hari H, dan rezekinya terus mengalir."
+      },
+      {
+        "name": "Ibu Dewi Lestari",
+        "relation": "Kerabat Keluarga",
+        "message": "Barakallah untuk ananda Nadia dan Reza. Doa terbaik dari kami sekeluarga, semoga kalian berdua selalu diberikan kesabaran, saling menguatkan dalam suka maupun duka, dan dibahagiakan selalu dalam lindungan-Nya."
       }
     ],
     "rsvpWhatsapp": "6281234567890"
