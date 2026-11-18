@@ -21,6 +21,7 @@ import {
 } from "@phosphor-icons/react";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import type { BucinSiteConfig } from "@/lib/schema";
+import { playSfx } from "@/lib/sfx";
 import { cn } from "@/lib/utils";
 
 interface ElapsedDuration {
@@ -222,6 +223,7 @@ export function BucinScrapbookTemplate({
   const totalMemories = data.memories.length;
 
   const openLightbox = (index: number) => {
+    playSfx("camera-shutter");
     setLightboxIndex(index);
   };
 
@@ -264,17 +266,22 @@ export function BucinScrapbookTemplate({
 
   const goPrevReason = () => {
     if (totalReasons <= 1) return;
+    playSfx("paper-flip");
     setDeckDirection(-1);
     setReasonIndex((prev) => (prev - 1 + totalReasons) % totalReasons);
   };
 
   const goNextReason = () => {
     if (totalReasons <= 1) return;
+    playSfx("paper-flip");
     setDeckDirection(1);
     setReasonIndex((prev) => (prev + 1) % totalReasons);
   };
 
   const toggleCouponClaim = (index: number) => {
+    if (!claimedCoupons[index]) {
+      playSfx("stamp-claim");
+    }
     setClaimedCoupons((prev) => ({
       ...prev,
       [index]: !prev[index],

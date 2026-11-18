@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { SpeakerHigh, SpeakerSlash } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 
@@ -10,162 +11,179 @@ interface MusicPlayerProps {
   className?: string;
 }
 
-const MELODIES: Record<string, { notes: number[]; tempoMs: number; wave: OscillatorType }> = {
-  "builtin:romance": {
-    notes: [261.63, 329.63, 392.0, 493.88, 392.0, 329.63, 293.66, 349.23],
-    tempoMs: 520,
-    wave: "sine",
-  },
-  "builtin:birthday": {
-    notes: [261.63, 261.63, 293.66, 261.63, 349.23, 329.63, 261.63, 392.0],
-    tempoMs: 420,
-    wave: "triangle",
-  },
-  "builtin:wedding": {
-    notes: [293.66, 369.99, 440.0, 587.33, 440.0, 369.99, 329.63, 440.0],
-    tempoMs: 600,
-    wave: "sine",
-  },
+export const BUILTIN_MUSIC_URLS: Record<string, string> = {
+  "builtin:romance": "/audio/music/romance-piano.mp3",
+  "builtin:lofi": "/audio/music/lofi-chat.mp3",
+  "builtin:bossa": "/audio/music/bossa-brunch.mp3",
+  "builtin:indie": "/audio/music/indie-warm.mp3",
+  "builtin:birthday": "/audio/music/birthday-upbeat.mp3",
+  "builtin:wedding": "/audio/music/wedding-canon.mp3",
+  "builtin:nikah-minang": "/audio/music/nikah-minang.mp3",
+  "builtin:nikah-jawa": "/audio/music/nikah-jawa.mp3",
+  "builtin:nikah-sunda": "/audio/music/nikah-sunda.mp3",
 };
+
+export function resolveMusicTrackUrl(track: string): string | null {
+  const trimmed = track.trim();
+  if (!trimmed || trimmed === "none") return null;
+  if (trimmed.startsWith("builtin:")) {
+    return BUILTIN_MUSIC_URLS[trimmed] ?? BUILTIN_MUSIC_URLS["builtin:romance"];
+  }
+  return trimmed;
+}
 
 export function MusicPlayer({
   track,
   autoPlayTrigger = false,
   className,
 }: MusicPlayerProps) {
+  const prefersReducedMotion = Boolean(useReducedMotion());
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const ctxRef = useRef<AudioContext | null>(null);
-  const timerRef = useRef<number | null>(null);
-  const stepRef = useRef(0);
+  const manualPauseRef = useRef(false);
   const triggeredRef = useRef(false);
 
-  const isBuiltin = track.startsWith("builtin:");
+  const resolvedUrl = useMemo(() => resolveMusicTrackUrl(track), [track]);
 
-  const stopAudio = useCallback(() => {
-    if (timerRef.current !== null) {
-      window.clearInterval(timerRef.current);
-      timerRef.current = null;
+  const stopAudio = useCallback((byUser = false) => {
+    if (byUser) {
+      manualPauseRef.current = true;
     }
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
-    if (ctxRef.current) {
-      ctxRef.current.close().catch(() => {});
-      ctxRef.current = null;
+    const el = audioRef.current;
+    if (el) {
+      el.pause();
     }
     setIsPlaying(false);
   }, []);
 
-  const startAudio = useCallback(() => {
-    if (!track || track === "none") return;
+  const attemptPlay = useCallback(async (): Promise<boolean> => {
+    const el = audioRef.current;
+    if (!el || !resolvedUrl) return false;
 
-    if (!isBuiltin) {
-      if (!audioRef.current) {
-        const el = new Audio(track);
-        el.loop = true;
-        audioRef.current = el;
-      }
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
-      return;
+    manualPauseRef.current = false;
+    el.volume = 0.45;
+    try {
+      await el.play();
+      setIsPlaying(true);
+      return true;
+    } catch {
+      setIsPlaying(false);
+      return false;
     }
+  }, [resolvedUrl]);
 
-    const preset = MELODIES[track] ?? MELODIES["builtin:romance"];
-    const AudioCtx =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext })
-        .webkitAudioContext;
-    if (!AudioCtx) return;
+  useEffect(() => {
+    if (!autoPlayTrigger || !resolvedUrl || manualPauseRef.current) return;
+    if (triggeredRef.current) return;
+    triggeredRef.current = true;
 
-    if (ctxRef.current) {
-      ctxRef.current.close().catch(() => {});
-    }
+    let detachGesture = () => {};
 
-    const ctx = new AudioCtx();
-    ctxRef.current = ctx;
-    stepRef.current = 0;
+    const runAutoPlay = async () => {
+      const started = await attemptPlay();
+      if (started || manualPauseRef.current) return;
 
-    const playNote = () => {
-      if (!ctxRef.current || ctxRef.current.state === "closed") return;
-      const now = ctx.currentTime;
-      const freq = preset.notes[stepRef.current % preset.notes.length];
-      stepRef.current += 1;
+      const onFirstGesture = () => {
+        detachGesture();
+        if (!manualPauseRef.current) {
+          void attemptPlay();
+        }
+      };
 
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = preset.wave;
-      osc.frequency.setValueAtTime(freq, now);
-
-      gain.gain.setValueAtTime(0.001, now);
-      gain.gain.exponentialRampToValueAtTime(0.06, now + 0.06);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + preset.tempoMs / 1000);
-
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(now);
-      osc.stop(now + preset.tempoMs / 1000 + 0.05);
+      window.addEventListener("pointerdown", onFirstGesture, { once: true });
+      window.addEventListener("keydown", onFirstGesture, { once: true });
+      detachGesture = () => {
+        window.removeEventListener("pointerdown", onFirstGesture);
+        window.removeEventListener("keydown", onFirstGesture);
+      };
     };
 
-    playNote();
-    timerRef.current = window.setInterval(playNote, preset.tempoMs);
-    setIsPlaying(true);
-  }, [isBuiltin, track]);
+    const frame = window.requestAnimationFrame(() => {
+      void runAutoPlay();
+    });
 
-  useEffect(() => {
-    if (autoPlayTrigger && !triggeredRef.current && track !== "none") {
-      triggeredRef.current = true;
-      const frame = window.requestAnimationFrame(() => {
-        startAudio();
-      });
-      return () => window.cancelAnimationFrame(frame);
-    }
-  }, [autoPlayTrigger, startAudio, track]);
-
-  useEffect(() => {
     return () => {
-      if (timerRef.current !== null) {
-        window.clearInterval(timerRef.current);
-      }
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-      if (ctxRef.current) {
-        ctxRef.current.close().catch(() => {});
-        ctxRef.current = null;
-      }
+      window.cancelAnimationFrame(frame);
+      detachGesture();
     };
-  }, []);
+  }, [attemptPlay, autoPlayTrigger, resolvedUrl]);
 
-  if (!track || track === "none") return null;
+  useEffect(() => {
+    triggeredRef.current = false;
+  }, [resolvedUrl]);
+
+  if (!resolvedUrl) return null;
 
   const toggle = () => {
     if (isPlaying) {
-      stopAudio();
+      stopAudio(true);
     } else {
-      startAudio();
+      void attemptPlay();
     }
   };
 
   return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={isPlaying ? "Matikan musik latar" : "Putar musik latar"}
-      className={cn(
-        "fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/95 px-3.5 py-2 text-xs font-medium text-zinc-900 shadow-md backdrop-blur-sm transition-transform active:scale-[0.98]",
-        className
-      )}
-    >
-      {isPlaying ? (
-        <SpeakerHigh size={16} weight="fill" />
-      ) : (
-        <SpeakerSlash size={16} weight="regular" />
-      )}
-      <span>{isPlaying ? "Musik Aktif" : "Putar Musik"}</span>
-    </button>
+    <>
+      <audio
+        ref={audioRef}
+        src={resolvedUrl}
+        loop
+        preload="auto"
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onError={() => setIsPlaying(false)}
+      />
+
+      <button
+        type="button"
+        onClick={toggle}
+        aria-label={isPlaying ? "Matikan musik latar" : "Putar musik latar"}
+        className={cn(
+          "fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/95 px-3.5 py-2 text-xs font-medium text-zinc-900 shadow-md backdrop-blur-sm transition-transform active:scale-[0.98]",
+          className
+        )}
+      >
+        {isPlaying ? (
+          <SpeakerHigh size={16} weight="fill" />
+        ) : (
+          <SpeakerSlash size={16} weight="regular" />
+        )}
+
+        <span>{isPlaying ? "Musik Aktif" : "Putar Musik"}</span>
+
+        {isPlaying && (
+          <span
+            aria-hidden="true"
+            className="inline-flex h-3 items-end gap-[2px]"
+          >
+            {[
+              { h: 11, dur: 0.52 },
+              { h: 8, dur: 0.68 },
+              { h: 12, dur: 0.44 },
+            ].map((bar, idx) => (
+              <motion.span
+                key={idx}
+                animate={
+                  prefersReducedMotion
+                    ? { height: `${bar.h}px` }
+                    : { height: ["4px", `${bar.h}px`, "5px"] }
+                }
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0.1 }
+                    : {
+                        repeat: Infinity,
+                        repeatType: "mirror",
+                        duration: bar.dur,
+                        ease: "easeInOut",
+                      }
+                }
+                className="w-[2.5px] rounded-[1px] bg-emerald-600"
+              />
+            ))}
+          </span>
+        )}
+      </button>
+    </>
   );
 }
