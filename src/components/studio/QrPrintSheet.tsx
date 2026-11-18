@@ -26,9 +26,21 @@ function getSiteThumbnail(site: SiteConfig): string {
       return site.data.memories[0]?.imageUrl || "/demo/bucin-mag-1.webp";
     case "ultah-interaktif":
       return site.data.memories[0]?.imageUrl || "/demo/ultah-1.webp";
+    case "ultah-balon":
+      return site.data.memories[0]?.imageUrl || "/demo/ultah-balon-hero.webp";
+    case "ultah-retro":
+      return site.data.memories[0]?.imageUrl || "/demo/ultah-retro-hero.webp";
+    case "ultah-editorial":
+      return site.data.memories[0]?.imageUrl || "/demo/ultah-editorial-hero.webp";
     case "nikah-garden":
+    case "nikah-minang":
+    case "nikah-jawa":
+    case "nikah-sunda":
       return site.data.gallery[0] || site.data.bride.photoUrl;
     case "umkm-katalog":
+    case "umkm-kuliner":
+    case "umkm-fashion":
+    case "umkm-jasa":
       return site.data.heroImageUrl || "/demo/umkm-hero.webp";
   }
 }

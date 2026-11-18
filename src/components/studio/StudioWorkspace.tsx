@@ -30,6 +30,7 @@ import {
 import { SubdomainLink } from "@/components/SubdomainLink";
 import { TemplateRenderer } from "@/templates/TemplateRenderer";
 import { TemplateDataEditor } from "@/components/studio/TemplateDataEditor";
+import { AudioUploadField } from "@/components/studio/AudioUploadField";
 import { QrPrintSheet } from "@/components/studio/QrPrintSheet";
 
 interface StudioWorkspaceProps {
@@ -40,9 +41,15 @@ type ActiveTab = "list" | "editor" | "qr";
 type PreviewViewport = "mobile" | "desktop";
 
 const MUSIC_PRESETS = [
-  { value: "builtin:romance", label: "Melodi Romantis (Bawaan)" },
-  { value: "builtin:birthday", label: "Melodi Ulang Tahun (Bawaan)" },
-  { value: "builtin:wedding", label: "Melodi Pernikahan (Bawaan)" },
+  { value: "builtin:romance", label: "Piano Romantis (Bawaan)" },
+  { value: "builtin:lofi", label: "Lofi Santai Arsip Chat (Bawaan)" },
+  { value: "builtin:bossa", label: "Bossa Nova Kafe (Bawaan)" },
+  { value: "builtin:indie", label: "Akustik Indie Hangat (Bawaan)" },
+  { value: "builtin:birthday", label: "Pesta Ulang Tahun Ceria (Bawaan)" },
+  { value: "builtin:wedding", label: "Canon Klasik Pernikahan (Bawaan)" },
+  { value: "builtin:nikah-minang", label: "Musik Sambutan Adat Minang (Bawaan)" },
+  { value: "builtin:nikah-jawa", label: "Ketawang Gamelan Jawa (Bawaan)" },
+  { value: "builtin:nikah-sunda", label: "Kacapi Laras Degung Sunda (Bawaan)" },
   { value: "none", label: "Tanpa Musik" },
 ];
 
@@ -67,16 +74,52 @@ const TEMPLATE_META: Record<
     badgeClass: "border-pink-200 bg-pink-50 text-pink-800",
   },
   "ultah-interaktif": {
-    label: "Ultah Interaktif",
+    label: "Ultah Tiup Lilin",
     badgeClass: "border-amber-200 bg-amber-50 text-amber-800",
+  },
+  "ultah-balon": {
+    label: "Pesta Balon & Kapsul",
+    badgeClass: "border-sky-200 bg-sky-50 text-sky-800",
+  },
+  "ultah-retro": {
+    label: "Arcade Retro 90an",
+    badgeClass: "border-lime-200 bg-lime-50 text-lime-800",
+  },
+  "ultah-editorial": {
+    label: "Jurnal Ultah Elegan",
+    badgeClass: "border-rose-200 bg-rose-50 text-rose-800",
   },
   "nikah-garden": {
     label: "Nikah Garden",
     badgeClass: "border-emerald-200 bg-emerald-50 text-emerald-800",
   },
+  "nikah-minang": {
+    label: "Nikah Adat Padang",
+    badgeClass: "border-red-200 bg-red-50 text-red-900",
+  },
+  "nikah-jawa": {
+    label: "Nikah Adat Jawa",
+    badgeClass: "border-amber-300 bg-amber-50 text-amber-900",
+  },
+  "nikah-sunda": {
+    label: "Nikah Adat Sunda",
+    badgeClass: "border-teal-200 bg-teal-50 text-teal-800",
+  },
   "umkm-katalog": {
-    label: "UMKM Katalog",
+    label: "UMKM Kedai Kopi",
     badgeClass: "border-sky-200 bg-sky-50 text-sky-800",
+  },
+  "umkm-kuliner": {
+    label: "UMKM Kuliner & Katering",
+    badgeClass: "border-orange-200 bg-orange-50 text-orange-800",
+  },
+  "umkm-fashion": {
+    label: "UMKM Butik Fashion",
+    badgeClass: "border-fuchsia-200 bg-fuchsia-50 text-fuchsia-800",
+  },
+  "umkm-jasa": {
+    label: "UMKM Jasa & Booking",
+    badgeClass: "border-cyan-200 bg-cyan-50 text-cyan-800",
   },
 };
 
@@ -916,15 +959,18 @@ export function StudioWorkspace({ initialSites }: StudioWorkspaceProps) {
                       </select>
 
                       {isCustomMusic ? (
-                        <input
-                          type="text"
-                          value={draft.musicTrack}
-                          onChange={(e) =>
-                            setDraft({ ...draft, musicTrack: e.target.value })
-                          }
-                          placeholder="/uploads/slug/lagu.mp3 atau https://..."
-                          className="mt-2 h-10 w-full rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none"
-                        />
+                        <div className="mt-2">
+                          <AudioUploadField
+                            label="Upload atau URL MP3 Custom"
+                            value={draft.musicTrack}
+                            slug={draft.slug}
+                            studioConnected={studioConnected}
+                            placeholder="/uploads/slug/lagu.mp3 atau https://..."
+                            onChange={(nextUrl) =>
+                              setDraft({ ...draft, musicTrack: nextUrl })
+                            }
+                          />
+                        </div>
                       ) : null}
                     </div>
                   </section>

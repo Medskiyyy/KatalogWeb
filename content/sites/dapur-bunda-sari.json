@@ -1,0 +1,175 @@
+{
+  "slug": "dapur-bunda-sari",
+  "templateId": "umkm-kuliner",
+  "title": "Dapur Bunda Sari - Nasi Liwet, Katering & Kue Rumahan Bekasi",
+  "seoDescription": "Pesan nasi liwet ayam lengkuas, nasi kotak rapat kantor, tumpeng syukuran, dan kue basah rumahan masak hangat setiap pagi dari Dapur Bunda Sari Bekasi.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Resto, Katering & Kue Rumahan",
+  "musicTrack": "none",
+  "data": {
+    "businessName": "Dapur Bunda Sari",
+    "categoryLabel": "Resto, Katering & Kue Rumahan",
+    "tagline": "Nasi Liwet, Tumpeng Mini & Nasi Kotak Masak Hangat Setiap Pagi",
+    "description": "Masakan rumahan resep keluarga tanpa pengawet dan penyedap berlebih. Dimasak subuh dengan bumbu segar setiap hari, siap kirim hangat untuk makan siang kantor, pengajian, hingga syukuran keluarga.",
+    "heroImageUrl": "/demo/umkm-kuliner-hero.webp",
+    "cityLabel": "Bekasi & Jakarta Timur",
+    "openHoursLabel": "Setiap hari, 06.30 - 18.00 WIB",
+    "whatsappNumber": "6281234567890",
+    "address": "Jl. Raya Pekayon No. 27, Pekayon Jaya, Bekasi Selatan, Kota Bekasi 17148",
+    "mapsUrl": "https://maps.google.com/?q=Jl.+Raya+Pekayon+Pekayon+Jaya+Bekasi+Selatan",
+    "stats": [
+      {
+        "value": "4.500+",
+        "label": "Kotak Terkirim Tiap Bulan"
+      },
+      {
+        "value": "Min. H-1",
+        "label": "Order Katering Acara Besar"
+      },
+      {
+        "value": "100%",
+        "label": "Masak Pagi Bahan Segar"
+      }
+    ],
+    "promoBanner": {
+      "title": "Paket Tumpeng Syukuran + 6 Kotak Kue Hantaran",
+      "description": "Paket lengkap siap saji untuk acara syukuran rumah, tasyakuran kantor, atau ulang tahun keluarga. Nasi kuning pulen berhias lauk komplit plus aneka kue basah hangat, bebas pilih tanggal antar.",
+      "priceLabel": "Rp240.000",
+      "productId": "tumpeng-mini"
+    },
+    "highlights": [
+      {
+        "title": "Dimasak Dadakan Subuh, Sampai Tetap Hangat",
+        "description": "Seluruh lauk, tumisan, dan sambal diolah segar mulai pukul 04.00 pagi sebelum armada kurir berangkat. Tidak ada menu stok kemarin yang dipanaskan ulang."
+      },
+      {
+        "title": "Hitung Porsi Acara Fleksibel 10 hingga 200 Box",
+        "description": "Pesan satuan untuk makan siang keluarga maupun puluhan hingga ratusan kotak untuk rapat dinas dan pengajian, komposisi lauk bisa disesuaikan dengan anggaran acara."
+      },
+      {
+        "title": "Halal, Bersih & Kemasan Kotak Rapi",
+        "description": "Menggunakan daging sapi, ayam kampung, dan sayuran segar pilihan pasar pagi. Dikemas dalam dus food-grade rapi lengkap dengan sendok, tisu, dan segel aman."
+      }
+    ],
+    "products": [
+      {
+        "id": "liwet-box",
+        "name": "Nasi Liwet Ayam Lengkuas",
+        "category": "Nasi Kotak",
+        "price": 35000,
+        "unitLabel": "box",
+        "description": "Nasi liwet gurih wangi serai dan daun salam, dipadu ayam kampung goreng bumbu lengkuas, tempe orek kering, tahu bacem, lalapan segar, dan sambal terasi dadak.",
+        "imageUrl": "/demo/umkm-kuliner-hero.webp",
+        "featured": true,
+        "options": [
+          "Level Sambal Sedang",
+          "Level Sambal Pedas",
+          "Tanpa Sambal"
+        ]
+      },
+      {
+        "id": "katering-hemat",
+        "name": "Nasi Kotak Rapat Kantoran",
+        "category": "Katering",
+        "price": 29000,
+        "unitLabel": "box",
+        "description": "Paket nasi kotak praktis untuk seminar dan rapat kantor. Nasi putih pulen, daging empuk bumbu rendang, tumis buncis wortel, sambal goreng kentang, dan kerupuk udang.",
+        "imageUrl": "/demo/umkm-kuliner-box.webp",
+        "featured": true,
+        "options": [
+          "Level Sambal Sedang",
+          "Level Sambal Pedas",
+          "Tanpa Sambal"
+        ]
+      },
+      {
+        "id": "tumpeng-mini",
+        "name": "Tumpeng Syukuran Porsi 6 Org",
+        "category": "Tumpeng",
+        "price": 185000,
+        "unitLabel": "nampan",
+        "description": "Nasi kuning santan pulen dibentuk kerucut rapi dengan lauk komplit: ayam panggang bumbu rujak, perkedel kentang, urap sayur kelapa parut, telur balado, dan mie goreng jawa.",
+        "imageUrl": "/demo/umkm-kuliner-hero.webp",
+        "featured": true,
+        "options": [
+          "Level Sambal Sedang",
+          "Level Sambal Pedas",
+          "Tanpa Sambal"
+        ]
+      },
+      {
+        "id": "nasi-bakar-cakalang",
+        "name": "Nasi Bakar Cakalang & Ayam Madu",
+        "category": "Nasi Kotak",
+        "price": 33000,
+        "unitLabel": "box",
+        "description": "Nasi bakar daun pisang isi suwiran cakalang kemangi harum, disajikan bersama paha ayam bakar oles madu karamel, lalapan timun kemangi, serta sambal hijau teri medan.",
+        "imageUrl": "/demo/umkm-kuliner-box.webp",
+        "options": [
+          "Level Sambal Sedang",
+          "Level Sambal Pedas",
+          "Tanpa Sambal"
+        ]
+      },
+      {
+        "id": "kue-lapis-box",
+        "name": "Kotak Kue Basah 12 Potong",
+        "category": "Kue Basah",
+        "price": 68000,
+        "unitLabel": "box",
+        "description": "Isian 12 potong jajanan pasar hangat: kue lapis pandan suji legit, risoles smoked beef mayo renyah, dan lemper ayam suwir gurih untuk suguhan arisan atau snack rapat pagi.",
+        "imageUrl": "/demo/umkm-hampers.webp",
+        "featured": true
+      },
+      {
+        "id": "paket-minuman-acara",
+        "name": "Paket Minuman Segar (5 Botol)",
+        "category": "Minuman",
+        "price": 55000,
+        "unitLabel": "paket",
+        "description": "Lima botol minuman segar ukuran 250ml sebagai pendamping makan siang katering. Pilihan racikan es gula aren rempah dingin atau kopi susu ringan dalam kemasan tersegel rapi.",
+        "imageUrl": "/demo/umkm-hero.webp"
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Pesan 65 nasi kotak buat rapat kantor datangnya masih ngebul hangat, ayam lengkuasnya empuk banget dan sambal terasinya juara.",
+        "author": "Ibu Ratna Dewi",
+        "role": "HRD Kantor Wilayah Bekasi"
+      },
+      {
+        "quote": "Kue lapis pandannya legit dan wangi daun suji asli, nggak kemanisan buat acara arisan keluarga maupun suguhan tamu pengajian.",
+        "author": "Mbak Siska Maharani",
+        "role": "Pelanggan Tetap Pekayon"
+      },
+      {
+        "quote": "Sudah tiga kali pakai paket tumpeng mini dan kalkulasi porsi katering di sini. Estimasi harganya jelas di awal dan pengiriman selalu tepat sebelum acara mulai.",
+        "author": "Pak Hendra Wijaya",
+        "role": "Koordinator Acara Jakarta Timur"
+      },
+      {
+        "quote": "Praktis banget bisa pilih level sambal sedang atau tanpa sambal buat orang tua di rumah langsung lewat katalog sebelum kirim ke WhatsApp.",
+        "author": "Mbak Tari Anggraini",
+        "role": "Pelanggan Keluarga"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Minimal pemesanan katering acara berapa box?",
+        "answer": "Untuk menu harian dan kue basah bisa pesan mulai 1 box. Khusus paket katering rapat atau acara dengan harga grosir minimal pemesanan 10 box, dan untuk pesanan di atas 50 box otomatis mendapat potongan harga katering 5 persen."
+      },
+      {
+        "question": "Kapan batas waktu pemesanan agar dikirim pagi hari?",
+        "answer": "Pesanan menu harian bisa masuk maksimal pukul 09.00 WIB untuk pengiriman siang hari yang sama selama slot dapur masih tersedia. Untuk acara katering 10 sampai 200 box, harap konfirmasi jadwal minimal H-1 agar tim dapur menyiapkan belanja subuh khusus."
+      },
+      {
+        "question": "Apakah level pedas sambal bisa dipisah dalam satu pesanan acara?",
+        "answer": "Bisa. Anda bisa memilih Level Sambal Sedang, Level Sambal Pedas, atau Tanpa Sambal pada setiap menu, lalu tuliskan pembagian jumlah kotaknya di kolom catatan keranjang sebelum mengirim rincian ke WhatsApp."
+      },
+      {
+        "question": "Bagaimana cara pengiriman dan pembayarannya?",
+        "answer": "Pesanan dapat diambil langsung di dapur Jl. Raya Pekayon No. 27 atau dikirim menggunakan kurir instan mobil/motor agar makanan tetap aman dan hangat. Pembayaran melalui transfer bank atau QRIS setelah jadwal dikonfirmasi admin dapur."
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "slug": "ultah-dinda-20",
+  "templateId": "ultah-balon",
+  "title": "Selamat Ulang Tahun ke-20 Dinda!",
+  "seoDescription": "Kejutan pesta balon warna cerah dan kapsul waktu harapan ulang tahun ke-20 untuk Dinda.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Ultah Pesta Balon & Kapsul Waktu",
+  "musicTrack": "builtin:birthday",
+  "data": {
+    "celebrantName": "Dinda",
+    "turningAge": 20,
+    "birthDateLabel": "22 November 2026",
+    "senderName": "Nadia, Ara & Geng Kopi",
+    "heroWish": "Selamat datang di kepala dua, Dinda! Akhirnya resmi 20 tahun juga si paling heboh di grup chat. Semoga kuliah makin lancar, rezeki jajan nggak pernah seret, hati selalu tenang, dan semua rencana kerenmu tahun ini beneran kejadian satu per satu!",
+    "cakeImageUrl": "/demo/ultah-balon-hero.webp",
+    "memories": [
+      {
+        "imageUrl": "/demo/ultah-balon-hero.webp",
+        "caption": "Dekor balon warna cerah spesial buat ngerayain kepala dua Dinda"
+      },
+      {
+        "imageUrl": "/demo/ultah-1.webp",
+        "caption": "Kue manis sebelum sesi potong kue dan ketawa rame-rame"
+      },
+      {
+        "imageUrl": "/demo/ultah-2.webp",
+        "caption": "Momen ngumpul habis kelas sore yang ujungnya lupa pulang"
+      },
+      {
+        "imageUrl": "/demo/ultah-3.webp",
+        "caption": "Kado kecil dan catatan rahasia yang udah disimpan dari minggu lalu"
+      },
+      {
+        "imageUrl": "/demo/ultah-4.webp",
+        "caption": "Sesi ngopi sore langganan sambil nyusun rencana liburan akhir tahun"
+      }
+    ],
+    "wishChecklist": [
+      "IPK tetap aman dan semua tugas kuliah kelar tanpa begadang panik",
+      "Bisa liburan singkat keluar kota bareng geng tanpa wacana",
+      "Lebih berani ambil peluang magang dan pengalaman baru di usia 20",
+      "Tabungan jajan dan dana darurat aman sampai akhir tahun",
+      "Badan tetap bugar meski jadwal kuliah dan nongkrong sama padatnya"
+    ],
+    "friendWishes": [
+      {
+        "from": "Nadia",
+        "role": "Teman Sekelas",
+        "message": "Happy 20th Dinda! Panjang umur, makin bersinar, dan plis kurangin kebiasaan bilang 'otw' pas masih di kamar mandi. Ditunggu traktiran es kopinya!"
+      },
+      {
+        "from": "Ara",
+        "role": "Partner Nongkrong",
+        "message": "Selamat kepala dua, Din! Makasih udah selalu jadi pendengar paling sabar pas aku lagi drama. Semoga di umur 20 ini makin sukses magangnya dan makin sering me-time."
+      },
+      {
+        "from": "Raka",
+        "role": "Anak Himpunan",
+        "message": "HBD Dinda! Tetap jadi orang paling rame yang bikin suasana rapat nggak garing. Semoga semua target tahun ini tembus mulus tanpa revisi!"
+      },
+      {
+        "from": "Vina",
+        "role": "Sahabat Kos",
+        "message": "Cie udah 20 tahun aja nih! Sehat selalu ya Din, semoga tidurnya makin teratur dan rezekinya lancar terus biar bisa jajan boba tiap minggu."
+      },
+      {
+        "from": "Kak Bintang",
+        "role": "Kakak Tingkat",
+        "message": "Selamat ulang tahun ke-20, Dinda! Jangan takut coba hal baru di kepala dua ini, gas terus mimpi besarmu sambil tetap nikmatin prosesnya."
+      }
+    ],
+    "playlistSong": {
+      "title": "Carefree Celebration",
+      "artist": "Musik Pesta Akustik"
+    }
+  }
+}

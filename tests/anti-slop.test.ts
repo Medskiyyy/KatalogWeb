@@ -19,28 +19,32 @@ async function walkFiles(dir: string, extensions: Set<string>): Promise<string[]
   return results;
 }
 
-function collectDemoPaths(value: unknown, out: Set<string>): void {
+function collectAssetPaths(
+  value: unknown,
+  prefix: string,
+  out: Set<string>
+): void {
   if (typeof value === "string") {
-    if (value.startsWith("/demo/")) {
+    if (value.startsWith(prefix)) {
       out.add(value);
     }
     return;
   }
   if (Array.isArray(value)) {
     for (const item of value) {
-      collectDemoPaths(item, out);
+      collectAssetPaths(item, prefix, out);
     }
     return;
   }
   if (value && typeof value === "object") {
     for (const entry of Object.values(value)) {
-      collectDemoPaths(entry, out);
+      collectAssetPaths(entry, prefix, out);
     }
   }
 }
 
 describe("Anti-slop & asset integrity checks", () => {
-  it("enforces zero em/en dashes, zero animate-ping, zero lucide-react, and zero Gemini Sparkle icons/glyphs across src and content", async () => {
+  it("enforces zero em/en dashes, zero animate-ping, zero lucide-react, zero createOscillator, and zero Gemini Sparkle icons/glyphs across src and content", async () => {
     const srcFiles = await walkFiles(
       path.join(ROOT_DIR, "src"),
       new Set([".ts", ".tsx", ".css"])
@@ -60,12 +64,33 @@ describe("Anti-slop & asset integrity checks", () => {
       expect(content, `${rel} contains em-dash`).not.toContain("\u2014");
       expect(content, `${rel} contains en-dash`).not.toContain("\u2013");
       expect(content, `${rel} uses animate-ping`).not.toContain("animate-ping");
+      expect(content, `${rel} uses createOscillator placeholder audio`).not.toContain(
+        "createOscillator"
+      );
       expect(content, `${rel} imports lucide-react`).not.toContain(
         "lucide-react"
       );
       expect(content, `${rel} uses Sparkle icon`).not.toMatch(/\bSparkles?\b/);
       expect(content, `${rel} uses 4-point star glyph`).not.toMatch(
         /[\u2726\u2727\u2728]/
+      );
+    }
+  });
+
+  it("ensures newer gift templates remain varied without repeating coupons/vouchers", async () => {
+    const nonCouponTemplates = [
+      "src/templates/bucin/BucinChatTemplate.tsx",
+      "src/templates/bucin/BucinPlaylistTemplate.tsx",
+      "src/templates/bucin/BucinMagazineTemplate.tsx",
+      "src/templates/ultah/UltahBalonTemplate.tsx",
+      "src/templates/ultah/UltahRetroTemplate.tsx",
+      "src/templates/ultah/UltahEditorialTemplate.tsx",
+    ];
+    for (const relPath of nonCouponTemplates) {
+      const content = await fs.readFile(path.join(ROOT_DIR, relPath), "utf-8");
+      expect(content, `${relPath} still renders coupons`).not.toContain(".coupons");
+      expect(content, `${relPath} still renders giftVoucher`).not.toContain(
+        "giftVoucher"
       );
     }
   });
@@ -88,27 +113,50 @@ describe("Anti-slop & asset integrity checks", () => {
     );
   });
 
-  it("ensures all referenced /demo/ images exist on disk under public/", async () => {
-    const referenced = new Set<string>();
-    collectDemoPaths(BRAND, referenced);
+  it("ensures all referenced /demo/ images and /audio/ tracks/SFX exist on disk under public/", async () => {
+    const referencedImages = new Set<string>();
+    const referencedAudio = new Set<string>();
+    collectAssetPaths(BRAND, "/demo/", referencedImages);
 
     const sitesDir = path.join(ROOT_DIR, "content", "sites");
     const entries = await fs.readdir(sitesDir, { withFileTypes: true });
     for (const entry of entries) {
       if (entry.isFile() && entry.name.endsWith(".json")) {
-        const raw = await fs.readFile(path.join(sitesDir, entry.name), "utf-8");
-        collectDemoPaths(JSON.parse(raw), referenced);
+        const parsed = JSON.parse(
+          await fs.readFile(path.join(sitesDir, entry.name), "utf-8")
+        );
+        collectAssetPaths(parsed, "/demo/", referencedImages);
+        collectAssetPaths(parsed, "/audio/", referencedAudio);
       }
     }
 
-    expect(referenced.size).toBeGreaterThanOrEqual(25);
+    const srcFiles = await walkFiles(
+      path.join(ROOT_DIR, "src"),
+      new Set([".ts", ".tsx"])
+    );
+    const audioRegex = /["'](\/audio\/[^"']+\.mp3)["']/g;
+    for (const filePath of srcFiles) {
+      const text = await fs.readFile(filePath, "utf-8");
+      for (const match of text.matchAll(audioRegex)) {
+        referencedAudio.add(match[1]);
+      }
+    }
 
-    for (const assetUrl of referenced) {
+    expect(referencedImages.size).toBeGreaterThanOrEqual(40);
+    expect(referencedAudio.size).toBeGreaterThanOrEqual(25);
+
+    for (const assetUrl of referencedImages) {
       const diskPath = path.join(ROOT_DIR, "public", assetUrl.replace(/^\//, ""));
       await expect(
         fs.access(diskPath),
-        `Missing asset ${assetUrl}`
+        `Missing image asset ${assetUrl}`
       ).resolves.toBeUndefined();
+    }
+
+    for (const audioUrl of referencedAudio) {
+      const diskPath = path.join(ROOT_DIR, "public", audioUrl.replace(/^\//, ""));
+      const stat = await fs.stat(diskPath);
+      expect(stat.size, `Audio asset too small: ${audioUrl}`).toBeGreaterThan(2048);
     }
   });
 });

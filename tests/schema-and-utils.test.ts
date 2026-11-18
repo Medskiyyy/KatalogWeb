@@ -36,7 +36,7 @@ describe("Demo JSON configs & Zod schema", () => {
       (entry) => entry.isFile() && entry.name.endsWith(".json")
     );
 
-    expect(jsonFiles.length).toBeGreaterThanOrEqual(7);
+    expect(jsonFiles.length).toBeGreaterThanOrEqual(16);
 
     for (const file of jsonFiles) {
       const raw = await fs.readFile(path.join(sitesDir, file.name), "utf-8");
@@ -46,16 +46,26 @@ describe("Demo JSON configs & Zod schema", () => {
     }
   });
 
-  it("creates valid default configs for all 7 template IDs", () => {
+  it("creates valid default configs for all 16 template IDs", () => {
     const templateIds: TemplateId[] = [
       "bucin-scrapbook",
       "bucin-chat",
       "bucin-playlist",
       "bucin-magazine",
       "ultah-interaktif",
+      "ultah-balon",
+      "ultah-retro",
+      "ultah-editorial",
       "nikah-garden",
+      "nikah-minang",
+      "nikah-jawa",
+      "nikah-sunda",
       "umkm-katalog",
+      "umkm-kuliner",
+      "umkm-fashion",
+      "umkm-jasa",
     ];
+    expect(BRAND.templates).toHaveLength(16);
     for (const templateId of templateIds) {
       const config = createDefaultSiteConfig(templateId, `demo-${templateId}`);
       expect(() => SiteConfigSchema.parse(config)).not.toThrow();

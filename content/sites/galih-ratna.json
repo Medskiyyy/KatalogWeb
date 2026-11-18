@@ -1,0 +1,134 @@
+{
+  "slug": "galih-ratna",
+  "templateId": "nikah-sunda",
+  "title": "Walimatul Ursy Galih & Ratna",
+  "seoDescription": "Undangan pernikahan Adat Sunda Sawer Galih dan Ratna.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi Template Undangan Adat Sunda Sawer",
+  "musicTrack": "builtin:nikah-sunda",
+  "data": {
+    "bride": {
+      "nickname": "Ratna",
+      "fullName": "Ratna Komalasari, S.Psi",
+      "parents": "Putri ti Bapa H. Asep Suryana & Ibu Hj. Neneng Kartini",
+      "photoUrl": "/demo/nikah-sunda-couple.webp"
+    },
+    "groom": {
+      "nickname": "Galih",
+      "fullName": "Galih Pratama Hidayat, S.E.",
+      "parents": "Putra ti Bapa Dedi Kusnadi & Ibu Tati Rohaeti",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-01-24T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Silih asah, silih asih, silih asuh. Mugia rumah tangga salawasna aya dina panangtayungan Gusti Allah SWT.",
+      "source": "Papatah Sunda & QS. Ar-Rum: 21"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 24 Januari 2027",
+      "timeLabel": "08.00 - 10.00 WIB",
+      "venueName": "Bale Taman Siliwangi",
+      "address": "Jl. Ir. H. Djuanda Dago No. 112, Bandung",
+      "mapsUrl": "https://maps.google.com/?q=Bandung"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 24 Januari 2027",
+      "timeLabel": "11.00 - 14.00 WIB",
+      "venueName": "Bale Taman Siliwangi",
+      "address": "Jl. Ir. H. Djuanda Dago No. 112, Bandung",
+      "mapsUrl": "https://maps.google.com/?q=Bandung"
+    },
+    "culturalNote": "Sampurasun. Kalayan nyuhunkeun pidua ti sadaya kulawargi miwah réréncangan, simkuring ngahaturanan sumping dina dinten bagja.",
+    "ceremonyExtras": [
+      {
+        "label": "Ngeuyeuk Seureuh",
+        "detail": "Sabtu sore pukul 15.30 WIB berupa prosesi nasihat pernikahan adat Sunda di pendopo taman."
+      },
+      {
+        "label": "Sawer Panganten & Huap Lingkung",
+        "detail": "Berlangsung seusai akad nikah pukul 10.00 WIB diiringi kacapi suling dan tembang sawer."
+      }
+    ],
+    "storyTimeline": [
+      {
+        "year": "2022",
+        "title": "Patepang di Bandung",
+        "description": "Berawal dari hujan sore di kawasan Jalan Dago yang mempertemukan kami di teras kedai buku kecil. Percakapan singkat soal karya sastra Sunda justru berlanjut sampai matahari terbenam."
+      },
+      {
+        "year": "2024",
+        "title": "Silih Asih Dina Rencana",
+        "description": "Di sela kesibukan masing-masing, kami belajar saling mendengarkan dan menguatkan. Setiap akhir pekan di kota kembang menjadi pengingat bahwa pulang terbaik adalah pada orang yang tepat."
+      },
+      {
+        "year": "2025",
+        "title": "Neundeun Omong & Seserahan",
+        "description": "Orang tua dari kedua pihak saling bersilaturahmi dengan hangat untuk memantapkan niat suci, menyatukan doa restu keluarga besar di Bandung."
+      },
+      {
+        "year": "2027",
+        "title": "Ngawangun Kulawarga",
+        "description": "Kini kami siap melangkah bersama dalam ikatan halal, membangun rumah tangga yang dipenuhi syukur, kelembutan, serta ketenteraman."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-sunda-couple.webp",
+      "/demo/nikah-sunda-venue.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BJB",
+        "accountNumber": "009182746100",
+        "accountHolder": "Ratna Komalasari"
+      },
+      {
+        "bankName": "BCA",
+        "accountNumber": "7771092841",
+        "accountHolder": "Galih Pratama Hidayat"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Tamu disarankan mengenakan busana warna hijau daun, putih bersih, atau krem lembut.",
+      "colors": [
+        {
+          "label": "Hijau Daun",
+          "hex": "#14532D"
+        },
+        {
+          "label": "Melati Putih",
+          "hex": "#FAFAF7"
+        },
+        {
+          "label": "Emas Lembut",
+          "hex": "#A16207"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Ratna Komalasari (0812-3456-7890)",
+      "address": "Jl. Tubagus Ismail VIII No. 9, Coblong, Bandung"
+    },
+    "initialPrayers": [
+      {
+        "name": "Kang Ridwan",
+        "relation": "Sahabat Bandung",
+        "message": "Wilujeng Galih & Ratna! Mugia sakinah mawaddah warahmah salamina, rukun sauyunan dugi ka salawasna."
+      },
+      {
+        "name": "Teh Maya",
+        "relation": "Sepupu",
+        "message": "Siger melatinya manis banget, lancar sampai acara saweran dan huap lingkung nanti ya!"
+      },
+      {
+        "name": "Ibu Hj. Imas Suryani",
+        "relation": "Keluarga Besar",
+        "message": "Barakallah untuk ananda Ratna dan Galih. Semoga Allah SWT senantiasa melimpahkan keberkahan dan ketenteraman dalam rumah tangga."
+      }
+    ]
+  }
+}

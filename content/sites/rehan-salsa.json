@@ -5,7 +5,7 @@
   "seoDescription": "Kumpulan track kenangan, piringan hitam berputar, catatan di balik lagu, dan tiket kencan spesial buat Salsa.",
   "createdAt": "2026-11-18",
   "orderNote": "Demo resmi Mixtape & Vinyl Kado Bucin",
-  "musicTrack": "builtin:romance",
+  "musicTrack": "builtin:indie",
   "data": {
     "partnerOne": "Rehan",
     "partnerTwo": "Salsa",
@@ -17,94 +17,86 @@
       {
         "imageUrl": "/demo/bucin-vinyl-1.webp",
         "caption": "Berburu piringan hitam bekas sambil debat selera musik di lorong toko kaset",
-        "dateLabel": "Mar 2024"
+        "dateLabel": "Mar 2024",
+        "audioUrl": "/audio/tracks/track-01.mp3"
       },
       {
         "imageUrl": "/demo/bucin-vinyl-2.webp",
         "caption": "Sharing earphone sebelah di KRL gerbong belakang pas pulang sore",
-        "dateLabel": "Jun 2024"
+        "dateLabel": "Jun 2024",
+        "audioUrl": "/audio/tracks/track-02.mp3"
       },
       {
         "imageUrl": "/demo/bucin-vinyl-3.webp",
         "caption": "Nonton panggung akustik kecil sampai lampu panggung dimatiin",
-        "dateLabel": "Sep 2024"
+        "dateLabel": "Sep 2024",
+        "audioUrl": "/audio/tracks/track-03.mp3"
       },
       {
         "imageUrl": "/demo/bucin-2.webp",
         "caption": "Jalan kaki pelan ngejar langit sore sambil muter lagu favorit kamu",
-        "dateLabel": "Des 2024"
+        "dateLabel": "Des 2024",
+        "audioUrl": "/audio/tracks/track-04.mp3"
       },
       {
         "imageUrl": "/demo/bucin-4.webp",
         "caption": "Ngopi abis ujan di kedai pinggir jalan nungguin aspal agak kering",
-        "dateLabel": "Feb 2025"
+        "dateLabel": "Feb 2025",
+        "audioUrl": "/audio/tracks/track-05.mp3"
       },
       {
         "imageUrl": "/demo/bucin-5.webp",
         "caption": "Nemu sudut toko buku yang lagunya cocok banget sama suasana hari itu",
-        "dateLabel": "Mei 2025"
+        "dateLabel": "Mei 2025",
+        "audioUrl": "/audio/tracks/track-06.mp3"
       }
     ],
     "milestones": [
       {
         "dateLabel": "22 Maret 2024",
         "title": "Sharing Earphone di KRL",
-        "description": "Pulang bareng naik kereta penuh, satu kabel earphone dibagi dua, dan ternyata playlist kita nyambung terus."
+        "description": "Pulang bareng naik kereta sore yang penuh sesak, satu kabel earphone dibagi dua, dan ternyata playlist kita nyambung terus sampai stasiun tujuan."
       },
       {
         "dateLabel": "14 Juli 2024",
         "title": "Debat Lagu di Motor",
-        "description": "Macet panjang sepulang jalan, kamu nyanyi kenceng banget di belakang helm terus protes pas lagunya kepotong belokan."
+        "description": "Macet panjang sepulang jalan, kamu nyanyi kenceng banget dari balik helm terus protes pas reff favoritnya kepotong suara klakson."
       },
       {
         "dateLabel": "09 November 2024",
-        "title": "Kopi Abis Ujan",
-        "description": "Berteduh di kedai kopi kecil karena kehujanan di jalan, ujung-ujungnya malah ngobrol dua jam sambil dengerin radio toko."
+        "title": "Kopi Abis Ujan di Kedai Sudut",
+        "description": "Berteduh di kedai kopi kecil karena kehujanan di jalan, ujung-ujungnya malah ngobrol dua jam sambil dengerin lagu-lagu lama dari radio toko."
       },
       {
         "dateLabel": "22 Maret 2025",
         "title": "Genap Satu Putaran Album",
-        "description": "Setahun penuh lagu-lagu baru, suara ketawa kamu yang masih sama serunya, dan makin banyak tempat yang punya soundtrack kita."
+        "description": "Setahun penuh lagu-lagu baru, suara ketawa kamu yang masih sama serunya, dan makin banyak tempat di kota ini yang punya soundtrack kita."
       }
     ],
     "loveReasons": [
-      "Kamu nggak pernah protes pas aku muter lagu yang sama sampai empat kali berturut-turut.",
-      "Setiap kali kamu ikut nyanyi pelan di belakang motor, rasanya lagu apa aja langsung kedengeran lebih bagus.",
-      "Kamu selalu tahu lagu tenang mana yang harus disetel pas kepalaku lagi penuh kerjaan.",
+      "Kamu nggak pernah protes pas aku muter lagu yang sama sampai empat kali berturut-turut di jalan.",
+      "Setiap kali kamu ikut nyanyi pelan di belakang motor, lagu apa pun langsung kedengeran jauh lebih hangat.",
+      "Kamu selalu tahu lagu tenang mana yang harus disetel pas kepalaku lagi penuh urusan kerjaan.",
       "Kamu masih betah nemenin aku ngubek-ubek rak kaset bekas meski kaki kita udah sama-sama pegal.",
-      "Dari sekian banyak orang di kereta sore itu, cuma sama kamu obrolan receh kerasa kayak lagu favorit.",
-      "Sama kamu, kejebak ujan di teras minimarket aja berasa punya latar musik sendiri."
+      "Dari sekian banyak penumpang di kereta sore itu, cuma sama kamu obrolan receh kerasa kayak lagu favorit.",
+      "Sama kamu, kejebak hujan di teras minimarket aja berasa punya latar musik yang nggak pengen dicepetin."
     ],
     "littleThings": [
       {
         "label": "Earphone Kiri Jatah Kamu",
-        "detail": "Tiap naik KRL atau duduk sebelahan, kamu otomatis ngambil sisi kiri tanpa perlu ditanya lagi."
+        "detail": "Tiap naik KRL atau duduk sebelahan di bangku taman, kamu otomatis ngambil sisi kiri tanpa perlu ditanya lagi."
       },
       {
         "label": "Ritual Kopi Abis Ujan",
-        "detail": "Kalau habis kehujanan, kamu pasti minta mampir beli kopi susu hangat dulu sebelum pulang."
+        "detail": "Kalau habis kehujanan atau langit mendung tebal, kamu pasti minta mampir beli kopi susu hangat dulu sebelum pulang."
       },
       {
         "label": "Salah Lirik Percaya Diri",
-        "detail": "Bagian reff yang liriknya lupa selalu kamu ganti pakai gumaman nadanya doang, tapi tetep paling keras suaranya."
+        "detail": "Bagian reff yang liriknya lupa selalu kamu ganti pakai gumaman nadanya doang, tapi volumenya tetap paling keras."
       },
       {
         "label": "Simpan Tiket & Struk",
-        "detail": "Semua karcis parkir, tiket gig kecil, sampai struk kopi pertama masih rapi kamu selipin di belakang casing HP."
-      }
-    ],
-    "coupons": [
-      {
-        "title": "Kendali Penuh Playlist Seharian",
-        "note": "Kamu bebas muter lagu apa aja di speaker atau motor seharian penuh tanpa hak skip dariku."
-      },
-      {
-        "title": "Traktiran Kopi Abis Ujan",
-        "note": "Kapan pun mendung atau habis kehujanan, tinggal tunjuk kedai kopi mana yang mau kita singgahin."
-      },
-      {
-        "title": "Tiket Berburu Vinyl & Gig Malam Minggu",
-        "note": "Berlaku buat nemenin kamu keliling toko musik atau nonton panggung akustik akhir pekan berdua."
+        "detail": "Semua karcis parkir, tiket panggung akustik, sampai struk kopi pertama masih rapi kamu selipin di balik casing HP."
       }
     ],
     "closingLetter": "Makasih ya, Salsa, udah jadi partner dengerin lagu paling asik sejauh ini.\n\nRasanya baru kemarin kita canggung bagi earphone di KRL, terus berlanjut ke debat lagu di motor, kehujanan di jalan, sampai akhirnya punya puluhan lagu yang tiap diputar langsung bikin keinget muka kamu.\n\nKalau suatu hari harimu lagi berisik atau capek banget, buka lagi album kecil ini ya. Anggap aja ini Side B yang selalu siap nemenin kamu sampai suasana hati kamu tenang lagi.",

@@ -1,0 +1,155 @@
+{
+  "slug": "atelier-noura",
+  "templateId": "umkm-fashion",
+  "title": "Atelier Noura - Koleksi Linen & Hijab Modest",
+  "seoDescription": "Lookbook resmi dan katalog koleksi pakaian linen rami serta hijab silk matte Atelier Noura Bandung Selatan.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Butik Fashion Lookbook",
+  "musicTrack": "none",
+  "data": {
+    "businessName": "Atelier Noura",
+    "categoryLabel": "Butik Linen & Hijab",
+    "tagline": "Potongan Linen Nyaman & Hijab Sutra Ringan untuk Dipakai Seharian",
+    "description": "Koleksi busana harian berbahan linen rami bernapas dan silk matte jatuh, dijahit dalam jumlah terbatas dari studio lokal Bandung Selatan.",
+    "heroImageUrl": "/demo/umkm-fashion-hero.webp",
+    "cityLabel": "Bandung Selatan",
+    "openHoursLabel": "Selasa - Minggu, 10.00 - 19.00 WIB",
+    "whatsappNumber": "6281234567890",
+    "address": "Jl. Buah Batu No. 94, Bandung Selatan",
+    "mapsUrl": "https://maps.google.com/?q=Jl.+Buah+Batu+No.+94+Bandung",
+    "stats": [
+      {
+        "value": "S - XL",
+        "label": "Ukuran Lengkap"
+      },
+      {
+        "value": "100%",
+        "label": "Linen Rami Lokal"
+      },
+      {
+        "value": "7 Hari",
+        "label": "Garansi Tukar Size"
+      }
+    ],
+    "promoBanner": {
+      "title": "Setelan Kemeja Linen + Pashmina Silk",
+      "description": "Hemat Rp28.000 untuk satu set Alya Linen Oversized Shirt dan Silk Matte Pashmina warna serasi. Pilih ukuran atasan favorit langsung dari katalog sebelum checkout ke WhatsApp admin.",
+      "priceLabel": "Rp290.000",
+      "productId": "noura-tunic"
+    },
+    "highlights": [
+      {
+        "title": "Bahan Linen Rami Asli",
+        "description": "Serat tenun adem dipakai di cuaca tropis, menyerap keringat dengan baik, dan semakin lembut setelah pencucian rutin."
+      },
+      {
+        "title": "Ukuran Inklusif S sampai XL",
+        "description": "Pola potong longgar elegan mengikuti gerak tubuh tanpa terasa sempit di bagian lengan maupun bahu."
+      },
+      {
+        "title": "Gratis Tukar Ukuran 7 Hari",
+        "description": "Ukuran terasa kurang pas saat dicoba di rumah? Hubungi admin studio untuk proses penukaran size yang mudah."
+      }
+    ],
+    "products": [
+      {
+        "id": "noura-tunic",
+        "name": "Alya Linen Oversized Shirt",
+        "category": "Atasan",
+        "price": 229000,
+        "unitLabel": "pcs",
+        "description": "Kemeja outer berpotongan longgar dari 100% linen rami natural warna oatmeal. Kerah tegak rapi dengan kancing batok matte dan saku dada fungsional untuk aktivitas kerja maupun santai.",
+        "imageUrl": "/demo/umkm-fashion-hero.webp",
+        "featured": true,
+        "options": ["S", "M", "L", "XL"]
+      },
+      {
+        "id": "sage-tunic",
+        "name": "Senja Sage Tunic Dress",
+        "category": "Atasan",
+        "price": 269000,
+        "unitLabel": "pcs",
+        "description": "Tunik panjang bernuansa hijau sage tenang dengan kantong samping tersembunyi, belahan hem samping yang luwes, dan manset berkancing ramah wudhu.",
+        "imageUrl": "/demo/umkm-fashion-flatlay.webp",
+        "featured": true,
+        "options": ["S", "M", "L", "XL"]
+      },
+      {
+        "id": "espresso-pashmina",
+        "name": "Silk Matte Pashmina",
+        "category": "Hijab",
+        "price": 89000,
+        "unitLabel": "pcs",
+        "description": "Pashmina bertekstur matte lembut ukuran 180 x 75 cm yang jatuh rapi, tidak menerawang, dan tetap tegak di dahi tanpa perlu banyak jarum pentul.",
+        "imageUrl": "/demo/umkm-fashion-hero.webp",
+        "options": ["Espresso", "Oatmilk", "Rosewood"]
+      },
+      {
+        "id": "woven-bag",
+        "name": "Kala Woven Sling Bag",
+        "category": "Aksesori",
+        "price": 195000,
+        "unitLabel": "pcs",
+        "description": "Tas selempang anyaman kulit sintetis lentur dengan penutup magnet tersembunyi dan tali bahu adjustable. Muat dompet panjang, ponsel, dan pouch kecil.",
+        "imageUrl": "/demo/umkm-fashion-flatlay.webp",
+        "options": ["Warm Tan", "Espresso"]
+      },
+      {
+        "id": "rami-trousers",
+        "name": "Rami Wide-Leg Trousers",
+        "category": "Bawahan",
+        "price": 245000,
+        "unitLabel": "pcs",
+        "description": "Celana kulot berpinggang high-waist dengan karet elastis di bagian belakang dan lipit depan rapi. Memberi siluet jenjang namun tetap ringan dipakai seharian.",
+        "imageUrl": "/demo/umkm-fashion-flatlay.webp",
+        "featured": true,
+        "options": ["S", "M", "L", "XL"]
+      },
+      {
+        "id": "linen-vest",
+        "name": "Linen Vest Outer Espresso",
+        "category": "Atasan",
+        "price": 215000,
+        "unitLabel": "pcs",
+        "description": "Rompi luaran tanpa lengan berlapis furing katun tipis dalam warna cokelat espresso pekat. Mudah dipadukan di atas kemeja oatmeal atau inner rajut polos.",
+        "imageUrl": "/demo/umkm-fashion-hero.webp",
+        "options": ["S", "M", "L", "XL"]
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Linennya cukup tebal jadi tidak menerawang, tapi tetap adem dipakai seharian keluar kota dan jatuhnya rapi.",
+        "author": "Nadia Putri",
+        "role": "Pembeli Alya Oversized Shirt"
+      },
+      {
+        "quote": "Pashmina silk matte-nya gampang banget diatur, nggak licin di kepala dan warnanya netral semua. Sudah beli tiga varian.",
+        "author": "Sinta Dewi",
+        "role": "Pelanggan Bandung"
+      },
+      {
+        "quote": "Rami Wide-Leg Trousers langsung pas di pinggang berkat karet belakangnya. Jahitannya bersih dan pengiriman dari Buah Batu cepat.",
+        "author": "Farah Anindya",
+        "role": "Pelanggan Jakarta Selatan"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Apakah bisa tukar ukuran kalau kurang pas?",
+        "answer": "Bisa dalam waktu 7 hari sejak paket diterima selama tag label masih terpasang, pakaian belum dicuci, dan belum terkena parfum."
+      },
+      {
+        "question": "Bagaimana cara mencuci bahan linen rami agar awet?",
+        "answer": "Cuci dengan tangan atau mode gentle menggunakan deterjen lembut berair dingin. Jemur di tempat teduh tanpa diperas terlalu keras, lalu setrika suhu sedang saat masih sedikit lembap."
+      },
+      {
+        "question": "Apakah semua koleksi diproduksi dalam jumlah terbatas?",
+        "answer": "Ya, setiap rilisan dijahit per batch kecil di studio Bandung Selatan untuk menjaga ketelitian jahitan. Jika ukuran favorit habis, kamu bisa ikut pre-order batch berikutnya via WhatsApp."
+      },
+      {
+        "question": "Berapa lama pengiriman dan apakah bisa fitting langsung di studio?",
+        "answer": "Pesanan siap kirim diproses setiap Selasa sampai Minggu pukul 10.00 hingga 19.00 WIB. Kamu juga bisa datang langsung ke studio Jl. Buah Batu No. 94 untuk mencoba potongan secara langsung."
+      }
+    ]
+  }
+}

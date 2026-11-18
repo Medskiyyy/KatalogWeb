@@ -1,0 +1,181 @@
+{
+  "slug": "potong-rapi-barber",
+  "templateId": "umkm-jasa",
+  "title": "Potong Rapi Studio - Barbershop & Grooming Tebet Jakarta Selatan",
+  "seoDescription": "Daftar harga layanan cukur presisi, hot towel shave, hair toning, dan reservasi slot jadwal langsung WhatsApp di Potong Rapi Studio Tebet.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Jasa, Barbershop & Booking Studio",
+  "musicTrack": "none",
+  "data": {
+    "businessName": "Potong Rapi Studio",
+    "categoryLabel": "Barbershop & Grooming Studio",
+    "tagline": "Cukur Presisi, Alat Steril UV & Booking Jam Tanpa Antre",
+    "description": "Studio grooming pria di Tebet dengan sterilisasi alat setelah tiap sesi, konsultasi bentuk wajah sebelum gunting menyentuh rambut, serta reservasi jam kedatangan langsung ke WhatsApp kasir.",
+    "heroImageUrl": "/demo/umkm-jasa-hero.webp",
+    "cityLabel": "Tebet, Jakarta Selatan",
+    "openHoursLabel": "Setiap hari, 10.00 - 22.00 WIB",
+    "whatsappNumber": "6281234567890",
+    "address": "Jl. Tebet Utara Dalam No. 15, Tebet Timur, Jakarta Selatan 12820",
+    "mapsUrl": "https://maps.google.com/?q=Jl.+Tebet+Utara+Dalam+No.+15+Tebet+Jakarta+Selatan",
+    "stats": [
+      {
+        "value": "4.9/5",
+        "label": "Rating Google Maps"
+      },
+      {
+        "value": "100%",
+        "label": "Alat Steril Tiap Sesi"
+      },
+      {
+        "value": "4 Kapster",
+        "label": "Spesialis Berpengalaman"
+      }
+    ],
+    "promoBanner": {
+      "title": "Tarif Khusus Slot Pagi Weekday (Senin - Kamis)",
+      "description": "Nikmati Signature Haircut + Wash + Tonic dengan tarif hemat khusus kedatangan hari Senin sampai Kamis pada jam 10.00 sampai 15.00 WIB. Cukup pilih layanan lalu kunci slot jam pagi.",
+      "priceLabel": "Rp55.000",
+      "productId": "signature-cut"
+    },
+    "highlights": [
+      {
+        "title": "Booking Jam Kedatangan Anti-Antre",
+        "description": "Pilih layanan, estimasi durasi, dan slot jam langsung dari halaman ini. Jadwal kedatangan langsung masuk ke daftar kasir sebelum Anda berangkat."
+      },
+      {
+        "title": "Sterilisasi UV & Pisau Baru Tiap Pelanggan",
+        "description": "Sisir, clipper guard, dan gunting masuk kabinet UV-C setelah setiap sesi selesai, lengkap dengan silet baru tersegel untuk tiap pelanggan."
+      },
+      {
+        "title": "Konsultasi Gaya Sesuai Bentuk Wajah",
+        "description": "Kapster berdiskusi lebih dulu soal tekstur rambut, arah tumbuh, dan target panjang agar potongan tetap rapi saat mulai memanjang."
+      }
+    ],
+    "products": [
+      {
+        "id": "signature-cut",
+        "name": "Signature Haircut + Wash + Tonic",
+        "category": "Cukur Rambut",
+        "price": 65000,
+        "unitLabel": "45 mnt",
+        "description": "Potong rambut presisi sesuai bentuk kepala, keramas dingin menyegarkan, pijat pundak ringan, hair tonic kulit kepala, dan styling akhir.",
+        "imageUrl": "/demo/umkm-jasa-hero.webp",
+        "featured": true,
+        "options": [
+          "Fade",
+          "Comma Hair",
+          "Classic Trim"
+        ]
+      },
+      {
+        "id": "beard-groom",
+        "name": "Hot Towel Shave & Trim Jenggot",
+        "category": "Perawatan",
+        "price": 45000,
+        "unitLabel": "25 mnt",
+        "description": "Kompres handuk hangat aromaterapi, perapian garis kumis dan jenggot menggunakan silet steril baru, serta aplikasi aftershave menenangkan.",
+        "imageUrl": "/demo/umkm-jasa-tools.webp",
+        "options": [
+          "Trim Rapi",
+          "Full Shave",
+          "Line Up Jenggot"
+        ]
+      },
+      {
+        "id": "combo-rapi",
+        "name": "Paket Lengkap Rambut + Jenggot",
+        "category": "Paket Hemat",
+        "price": 95000,
+        "unitLabel": "65 mnt",
+        "description": "Kombinasi penuh signature haircut, cuci rambut dingin, hot towel shave jenggot, hair tonic, dan penataan rambut siap beraktivitas.",
+        "imageUrl": "/demo/umkm-jasa-hero.webp",
+        "featured": true,
+        "options": [
+          "Fade + Beard",
+          "Comma Hair + Beard",
+          "Classic + Beard"
+        ]
+      },
+      {
+        "id": "hair-color-toning",
+        "name": "Hair Color & Toning Natural",
+        "category": "Pewarnaan",
+        "price": 135000,
+        "unitLabel": "60 mnt",
+        "description": "Pewarnaan rambut atau toning penutup uban bernuansa natural dengan formula lembut tanpa amonia menyengat, termasuk cuci rambut dan tonic.",
+        "imageUrl": "/demo/umkm-jasa-tools.webp",
+        "options": [
+          "Natural Black",
+          "Dark Espresso",
+          "Ash Brown"
+        ]
+      },
+      {
+        "id": "creambath-scalp",
+        "name": "Cream Bath Cooling Scalp",
+        "category": "Perawatan",
+        "price": 55000,
+        "unitLabel": "30 mnt",
+        "description": "Perawatan kulit kepala dengan krim dingin untuk mengangkat minyak berlebih, meredakan ketombe ringan, serta pijat relaksasi kepala dan leher.",
+        "imageUrl": "/demo/umkm-jasa-tools.webp",
+        "options": [
+          "Peppermint Cool",
+          "Aloe Soothing"
+        ]
+      },
+      {
+        "id": "clay-pomade",
+        "name": "Matte Clay Pomade 100gr",
+        "category": "Produk",
+        "price": 85000,
+        "unitLabel": "jar",
+        "description": "Clay styling berdaya tahan kuat dengan hasil akhir natural matte tanpa kilap berminyak. Mudah dibilas air dan beraroma kayu segar.",
+        "imageUrl": "/demo/umkm-jasa-tools.webp",
+        "options": [
+          "Strong Matte Hold",
+          "Natural Medium"
+        ]
+      }
+    ],
+    "testimonials": [
+      {
+        "quote": "Enak banget bisa pilih layanan dan kunci jam kedatangan lewat web. Sampai studio di Tebet langsung duduk tanpa nunggu lama.",
+        "author": "Rama Putra",
+        "role": "Pelanggan Bulanan"
+      },
+      {
+        "quote": "Alatnya bersih, tiap selesai satu pelanggan langsung masuk lemari UV. Mas Raka detail banget pas bikin gradasi fade supaya tidak belang.",
+        "author": "Kevin Wijaya",
+        "role": "Warga Tebet"
+      },
+      {
+        "quote": "Paket Lengkap Rambut + Jenggot sangat worth it buat persiapan meeting penting. Hot towel-nya bikin rileks dan hasil potongannya rapi.",
+        "author": "Hendra Kusuma",
+        "role": "Karyawan Kuningan"
+      },
+      {
+        "quote": "Suka karena bisa langsung lihat estimasi durasi sebelum berangkat, jadi gampang selipin jadwal cukur di sela jam kerja.",
+        "author": "Dimas Nugroho",
+        "role": "Desainer Produk"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Kalau terlambat datang lebih dari 15 menit bagaimana?",
+        "answer": "Slot akan dialihkan ke antrean kosong terdekat agar jadwal pelanggan berikutnya tetap berjalan tepat waktu. Cukup kabari admin lewat WhatsApp jika terjebak macet."
+      },
+      {
+        "question": "Apakah harus bayar DP saat mengirim booking ke WhatsApp?",
+        "answer": "Tidak wajib DP untuk booking reguler harian. Pembayaran bisa dilakukan langsung di studio setelah sesi selesai menggunakan QRIS, debit, atau tunai."
+      },
+      {
+        "question": "Bagaimana cara memilih kapster yang sesuai dengan gaya rambut saya?",
+        "answer": "Anda bisa memilih Mas Raka untuk potongan Fade modern, Mas Dito untuk gaya klasik rapi menggunakan gunting, Mas Bima untuk kombinasi rambut dan jenggot, atau pilih Kapster Bebas agar mendapat slot tercepat."
+      },
+      {
+        "question": "Apakah bisa booking untuk dua orang atau sekalian beli pomade?",
+        "answer": "Bisa. Gunakan tombol tambah (+) di sebelah layanan yang dipilih untuk menyesuaikan jumlah orang atau produk, lalu kirim ringkasan jadwalnya ke WhatsApp kasir."
+      }
+    ]
+  }
+}

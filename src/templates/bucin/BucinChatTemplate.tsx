@@ -2,10 +2,17 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "motion/react";
 import {
   ArrowCounterClockwise,
   Backspace,
+  Calendar,
   Camera,
   CaretLeft,
   CaretRight,
@@ -15,19 +22,20 @@ import {
   Checks,
   Heart,
   Lock,
+  LockOpen,
   Microphone,
   MusicNotes,
+  PaperPlaneTilt,
   Pause,
   Play,
   PushPin,
   Question,
-  Star,
-  Ticket,
   X,
   XCircle,
 } from "@phosphor-icons/react";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import type { BucinSiteConfig } from "@/lib/schema";
+import { playSfx } from "@/lib/sfx";
 import { cn } from "@/lib/utils";
 
 interface ElapsedDuration {
@@ -35,6 +43,17 @@ interface ElapsedDuration {
   hours: number;
   minutes: number;
   seconds: number;
+}
+
+interface ChatMessageItem {
+  sender: "one" | "two";
+  text: string;
+  time: string;
+}
+
+interface FloatingHeart {
+  id: number;
+  offsetX: number;
 }
 
 const MONTH_NAMES_ID = [
@@ -52,15 +71,41 @@ const MONTH_NAMES_ID = [
   "Desember",
 ];
 
-const VOICE_NOTE_DURATION_SEC = 6;
 const VOICE_NOTE_BAR_HEIGHTS = [
-  32, 68, 48, 86, 54, 92, 44, 78, 62, 88, 50, 74, 40, 64,
+  32, 68, 48, 86, 54, 92, 44, 78, 62, 88, 50, 74, 40, 64, 52, 76,
 ];
-const VOICE_NOTE_NOTES = [293.66, 369.99, 440.0, 523.25, 440.0, 369.99, 329.63, 440.0];
-const VOICE_NOTE_CAPTIONS = [
-  "Kalau lagi capek sama kerjaan...",
-  "ingat ya, HP kamu selalu punya satu chat",
-  "yang siap dengerin cerita receh kamu.",
+
+const QUICK_REPLY_OPTIONS = [
+  {
+    prompt: "Kangen banget tau",
+    reply: "Sini deh bentar lagi aku samperin, jangan cemberut dulu ya.",
+  },
+  {
+    prompt: "Nanti pulang cari kuah hangat yuk",
+    reply: "Gas! Aku udah siapin helm cadangan, nanti langsung meluncur cari yang berkuah.",
+  },
+  {
+    prompt: "Makasih udah selalu ada ya",
+    reply: "Sama-sama terus kok. Selama kamu butuh temen cerita, chat aku selalu paling depan.",
+  },
+];
+
+const WEEKEND_POLL_OPTIONS = [
+  {
+    id: 0,
+    label: "Kulineran pecel lele + es krim pinggir jalan",
+    partnerPreVoted: true,
+  },
+  {
+    id: 1,
+    label: "Nonton bioskop + mampir Photobox ulang",
+    partnerPreVoted: true,
+  },
+  {
+    id: 2,
+    label: "Keliling kota sore cari angin naik motor",
+    partnerPreVoted: false,
+  },
 ];
 
 function buildFallbackChatThreads(partnerOne: string, partnerTwo: string) {
@@ -88,6 +133,11 @@ function buildFallbackChatThreads(partnerOne: string, partnerTwo: string) {
           text: "Nah ketahuan modusnya, dari chat nyasar langsung belok nanya makan.",
           time: "20.16",
         },
+        {
+          sender: "one" as const,
+          text: "Namanya juga usaha biar obrolannya nggak berhenti di 'oh oke' doang.",
+          time: "20.17",
+        },
       ],
     },
     {
@@ -113,6 +163,11 @@ function buildFallbackChatThreads(partnerOne: string, partnerTwo: string) {
           text: "Jangan gorengan dulu deh, lagi pengen yang berkuah hangat.",
           time: "18.45",
         },
+        {
+          sender: "one" as const,
+          text: "Oke siap, mie kuah hangat deket taman ya, paham banget kode kamu.",
+          time: "18.46",
+        },
       ],
     },
     {
@@ -133,6 +188,11 @@ function buildFallbackChatThreads(partnerOne: string, partnerTwo: string) {
           text: "Nggak usah keluar udah malem, cuma pengen cerita sebelum tidur aja.",
           time: "23.41",
         },
+        {
+          sender: "one" as const,
+          text: "Yaudah sini telepon bentar biar kamu nggak bengong sendirian.",
+          time: "23.42",
+        },
       ],
     },
   ];
@@ -140,20 +200,31 @@ function buildFallbackChatThreads(partnerOne: string, partnerTwo: string) {
 
 const FALLBACK_QUIZ_QUESTIONS = [
   {
-    question: "Kalau bilang 'terserah' pas ditanya mau makan apa, ujungnya paling sering milih apa?",
+    question:
+      "Kalau bilang 'terserah' pas ditanya mau makan apa, ujungnya paling sering milih apa?",
     options: ["Salad dingin", "Mie kuah hangat atau pecel lele", "Roti tawar"],
     correctIndex: 1,
-    reaction: "Akurat 100 persen, jawaban 'terserah' hampir selalu berujung ke kuah hangat.",
+    reaction:
+      "Akurat 100 persen, jawaban 'terserah' hampir selalu berujung ke kuah hangat.",
   },
   {
     question: "Bagian mana yang paling dicari duluan pas masuk kafe bareng?",
-    options: ["Pojokan deket colokan HP", "Meja paling depan", "Kursi tanpa sandaran"],
+    options: [
+      "Pojokan deket colokan HP",
+      "Meja paling depan",
+      "Kursi tanpa sandaran",
+    ],
     correctIndex: 0,
-    reaction: "Baterai HP aman berarti sesi ngobrol bisa jalan terus tanpa drama.",
+    reaction:
+      "Baterai HP aman berarti sesi ngobrol bisa jalan terus tanpa drama.",
   },
   {
     question: "Topik andalan pas teleponan malam sebelum tidur biasanya bahas apa?",
-    options: ["Laporan pajak", "Hal receh seharian dan rencana jajan", "Berita cuaca luar negeri"],
+    options: [
+      "Laporan pajak",
+      "Hal receh seharian dan rencana jajan",
+      "Berita cuaca luar negeri",
+    ],
     correctIndex: 1,
     reaction: "Nggak pernah kehabisan bahan cerita receh tiap malam.",
   },
@@ -191,10 +262,239 @@ function padTwo(value: number): string {
   return String(value).padStart(2, "0");
 }
 
+function formatAudioClock(seconds: number): string {
+  if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${padTwo(secs)}`;
+}
+
 function getInitials(name: string): string {
   const cleaned = name.trim();
   if (!cleaned) return "?";
   return cleaned[0].toUpperCase();
+}
+
+function getCurrentClockLabel(): string {
+  const now = new Date();
+  return `${padTwo(now.getHours())}.${padTwo(now.getMinutes())}`;
+}
+
+interface VoiceNoteBubbleProps {
+  id: string;
+  src: string;
+  senderName: string;
+  align: "left" | "right";
+  timeLabel: string;
+  subtitle: string;
+  activeVoiceId: string | null;
+  onActivateVoice: (id: string | null) => void;
+  prefersReducedMotion: boolean;
+}
+
+function VoiceNoteBubble({
+  id,
+  src,
+  senderName,
+  align,
+  timeLabel,
+  subtitle,
+  activeVoiceId,
+  onActivateVoice,
+  prefersReducedMotion,
+}: VoiceNoteBubbleProps) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [playbackRate, setPlaybackRate] = useState<1 | 1.5>(1);
+
+  const isRight = align === "right";
+
+  useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (activeVoiceId !== id && !el.paused) {
+      el.pause();
+    }
+  }, [activeVoiceId, id]);
+
+  useEffect(() => {
+    const el = audioRef.current;
+    if (!el) return;
+    el.playbackRate = playbackRate;
+  }, [playbackRate]);
+
+  const togglePlay = () => {
+    const el = audioRef.current;
+    if (!el) return;
+    if (!el.paused) {
+      el.pause();
+      onActivateVoice(null);
+      return;
+    }
+    onActivateVoice(id);
+    el.playbackRate = playbackRate;
+    const playPromise = el.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        setIsPlaying(false);
+        onActivateVoice(null);
+      });
+    }
+  };
+
+  const toggleSpeed = () => {
+    const nextRate: 1 | 1.5 = playbackRate === 1 ? 1.5 : 1;
+    setPlaybackRate(nextRate);
+    if (audioRef.current) {
+      audioRef.current.playbackRate = nextRate;
+    }
+  };
+
+  const handleSeek = (nextValue: number) => {
+    const el = audioRef.current;
+    if (!el || !Number.isFinite(nextValue)) return;
+    el.currentTime = nextValue;
+    setCurrentTime(nextValue);
+  };
+
+  const safeDuration = duration > 0 ? duration : 0;
+  const progressRatio = safeDuration > 0 ? Math.min(1, currentTime / safeDuration) : 0;
+
+  return (
+    <div className={cn("flex flex-col pt-1", isRight ? "items-end" : "items-start")}>
+      <audio
+        ref={audioRef}
+        src={src}
+        preload="metadata"
+        onLoadedMetadata={(event) => {
+          const nextDur = event.currentTarget.duration;
+          if (Number.isFinite(nextDur) && nextDur > 0) {
+            setDuration(nextDur);
+          }
+        }}
+        onTimeUpdate={(event) => {
+          setCurrentTime(event.currentTarget.currentTime);
+        }}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => {
+          setIsPlaying(false);
+          setCurrentTime(0);
+          if (activeVoiceId === id) {
+            onActivateVoice(null);
+          }
+        }}
+      />
+
+      <div
+        className={cn(
+          "w-full max-w-[350px] rounded-2xl p-3.5 text-[#18181B] shadow-[0_1px_2px_rgba(24,24,27,0.08)] sm:max-w-[390px]",
+          isRight
+            ? "rounded-tr-xs bg-[#D9FDD3]"
+            : "rounded-tl-xs border border-[#E5E7EB] bg-white"
+        )}
+      >
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#059669]">
+            <Microphone size={13} weight="fill" />
+            <span>Voice Note {senderName}</span>
+          </span>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleSpeed}
+              aria-label={`Ubah kecepatan voice note ${senderName}`}
+              className="rounded-md border border-black/15 bg-white/75 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#18181B] transition-colors hover:border-[#059669] hover:text-[#059669]"
+            >
+              {playbackRate}x
+            </button>
+            <span className="font-mono text-[10px] font-medium text-[#52525B] tabular-nums">
+              {formatAudioClock(currentTime)} / {formatAudioClock(safeDuration)}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={
+              isPlaying
+                ? `Jeda voice note ${senderName}`
+                : `Putar voice note ${senderName}`
+            }
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#059669] text-white transition-transform hover:bg-[#047857] active:scale-95"
+          >
+            {isPlaying ? (
+              <Pause size={16} weight="fill" />
+            ) : (
+              <Play size={16} weight="fill" className="translate-x-0.5" />
+            )}
+          </button>
+
+          <div className="flex-1 space-y-1.5">
+            <div aria-hidden="true" className="flex h-7 items-center gap-1">
+              {VOICE_NOTE_BAR_HEIGHTS.map((height, barIdx) => {
+                const barThreshold =
+                  (barIdx + 1) / VOICE_NOTE_BAR_HEIGHTS.length;
+                const isPassed = progressRatio >= barThreshold;
+                return (
+                  <motion.span
+                    key={barIdx}
+                    animate={
+                      isPlaying && !prefersReducedMotion
+                        ? {
+                            scaleY: [0.55, 1.15, 0.7, 1],
+                          }
+                        : { scaleY: 1 }
+                    }
+                    transition={
+                      isPlaying
+                        ? {
+                            repeat: Infinity,
+                            duration: 0.65 + (barIdx % 4) * 0.12,
+                            ease: "easeInOut",
+                          }
+                        : { duration: 0.2 }
+                    }
+                    style={{ height: `${Math.round((height / 100) * 26)}px` }}
+                    className={cn(
+                      "w-1 flex-1 origin-center rounded-xs transition-colors",
+                      isPassed || isPlaying ? "bg-[#059669]" : "bg-[#18181B]/25"
+                    )}
+                  />
+                );
+              })}
+            </div>
+
+            <input
+              type="range"
+              min={0}
+              max={safeDuration > 0 ? safeDuration : 1}
+              step={0.05}
+              value={safeDuration > 0 ? Math.min(currentTime, safeDuration) : 0}
+              disabled={safeDuration <= 0}
+              onChange={(event) => handleSeek(Number(event.currentTarget.value))}
+              aria-label={`Posisi audio voice note ${senderName}`}
+              className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-black/15 accent-[#059669] disabled:cursor-default"
+            />
+          </div>
+        </div>
+
+        <div className="mt-2.5 flex items-center justify-between gap-2 border-t border-black/10 pt-2">
+          <p className="text-xs italic text-[#3F3F46]">&ldquo;{subtitle}&rdquo;</p>
+          <div className="flex shrink-0 items-center gap-1 font-mono text-[10px] text-[#52525B]">
+            <span>{timeLabel}</span>
+            {isRight && (
+              <Checks size={14} weight="bold" className="text-[#059669]" />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function BucinChatTemplate({
@@ -204,19 +504,28 @@ export function BucinChatTemplate({
   site: BucinSiteConfig;
   embedded?: boolean;
 }) {
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = Boolean(useReducedMotion());
   const { data } = site;
   const expectedPin = data.passcodePin.trim();
   const hasPin = expectedPin.length > 0;
 
-  const [isUnlocked, setIsUnlocked] = useState(!hasPin);
+  const [isUnlocked, setIsUnlocked] = useState(embedded);
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState(false);
   const [shakeCount, setShakeCount] = useState(0);
 
   const [elapsed, setElapsed] = useState<ElapsedDuration | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [claimedCoupons, setClaimedCoupons] = useState<Record<number, boolean>>({});
+  const [selectedPollVotes, setSelectedPollVotes] = useState<
+    Record<number, boolean>
+  >({});
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 220,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   const chatThreads = useMemo(() => {
     if (data.chatThreads && data.chatThreads.length > 0) {
@@ -243,16 +552,20 @@ export function BucinChatTemplate({
   const [isReplaying, setIsReplaying] = useState(false);
   const replayIntervalRef = useRef<number | null>(null);
 
-  const [isVoicePlaying, setIsVoicePlaying] = useState(false);
-  const [voiceElapsedSec, setVoiceElapsedSec] = useState(0);
-  const voiceCtxRef = useRef<AudioContext | null>(null);
-  const voiceProgressTimerRef = useRef<number | null>(null);
-  const voiceNoteTimerRef = useRef<number | null>(null);
-  const voiceStepRef = useRef(0);
+  const [activeVoiceId, setActiveVoiceId] = useState<string | null>(null);
+
+  const [quickMessages, setQuickMessages] = useState<ChatMessageItem[]>([]);
+  const [isAutoReplying, setIsAutoReplying] = useState(false);
+  const [floatingHearts, setFloatingHearts] = useState<FloatingHeart[]>([]);
+  const autoReplyTimerRef = useRef<number | null>(null);
+  const heartIdRef = useRef(0);
 
   const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
 
-  // Elapsed duration live timer (rAF first tick avoids synchronous setState in useEffect)
+  const [stripFlashActive, setStripFlashActive] = useState(false);
+  const [stripSnapCount, setStripSnapCount] = useState(0);
+  const stripFlashTimerRef = useRef<number | null>(null);
+
   useEffect(() => {
     const update = () => {
       setElapsed(computeElapsed(data.anniversaryDate));
@@ -272,8 +585,19 @@ export function BucinChatTemplate({
     });
   }, [data.memories]);
 
-  // PIN keypad handlers
+  useEffect(() => {
+    return () => {
+      if (autoReplyTimerRef.current !== null) {
+        window.clearTimeout(autoReplyTimerRef.current);
+      }
+      if (stripFlashTimerRef.current !== null) {
+        window.clearTimeout(stripFlashTimerRef.current);
+      }
+    };
+  }, []);
+
   const unlockChatArchive = useCallback(() => {
+    playSfx("chat-pop");
     setPinError(false);
     setIsUnlocked(true);
   }, []);
@@ -339,7 +663,6 @@ export function BucinChatTemplate({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [handleBackspace, handleDigitPress, hasPin, isUnlocked, pinInput, submitPin]);
 
-  // Chat replay helpers
   const clearReplayTimer = useCallback(() => {
     if (replayIntervalRef.current !== null) {
       window.clearInterval(replayIntervalRef.current);
@@ -348,6 +671,8 @@ export function BucinChatTemplate({
   }, []);
 
   const handleSelectThread = (index: number) => {
+    if (index === safeThreadIndex) return;
+    playSfx("paper-flip");
     clearReplayTimer();
     setIsReplaying(false);
     setActiveThreadIndex(index);
@@ -356,6 +681,7 @@ export function BucinChatTemplate({
   };
 
   const handleReplayChat = () => {
+    playSfx("paper-flip");
     clearReplayTimer();
     const totalCount = activeThread.messages.length;
     if (totalCount <= 1) {
@@ -385,102 +711,44 @@ export function BucinChatTemplate({
     };
   }, [clearReplayTimer]);
 
-  // Voice Note player (Web Audio soft synth + live progress)
-  const stopVoiceNote = useCallback((resetProgress = false) => {
-    if (voiceProgressTimerRef.current !== null) {
-      window.clearInterval(voiceProgressTimerRef.current);
-      voiceProgressTimerRef.current = null;
+  const handleQuickReply = (prompt: string, reply: string) => {
+    playSfx("chat-pop");
+    const clock = getCurrentClockLabel();
+
+    setQuickMessages((prev) => [
+      ...prev,
+      { sender: "two", text: prompt, time: clock },
+    ]);
+
+    const spawned: FloatingHeart[] = [-36, 0, 36].map((offsetX) => {
+      heartIdRef.current += 1;
+      return { id: heartIdRef.current, offsetX };
+    });
+    setFloatingHearts((prev) => [...prev, ...spawned]);
+    window.setTimeout(() => {
+      const ids = new Set(spawned.map((h) => h.id));
+      setFloatingHearts((prev) => prev.filter((item) => !ids.has(item.id)));
+    }, 1100);
+
+    if (autoReplyTimerRef.current !== null) {
+      window.clearTimeout(autoReplyTimerRef.current);
     }
-    if (voiceNoteTimerRef.current !== null) {
-      window.clearInterval(voiceNoteTimerRef.current);
-      voiceNoteTimerRef.current = null;
-    }
-    if (voiceCtxRef.current) {
-      voiceCtxRef.current.close().catch(() => {});
-      voiceCtxRef.current = null;
-    }
-    setIsVoicePlaying(false);
-    if (resetProgress) {
-      setVoiceElapsedSec(0);
-    }
-  }, []);
-
-  const toggleVoiceNote = () => {
-    if (isVoicePlaying) {
-      stopVoiceNote(false);
-      return;
-    }
-
-    stopVoiceNote(false);
-    setVoiceElapsedSec((prev) => (prev >= VOICE_NOTE_DURATION_SEC ? 0 : prev));
-    setIsVoicePlaying(true);
-
-    const AudioCtx =
-      window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext })
-        .webkitAudioContext;
-
-    if (AudioCtx) {
-      const ctx = new AudioCtx();
-      voiceCtxRef.current = ctx;
-      voiceStepRef.current = 0;
-
-      const playSoftTone = () => {
-        if (!voiceCtxRef.current || voiceCtxRef.current.state === "closed") return;
-        const now = ctx.currentTime;
-        const freq =
-          VOICE_NOTE_NOTES[voiceStepRef.current % VOICE_NOTE_NOTES.length];
-        voiceStepRef.current += 1;
-
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, now);
-
-        gain.gain.setValueAtTime(0.001, now);
-        gain.gain.exponentialRampToValueAtTime(0.045, now + 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(now);
-        osc.stop(now + 0.6);
-      };
-
-      playSoftTone();
-      voiceNoteTimerRef.current = window.setInterval(playSoftTone, 560);
-    }
-
-    voiceProgressTimerRef.current = window.setInterval(() => {
-      setVoiceElapsedSec((prev) => {
-        const next = prev + 1;
-        if (next >= VOICE_NOTE_DURATION_SEC) {
-          stopVoiceNote(false);
-          return VOICE_NOTE_DURATION_SEC;
-        }
-        return next;
-      });
+    setIsAutoReplying(true);
+    autoReplyTimerRef.current = window.setTimeout(() => {
+      setIsAutoReplying(false);
+      playSfx("chat-pop");
+      setQuickMessages((prev) => [
+        ...prev,
+        { sender: "one", text: reply, time: getCurrentClockLabel() },
+      ]);
+      autoReplyTimerRef.current = null;
     }, 1000);
   };
 
-  useEffect(() => {
-    return () => {
-      if (voiceProgressTimerRef.current !== null) {
-        window.clearInterval(voiceProgressTimerRef.current);
-      }
-      if (voiceNoteTimerRef.current !== null) {
-        window.clearInterval(voiceNoteTimerRef.current);
-      }
-      if (voiceCtxRef.current) {
-        voiceCtxRef.current.close().catch(() => {});
-      }
-    };
-  }, []);
-
-  // Lightbox controls
   const totalMemories = data.memories.length;
 
   const openLightbox = (index: number) => {
+    playSfx("camera-shutter");
     setLightboxIndex(index);
   };
 
@@ -517,9 +785,23 @@ export function BucinChatTemplate({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [closeLightbox, goNextPhoto, goPrevPhoto, lightboxIndex]);
 
-  // Quiz handlers
+  const handleReshootStrip = () => {
+    playSfx("camera-shutter");
+    setStripSnapCount((prev) => prev + 1);
+    setStripFlashActive(true);
+    if (stripFlashTimerRef.current !== null) {
+      window.clearTimeout(stripFlashTimerRef.current);
+    }
+    stripFlashTimerRef.current = window.setTimeout(() => {
+      setStripFlashActive(false);
+      stripFlashTimerRef.current = null;
+    }, 260);
+  };
+
   const handleSelectQuizOption = (questionIndex: number, optionIndex: number) => {
     if (quizAnswers[questionIndex] !== undefined) return;
+    const isCorrect = optionIndex === quizQuestions[questionIndex]?.correctIndex;
+    playSfx(isCorrect ? "quiz-ding" : "chat-pop");
     setQuizAnswers((prev) => ({
       ...prev,
       [questionIndex]: optionIndex,
@@ -527,6 +809,7 @@ export function BucinChatTemplate({
   };
 
   const handleResetQuiz = () => {
+    playSfx("paper-flip");
     setQuizAnswers({});
   };
 
@@ -535,18 +818,32 @@ export function BucinChatTemplate({
     return acc + (quizAnswers[idx] === q.correctIndex ? 1 : 0);
   }, 0);
 
-  // Coupon toggle
-  const toggleCouponClaim = (index: number) => {
-    setClaimedCoupons((prev) => ({
+  const togglePollVote = (optionId: number) => {
+    playSfx("chat-pop");
+    setSelectedPollVotes((prev) => ({
       ...prev,
-      [index]: !prev[index],
+      [optionId]: !prev[optionId],
     }));
   };
 
+  const hasUserVotedPoll = WEEKEND_POLL_OPTIONS.some((opt) =>
+    Boolean(selectedPollVotes[opt.id])
+  );
+  const totalPollVotes = WEEKEND_POLL_OPTIONS.reduce(
+    (sum, opt) =>
+      sum + (opt.partnerPreVoted ? 1 : 0) + (selectedPollVotes[opt.id] ? 1 : 0),
+    0
+  );
+
+  const milestones = data.milestones ?? [];
   const littleThings = data.littleThings ?? [];
-  const coupons = data.coupons ?? [];
   const activeLightboxMemory =
     lightboxIndex !== null ? data.memories[lightboxIndex] ?? null : null;
+
+  const heroPrimaryMemory = data.memories[0];
+  const heroSecondaryMemory = data.memories[1] ?? data.memories[0];
+  const inlineChatMemoryIndex = data.memories[2] ? 2 : 0;
+  const inlineChatMemory = data.memories[inlineChatMemoryIndex];
 
   const splitIndex = Math.ceil(data.memories.length / 2);
   const firstStripMemories = data.memories.slice(0, splitIndex);
@@ -554,14 +851,6 @@ export function BucinChatTemplate({
 
   const revealedMessages = activeThread.messages.slice(0, visibleMessagesCount);
   const nextHiddenMessage = activeThread.messages[visibleMessagesCount];
-  const voiceCaptionIndex = Math.min(
-    VOICE_NOTE_CAPTIONS.length - 1,
-    Math.floor((voiceElapsedSec / VOICE_NOTE_DURATION_SEC) * VOICE_NOTE_CAPTIONS.length)
-  );
-  const voiceProgressPercent = Math.min(
-    100,
-    Math.round((voiceElapsedSec / VOICE_NOTE_DURATION_SEC) * 100)
-  );
 
   const counterUnits = [
     { label: "HARI", value: elapsed ? String(elapsed.days) : "--" },
@@ -570,7 +859,34 @@ export function BucinChatTemplate({
     { label: "DETIK", value: elapsed ? padTwo(elapsed.seconds) : "--" },
   ];
 
+  const recapStats = [
+    {
+      label: "Total Hari Aktif",
+      value: elapsed ? String(elapsed.days) : "--",
+    },
+    {
+      label: "Frame Favorit",
+      value: String(data.memories.length),
+    },
+    {
+      label: "Kuis Terjawab",
+      value: `${answeredQuizCount}/${quizQuestions.length}`,
+    },
+    {
+      label: "Alasan Sayang",
+      value: String(data.loveReasons.length),
+    },
+  ];
+
   const keypadDigits = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const lockscreenPreviewOne =
+    chatThreads[0]?.messages[0]?.text ??
+    "Daftar titipan barusan nyasar ke chat kamu haha, btw udah makan belum?";
+  const lockscreenPreviewTwo =
+    "Aku rapihin semua arsip chat, voice note, sama photobox kita di sini ya.";
+
+  const partnerOneVoiceUrl =
+    data.voiceNoteUrl?.trim() || "/audio/voicenotes/dimas-vn.mp3";
 
   return (
     <div
@@ -583,123 +899,227 @@ export function BucinChatTemplate({
           : "min-h-[100dvh]"
       )}
     >
-      {/* Optional 4-digit PIN lock gate (only rendered when passcodePin is non-empty) */}
+      {/* Top Reading Progress Bar */}
+      {!embedded && (
+        <motion.div
+          aria-hidden="true"
+          style={{ scaleX: prefersReducedMotion ? scrollYProgress : scaleX }}
+          className="fixed top-0 right-0 left-0 z-40 h-[3px] origin-left bg-[#059669]"
+        />
+      )}
+
+      {/* Opening Lockscreen Gate (!embedded) */}
       <AnimatePresence>
-        {!isUnlocked && hasPin && (
+        {!isUnlocked && (
           <motion.div
-            key="chat-pin-gate"
+            key="chat-lock-gate"
             initial={{ opacity: 1 }}
             exit={
               prefersReducedMotion
                 ? { opacity: 0, transition: { duration: 0.15 } }
-                : { opacity: 0, y: -32, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }
+                : {
+                    opacity: 0,
+                    y: -28,
+                    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+                  }
             }
             className={cn(
-              "inset-0 z-30 flex items-center justify-center bg-[#F8F7F4]/98 px-4 py-8 backdrop-blur-xs",
+              "inset-0 z-30 flex items-center justify-center bg-[#F8F7F4]/95 px-4 py-8 backdrop-blur-sm",
               embedded ? "absolute" : "fixed"
             )}
           >
-            <motion.div
-              key={shakeCount}
-              initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
-              animate={
-                pinError && !prefersReducedMotion
-                  ? { opacity: 1, y: 0, x: [0, -8, 8, -6, 6, -3, 3, 0] }
-                  : { opacity: 1, y: 0, x: 0 }
-              }
-              transition={{ duration: 0.35 }}
-              className="w-full max-w-md rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_20px_50px_rgba(24,24,27,0.08)] sm:p-8"
-            >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#059669] text-white">
-                <Lock size={22} weight="bold" />
-              </div>
+            {hasPin ? (
+              <motion.div
+                key={shakeCount}
+                initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
+                animate={
+                  pinError && !prefersReducedMotion
+                    ? { opacity: 1, y: 0, x: [0, -8, 8, -6, 6, -3, 3, 0] }
+                    : { opacity: 1, y: 0, x: 0 }
+                }
+                transition={{ duration: 0.35 }}
+                className="w-full max-w-md rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_20px_50px_rgba(24,24,27,0.08)] sm:p-8"
+              >
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#059669] text-white">
+                  <Lock size={22} weight="bold" />
+                </div>
 
-              <div className="text-center">
-                <p className="font-mono text-xs font-medium tracking-wider text-[#059669] uppercase">
-                  Arsip Chat Pribadi
-                </p>
-                <h2 className="font-archivo mt-1.5 text-2xl font-bold tracking-tight text-[#18181B]">
-                  {data.partnerOne} & {data.partnerTwo}
-                </h2>
-                <p className="mt-1.5 text-sm text-[#52525B]">
-                  Masukin 4 digit PIN buat buka arsip chat dan photobox kita.
-                </p>
-              </div>
+                <div className="text-center">
+                  <p className="font-mono text-xs font-medium tracking-wider text-[#059669] uppercase">
+                    Arsip Chat Pribadi
+                  </p>
+                  <h2 className="font-archivo mt-1.5 text-2xl font-bold tracking-tight text-[#18181B]">
+                    {data.partnerOne} & {data.partnerTwo}
+                  </h2>
+                  <p className="mt-1.5 text-sm text-[#52525B]">
+                    Masukin 4 digit PIN buat buka arsip chat dan photobox kita.
+                  </p>
+                </div>
 
-              <div className="mt-6 flex justify-center gap-3" aria-label="Kolom 4 digit PIN">
-                {[0, 1, 2, 3].map((slot) => {
-                  const filled = slot < pinInput.length;
-                  return (
-                    <div
-                      key={slot}
-                      className={cn(
-                        "flex h-12 w-12 items-center justify-center rounded-xl border text-lg font-semibold transition-colors",
-                        pinError
-                          ? "border-rose-400 bg-rose-50 text-rose-600"
-                          : filled
-                            ? "border-[#059669] bg-[#D9FDD3] text-[#059669]"
-                            : "border-[#E5E7EB] bg-[#F8F7F4] text-zinc-400"
-                      )}
+                <div
+                  className="mt-6 flex justify-center gap-3"
+                  aria-label="Kolom 4 digit PIN"
+                >
+                  {[0, 1, 2, 3].map((slot) => {
+                    const filled = slot < pinInput.length;
+                    return (
+                      <div
+                        key={slot}
+                        className={cn(
+                          "flex h-12 w-12 items-center justify-center rounded-xl border text-lg font-semibold transition-colors",
+                          pinError
+                            ? "border-rose-400 bg-rose-50 text-rose-600"
+                            : filled
+                              ? "border-[#059669] bg-[#D9FDD3] text-[#059669]"
+                              : "border-[#E5E7EB] bg-[#F8F7F4] text-zinc-400"
+                        )}
+                      >
+                        {filled ? (
+                          <Heart
+                            size={15}
+                            weight="fill"
+                            className="text-[#059669]"
+                          />
+                        ) : (
+                          <span className="h-1.5 w-1.5 rounded-xs bg-zinc-300" />
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {pinError && (
+                  <p
+                    role="alert"
+                    className="mt-3 text-center text-xs font-medium text-rose-600"
+                  >
+                    PIN belum pas nih, coba inget tanggal spesial kita ya.
+                  </p>
+                )}
+
+                <div className="mx-auto mt-6 grid max-w-[260px] grid-cols-3 gap-2.5">
+                  {keypadDigits.map((digit) => (
+                    <button
+                      key={digit}
+                      type="button"
+                      onClick={() => handleDigitPress(digit)}
+                      className="flex h-11 items-center justify-center rounded-xl border border-[#E5E7EB] bg-white font-mono text-base font-semibold text-[#18181B] transition-colors hover:border-[#059669]/50 hover:bg-[#D9FDD3]/40 active:scale-[0.97]"
                     >
-                      {filled ? (
-                        <Heart size={15} weight="fill" className="text-[#059669]" />
-                      ) : (
-                        <span className="h-1.5 w-1.5 rounded-xs bg-zinc-300" />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {pinError && (
-                <p role="alert" className="mt-3 text-center text-xs font-medium text-rose-600">
-                  PIN belum pas nih, coba inget tanggal spesial kita ya.
-                </p>
-              )}
-
-              <div className="mx-auto mt-6 grid max-w-[260px] grid-cols-3 gap-2.5">
-                {keypadDigits.map((digit) => (
+                      {digit}
+                    </button>
+                  ))}
                   <button
-                    key={digit}
                     type="button"
-                    onClick={() => handleDigitPress(digit)}
+                    onClick={handleBackspace}
+                    aria-label="Hapus digit"
+                    className="flex h-11 items-center justify-center rounded-xl border border-[#E5E7EB] bg-[#F8F7F4] text-[#52525B] transition-colors hover:bg-zinc-200/70"
+                  >
+                    <Backspace size={18} weight="bold" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDigitPress("0")}
                     className="flex h-11 items-center justify-center rounded-xl border border-[#E5E7EB] bg-white font-mono text-base font-semibold text-[#18181B] transition-colors hover:border-[#059669]/50 hover:bg-[#D9FDD3]/40 active:scale-[0.97]"
                   >
-                    {digit}
+                    0
                   </button>
-                ))}
+                  <button
+                    type="button"
+                    onClick={() => submitPin(pinInput)}
+                    aria-label="Buka arsip"
+                    className="flex h-11 items-center justify-center rounded-xl bg-[#059669] text-white transition-colors hover:bg-[#047857] active:scale-[0.97]"
+                  >
+                    <Check size={18} weight="bold" />
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={prefersReducedMotion ? false : { opacity: 1, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35 }}
+                className="w-full max-w-md rounded-3xl border border-[#E5E7EB] bg-white p-6 shadow-[0_24px_60px_rgba(24,24,27,0.1)] sm:p-8"
+              >
+                <div className="flex items-center justify-between border-b border-[#E5E7EB] pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#059669] text-white">
+                      <ChatCircleDots size={18} weight="fill" />
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10px] font-semibold tracking-wider text-[#059669] uppercase">
+                        Notifikasi Masuk
+                      </p>
+                      <p className="font-archivo text-base font-bold text-[#18181B]">
+                        {data.partnerOne} & {data.partnerTwo}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="font-mono text-[11px] font-medium text-[#52525B]">
+                    {formatAnniversaryDate(data.anniversaryDate)}
+                  </span>
+                </div>
+
+                <div className="mt-5 space-y-3">
+                  <div className="rounded-2xl border border-[#E5E7EB] bg-[#F8F7F4] p-3.5 shadow-xs">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#18181B] font-archivo text-[11px] font-bold text-white">
+                          {getInitials(data.partnerOne)}
+                        </span>
+                        <span className="text-xs font-bold text-[#18181B]">
+                          {data.partnerOne}
+                        </span>
+                      </div>
+                      <span className="font-mono text-[10px] text-[#52525B]">
+                        20.11
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-sm leading-snug text-[#3F3F46]">
+                      {lockscreenPreviewOne}
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-[#059669]/25 bg-[#D9FDD3]/45 p-3.5 shadow-xs">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#059669] font-archivo text-[11px] font-bold text-white">
+                          {getInitials(data.partnerOne)}
+                        </span>
+                        <span className="text-xs font-bold text-[#18181B]">
+                          {data.partnerOne}
+                        </span>
+                      </div>
+                      <span className="font-mono text-[10px] font-semibold text-[#059669]">
+                        Baru saja
+                      </span>
+                    </div>
+                    <p className="mt-1.5 text-sm leading-snug text-[#18181B]">
+                      {lockscreenPreviewTwo}
+                    </p>
+                  </div>
+                </div>
+
                 <button
                   type="button"
-                  onClick={handleBackspace}
-                  aria-label="Hapus digit"
-                  className="flex h-11 items-center justify-center rounded-xl border border-[#E5E7EB] bg-[#F8F7F4] text-[#52525B] transition-colors hover:bg-zinc-200/70"
+                  onClick={unlockChatArchive}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#059669] px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#047857] active:scale-[0.99]"
                 >
-                  <Backspace size={18} weight="bold" />
+                  <LockOpen size={17} weight="bold" />
+                  <span>Buka Ruang Chat Kita</span>
                 </button>
-                <button
-                  type="button"
-                  onClick={() => handleDigitPress("0")}
-                  className="flex h-11 items-center justify-center rounded-xl border border-[#E5E7EB] bg-white font-mono text-base font-semibold text-[#18181B] transition-colors hover:border-[#059669]/50 hover:bg-[#D9FDD3]/40 active:scale-[0.97]"
-                >
-                  0
-                </button>
-                <button
-                  type="button"
-                  onClick={() => submitPin(pinInput)}
-                  aria-label="Buka arsip"
-                  className="flex h-11 items-center justify-center rounded-xl bg-[#059669] text-white transition-colors hover:bg-[#047857] active:scale-[0.97]"
-                >
-                  <Check size={18} weight="bold" />
-                </button>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Main Content */}
-      <div className={cn(!isUnlocked && hasPin ? "pointer-events-none select-none blur-xs" : "")}>
-        {/* Section 1: Chat Header & Live Counter Hero */}
+      <div
+        className={cn(
+          !isUnlocked ? "pointer-events-none select-none blur-xs" : ""
+        )}
+      >
+        {/* Sticky Chat Header */}
         <header className="sticky top-0 z-20 border-b border-[#E5E7EB] bg-[#F8F7F4]/95 backdrop-blur-sm">
           <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
             <div className="flex min-w-0 items-center gap-3">
@@ -733,10 +1153,11 @@ export function BucinChatTemplate({
         </header>
 
         <main className="mx-auto max-w-5xl space-y-16 px-4 pt-8 pb-24 sm:space-y-20 sm:px-6 sm:pt-12">
-          {/* Hero Intro + Live Duration Counter */}
-          <section aria-labelledby="hero-chat-heading" className="space-y-8">
-            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-              <div className="space-y-4 lg:col-span-7">
+          {/* Section 1: Visual Split Hero */}
+          <section aria-labelledby="hero-chat-heading">
+            <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+              {/* Left Column: Intro + Song + Live Counter */}
+              <div className="space-y-5 lg:col-span-6">
                 <p className="font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
                   Arsip Chat & Photobox Kita
                 </p>
@@ -746,20 +1167,22 @@ export function BucinChatTemplate({
                 >
                   {data.heroHeadline}
                 </h1>
-                <p className="max-w-2xl text-base leading-relaxed text-[#3F3F46] sm:text-lg">
+                <p className="text-base leading-relaxed text-[#3F3F46] sm:text-lg">
                   {data.openingNote}
                 </p>
 
-                <div className="flex flex-wrap items-center gap-2 pt-1 text-xs font-medium text-[#52525B]">
-                  <MusicNotes size={16} weight="fill" className="shrink-0 text-[#059669]" />
+                <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-[#52525B]">
+                  <MusicNotes
+                    size={16}
+                    weight="fill"
+                    className="shrink-0 text-[#059669]"
+                  />
                   <span>Lagu kita:</span>
                   <span className="font-semibold text-[#18181B]">
                     {data.songDedication.title} - {data.songDedication.artist}
                   </span>
                 </div>
-              </div>
 
-              <div className="lg:col-span-5">
                 <div className="rounded-2xl border border-[#E5E7EB] bg-white p-4 shadow-[0_8px_24px_rgba(24,24,27,0.04)] sm:p-5">
                   <div className="mb-3 flex items-center justify-between border-b border-[#E5E7EB] pb-2.5">
                     <span className="font-mono text-[11px] font-semibold tracking-wider text-[#52525B] uppercase">
@@ -775,7 +1198,7 @@ export function BucinChatTemplate({
                         key={unit.label}
                         className="rounded-xl border border-[#E5E7EB] bg-[#F8F7F4] px-2 py-3 text-center"
                       >
-                        <div className="font-mono tabular-nums text-xl font-bold text-[#18181B] sm:text-2xl">
+                        <div className="font-mono text-xl font-bold text-[#18181B] tabular-nums sm:text-2xl">
                           {unit.value}
                         </div>
                         <div className="mt-1 font-mono text-[10px] font-semibold tracking-wider text-[#52525B]">
@@ -786,11 +1209,149 @@ export function BucinChatTemplate({
                   </div>
                 </div>
               </div>
+
+              {/* Right Column: Photobox & Floating Chat Collage */}
+              <div className="lg:col-span-6">
+                <div className="relative mx-auto max-w-md py-6 sm:py-8">
+                  <div className="grid grid-cols-12 items-start gap-3">
+                    {heroPrimaryMemory && (
+                      <motion.button
+                        type="button"
+                        onClick={() => openLightbox(0)}
+                        initial={
+                          prefersReducedMotion || embedded
+                            ? false
+                            : { y: 12, rotate: -3 }
+                        }
+                        animate={{ y: 0, rotate: -3 }}
+                        whileHover={
+                          prefersReducedMotion
+                            ? undefined
+                            : { rotate: -1, y: -4 }
+                        }
+                        transition={{
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 22,
+                        }}
+                        className="col-span-7 rounded-xl border border-[#E5E7EB] bg-white p-2.5 text-left shadow-[0_14px_32px_rgba(24,24,27,0.1)]"
+                      >
+                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-zinc-100">
+                          <img
+                            src={heroPrimaryMemory.imageUrl}
+                            alt={heroPrimaryMemory.caption}
+                            loading="eager"
+                            className="absolute inset-0 block h-full w-full object-cover"
+                          />
+                        </div>
+                        <div className="mt-2 flex items-center justify-between gap-2 px-0.5">
+                          <span className="truncate text-[11px] font-semibold text-[#18181B]">
+                            {heroPrimaryMemory.dateLabel}
+                          </span>
+                          <span className="font-mono text-[10px] text-[#059669]">
+                            FRAME 01
+                          </span>
+                        </div>
+                      </motion.button>
+                    )}
+
+                    {heroSecondaryMemory && (
+                      <motion.button
+                        type="button"
+                        onClick={() => openLightbox(data.memories[1] ? 1 : 0)}
+                        initial={
+                          prefersReducedMotion || embedded
+                            ? false
+                            : { y: 18, rotate: 3 }
+                        }
+                        animate={{ y: 12, rotate: 3 }}
+                        whileHover={
+                          prefersReducedMotion ? undefined : { rotate: 1, y: 6 }
+                        }
+                        transition={{
+                          type: "spring",
+                          stiffness: 240,
+                          damping: 22,
+                        }}
+                        className="col-span-5 mt-8 rounded-xl border border-[#E5E7EB] bg-white p-2.5 text-left shadow-[0_14px_32px_rgba(24,24,27,0.1)]"
+                      >
+                        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md bg-zinc-100">
+                          <img
+                            src={heroSecondaryMemory.imageUrl}
+                            alt={heroSecondaryMemory.caption}
+                            loading="eager"
+                            className="absolute inset-0 block h-full w-full object-cover"
+                          />
+                        </div>
+                        <div className="mt-2 flex items-center justify-between gap-1 px-0.5">
+                          <span className="truncate text-[11px] font-semibold text-[#18181B]">
+                            {heroSecondaryMemory.dateLabel}
+                          </span>
+                          <span className="font-mono text-[10px] text-[#059669]">
+                            02
+                          </span>
+                        </div>
+                      </motion.button>
+                    )}
+                  </div>
+
+                  {/* Floating Mini Chat Previews */}
+                  <motion.div
+                    initial={prefersReducedMotion ? false : { y: 10 }}
+                    animate={
+                      prefersReducedMotion ? { y: 0 } : { y: [0, -5, 0] }
+                    }
+                    transition={
+                      prefersReducedMotion
+                        ? { duration: 0.2 }
+                        : {
+                            repeat: Infinity,
+                            duration: 4.5,
+                            ease: "easeInOut",
+                          }
+                    }
+                    className="relative z-10 -mt-3 ml-2 max-w-[260px] rounded-2xl rounded-tr-xs border border-[#059669]/20 bg-[#D9FDD3] px-3.5 py-2.5 shadow-[0_10px_24px_rgba(24,24,27,0.08)] sm:ml-6"
+                  >
+                    <p className="text-[10px] font-bold text-[#059669]">
+                      {data.partnerOne}
+                    </p>
+                    <p className="mt-0.5 text-xs leading-snug text-[#18181B]">
+                      {chatThreads[0]?.messages[0]?.text ??
+                        "Maaf barusan chat nyasar ke kamu haha."}
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={prefersReducedMotion ? false : { y: 10 }}
+                    animate={
+                      prefersReducedMotion ? { y: 0 } : { y: [0, 5, 0] }
+                    }
+                    transition={
+                      prefersReducedMotion
+                        ? { duration: 0.2 }
+                        : {
+                            repeat: Infinity,
+                            duration: 5.2,
+                            ease: "easeInOut",
+                          }
+                    }
+                    className="relative z-10 mt-2.5 mr-1 ml-auto max-w-[260px] rounded-2xl rounded-tl-xs border border-[#E5E7EB] bg-white px-3.5 py-2.5 shadow-[0_10px_24px_rgba(24,24,27,0.08)] sm:mr-4"
+                  >
+                    <p className="text-[10px] font-bold text-[#059669]">
+                      {data.partnerTwo}
+                    </p>
+                    <p className="mt-0.5 text-xs leading-snug text-[#18181B]">
+                      {chatThreads[0]?.messages[1]?.text ??
+                        "Hahaha aman kok, kirain mau nitip sekalian."}
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </section>
 
-          {/* Section 2: Interactive Chat Replay Window + Voice Note */}
-          <section aria-labelledby="chat-replay-heading" className="space-y-5">
+          {/* Section 2: Asymmetric 12-Col Messenger (7) + Recap & Milestones Timeline (5) */}
+          <section aria-labelledby="chat-replay-heading" className="space-y-6">
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
                 <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
@@ -811,240 +1372,406 @@ export function BucinChatTemplate({
                 className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-xl bg-[#059669] px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#047857] active:scale-[0.98] sm:self-auto"
               >
                 <ArrowCounterClockwise size={15} weight="bold" />
-                <span>{isReplaying ? "Sedang Diputar..." : "Putar Ulang Chat"}</span>
+                <span>
+                  {isReplaying ? "Sedang Diputar..." : "Putar Ulang Chat"}
+                </span>
               </button>
             </div>
 
-            <motion.div
-              initial={prefersReducedMotion || embedded ? false : { opacity: 1, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: "some" }}
-              transition={{ duration: 0.4 }}
-              className="overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_14px_34px_rgba(24,24,27,0.05)]"
-            >
-              {/* Topic Tabs */}
-              <div
-                role="tablist"
-                aria-label="Topik obrolan"
-                className="flex overflow-x-auto border-b border-[#E5E7EB] bg-white px-3 pt-2 sm:px-5"
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
+              {/* Left 7 Cols: Messenger Stream */}
+              <motion.div
+                initial={
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 12 }
+                }
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: "some" }}
+                transition={{ duration: 0.4 }}
+                className="overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-[0_14px_34px_rgba(24,24,27,0.05)] lg:col-span-7"
               >
-                {chatThreads.map((thread, idx) => {
-                  const isActive = idx === safeThreadIndex;
-                  return (
-                    <button
-                      key={thread.topic}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      onClick={() => handleSelectThread(idx)}
-                      className={cn(
-                        "relative shrink-0 px-4 py-3 text-sm font-semibold transition-colors",
-                        isActive
-                          ? "text-[#059669]"
-                          : "text-[#52525B] hover:text-[#18181B]"
-                      )}
-                    >
-                      <span>{thread.topic}</span>
-                      {isActive && (
-                        <motion.span
-                          layoutId="chatTopicTab"
-                          transition={{ type: "spring", stiffness: 420, damping: 32 }}
-                          className="absolute right-2 bottom-0 left-2 h-0.5 bg-[#059669]"
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Chat Stream Body */}
-              <div
-                style={{
-                  backgroundImage:
-                    "radial-gradient(rgba(24,24,27,0.06) 1px, transparent 1px)",
-                  backgroundSize: "18px 18px",
-                }}
-                className="space-y-3 bg-[#EFEAE2] p-4 sm:p-6"
-              >
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="h-px flex-1 bg-black/10" />
-                  <span className="font-mono text-[10px] font-semibold tracking-wider text-[#52525B] uppercase">
-                    Topik: {activeThread.topic}
-                  </span>
-                  <span className="h-px flex-1 bg-black/10" />
+                {/* Topic Tabs */}
+                <div
+                  role="tablist"
+                  aria-label="Topik obrolan"
+                  className="flex overflow-x-auto border-b border-[#E5E7EB] bg-white px-3 pt-2 sm:px-5"
+                >
+                  {chatThreads.map((thread, idx) => {
+                    const isActive = idx === safeThreadIndex;
+                    return (
+                      <button
+                        key={thread.topic}
+                        type="button"
+                        role="tab"
+                        aria-selected={isActive}
+                        onClick={() => handleSelectThread(idx)}
+                        className={cn(
+                          "relative shrink-0 px-4 py-3 text-sm font-semibold transition-colors",
+                          isActive
+                            ? "text-[#059669]"
+                            : "text-[#52525B] hover:text-[#18181B]"
+                        )}
+                      >
+                        <span>{thread.topic}</span>
+                        {isActive && (
+                          <motion.span
+                            layoutId="chatTopicTab"
+                            transition={{
+                              type: "spring",
+                              stiffness: 420,
+                              damping: 32,
+                            }}
+                            className="absolute right-2 bottom-0 left-2 h-0.5 bg-[#059669]"
+                          />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
 
-                {revealedMessages.map((msg, idx) => {
-                  const isOne = msg.sender === "one";
-                  const senderName = isOne ? data.partnerOne : data.partnerTwo;
-                  return (
-                    <motion.div
-                      key={`${activeThread.topic}-${idx}`}
-                      initial={
-                        prefersReducedMotion || embedded
-                          ? false
-                          : { opacity: 1, y: 12 }
-                      }
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.25 }}
+                {/* Chat Stream Body */}
+                <div
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(rgba(24,24,27,0.06) 1px, transparent 1px)",
+                    backgroundSize: "18px 18px",
+                  }}
+                  className="space-y-3 bg-[#EFEAE2] p-4 sm:p-6"
+                >
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="h-px flex-1 bg-black/10" />
+                    <span className="font-mono text-[10px] font-semibold tracking-wider text-[#52525B] uppercase">
+                      TOPIK: {activeThread.topic}
+                    </span>
+                    <span className="h-px flex-1 bg-black/10" />
+                  </div>
+
+                  {revealedMessages.map((msg, idx) => {
+                    const isOne = msg.sender === "one";
+                    const senderName = isOne ? data.partnerOne : data.partnerTwo;
+                    return (
+                      <motion.div
+                        key={`${activeThread.topic}-${idx}`}
+                        initial={
+                          prefersReducedMotion || embedded
+                            ? false
+                            : { opacity: 1, y: 12 }
+                        }
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className={cn(
+                          "flex flex-col",
+                          isOne ? "items-end" : "items-start"
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            "max-w-[85%] rounded-2xl px-4 py-2.5 shadow-[0_1px_2px_rgba(24,24,27,0.08)] sm:max-w-[78%]",
+                            isOne
+                              ? "rounded-tr-xs bg-[#D9FDD3] text-[#18181B]"
+                              : "rounded-tl-xs border border-[#E5E7EB] bg-[#FFFFFF] text-[#18181B]"
+                          )}
+                        >
+                          <p className="text-[11px] font-bold text-[#059669]">
+                            {senderName}
+                          </p>
+                          <p className="mt-0.5 text-sm leading-relaxed sm:text-[15px]">
+                            {msg.text}
+                          </p>
+                          <div className="mt-1 flex items-center justify-end gap-1 font-mono text-[10px] text-[#52525B]">
+                            <span>{msg.time}</span>
+                            {isOne && (
+                              <Checks
+                                size={14}
+                                weight="bold"
+                                aria-label="Dibaca"
+                                className="text-[#059669]"
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+
+                  {/* Typing indicator while replaying */}
+                  {isReplaying && nextHiddenMessage && (
+                    <div
                       className={cn(
-                        "flex flex-col",
-                        isOne ? "items-end" : "items-start"
+                        "flex",
+                        nextHiddenMessage.sender === "one"
+                          ? "justify-end"
+                          : "justify-start"
                       )}
                     >
                       <div
+                        aria-label="Sedang mengetik"
                         className={cn(
-                          "max-w-[85%] rounded-2xl px-4 py-2.5 shadow-[0_1px_2px_rgba(24,24,27,0.08)] sm:max-w-[72%]",
-                          isOne
-                            ? "rounded-tr-xs bg-[#D9FDD3] text-[#18181B]"
-                            : "rounded-tl-xs border border-[#E5E7EB] bg-[#FFFFFF] text-[#18181B]"
+                          "inline-flex items-center gap-1.5 rounded-2xl px-4 py-3 shadow-xs",
+                          nextHiddenMessage.sender === "one"
+                            ? "rounded-tr-xs bg-[#D9FDD3]"
+                            : "rounded-tl-xs border border-[#E5E7EB] bg-white"
                         )}
                       >
-                        <p className="text-[11px] font-bold text-[#059669]">
-                          {senderName}
-                        </p>
-                        <p className="mt-0.5 text-sm leading-relaxed sm:text-[15px]">
-                          {msg.text}
-                        </p>
-                        <div className="mt-1 flex items-center justify-end gap-1 font-mono text-[10px] text-[#52525B]">
-                          <span>{msg.time}</span>
-                          {isOne && (
-                            <Checks
-                              size={14}
-                              weight="bold"
-                              aria-label="Dibaca"
-                              className="text-[#059669]"
-                            />
-                          )}
-                        </div>
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:0ms]" />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:150ms]" />
+                        <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:300ms]" />
                       </div>
-                    </motion.div>
-                  );
-                })}
-
-                {/* Typing indicator while replaying */}
-                {isReplaying && nextHiddenMessage && (
-                  <div
-                    className={cn(
-                      "flex",
-                      nextHiddenMessage.sender === "one"
-                        ? "justify-end"
-                        : "justify-start"
-                    )}
-                  >
-                    <div
-                      aria-label="Sedang mengetik"
-                      className={cn(
-                        "inline-flex items-center gap-1.5 rounded-2xl px-4 py-3 shadow-xs",
-                        nextHiddenMessage.sender === "one"
-                          ? "rounded-tr-xs bg-[#D9FDD3]"
-                          : "rounded-tl-xs border border-[#E5E7EB] bg-white"
-                      )}
-                    >
-                      <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:0ms]" />
-                      <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:150ms]" />
-                      <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:300ms]" />
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* Interactive Voice Note Card inside the chat stream */}
-                {!isReplaying && (
-                  <div className="flex flex-col items-end pt-1">
-                    <div className="w-full max-w-[340px] rounded-2xl rounded-tr-xs bg-[#D9FDD3] p-3.5 text-[#18181B] shadow-[0_1px_2px_rgba(24,24,27,0.08)] sm:max-w-[380px]">
-                      <div className="mb-2 flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#059669]">
-                          <Microphone size={13} weight="fill" />
-                          <span>Voice Note dari {data.partnerOne}</span>
-                        </span>
-                        <span className="font-mono tabular-nums text-[10px] font-medium text-[#52525B]">
-                          0:{padTwo(voiceElapsedSec)} / 0:{padTwo(VOICE_NOTE_DURATION_SEC)}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          onClick={toggleVoiceNote}
-                          aria-label={
-                            isVoicePlaying ? "Jeda voice note" : "Putar voice note"
-                          }
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#059669] text-white transition-transform hover:bg-[#047857] active:scale-95"
-                        >
-                          {isVoicePlaying ? (
-                            <Pause size={16} weight="fill" />
-                          ) : (
-                            <Play size={16} weight="fill" className="translate-x-0.5" />
-                          )}
-                        </button>
-
-                        <div className="flex-1 space-y-1.5">
-                          <div
-                            aria-hidden="true"
-                            className="flex h-8 items-center gap-1"
-                          >
-                            {VOICE_NOTE_BAR_HEIGHTS.map((height, barIdx) => {
-                              const barThreshold =
-                                ((barIdx + 1) / VOICE_NOTE_BAR_HEIGHTS.length) * 100;
-                              const isPassed = voiceProgressPercent >= barThreshold;
-                              return (
-                                <motion.span
-                                  key={barIdx}
-                                  animate={
-                                    isVoicePlaying && !prefersReducedMotion
-                                      ? {
-                                          scaleY: [0.55, 1.15, 0.7, 1],
-                                        }
-                                      : { scaleY: 1 }
-                                  }
-                                  transition={
-                                    isVoicePlaying
-                                      ? {
-                                          repeat: Infinity,
-                                          duration: 0.65 + (barIdx % 4) * 0.12,
-                                          ease: "easeInOut",
-                                        }
-                                      : { duration: 0.2 }
-                                  }
-                                  style={{ height: `${Math.round((height / 100) * 28)}px` }}
-                                  className={cn(
-                                    "w-1.5 flex-1 origin-center rounded-xs transition-colors",
-                                    isPassed || isVoicePlaying
-                                      ? "bg-[#059669]"
-                                      : "bg-[#18181B]/25"
-                                  )}
+                  {/* Inline Photo Attachment Bubble + 2 Real Spoken Voice Notes */}
+                  {!isReplaying && (
+                    <>
+                      {inlineChatMemory && (
+                        <div className="flex flex-col items-end pt-1">
+                          <div className="w-full max-w-[290px] rounded-2xl rounded-tr-xs bg-[#D9FDD3] p-2.5 text-[#18181B] shadow-[0_1px_2px_rgba(24,24,27,0.08)] sm:max-w-[320px]">
+                            <p className="mb-1.5 px-1 text-[11px] font-bold text-[#059669]">
+                              {data.partnerOne}
+                            </p>
+                            <button
+                              type="button"
+                              onClick={() => openLightbox(inlineChatMemoryIndex)}
+                              className="group relative block aspect-[4/3] w-full overflow-hidden rounded-xl bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                            >
+                              <img
+                                src={inlineChatMemory.imageUrl}
+                                alt={inlineChatMemory.caption}
+                                loading="eager"
+                                className="absolute inset-0 block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                              />
+                            </button>
+                            <p className="mt-2 px-1 text-xs leading-relaxed text-[#18181B]">
+                              {inlineChatMemory.caption}
+                            </p>
+                            <div className="mt-1 flex items-center justify-between px-1 font-mono text-[10px] text-[#52525B]">
+                              <span>{inlineChatMemory.dateLabel}</span>
+                              <span className="inline-flex items-center gap-1">
+                                <span>20.48</span>
+                                <Checks
+                                  size={14}
+                                  weight="bold"
+                                  className="text-[#059669]"
                                 />
-                              );
-                            })}
-                          </div>
-                          <div className="h-1 w-full overflow-hidden rounded-full bg-black/10">
-                            <div
-                              style={{ width: `${voiceProgressPercent}%` }}
-                              className="h-full bg-[#059669] transition-all duration-300"
-                            />
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      )}
 
-                      <div className="mt-2.5 flex items-center justify-between gap-2 border-t border-black/10 pt-2">
-                        <p className="text-xs italic text-[#3F3F46]">
-                          &ldquo;{VOICE_NOTE_CAPTIONS[voiceCaptionIndex]}&rdquo;
-                        </p>
-                        <div className="flex shrink-0 items-center gap-1 font-mono text-[10px] text-[#52525B]">
-                          <span>21.05</span>
-                          <Checks size={14} weight="bold" className="text-[#059669]" />
+                      <VoiceNoteBubble
+                        id="vn-partner-one"
+                        src={partnerOneVoiceUrl}
+                        senderName={data.partnerOne}
+                        align="right"
+                        timeLabel="21.05"
+                        subtitle="Kalau lagi capek sama kerjaan, dengerin ini bentar ya."
+                        activeVoiceId={activeVoiceId}
+                        onActivateVoice={setActiveVoiceId}
+                        prefersReducedMotion={prefersReducedMotion}
+                      />
+
+                      <VoiceNoteBubble
+                        id="vn-partner-two"
+                        src="/audio/voicenotes/alya-vn.mp3"
+                        senderName={data.partnerTwo}
+                        align="left"
+                        timeLabel="21.06"
+                        subtitle="Makasih ya udah selalu nyariin aku duluan tiap sore."
+                        activeVoiceId={activeVoiceId}
+                        onActivateVoice={setActiveVoiceId}
+                        prefersReducedMotion={prefersReducedMotion}
+                      />
+
+                      {/* Quick-Reply Appended Bubbles */}
+                      {quickMessages.map((qMsg, idx) => {
+                        const isOne = qMsg.sender === "one";
+                        const senderName = isOne
+                          ? data.partnerOne
+                          : data.partnerTwo;
+                        return (
+                          <motion.div
+                            key={`quick-${idx}`}
+                            initial={
+                              prefersReducedMotion ? false : { opacity: 1, y: 8 }
+                            }
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.22 }}
+                            className={cn(
+                              "flex flex-col",
+                              isOne ? "items-end" : "items-start"
+                            )}
+                          >
+                            <div
+                              className={cn(
+                                "max-w-[85%] rounded-2xl px-4 py-2.5 shadow-[0_1px_2px_rgba(24,24,27,0.08)] sm:max-w-[78%]",
+                                isOne
+                                  ? "rounded-tr-xs bg-[#D9FDD3] text-[#18181B]"
+                                  : "rounded-tl-xs border border-[#E5E7EB] bg-white text-[#18181B]"
+                              )}
+                            >
+                              <p className="text-[11px] font-bold text-[#059669]">
+                                {senderName}
+                              </p>
+                              <p className="mt-0.5 text-sm leading-relaxed sm:text-[15px]">
+                                {qMsg.text}
+                              </p>
+                              <div className="mt-1 flex items-center justify-end gap-1 font-mono text-[10px] text-[#52525B]">
+                                <span>{qMsg.time}</span>
+                                {isOne && (
+                                  <Checks
+                                    size={14}
+                                    weight="bold"
+                                    className="text-[#059669]"
+                                  />
+                                )}
+                              </div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+
+                      {isAutoReplying && (
+                        <div className="flex justify-end">
+                          <div
+                            aria-label={`${data.partnerOne} sedang mengetik`}
+                            className="inline-flex items-center gap-1.5 rounded-2xl rounded-tr-xs bg-[#D9FDD3] px-4 py-3 shadow-xs"
+                          >
+                            <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:0ms]" />
+                            <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:150ms]" />
+                            <span className="h-2 w-2 animate-bounce rounded-full bg-[#52525B] [animation-delay:300ms]" />
+                          </div>
                         </div>
+                      )}
+                    </>
+                  )}
+                </div>
+
+                {/* Interactive Quick-Reply Input Bar */}
+                <div className="relative border-t border-[#E5E7EB] bg-white p-3.5 sm:px-5 sm:py-4">
+                  <div className="pointer-events-none absolute -top-2 left-1/2 -translate-x-1/2">
+                    <AnimatePresence>
+                      {floatingHearts.map((heart) => (
+                        <motion.span
+                          key={heart.id}
+                          initial={{ opacity: 0.95, y: 0, x: heart.offsetX, scale: 0.8 }}
+                          animate={{
+                            opacity: 0,
+                            y: -58,
+                            x: heart.offsetX,
+                            scale: 1.15,
+                          }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.95, ease: "easeOut" }}
+                          className="absolute text-[#059669]"
+                        >
+                          <Heart size={18} weight="fill" />
+                        </motion.span>
+                      ))}
+                    </AnimatePresence>
+                  </div>
+
+                  <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold text-[#52525B]">
+                    <PaperPlaneTilt
+                      size={13}
+                      weight="fill"
+                      className="text-[#059669]"
+                    />
+                    <span>Kirim balasan cepat ke {data.partnerOne}:</span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {QUICK_REPLY_OPTIONS.map((option) => (
+                      <button
+                        key={option.prompt}
+                        type="button"
+                        onClick={() =>
+                          handleQuickReply(option.prompt, option.reply)
+                        }
+                        className="rounded-xl border border-[#E5E7EB] bg-[#F8F7F4] px-3 py-2 text-left text-xs font-medium text-[#18181B] transition-colors hover:border-[#059669] hover:bg-[#D9FDD3]/50 active:scale-[0.98]"
+                      >
+                        {option.prompt}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right 5 Cols: Rekap Obrolan Kita + Milestones Vertical Dashed Timeline */}
+              <div className="space-y-6 lg:col-span-5">
+                {/* Rekap Obrolan Kita Stat Grid */}
+                <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-[0_10px_28px_rgba(24,24,27,0.04)]">
+                  <p className="font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
+                    Rekap Obrolan Kita
+                  </p>
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    {recapStats.map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="rounded-xl border border-[#E5E7EB] bg-[#F8F7F4] p-3.5"
+                      >
+                        <p className="font-archivo text-2xl font-bold text-[#18181B] tabular-nums">
+                          {stat.value}
+                        </p>
+                        <p className="mt-1 text-xs font-medium text-[#52525B]">
+                          {stat.label}
+                        </p>
                       </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Milestones Vertical Dashed Timeline */}
+                {milestones.length > 0 && (
+                  <div className="rounded-2xl border border-[#E5E7EB] bg-white p-5 shadow-[0_10px_28px_rgba(24,24,27,0.04)]">
+                    <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
+                      <Calendar size={15} weight="fill" />
+                      <span>Linimasa Cerita Kita</span>
+                    </div>
+                    <h3 className="font-archivo mt-1 text-lg font-bold text-[#18181B]">
+                      Jejak Momen dari Awal Chat
+                    </h3>
+
+                    <div className="mt-5 ml-2 space-y-4 border-l-2 border-dashed border-[#059669]/35 pl-5">
+                      {milestones.map((milestone, idx) => (
+                        <motion.div
+                          key={`${milestone.title}-${idx}`}
+                          whileHover={
+                            prefersReducedMotion ? undefined : { y: -3 }
+                          }
+                          transition={{
+                            type: "spring",
+                            stiffness: 340,
+                            damping: 24,
+                          }}
+                          className="relative rounded-xl border border-[#E5E7EB] bg-[#F8F7F4] p-3.5 transition-shadow hover:border-[#059669]/40 hover:bg-white hover:shadow-md"
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="absolute top-4 -left-[27px] h-3 w-3 rounded-full border-2 border-white bg-[#059669] shadow-xs"
+                          />
+                          <p className="font-mono text-[10px] font-semibold tracking-wider text-[#059669] uppercase">
+                            {milestone.dateLabel}
+                          </p>
+                          <h4 className="mt-0.5 text-sm font-bold text-[#18181B]">
+                            {milestone.title}
+                          </h4>
+                          <p className="mt-1 text-xs leading-relaxed text-[#52525B]">
+                            {milestone.description}
+                          </p>
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
           </section>
 
-          {/* Section 3: Photobox 4-Cut Studio Strip & Album */}
-          <section aria-labelledby="photobox-heading" className="space-y-6">
-            <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
+          {/* Section 3: Interactive Photobox Strips */}
+          <section aria-labelledby="photobox-heading" className="relative space-y-6">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
                 <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
                   <Camera size={16} weight="fill" />
@@ -1057,70 +1784,120 @@ export function BucinChatTemplate({
                   Enam Frame Favorit Kita Berdua
                 </h2>
               </div>
-              <p className="text-xs font-medium text-[#52525B]">
-                Klik salah satu foto buat lihat versi penuhnya
-              </p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <p className="text-xs font-medium text-[#52525B]">
+                  Klik salah satu foto buat lihat versi penuhnya
+                </p>
+                <button
+                  type="button"
+                  onClick={handleReshootStrip}
+                  className="inline-flex items-center gap-2 rounded-xl border border-[#18181B] bg-[#18181B] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#059669] hover:border-[#059669] active:scale-[0.98]"
+                >
+                  <Camera size={15} weight="fill" />
+                  <span>Jepret Ulang Strip</span>
+                </button>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {[
-                { label: "STRIP A", items: firstStripMemories, offset: 0 },
-                { label: "STRIP B", items: secondStripMemories, offset: splitIndex },
-              ].map((strip) => (
-                <motion.div
-                  key={strip.label}
-                  initial={
-                    prefersReducedMotion || embedded ? false : { opacity: 1, y: 12 }
-                  }
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: "some" }}
-                  transition={{ duration: 0.4 }}
-                  className="rounded-2xl border border-zinc-800 bg-[#18181B] p-4 text-white shadow-[0_18px_42px_rgba(24,24,27,0.16)] sm:p-5"
-                >
-                  <div className="mb-3 flex items-center justify-between border-b border-zinc-800 pb-2.5 font-mono text-[11px] tracking-widest text-zinc-400">
-                    <span>{strip.label}</span>
-                    <span>
-                      {data.partnerOne.toUpperCase()} + {data.partnerTwo.toUpperCase()}
-                    </span>
-                  </div>
+            <div className="relative">
+              <AnimatePresence>
+                {stripFlashActive && (
+                  <motion.div
+                    key="photobox-flash"
+                    initial={{ opacity: 0.9 }}
+                    animate={{ opacity: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-20 rounded-2xl bg-white"
+                  />
+                )}
+              </AnimatePresence>
 
-                  <div className="space-y-4">
-                    {strip.items.map((memory, localIdx) => {
-                      const globalIdx = strip.offset + localIdx;
-                      return (
-                        <button
-                          key={`${memory.imageUrl}-${globalIdx}`}
-                          type="button"
-                          onClick={() => openLightbox(globalIdx)}
-                          className="group block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
-                        >
-                          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-zinc-900">
-                            <img
-                              src={memory.imageUrl}
-                              alt={memory.caption}
-                              loading="eager"
-                              className="absolute inset-0 block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                            />
-                          </div>
-                          <div className="mt-2 flex items-start justify-between gap-3">
-                            <p className="text-xs leading-relaxed text-zinc-200 sm:text-sm">
-                              {memory.caption}
-                            </p>
-                            <span className="shrink-0 font-mono text-[11px] font-medium text-emerald-400">
-                              {padTwo(globalIdx + 1)} / {memory.dateLabel}
-                            </span>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                {[
+                  {
+                    label: "STRIP A",
+                    items: firstStripMemories,
+                    offset: 0,
+                    tiltClass: "-rotate-1 hover:rotate-0",
+                  },
+                  {
+                    label: "STRIP B",
+                    items: secondStripMemories,
+                    offset: splitIndex,
+                    tiltClass: "rotate-1 hover:rotate-0",
+                  },
+                ].map((strip) => (
+                  <motion.div
+                    key={`${strip.label}-${stripSnapCount}`}
+                    initial={
+                      prefersReducedMotion
+                        ? false
+                        : stripSnapCount > 0
+                          ? { scale: 0.97, y: 10 }
+                          : { opacity: 1, y: 12 }
+                    }
+                    animate={{ scale: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: "some" }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 320,
+                      damping: 22,
+                    }}
+                    className={cn(
+                      "rounded-2xl border border-zinc-800 bg-[#18181B] p-4 text-white shadow-[0_18px_42px_rgba(24,24,27,0.16)] transition-transform duration-300 sm:p-5",
+                      strip.tiltClass
+                    )}
+                  >
+                    <div className="mb-3 flex items-center justify-between border-b border-zinc-800 pb-2.5 font-mono text-[11px] tracking-widest text-zinc-400">
+                      <span>{strip.label}</span>
+                      <span>
+                        {data.partnerOne.toUpperCase()} +{" "}
+                        {data.partnerTwo.toUpperCase()}
+                      </span>
+                    </div>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3 font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
-                    <span>PHOTOBOX ARCHIVE</span>
-                    <span>NO FILTER NEEDED</span>
-                  </div>
-                </motion.div>
-              ))}
+                    <div className="space-y-4">
+                      {strip.items.map((memory, localIdx) => {
+                        const globalIdx = strip.offset + localIdx;
+                        return (
+                          <button
+                            key={`${memory.imageUrl}-${globalIdx}`}
+                            type="button"
+                            onClick={() => openLightbox(globalIdx)}
+                            className="group block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#059669]"
+                          >
+                            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm bg-zinc-900">
+                              <img
+                                src={memory.imageUrl}
+                                alt={memory.caption}
+                                loading="eager"
+                                className="absolute inset-0 block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                              />
+                            </div>
+                            <div className="mt-2 flex items-start justify-between gap-3">
+                              <p className="text-xs leading-relaxed text-zinc-200 sm:text-sm">
+                                {memory.caption}
+                              </p>
+                              <span className="shrink-0 font-mono text-[11px] font-medium text-emerald-400">
+                                {padTwo(globalIdx + 1)} / {memory.dateLabel}
+                              </span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-4 flex items-center justify-between border-t border-zinc-800 pt-3 font-mono text-[10px] tracking-widest text-zinc-500 uppercase">
+                      <span>PHOTOBOX ARCHIVE</span>
+                      <span>NO FILTER NEEDED</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
 
@@ -1169,7 +1946,9 @@ export function BucinChatTemplate({
                   <motion.div
                     key={`${item.question}-${qIdx}`}
                     initial={
-                      prefersReducedMotion || embedded ? false : { opacity: 1, y: 12 }
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { opacity: 1, y: 12 }
                     }
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: "some" }}
@@ -1209,7 +1988,9 @@ export function BucinChatTemplate({
                               key={`${qIdx}-${optIdx}`}
                               type="button"
                               disabled={isAnswered}
-                              onClick={() => handleSelectQuizOption(qIdx, optIdx)}
+                              onClick={() =>
+                                handleSelectQuizOption(qIdx, optIdx)
+                              }
                               className={cn(
                                 "flex w-full items-center justify-between gap-2 rounded-xl border px-3.5 py-2.5 text-left text-xs transition-colors sm:text-sm",
                                 btnStyle
@@ -1257,12 +2038,12 @@ export function BucinChatTemplate({
             </div>
           </section>
 
-          {/* Section 5: Pesan Berbintang (littleThings & loveReasons) */}
+          {/* Section 5: Pinned Notes (littleThings & loveReasons) */}
           <section aria-labelledby="starred-heading" className="space-y-6">
             <div>
               <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
-                <Star size={16} weight="fill" />
-                <span>Pesan Berbintang</span>
+                <Heart size={16} weight="fill" />
+                <span>Catatan Favorit</span>
               </div>
               <h2
                 id="starred-heading"
@@ -1273,14 +2054,16 @@ export function BucinChatTemplate({
             </div>
 
             <div className="grid grid-cols-1 border-y border-[#E5E7EB] lg:grid-cols-2">
-              {/* Left Column: littleThings */}
               <div className="border-b border-[#E5E7EB] py-6 lg:border-r lg:border-b-0 lg:pr-8">
                 <p className="font-mono text-xs font-semibold tracking-wider text-[#52525B] uppercase">
                   Kebiasaan Kecil Kamu
                 </p>
                 <div className="mt-4 divide-y divide-[#E5E7EB]">
                   {littleThings.map((item, idx) => (
-                    <div key={`${item.label}-${idx}`} className="py-4 first:pt-0 last:pb-0">
+                    <div
+                      key={`${item.label}-${idx}`}
+                      className="py-4 first:pt-0 last:pb-0"
+                    >
                       <div className="flex items-baseline gap-3">
                         <span className="font-mono text-xs font-bold text-[#059669]">
                           {padTwo(idx + 1)}
@@ -1299,14 +2082,16 @@ export function BucinChatTemplate({
                 </div>
               </div>
 
-              {/* Right Column: loveReasons */}
               <div className="py-6 lg:pl-8">
                 <p className="font-mono text-xs font-semibold tracking-wider text-[#52525B] uppercase">
                   Kenapa Betah Sama Kamu
                 </p>
                 <div className="mt-4 divide-y divide-[#E5E7EB]">
                   {data.loveReasons.map((reason, idx) => (
-                    <div key={`${reason}-${idx}`} className="py-3.5 first:pt-0 last:pb-0">
+                    <div
+                      key={`${reason}-${idx}`}
+                      className="py-3.5 first:pt-0 last:pb-0"
+                    >
                       <div className="flex items-start gap-3">
                         <span className="mt-0.5 font-mono text-xs font-bold text-[#059669]">
                           #{idx + 1}
@@ -1322,106 +2107,153 @@ export function BucinChatTemplate({
             </div>
           </section>
 
-          {/* Section 6: Voucher Traktiran + Pinned Closing Message */}
-          <section aria-labelledby="vouchers-closing-heading" className="space-y-12">
-            {coupons.length > 0 && (
-              <div className="space-y-6">
-                <div>
-                  <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
-                    <Ticket size={16} weight="fill" />
-                    <span>Voucher Traktiran</span>
-                  </div>
-                  <h2
-                    id="vouchers-closing-heading"
-                    className="font-archivo mt-1 text-2xl font-bold tracking-tight text-[#18181B] sm:text-3xl"
-                  >
-                    Tinggal Klaim Kapan Pun Kamu Mau
-                  </h2>
+          {/* Section 6: Polling Malam Minggu Kita + Pinned Closing Message */}
+          <section
+            aria-labelledby="weekend-poll-heading"
+            className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start"
+          >
+            {/* WhatsApp-Style Live Group Poll Card */}
+            <motion.div
+              initial={
+                prefersReducedMotion || embedded ? false : { opacity: 1, y: 12 }
+              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: "some" }}
+              transition={{ duration: 0.4 }}
+              className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_14px_38px_rgba(24,24,27,0.05)] lg:col-span-6"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
+                  <ChatCircleDots size={15} weight="fill" />
+                  <span>POLLING RENCANA KENCAN</span>
                 </div>
+                <span className="font-mono text-[11px] font-medium text-[#52525B] tabular-nums">
+                  {totalPollVotes} suara masuk
+                </span>
+              </div>
 
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-                  {coupons.map((coupon, idx) => {
-                    const isClaimed = Boolean(claimedCoupons[idx]);
-                    return (
-                      <motion.div
-                        key={`${coupon.title}-${idx}`}
-                        initial={
-                          prefersReducedMotion || embedded
-                            ? false
-                            : { opacity: 1, y: 12 }
-                        }
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: "some" }}
-                        transition={{ duration: 0.35 }}
-                        className={cn(
-                          "relative flex flex-col justify-between overflow-hidden rounded-2xl border-2 border-dashed p-5 transition-colors",
-                          isClaimed
-                            ? "border-[#059669]/40 bg-[#D9FDD3]/40"
-                            : "border-[#E5E7EB] bg-white"
-                        )}
-                      >
-                        <div>
-                          <div className="flex items-center justify-between font-mono text-[11px] font-semibold text-[#52525B]">
-                            <span>KUPON #{padTwo(idx + 1)}</span>
-                            <span>BERLAKU SELAMANYA</span>
-                          </div>
-                          <h3 className="mt-3 text-base font-bold text-[#18181B]">
-                            {coupon.title}
-                          </h3>
-                          <p className="mt-1.5 text-sm leading-relaxed text-[#52525B]">
-                            {coupon.note}
-                          </p>
+              <h2
+                id="weekend-poll-heading"
+                className="font-archivo mt-1.5 text-2xl font-bold tracking-tight text-[#18181B]"
+              >
+                Vote Malam Minggu Besok
+              </h2>
+              <p className="mt-1 text-xs text-[#52525B]">
+                Pilih satu atau lebih rencana yang paling pengen kamu jalanin bareng.
+              </p>
+
+              <div className="mt-5 space-y-3">
+                {WEEKEND_POLL_OPTIONS.map((option) => {
+                  const userVoted = Boolean(selectedPollVotes[option.id]);
+                  const voteCount =
+                    (option.partnerPreVoted ? 1 : 0) + (userVoted ? 1 : 0);
+                  const percent =
+                    totalPollVotes > 0
+                      ? Math.round((voteCount / totalPollVotes) * 100)
+                      : 0;
+
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => togglePollVote(option.id)}
+                      aria-pressed={userVoted}
+                      className={cn(
+                        "block w-full rounded-xl border p-3.5 text-left transition-colors active:scale-[0.99]",
+                        userVoted
+                          ? "border-[#059669] bg-[#D9FDD3]/35"
+                          : "border-[#E5E7EB] bg-[#F8F7F4] hover:border-[#059669]/45"
+                      )}
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-2.5">
+                          <span
+                            className={cn(
+                              "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border transition-colors",
+                              userVoted
+                                ? "border-[#059669] bg-[#059669] text-white"
+                                : "border-zinc-300 bg-white text-transparent"
+                            )}
+                          >
+                            <Check size={12} weight="bold" />
+                          </span>
+                          <span className="text-sm font-semibold leading-snug text-[#18181B]">
+                            {option.label}
+                          </span>
                         </div>
 
-                        <button
-                          type="button"
-                          onClick={() => toggleCouponClaim(idx)}
-                          className={cn(
-                            "mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-xl px-4 py-2.5 text-xs font-semibold transition-colors active:scale-[0.98]",
-                            isClaimed
-                              ? "border border-[#059669]/30 bg-white text-[#059669]"
-                              : "bg-[#18181B] text-white hover:bg-[#059669]"
-                          )}
-                        >
-                          <Check size={14} weight="bold" />
-                          <span>{isClaimed ? "Batalkan Klaim" : "Klaim Voucher"}</span>
-                        </button>
+                        <div className="flex shrink-0 items-center gap-1.5">
+                          <div className="flex -space-x-1.5">
+                            {option.partnerPreVoted && (
+                              <span
+                                title={data.partnerOne}
+                                className="flex h-5 w-5 items-center justify-center rounded-full border border-white bg-[#18181B] font-archivo text-[10px] font-bold text-white"
+                              >
+                                {getInitials(data.partnerOne)}
+                              </span>
+                            )}
+                            {userVoted && (
+                              <span
+                                title={data.partnerTwo}
+                                className="flex h-5 w-5 items-center justify-center rounded-full border border-white bg-[#059669] font-archivo text-[10px] font-bold text-white"
+                              >
+                                {getInitials(data.partnerTwo)}
+                              </span>
+                            )}
+                          </div>
+                          <span className="font-mono text-xs font-bold text-[#18181B] tabular-nums">
+                            {voteCount}
+                          </span>
+                        </div>
+                      </div>
 
-                        <AnimatePresence>
-                          {isClaimed && (
-                            <motion.div
-                              initial={
-                                prefersReducedMotion
-                                  ? { opacity: 1 }
-                                  : { opacity: 0, scale: 1.35, rotate: -12 }
-                              }
-                              animate={{ opacity: 1, scale: 1, rotate: -8 }}
-                              exit={{ opacity: 0, scale: 0.9 }}
-                              transition={{
-                                type: "spring",
-                                stiffness: 360,
-                                damping: 22,
-                              }}
-                              className="pointer-events-none absolute top-4 right-3 rounded-md border-2 border-[#059669] bg-white/95 px-2.5 py-1 font-mono text-[11px] font-bold tracking-wider text-[#059669] shadow-xs"
-                            >
-                              SUDAH DIKLAIM
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    );
-                  })}
-                </div>
+                      <div className="mt-2.5 h-2 w-full overflow-hidden rounded-full bg-black/10">
+                        <motion.div
+                          initial={false}
+                          animate={{ width: `${percent}%` }}
+                          transition={
+                            prefersReducedMotion
+                              ? { duration: 0.1 }
+                              : {
+                                  type: "spring",
+                                  stiffness: 260,
+                                  damping: 26,
+                                }
+                          }
+                          className="h-full rounded-full bg-[#059669]"
+                        />
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
-            )}
+
+              <div className="mt-4 flex items-center justify-between border-t border-[#E5E7EB] pt-3 text-xs">
+                <span
+                  className={cn(
+                    "font-medium",
+                    hasUserVotedPoll ? "text-[#059669]" : "text-[#52525B]"
+                  )}
+                >
+                  {hasUserVotedPoll
+                    ? "Siap, langsung masuk jadwal akhir pekan kita!"
+                    : `${data.partnerOne} udah vote duluan, tinggal pilihan kamu.`}
+                </span>
+                <span className="font-mono text-[10px] text-[#52525B]">
+                  21.10
+                </span>
+              </div>
+            </motion.div>
 
             {/* Pinned Closing Message */}
             <motion.div
-              initial={prefersReducedMotion || embedded ? false : { opacity: 1, y: 12 }}
+              initial={
+                prefersReducedMotion || embedded ? false : { opacity: 1, y: 12 }
+              }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: "some" }}
               transition={{ duration: 0.45 }}
-              className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_14px_38px_rgba(24,24,27,0.05)] sm:p-9"
+              className="rounded-2xl border border-[#E5E7EB] bg-white p-6 shadow-[0_14px_38px_rgba(24,24,27,0.05)] sm:p-8 lg:col-span-6"
             >
               <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-[#059669] uppercase">
                 <PushPin size={15} weight="fill" />
@@ -1462,7 +2294,7 @@ export function BucinChatTemplate({
         className={embedded ? "!absolute" : ""}
       />
 
-      {/* Fullscreen Lightbox for Photobox Strips */}
+      {/* Fullscreen Lightbox for Photobox Strips & Chat Photo */}
       <AnimatePresence>
         {activeLightboxMemory && lightboxIndex !== null && (
           <motion.div
@@ -1490,7 +2322,7 @@ export function BucinChatTemplate({
               className="relative w-full max-w-2xl rounded-2xl border border-zinc-800 bg-[#18181B] p-4 text-white shadow-2xl sm:p-6"
             >
               <div className="mb-3 flex items-center justify-between">
-                <span className="font-mono tabular-nums text-xs font-semibold text-zinc-400">
+                <span className="font-mono text-xs font-semibold text-zinc-400 tabular-nums">
                   {padTwo(lightboxIndex + 1)} / {padTwo(totalMemories)} -{" "}
                   {activeLightboxMemory.dateLabel}
                 </span>

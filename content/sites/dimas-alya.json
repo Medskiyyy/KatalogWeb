@@ -5,12 +5,13 @@
   "seoDescription": "Putar ulang chat awal PDKT dari salah kirim, strip 6 foto ala photobox, mini kuis pasangan, pesan berbintang, dan voucher traktiran buat Alya.",
   "createdAt": "2026-11-18",
   "orderNote": "Demo resmi Arsip Chat & Photobox Kado Bucin",
-  "musicTrack": "builtin:romance",
+  "musicTrack": "builtin:lofi",
   "data": {
     "partnerOne": "Dimas",
     "partnerTwo": "Alya",
     "anniversaryDate": "2024-08-17",
     "passcodePin": "",
+    "voiceNoteUrl": "/audio/voicenotes/dimas-vn.mp3",
     "heroHeadline": "Dari Chat Salah Kirim Sampai Jadi Orang Paling Dicari",
     "openingNote": "Buat pengingat kalau awalnya kita sama-sama jaim di chat, sebelum akhirnya tiap malam ngabisin baterai HP buat ngobrolin hal nggak penting dari pecel lele sampai kucing komplek.",
     "memories": [
@@ -48,23 +49,23 @@
     "milestones": [
       {
         "dateLabel": "17 Agu 2024",
-        "title": "Insiden Chat Salah Kirim",
-        "description": "Niatnya mau kirim daftar belanjaan ke grup kosan, eh malah masuk ke chat kamu dan berlanjut ngobrol sampai jam satu pagi."
+        "title": "Pertemuan Salah Kirim",
+        "description": "Niatnya mau kirim daftar titipan galon ke grup kosan, eh malah nyasar ke chat kamu dan berlanjut ngobrol ngalor-ngidul sampai jam satu pagi."
       },
       {
         "dateLabel": "14 Sep 2024",
-        "title": "Sesi Photobox Pertama",
-        "description": "Masuk bilik foto berdua sambil keringetan karena baru lari dari parkiran, empat pose pertama masih kelihatan gugup."
+        "title": "Es Krim Hujan Pertama",
+        "description": "Kejebak hujan deras habis pulang sore, malah berakhir beli es krim pinggir jalan sambil berteduh dan ketawa ngelihat motor kita paling basah."
       },
       {
-        "dateLabel": "22 Des 2024",
-        "title": "Ngemil Pecel Lele Tengah Malam",
-        "description": "Debat dua puluh menit mau makan apa, ujung-ujungnya tetap melipir ke tenda pecel lele langganan deket stasiun."
+        "dateLabel": "22 Nov 2024",
+        "title": "Photobox Kaku Perdana",
+        "description": "Masuk bilik foto berdua sambil keringetan habis lari dari parkiran, empat pose pertama masih kelihatan gugup dan kaku banget."
       },
       {
         "dateLabel": "17 Agu 2025",
-        "title": "Setahun Tanpa Kehabisan Topik",
-        "description": "Dari yang awalnya cuma balas singkat pakai stiker seadanya, sekarang HP bunyi dikit langsung nebak itu pasti kamu."
+        "title": "Jadi Rutinitas Favorit",
+        "description": "Dari yang awalnya cuma balas singkat pakai stiker seadanya, sekarang tiap HP bunyi langsung nebak itu pasti chat random dari kamu."
       }
     ],
     "chatThreads": [
@@ -83,7 +84,7 @@
           },
           {
             "sender": "one",
-            "text": "Boleh sih kalau kamu sekalian lewat, tapi btw kamu udah makan malam belum?",
+            "text": "Boleh sih kalau kamu sekalian lewat minimarket, tapi btw kamu udah makan malam belum?",
             "time": "20.14"
           },
           {
@@ -93,8 +94,13 @@
           },
           {
             "sender": "one",
-            "text": "Namanya juga usaha dari chat nyasar biar nggak berhenti di 'oh oke'.",
+            "text": "Namanya juga usaha dari chat nyasar biar nggak berhenti di 'oh oke' doang.",
             "time": "20.17"
+          },
+          {
+            "sender": "two",
+            "text": "Yaudah deh dimaafin, lanjut aja ngobrolnya mumpung aku juga belum ngantuk.",
+            "time": "20.19"
           }
         ]
       },
@@ -125,6 +131,11 @@
             "sender": "one",
             "text": "Oke siap, mie ayam bakso pangsit deket taman ya, aku tahu kok kode 'terserah' kamu.",
             "time": "18.46"
+          },
+          {
+            "sender": "two",
+            "text": "Hahaha kok bisa pas banget sih, yaudah langsung gas ke sana sebelum rame.",
+            "time": "18.47"
           }
         ]
       },
@@ -150,6 +161,16 @@
             "sender": "one",
             "text": "Haha ya udah sini telepon bentar sebelum tidur, biar kamu nggak bengong sendirian.",
             "time": "23.42"
+          },
+          {
+            "sender": "two",
+            "text": "Bentar aku ambil earphone dulu, jangan dimatiin ya kalau aku ketiduran duluan.",
+            "time": "23.44"
+          },
+          {
+            "sender": "one",
+            "text": "Siap tuan putri, paling nanti aku yang dengerin napas kamu sambil lanjut baca komik.",
+            "time": "23.45"
           }
         ]
       }
@@ -211,20 +232,6 @@
       "Inget pesanan minum aku bahkan sebelum aku buka buku menu.",
       "Suka tiba-tiba kirim foto langit sore atau jajanan pinggir jalan sambil bilang inget aku.",
       "Bikin obrolan receh di chat berasa jadi bagian paling ditunggu tiap hari."
-    ],
-    "coupons": [
-      {
-        "title": "Kupon Bebas Debat Makan Malam",
-        "note": "Tinggal tunjuk mau pecel lele, mie kuah, atau apa aja hari ini, langsung meluncur tanpa protes."
-      },
-      {
-        "title": "Kupon Traktiran Kopi + Es Krim",
-        "note": "Kapan aja lagi penat sama kerjaan atau kuliah, tinggal klaim buat jajan berdua sore ini."
-      },
-      {
-        "title": "Kupon Sesi Photobox Ulang",
-        "note": "Berlaku buat 2 kali cetak strip photobox minggu ini, semua gaya dan properti kamu yang atur."
-      }
     ],
     "closingLetter": "Makasih ya udah betah diajak chat ngalor-ngidul tiap hari sejak insiden salah kirim itu, Alya.\n\nKalau nanti ada hari yang bikin kamu capek atau suasana lagi nggak enak, buka lagi halaman arsip kecil ini ya. Ingat kalau di balik layar HP kamu selalu ada aku yang siap dengerin cerita receh kamu sampai ketiduran.",
     "songDedication": {

@@ -10,6 +10,7 @@ import type {
   UmkmSiteConfig,
 } from "@/lib/schema";
 import { ImageUploadField } from "@/components/studio/ImageUploadField";
+import { AudioUploadField } from "@/components/studio/AudioUploadField";
 
 interface TemplateDataEditorProps {
   site: SiteConfig;
@@ -222,6 +223,17 @@ function BucinEditor({
             className={TEXTAREA_CLASS}
           />
         </Field>
+
+        {site.templateId === "bucin-chat" && (
+          <AudioUploadField
+            label="File Voice Note Asli (opsional, MP3)"
+            value={data.voiceNoteUrl ?? ""}
+            slug={site.slug}
+            studioConnected={studioConnected}
+            placeholder="/audio/voicenotes/dimas-vn.mp3"
+            onChange={(nextUrl) => updateData({ voiceNoteUrl: nextUrl })}
+          />
+        )}
       </SectionCard>
 
       <SectionCard
@@ -503,8 +515,9 @@ function BucinEditor({
         </div>
       </SectionCard>
 
-      <SectionCard
-        title={`Kupon / Tiket Kencan (${(data.coupons ?? []).length})`}
+      {site.templateId === "bucin-scrapbook" && (
+        <SectionCard
+          title={`Kupon / Tiket Kencan (${(data.coupons ?? []).length})`}
         action={
           <AddButton
             label="Tambah Kupon"
@@ -569,9 +582,10 @@ function BucinEditor({
             </div>
           ))}
         </div>
-      </SectionCard>
+        </SectionCard>
+      )}
 
-      {site.templateId === "bucin-chat" && (
+      {(site.templateId === "bucin-chat" || site.templateId === "bucin-magazine") && (
         <SectionCard
           title={`Mini Kuis Pasangan (${(data.quizQuestions ?? []).length})`}
           action={
@@ -722,50 +736,58 @@ function UltahEditor({
         </Field>
       </SectionCard>
 
-      <SectionCard title="Voucher Hadiah">
-        <Field label="Judul Voucher">
-          <input
-            type="text"
-            value={data.giftVoucher.title}
-            onChange={(e) =>
-              updateData({
-                giftVoucher: { ...data.giftVoucher, title: e.target.value },
-              })
-            }
-            className={INPUT_CLASS}
-          />
-        </Field>
-        <Field label="Deskripsi Voucher">
-          <textarea
-            rows={2}
-            value={data.giftVoucher.description}
-            onChange={(e) =>
-              updateData({
-                giftVoucher: {
-                  ...data.giftVoucher,
-                  description: e.target.value,
-                },
-              })
-            }
-            className={TEXTAREA_CLASS}
-          />
-        </Field>
-        <Field label="Catatan Klaim (Redeem Note)">
-          <input
-            type="text"
-            value={data.giftVoucher.redeemNote}
-            onChange={(e) =>
-              updateData({
-                giftVoucher: {
-                  ...data.giftVoucher,
-                  redeemNote: e.target.value,
-                },
-              })
-            }
-            className={INPUT_CLASS}
-          />
-        </Field>
-      </SectionCard>
+      {site.templateId === "ultah-interaktif" && data.giftVoucher && (
+        <SectionCard title="Voucher Hadiah">
+          <Field label="Judul Voucher">
+            <input
+              type="text"
+              value={data.giftVoucher.title}
+              onChange={(e) =>
+                updateData({
+                  giftVoucher: {
+                    title: e.target.value,
+                    description: data.giftVoucher?.description ?? "",
+                    redeemNote: data.giftVoucher?.redeemNote ?? "",
+                  },
+                })
+              }
+              className={INPUT_CLASS}
+            />
+          </Field>
+          <Field label="Deskripsi Voucher">
+            <textarea
+              rows={2}
+              value={data.giftVoucher.description}
+              onChange={(e) =>
+                updateData({
+                  giftVoucher: {
+                    title: data.giftVoucher?.title ?? "",
+                    description: e.target.value,
+                    redeemNote: data.giftVoucher?.redeemNote ?? "",
+                  },
+                })
+              }
+              className={TEXTAREA_CLASS}
+            />
+          </Field>
+          <Field label="Catatan Klaim (Redeem Note)">
+            <input
+              type="text"
+              value={data.giftVoucher.redeemNote}
+              onChange={(e) =>
+                updateData({
+                  giftVoucher: {
+                    title: data.giftVoucher?.title ?? "",
+                    description: data.giftVoucher?.description ?? "",
+                    redeemNote: e.target.value,
+                  },
+                })
+              }
+              className={INPUT_CLASS}
+            />
+          </Field>
+        </SectionCard>
+      )}
 
       <SectionCard
         title={`Galeri Foto (${data.memories.length})`}
@@ -1806,6 +1828,9 @@ export function TemplateDataEditor({
         />
       );
     case "ultah-interaktif":
+    case "ultah-balon":
+    case "ultah-retro":
+    case "ultah-editorial":
       return (
         <UltahEditor
           site={site}
@@ -1814,6 +1839,9 @@ export function TemplateDataEditor({
         />
       );
     case "nikah-garden":
+    case "nikah-minang":
+    case "nikah-jawa":
+    case "nikah-sunda":
       return (
         <NikahEditor
           site={site}
@@ -1822,6 +1850,9 @@ export function TemplateDataEditor({
         />
       );
     case "umkm-katalog":
+    case "umkm-kuliner":
+    case "umkm-fashion":
+    case "umkm-jasa":
       return (
         <UmkmEditor
           site={site}

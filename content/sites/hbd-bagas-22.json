@@ -1,0 +1,72 @@
+{
+  "slug": "hbd-bagas-22",
+  "templateId": "ultah-retro",
+  "title": "Level 22 Unlocked - HBD Bagas!",
+  "seoDescription": "Halaman kejutan ulang tahun bertema arcade retro 90an untuk sahabat atau pasangan.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Ultah Arcade & Kaset Retro",
+  "musicTrack": "builtin:indie",
+  "data": {
+    "celebrantName": "Bagas",
+    "turningAge": 22,
+    "birthDateLabel": "25 November 2026",
+    "senderName": "Squad Mabar & Kopi",
+    "heroWish": "Naik ke Level 22 tanpa skip side-quest! Semoga karier makin ngebut, rank selalu naik, dompet tebel terus, dan jangan lupa istirahat pas begadang.",
+    "cakeImageUrl": "/demo/ultah-retro-hero.webp",
+    "memories": [
+      {
+        "imageUrl": "/demo/ultah-retro-hero.webp",
+        "caption": "CH-01 // Perlengkapan wajib nongkrong malam minggu bareng squad"
+      },
+      {
+        "imageUrl": "/demo/ultah-2.webp",
+        "caption": "CH-02 // Sesi kumpul rame-rame tanpa lihat jam di warkop langganan"
+      },
+      {
+        "imageUrl": "/demo/ultah-3.webp",
+        "caption": "CH-03 // Surprise kado tengah malam pas hampir ketiduran"
+      },
+      {
+        "imageUrl": "/demo/ultah-4.webp",
+        "caption": "CH-04 // Momen foto ramean sebelum pulang abis push rank"
+      },
+      {
+        "imageUrl": "/demo/ultah-1.webp",
+        "caption": "CH-05 // Kue darurat yang diumpetin di dapur kos biar gak ketahuan"
+      }
+    ],
+    "wishChecklist": [
+      "Sidang atau proyek tahun ini beres mulus tanpa drama revisi",
+      "Nabung lancar buat upgrade setup PC impian",
+      "Tidur cukup minimal 7 jam tiap malam, kurangi begadang",
+      "Makin rajin olahraga akhir pekan biar stamina tetap full",
+      "Wacana road trip bareng squad beneran kejadian tahun ini"
+    ],
+    "friendWishes": [
+      {
+        "from": "Rizky",
+        "role": "Partner Mabar",
+        "message": "HBD Gas! Semoga di level 22 makin gacor kerjaan sama skripsinya, dan jangan nge-throw lagi pas lagi match penentuan rank!"
+      },
+      {
+        "from": "Tama",
+        "role": "Tetangga Kos",
+        "message": "Sehat terus bro! Ditunggu traktiran gorengan plus es kopi susunya malam ini di teras kosan, jangan kabur duluan."
+      },
+      {
+        "from": "Dito",
+        "role": "Kapten Nongkrong",
+        "message": "Selamat naik level ke-22, Bagas! Semoga rezeki lancar terus, saldo aman sampai akhir bulan, dan ide bisnisnya tahun ini langsung tembus."
+      },
+      {
+        "from": "Nadia",
+        "role": "Teman Sekelas",
+        "message": "Happy birthday Bagas! Makasih udah jadi orang paling gercep kalau dimintain tolong sama anak kelas. Makin sukses dan happy terus!"
+      }
+    ],
+    "playlistSong": {
+      "title": "Warm Retro Tape",
+      "artist": "Mixtape Pilihan"
+    }
+  }
+}

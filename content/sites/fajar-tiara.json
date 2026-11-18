@@ -5,7 +5,7 @@
   "seoDescription": "Majalah digital edisi khusus anniversary Fajar dan Tiara berisi kronologi cerita, spread foto pilihan, catatan redaksi, dan kupon gunting.",
   "createdAt": "2026-11-18",
   "orderNote": "Demo resmi Bucin Magazine Editorial",
-  "musicTrack": "builtin:romance",
+  "musicTrack": "builtin:bossa",
   "data": {
     "partnerOne": "Fajar",
     "partnerTwo": "Tiara",
@@ -93,24 +93,45 @@
       "Bisa bikin rencana brunch weekend dadakan terasa kayak liburan kecil yang paling ditunggu.",
       "Sama kamu, diam bareng di satu ruangan tanpa ngomong apa-apa pun rasanya udah cukup."
     ],
-    "coupons": [
-      {
-        "title": "Kupon Traktir Brunch Weekend",
-        "note": "Kamu bebas pilih tempat brunch mana pun Sabtu atau Minggu ini. Aku yang jemput, aku yang bayar."
-      },
-      {
-        "title": "Kupon Keliling Galeri Seharian",
-        "note": "Satu hari penuh bebas pilih pameran, museum, atau toko buku tanpa aku buru-buruin pulang."
-      },
-      {
-        "title": "Kupon Kopi Pagi Antar Langsung",
-        "note": "Berlaku kapan saja pas kamu lagi males keluar rumah. Kopi favoritmu langsung mendarat hangat."
-      }
-    ],
     "closingLetter": "Selamat merayakan perjalanan kita sejauh ini, Tiara.\n\nKalau lihat lagi foto-foto di galeri dari brunch weekend pertama sampai kopi pagi kemarin, rasanya lucu melihat seberapa banyak hal kecil yang pelan-pelan jadi kebiasaan kita berdua. Bukan cuma soal momen besarnya, tapi soal bagaimana hari-hari biasa selalu terasa lebih ringan pas dijalani bareng kamu.\n\nTerima kasih sudah tetap sabar, hangat, dan jadi partner ngobrol terbaikku. Semoga masih banyak edisi berikutnya yang bisa kita tulis dan rayakan berdua.",
     "songDedication": {
       "title": "Janji Palsu",
       "artist": "Hindia"
-    }
+    },
+    "quizQuestions": [
+      {
+        "question": "Setiap agenda brunch weekend tiba, pesanan kopi wajib Tiara dan Fajar di meja dekat jendela adalah:",
+        "options": [
+          "Hot oat latte tanpa gula dan americano dingin",
+          "Matcha latte es dan espresso panas",
+          "Cappuccino double shot dan teh melati",
+          "Caramel macchiato dan cold brew lemon"
+        ],
+        "correctIndex": 0,
+        "reaction": "Tepat! Barista langganan sampai hafal tanpa perlu ditanya lagi, plus aturan wajib duduk di meja dekat jendela."
+      },
+      {
+        "question": "Apa kejadian paling ikonik waktu kita jalan sore keliling galeri seni di Desember 2024?",
+        "options": [
+          "Kehabisan tiket masuk dan langsung pulang cepat",
+          "Kejebak hujan mendadak sampai lari neduh dengan sepatu basah",
+          "Salah masuk gedung pameran fotografi lama",
+          "Beli lukisan abstrak berukuran dua meter"
+        ],
+        "correctIndex": 1,
+        "reaction": "Bener banget! Sepatu boleh basah kuyup di emperan toko, tapi ketawanya tetap jadi cerita paling awet."
+      },
+      {
+        "question": "Kalau lagi pengin jalan sore santai di taman kota favorit kita, spot mana yang selalu jadi tempat singgah?",
+        "options": [
+          "Area lapangan basket dekat pintu masuk utama",
+          "Bangku kayu di bawah pohon trembesi menghadap danau kecil",
+          "Panggung terbuka yang selalu ramai acara musik",
+          "Gerbang taman bunga di sisi timur"
+        ],
+        "correctIndex": 1,
+        "reaction": "Hafal di luar kepala! Bangku kayu di bawah pohon trembesi memang spot paling adem buat ngobrol tanpa lihat jam."
+      }
+    ]
   }
 }

@@ -1,0 +1,134 @@
+{
+  "slug": "farhan-aisyah",
+  "templateId": "nikah-minang",
+  "title": "Baralek Gadang Farhan & Aisyah",
+  "seoDescription": "Undangan pernikahan Adat Minangkabau (Padang) Farhan dan Aisyah.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi Baralek Gadang Adat Minangkabau",
+  "musicTrack": "builtin:nikah-minang",
+  "data": {
+    "bride": {
+      "nickname": "Aisyah",
+      "fullName": "Aisyah Putri Tanjung, S.Ked",
+      "parents": "Putri dari Bapak H. Darmawan Chaniago & Ibu Hj. Rosmita",
+      "photoUrl": "/demo/nikah-minang-couple.webp"
+    },
+    "groom": {
+      "nickname": "Farhan",
+      "fullName": "Farhan Akbar Sutan Marajo, S.T.",
+      "parents": "Putra dari Bapak H. Syamsul Bahri & Ibu Hj. Yusnita",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2026-12-27T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Adaik basandi syarak, syarak basandi Kitabullah. Semoga Allah menghimpun yang terserak dari keduanya dan memberkahi rumah tangga sepanjang masa.",
+      "source": "Pepatah Adat Minangkabau & QS. Ar-Rum: 21"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 27 Desember 2026",
+      "timeLabel": "08.30 - 10.00 WIB",
+      "venueName": "Masjid Raya Baiturrahman Padang Baru",
+      "address": "Jl. Khatib Sulaiman No. 24, Padang",
+      "mapsUrl": "https://maps.google.com/?q=Padang"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 27 Desember 2026",
+      "timeLabel": "11.00 - 16.00 WIB",
+      "venueName": "Gedung Balairung Songket Minang",
+      "address": "Jl. Sudirman No. 88, Padang Barat",
+      "mapsUrl": "https://maps.google.com/?q=Padang"
+    },
+    "culturalNote": "Dengan penuh hormat kami mengundang Bapak/Ibu/Dunsanak sadonyo untuk menghadiri prosesi Baralek Gadang anak kemenakan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Malam Bainai",
+        "detail": "Sabtu malam pukul 19.30 WIB di kediaman Anak Daro bersama ninik mamak & bundo kanduang."
+      },
+      {
+        "label": "Manjapuik Marapulai",
+        "detail": "Rombongan pihak Anak Daro menjemput Marapulai disertai sirih carano dan talempong."
+      }
+    ],
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Basuo di Tanah Rantau",
+        "description": "Dipertemukan di acara silaturahmi perantau Minang yang hangat dengan sapaan sederhana dan cerita tentang kampung halaman."
+      },
+      {
+        "year": "2024",
+        "title": "Marambah Jalan Silaturahmi",
+        "description": "Seiring waktu berjalan, niat baik mulai disampaikan kepada kedua orang tua dan ninik mamak sebagai langkah awal saling mengenal."
+      },
+      {
+        "year": "2025",
+        "title": "Batuka Tando & Lamaran",
+        "description": "Kedua keluarga bertemu menyepakati niat suci dalam musyawarah ninik mamak serta bundo kanduang dengan penuh rasa syukur."
+      },
+      {
+        "year": "2026",
+        "title": "Baralek Gadang",
+        "description": "InsyaAllah resmi menyatukan dua keluarga dalam ikatan pernikahan yang diridhai Allah SWT di Kota Padang."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-minang-couple.webp",
+      "/demo/nikah-minang-venue.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-couple.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "Bank Nagari",
+        "accountNumber": "210002918472",
+        "accountHolder": "Aisyah Putri Tanjung"
+      },
+      {
+        "bankName": "BSI",
+        "accountNumber": "7182940112",
+        "accountHolder": "Farhan Akbar"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Tamu disarankan mengenakan busana marun songket, emas lembut, atau krem gading.",
+      "colors": [
+        {
+          "label": "Marun Songket",
+          "hex": "#7F1D1D"
+        },
+        {
+          "label": "Emas Pucuk",
+          "hex": "#B45309"
+        },
+        {
+          "label": "Putih Gading",
+          "hex": "#FAF3E8"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Aisyah Putri Tanjung (0812-3456-7890)",
+      "address": "Komp. Griya Minang Indah Blok B-12, Padang"
+    },
+    "initialPrayers": [
+      {
+        "name": "Datuak Rajo Alam",
+        "relation": "Ninik Mamak",
+        "message": "Selamat menempuh hidup baru, semoga rukun damai sampai anak cucu kelak."
+      },
+      {
+        "name": "Mira Andini",
+        "relation": "Sahabat",
+        "message": "MasyaAllah Aisyah gagah bana pakai Suntiang! Lancar sampai hari baralek."
+      },
+      {
+        "name": "Uda Hendra Saputra",
+        "relation": "Dunsanak Rantau",
+        "message": "Alhamdulillah, selamat untuk Farhan dan Aisyah. Semoga baralek berjalan khidmat dan menjadi keluarga sakinah mawaddah warahmah."
+      }
+    ]
+  }
+}

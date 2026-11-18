@@ -1,0 +1,134 @@
+{
+  "slug": "bagus-sekarsari",
+  "templateId": "nikah-jawa",
+  "title": "Pawiwahan Bagus & Sekarsari",
+  "seoDescription": "Undangan pernikahan Pawiwahan Adat Jawa Keraton Bagus Wicaksono Adi dan Raden Roro Sekarsari Kusumaningrum.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi Template Undangan Pawiwahan Adat Jawa Keraton",
+  "musicTrack": "builtin:nikah-jawa",
+  "data": {
+    "bride": {
+      "nickname": "Sekar",
+      "fullName": "Raden Roro Sekarsari Kusumaningrum",
+      "parents": "Putri saking Bapak KRT. Hadiwijoyo & Ibu Endang Pratiwi",
+      "photoUrl": "/demo/nikah-jawa-couple.webp"
+    },
+    "groom": {
+      "nickname": "Bagus",
+      "fullName": "Bagus Wicaksono Adi, S.Kom",
+      "parents": "Putra saking Bapak Ir. Santoso Prawiro & Ibu Sri Wahyuni",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-01-10T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Mugi tansah pinaringan rahayu, guyub rukun, dados kulawarga ingkang sakinah, mawaddah, warahmah salawasipun.",
+      "source": "Doa Pangestu Adat Jawa"
+    },
+    "akad": {
+      "dateLabel": "Minggu Pahing, 10 Januari 2027",
+      "timeLabel": "08.00 - 10.00 WIB",
+      "venueName": "Pendopo Agung Joglo Kraton",
+      "address": "Jl. Taman Siswa No. 32, Yogyakarta",
+      "mapsUrl": "https://maps.google.com/?q=Yogyakarta"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu Pahing, 10 Januari 2027",
+      "timeLabel": "11.00 - 14.30 WIB",
+      "venueName": "Pendopo Agung Joglo Kraton",
+      "address": "Jl. Taman Siswa No. 32, Yogyakarta",
+      "mapsUrl": "https://maps.google.com/?q=Yogyakarta"
+    },
+    "culturalNote": "Kanthi nyuwun sih rahmating Gusti Allah SWT, kula ngaturi rawuh panjenengan ing adicara Pawiwahan putra-putri kula.",
+    "ceremonyExtras": [
+      {
+        "label": "Midodareni & Siraman",
+        "detail": "Sabtu Kliwon pukul 16.00 WIB di kediaman calon mempelai putri bersama keluarga sepuh."
+      },
+      {
+        "label": "Upacara Panggih",
+        "detail": "Dilaksanakan tepat usai Ijab Qabul pukul 10.00 WIB lengkap balangan gantal lan sungkeman."
+      }
+    ],
+    "storyTimeline": [
+      {
+        "year": "2022",
+        "title": "Wiwit Tepang",
+        "description": "Awal kenal di kota pelajar Yogyakarta saat mengerjakan pameran arsitektur dan pelestarian pendopo klasik bersama."
+      },
+      {
+        "year": "2024",
+        "title": "Ngrakit Tresna",
+        "description": "Dari diskusi senja di serambi taman hingga saling menguatkan dalam setiap langkah karya, rasa nyaman tumbuh perlahan menjadi keyakinan."
+      },
+      {
+        "year": "2025",
+        "title": "Paningset & Peningsetan",
+        "description": "Silaturahmi dua keluarga besar di Yogyakarta untuk menyerahkan tanda ikatan sekaligus meneguhkan restu orang tua."
+      },
+      {
+        "year": "2027",
+        "title": "Dhaup Agung",
+        "description": "Mengawali babak baru rumah tangga dalam naungan doa restu keluarga serta keluhuran tata krama adat Jawa."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-jawa-couple.webp",
+      "/demo/nikah-jawa-venue.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-2.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "0371849201",
+        "accountHolder": "Sekarsari Kusumaningrum"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "137008492018",
+        "accountHolder": "Bagus Wicaksono Adi"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Para tamu disarankan mengenakan busana batik atau kebaya nuansa sogan cokelat, gading, atau emas.",
+      "colors": [
+        {
+          "label": "Sogan Cokelat",
+          "hex": "#3E2723"
+        },
+        {
+          "label": "Emas Keraton",
+          "hex": "#92400E"
+        },
+        {
+          "label": "Gading Halus",
+          "hex": "#F5EFE4"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Sekarsari Kusumaningrum (0812-3456-7890)",
+      "address": "Ndalam Prawirotaman No. 18, Mergangsan, Yogyakarta"
+    },
+    "initialPrayers": [
+      {
+        "name": "Eyang Haryono",
+        "relation": "Sesepuh Keluarga",
+        "message": "Sugeng mangayubagya Bagus lan Sekar, mugi tansah atut runtut dumugi kaken-ninen lan pinaringan berkahing Gusti."
+      },
+      {
+        "name": "Dian Purnama",
+        "relation": "Rekan Kerja",
+        "message": "Anggun banget adat Jowone! Mugi diparingi lancar sedaya prosesi saking siraman ngantos pahargyan mengko."
+      },
+      {
+        "name": "Bambang Sutrisno",
+        "relation": "Sahabat Kuliah",
+        "message": "Ndherek mangayubagya kangmas Bagus lan mbakyu Sekar. Mugi dados kulawarga ingkang tentrem, adem ayem, lan langgeng salawasipun."
+      }
+    ]
+  }
+}

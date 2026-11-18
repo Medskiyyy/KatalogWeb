@@ -44,6 +44,7 @@ export const BucinMemorySchema = z.object({
   imageUrl: z.string().min(1),
   caption: z.string().min(1),
   dateLabel: z.string().min(1),
+  audioUrl: z.string().optional(),
 });
 
 export const BucinDataSchema = z.object({
@@ -58,6 +59,7 @@ export const BucinDataSchema = z.object({
   memories: z.array(BucinMemorySchema).min(1),
   loveReasons: z.array(z.string().min(1)).min(1),
   closingLetter: z.string().min(1),
+  voiceNoteUrl: z.string().optional(),
   songDedication: z.object({
     title: z.string().min(1),
     artist: z.string().min(1),
@@ -132,11 +134,13 @@ export const UltahDataSchema = z.object({
   birthDateLabel: z.string().min(1),
   senderName: z.string().min(1),
   heroWish: z.string().min(1),
-  giftVoucher: z.object({
-    title: z.string().min(1),
-    description: z.string().min(1),
-    redeemNote: z.string().min(1),
-  }),
+  giftVoucher: z
+    .object({
+      title: z.string().min(1),
+      description: z.string().min(1),
+      redeemNote: z.string().min(1),
+    })
+    .optional(),
   memories: z.array(UltahMemorySchema).min(1),
   friendWishes: z.array(UltahWishSchema).min(1),
   cakeImageUrl: z.string().optional(),
@@ -220,6 +224,15 @@ export const NikahDataSchema = z.object({
       })
     )
     .optional(),
+  culturalNote: z.string().optional(),
+  ceremonyExtras: z
+    .array(
+      z.object({
+        label: z.string().min(1),
+        detail: z.string().min(1),
+      })
+    )
+    .optional(),
 });
 
 export const UmkmProductSchema = z.object({
@@ -231,6 +244,7 @@ export const UmkmProductSchema = z.object({
   description: z.string().min(1),
   imageUrl: z.string().min(1),
   featured: z.boolean().optional(),
+  options: z.array(z.string().min(1)).optional(),
 });
 
 export const UmkmDataSchema = z.object({
@@ -316,12 +330,57 @@ export const SiteConfigSchema = z.discriminatedUnion("templateId", [
   }),
   z.object({
     ...BaseSiteFields,
+    templateId: z.literal("ultah-balon"),
+    data: UltahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("ultah-retro"),
+    data: UltahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("ultah-editorial"),
+    data: UltahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
     templateId: z.literal("nikah-garden"),
     data: NikahDataSchema,
   }),
   z.object({
     ...BaseSiteFields,
+    templateId: z.literal("nikah-minang"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-jawa"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-sunda"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
     templateId: z.literal("umkm-katalog"),
+    data: UmkmDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("umkm-kuliner"),
+    data: UmkmDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("umkm-fashion"),
+    data: UmkmDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("umkm-jasa"),
     data: UmkmDataSchema,
   }),
 ]);
@@ -338,9 +397,36 @@ export type BucinTemplateSiteConfig = Extract<
   }
 >;
 export type BucinSiteConfig = BucinTemplateSiteConfig;
-export type UltahSiteConfig = Extract<SiteConfig, { templateId: "ultah-interaktif" }>;
-export type NikahSiteConfig = Extract<SiteConfig, { templateId: "nikah-garden" }>;
-export type UmkmSiteConfig = Extract<SiteConfig, { templateId: "umkm-katalog" }>;
+export type UltahSiteConfig = Extract<
+  SiteConfig,
+  {
+    templateId:
+      | "ultah-interaktif"
+      | "ultah-balon"
+      | "ultah-retro"
+      | "ultah-editorial";
+  }
+>;
+export type NikahSiteConfig = Extract<
+  SiteConfig,
+  {
+    templateId:
+      | "nikah-garden"
+      | "nikah-minang"
+      | "nikah-jawa"
+      | "nikah-sunda";
+  }
+>;
+export type UmkmSiteConfig = Extract<
+  SiteConfig,
+  {
+    templateId:
+      | "umkm-katalog"
+      | "umkm-kuliner"
+      | "umkm-fashion"
+      | "umkm-jasa";
+  }
+>;
 
 export function slugifyInput(raw: string): string {
   return raw
@@ -471,7 +557,7 @@ export function createDefaultSiteConfig(
         seoDescription: "Putar ulang chat awal PDKT, strip photobox, mini kuis pasangan, dan voucher traktiran.",
         createdAt: today,
         orderNote: "Order baru Shopee",
-        musicTrack: "builtin:romance",
+        musicTrack: "builtin:lofi",
         data: {
           partnerOne: "Dimas",
           partnerTwo: "Alya",
@@ -480,6 +566,7 @@ export function createDefaultSiteConfig(
           heroHeadline: "Dari Chat Salah Kirim Sampai Jadi Orang Paling Dicari",
           openingNote:
             "Buat pengingat kalau awalnya kita sama-sama jaim di chat, sebelum akhirnya tiap malam ngabisin kuota buat teleponan bahas hal nggak penting.",
+          voiceNoteUrl: "/audio/voicenotes/dimas-vn.mp3",
           memories: [
             {
               imageUrl: "/demo/bucin-chat-1.webp",
@@ -591,7 +678,7 @@ export function createDefaultSiteConfig(
         seoDescription: "Kumpulan track kenangan, vinyl berputar, cerita lagu, dan tiket kencan kita.",
         createdAt: today,
         orderNote: "Order baru Shopee",
-        musicTrack: "builtin:romance",
+        musicTrack: "builtin:indie",
         data: {
           partnerOne: "Rehan",
           partnerTwo: "Salsa",
@@ -605,21 +692,25 @@ export function createDefaultSiteConfig(
               imageUrl: "/demo/bucin-vinyl-1.webp",
               caption: "Track 01 - Nyari piringan hitam lama sambil debat selera lagu",
               dateLabel: "Mar 2024",
+              audioUrl: "/audio/tracks/track-01.mp3",
             },
             {
               imageUrl: "/demo/bucin-vinyl-2.webp",
               caption: "Track 02 - Bagi earphone sebelah di kereta pulang sore",
               dateLabel: "Jun 2024",
+              audioUrl: "/audio/tracks/track-02.mp3",
             },
             {
               imageUrl: "/demo/bucin-vinyl-3.webp",
               caption: "Track 03 - Nonton panggung akustik berdua sampai malam",
               dateLabel: "Okt 2024",
+              audioUrl: "/audio/tracks/track-03.mp3",
             },
             {
               imageUrl: "/demo/bucin-2.webp",
               caption: "Track 04 - Jalan kaki ngejar langit sore favorit kamu",
               dateLabel: "Feb 2025",
+              audioUrl: "/audio/tracks/track-04.mp3",
             },
           ],
           milestones: [
@@ -694,7 +785,7 @@ export function createDefaultSiteConfig(
         seoDescription: "Majalah digital edisi anniversary berisi artikel perjalanan cinta, spread foto, dan kupon gunting.",
         createdAt: today,
         orderNote: "Order baru Shopee",
-        musicTrack: "builtin:romance",
+        musicTrack: "builtin:bossa",
         data: {
           partnerOne: "Fajar",
           partnerTwo: "Tiara",
@@ -850,6 +941,132 @@ export function createDefaultSiteConfig(
         },
       };
 
+    case "ultah-balon":
+      return {
+        slug: cleanedSlug,
+        templateId: "ultah-balon",
+        title: "Selamat Ulang Tahun ke-20 Dinda!",
+        seoDescription: "Kejutan pesta balon warna cerah dan kapsul waktu harapan ulang tahun ke-20.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:birthday",
+        data: {
+          celebrantName: "Dinda",
+          turningAge: 20,
+          birthDateLabel: "22 November 2026",
+          senderName: "Nadia, Ara & Geng Kopi",
+          heroWish:
+            "Selamat datang di kepala dua! Semoga kuliah makin lancar, rezeki jajan nggak pernah seret, dan selalu dikelilingi orang-orang baik yang bikin kamu ketawa tiap hari.",
+          cakeImageUrl: "/demo/ultah-balon-hero.webp",
+          giftVoucher: {
+            title: "Voucher Bebas Pilih Cafe & Photobox",
+            description: "Berlaku untuk 1x traktiran makan siang plus cetak photobox bareng sahabat.",
+            redeemNote: "Pecahin semua balon dulu baru screenshot kupon ini buat klaim!",
+          },
+          memories: [
+            { imageUrl: "/demo/ultah-balon-hero.webp", caption: "Dekor balon warna cerah spesial buat ulang tahun Dinda" },
+            { imageUrl: "/demo/ultah-1.webp", caption: "Momen ketawa nggak berhenti pas lagi kumpul bareng" },
+            { imageUrl: "/demo/ultah-2.webp", caption: "Sesi foto dadakan habis kelas sore" },
+            { imageUrl: "/demo/ultah-3.webp", caption: "Kado kecil yang disimpan buat hari spesial" },
+          ],
+          friendWishes: [
+            { from: "Nadia", role: "Teman Sekelas", message: "Happy 20th Dinda! Panjang umur, makin bersinar, dan traktiran ditunggu!" },
+            { from: "Ara", role: "Partner Nongkrong", message: "Sehat selalu Din, makin sukses magangnya dan jangan lupa sering me-time." },
+          ],
+          wishChecklist: [
+            "IPK aman dan tugas akhir kelar tepat waktu",
+            "Bisa liburan singkat keluar kota bareng geng",
+            "Lebih berani ambil peluang baru di usia 20",
+            "Badan tetap bugar meski jadwal padat",
+          ],
+          playlistSong: { title: "Carefree Celebration", artist: "Musik Pesta Akustik" },
+        },
+      };
+
+    case "ultah-retro":
+      return {
+        slug: cleanedSlug,
+        templateId: "ultah-retro",
+        title: "Level 22 Unlocked - HBD Bagas!",
+        seoDescription: "Halaman kejutan ulang tahun bertema arcade retro 90an untuk sahabat atau pasangan.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:indie",
+        data: {
+          celebrantName: "Bagas",
+          turningAge: 22,
+          birthDateLabel: "25 November 2026",
+          senderName: "Squad Mabar & Kopi",
+          heroWish:
+            "Naik ke Level 22 tanpa skip side-quest! Semoga karier makin ngebut, rank selalu naik, dompet tebel terus, dan jangan lupa istirahat pas begadang.",
+          cakeImageUrl: "/demo/ultah-retro-hero.webp",
+          giftVoucher: {
+            title: "Loot Box: Traktiran Ramen + Kopi Susu",
+            description: "Berlaku untuk 1x makan malam sepuasnya bareng pengirim kapan pun kamu sempat.",
+            redeemNote: "Klaim kode hadiah ini di grup chat biar langsung dieksekusi minggu ini.",
+          },
+          memories: [
+            { imageUrl: "/demo/ultah-retro-hero.webp", caption: "CH-01 // Perlengkapan wajib nongkrong malam minggu" },
+            { imageUrl: "/demo/ultah-2.webp", caption: "CH-02 // Sesi kumpul rame-rame tanpa lihat jam" },
+            { imageUrl: "/demo/ultah-3.webp", caption: "CH-03 // Surprise kado tengah malam pas hampir ketiduran" },
+            { imageUrl: "/demo/ultah-4.webp", caption: "CH-04 // Momen foto ramean sebelum pulang" },
+          ],
+          friendWishes: [
+            { from: "Rizky", role: "Partner Mabar", message: "HBD Gas! Semoga di level 22 makin gacor kerjaan sama skripsinya." },
+            { from: "Tama", role: "Tetangga Kos", message: "Sehat terus bro, ditunggu traktiran gorengan plus es kopinya malam ini." },
+          ],
+          wishChecklist: [
+            "Sidang atau proyek tahun ini beres mulus",
+            "Nabung lancar buat upgrade setup impian",
+            "Tidur cukup minimal 7 jam tiap malam",
+            "Makin rajin olahraga akhir pekan",
+          ],
+          playlistSong: { title: "Warm Retro Tape", artist: "Mixtape Pilihan" },
+        },
+      };
+
+    case "ultah-editorial":
+      return {
+        slug: cleanedSlug,
+        templateId: "ultah-editorial",
+        title: "Edisi Ulang Tahun ke-19 Nadira",
+        seoDescription: "Jurnal ulang tahun estetik dengan amplop segel pita, kartu ucapan bolak-balik, dan kado digital.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:romance",
+        data: {
+          celebrantName: "Nadira",
+          turningAge: 19,
+          birthDateLabel: "28 November 2026",
+          senderName: "Keluarga & Sahabat Dekat",
+          heroWish:
+            "Selamat ulang tahun yang ke-19, Nadira. Semoga langkah kecilmu tahun ini selalu bertemu hari yang hangat, hati yang tenang, dan tawa yang tulus.",
+          cakeImageUrl: "/demo/ultah-editorial-hero.webp",
+          giftVoucher: {
+            title: "Kartu Hadiah: Brunch & Toko Buku Pilihan",
+            description: "Berlaku untuk memilih 1 buku favorit dan menikmati brunch pagi santai bersama.",
+            redeemNote: "Simpan kartu ini untuk menentukan jadwal minggu pagi pilihanmu.",
+          },
+          memories: [
+            { imageUrl: "/demo/ultah-editorial-hero.webp", caption: "Pagi tenang merayakan bertambahnya usia" },
+            { imageUrl: "/demo/ultah-1.webp", caption: "Senyum hangat di setiap perayaan kecil" },
+            { imageUrl: "/demo/ultah-3.webp", caption: "Bingkisan pita yang disimpan penuh doa" },
+            { imageUrl: "/demo/ultah-4.webp", caption: "Kebersamaan sederhana yang selalu dirindukan" },
+          ],
+          friendWishes: [
+            { from: "Kak Hana", role: "Keluarga", message: "Barakallah fii umrik Nadira sayang, selalu jadi pribadi yang lembut dan kuat." },
+            { from: "Kei", role: "Sahabat SMA", message: "Happy 19th! Terima kasih selalu jadi pendengar terbaik sejak dulu." },
+          ],
+          wishChecklist: [
+            "Menjaga ketenangan hati di tengah jadwal padat",
+            "Tamat membaca 12 buku favorit sepanjang tahun",
+            "Lebih sering menikmati akhir pekan tanpa terburu-buru",
+            "Selalu dikelilingi doa baik keluarga",
+          ],
+          playlistSong: { title: "Morning Piano", artist: "Musik Akustik Hangat" },
+        },
+      };
+
     case "nikah-garden":
       return {
         slug: cleanedSlug,
@@ -950,6 +1167,270 @@ export function createDefaultSiteConfig(
               relation: "Sahabat Kuliah",
               message: "Selamat Reza dan Nadia! Akhirnya berlabuh di pelaminan juga, lancar terus sampai hari H.",
             },
+          ],
+        },
+      };
+
+    case "nikah-minang":
+      return {
+        slug: cleanedSlug,
+        templateId: "nikah-minang",
+        title: "Baralek Gadang Farhan & Aisyah",
+        seoDescription: "Undangan pernikahan Adat Minangkabau (Padang) Farhan dan Aisyah.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:nikah-minang",
+        data: {
+          bride: {
+            nickname: "Aisyah",
+            fullName: "Aisyah Putri Tanjung, S.Ked",
+            parents: "Putri dari Bapak H. Darmawan Chaniago & Ibu Hj. Rosmita",
+            photoUrl: "/demo/nikah-minang-couple.webp",
+          },
+          groom: {
+            nickname: "Farhan",
+            fullName: "Farhan Akbar Sutan Marajo, S.T.",
+            parents: "Putra dari Bapak H. Syamsul Bahri & Ibu Hj. Yusnita",
+            photoUrl: "/demo/nikah-groom.webp",
+          },
+          weddingDateIso: "2026-12-27T09:00:00+07:00",
+          blessingQuote: {
+            text: "Adaik basandi syarak, syarak basandi Kitabullah. Semoga Allah menghimpun yang terserak dari keduanya dan memberkahi rumah tangga sepanjang masa.",
+            source: "Pepatah Adat Minangkabau & QS. Ar-Rum: 21",
+          },
+          akad: {
+            dateLabel: "Minggu, 27 Desember 2026",
+            timeLabel: "08.30 - 10.00 WIB",
+            venueName: "Masjid Raya Baiturrahman Padang Baru",
+            address: "Jl. Khatib Sulaiman No. 24, Padang",
+            mapsUrl: "https://maps.google.com/?q=Padang",
+          },
+          resepsi: {
+            dateLabel: "Minggu, 27 Desember 2026",
+            timeLabel: "11.00 - 16.00 WIB",
+            venueName: "Gedung Balairung Songket Minang",
+            address: "Jl. Sudirman No. 88, Padang Barat",
+            mapsUrl: "https://maps.google.com/?q=Padang",
+          },
+          culturalNote:
+            "Dengan penuh hormat kami mengundang Bapak/Ibu/Dunsanak sadonyo untuk menghadiri prosesi Baralek Gadang anak kemenakan kami.",
+          ceremonyExtras: [
+            {
+              label: "Malam Bainai",
+              detail: "Sabtu malam pukul 19.30 WIB di kediaman Anak Daro bersama ninik mamak & bundo kanduang.",
+            },
+            {
+              label: "Manjapuik Marapulai",
+              detail: "Rombongan pihak Anak Daro menjemput Marapulai disertai sirih carano dan talempong.",
+            },
+          ],
+          storyTimeline: [
+            { year: "2023", title: "Basuo di Tanah Rantau", description: "Dipertemukan di acara silaturahmi perantau Minang yang hangat dengan sapaan sederhana." },
+            { year: "2025", title: "Batuka Tando & Lamaran", description: "Kedua keluarga bertemu menyepakati niat suci dalam musyawarah ninik mamak." },
+            { year: "2026", title: "Baralek Gadang", description: "InsyaAllah resmi menyatukan dua keluarga dalam ikatan pernikahan yang diridhai." },
+          ],
+          gallery: [
+            "/demo/nikah-minang-couple.webp",
+            "/demo/nikah-minang-venue.webp",
+            "/demo/nikah-gallery-1.webp",
+            "/demo/nikah-gallery-2.webp",
+          ],
+          digitalEnvelopes: [
+            { bankName: "Bank Nagari", accountNumber: "210002918472", accountHolder: "Aisyah Putri Tanjung" },
+            { bankName: "BSI", accountNumber: "7182940112", accountHolder: "Farhan Akbar" },
+          ],
+          rsvpWhatsapp: "6281234567890",
+          dresscode: {
+            note: "Tamu disarankan mengenakan busana marun songket, emas lembut, atau krem gading.",
+            colors: [
+              { label: "Marun Songket", hex: "#7F1D1D" },
+              { label: "Emas Pucuk", hex: "#B45309" },
+              { label: "Putih Gading", hex: "#FAF3E8" },
+            ],
+          },
+          giftAddress: {
+            recipient: "Aisyah Putri Tanjung (0812-3456-7890)",
+            address: "Komp. Griya Minang Indah Blok B-12, Padang",
+          },
+          initialPrayers: [
+            { name: "Datuak Rajo Alam", relation: "Ninik Mamak", message: "Selamat menempuh hidup baru, semoga rukun damai sampai anak cucu kelak." },
+            { name: "Mira Andini", relation: "Sahabat", message: "MasyaAllah Aisyah gagah bana pakai Suntiang! Lancar sampai hari baralek." },
+          ],
+        },
+      };
+
+    case "nikah-jawa":
+      return {
+        slug: cleanedSlug,
+        templateId: "nikah-jawa",
+        title: "Pawiwahan Bagus & Sekarsari",
+        seoDescription: "Undangan pernikahan Pawiwahan Adat Jawa Keraton Bagus dan Sekarsari.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:nikah-jawa",
+        data: {
+          bride: {
+            nickname: "Sekar",
+            fullName: "Raden Roro Sekarsari Kusumaningrum",
+            parents: "Putri saking Bapak KRT. Hadiwijoyo & Ibu Endang Pratiwi",
+            photoUrl: "/demo/nikah-jawa-couple.webp",
+          },
+          groom: {
+            nickname: "Bagus",
+            fullName: "Bagus Wicaksono Adi, S.Kom",
+            parents: "Putra saking Bapak Ir. Santoso Prawiro & Ibu Sri Wahyuni",
+            photoUrl: "/demo/nikah-groom.webp",
+          },
+          weddingDateIso: "2027-01-10T09:00:00+07:00",
+          blessingQuote: {
+            text: "Mugi tansah pinaringan rahayu, guyub rukun, dados kulawarga ingkang sakinah, mawaddah, warahmah salawasipun.",
+            source: "Doa Pangestu Adat Jawa",
+          },
+          akad: {
+            dateLabel: "Minggu Pahing, 10 Januari 2027",
+            timeLabel: "08.00 - 10.00 WIB",
+            venueName: "Pendopo Agung Joglo Kraton",
+            address: "Jl. Taman Siswa No. 32, Yogyakarta",
+            mapsUrl: "https://maps.google.com/?q=Yogyakarta",
+          },
+          resepsi: {
+            dateLabel: "Minggu Pahing, 10 Januari 2027",
+            timeLabel: "11.00 - 14.30 WIB",
+            venueName: "Pendopo Agung Joglo Kraton",
+            address: "Jl. Taman Siswa No. 32, Yogyakarta",
+            mapsUrl: "https://maps.google.com/?q=Yogyakarta",
+          },
+          culturalNote:
+            "Kanthi nyuwun sih rahmating Gusti Allah SWT, kula ngaturi rawuh panjenengan ing adicara Pawiwahan putra-putri kula.",
+          ceremonyExtras: [
+            {
+              label: "Midodareni & Siraman",
+              detail: "Sabtu Kliwon pukul 16.00 WIB di kediaman calon mempelai putri bersama keluarga sepuh.",
+            },
+            {
+              label: "Upacara Panggih",
+              detail: "Dilaksanakan tepat usai Ijab Qabul pukul 10.00 WIB lengkap balangan gantal lan sungkeman.",
+            },
+          ],
+          storyTimeline: [
+            { year: "2023", title: "Wiwit Tepang", description: "Awal kenal di kota pelajar saat mengerjakan pameran arsitektur budaya bersama." },
+            { year: "2025", title: "Paningset & Peningsetan", description: "Silaturahmi keluarga besar untuk meneguhkan restu menuju hari bahagia." },
+            { year: "2027", title: "Dhaup Agung", description: "Mengawali babak baru rumah tangga berlandaskan nilai kasih dan tata krama." },
+          ],
+          gallery: [
+            "/demo/nikah-jawa-couple.webp",
+            "/demo/nikah-jawa-venue.webp",
+            "/demo/nikah-gallery-1.webp",
+            "/demo/nikah-gallery-3.webp",
+          ],
+          digitalEnvelopes: [
+            { bankName: "BCA", accountNumber: "0371849201", accountHolder: "Sekarsari Kusumaningrum" },
+            { bankName: "Mandiri", accountNumber: "137008492018", accountHolder: "Bagus Wicaksono Adi" },
+          ],
+          rsvpWhatsapp: "6281234567890",
+          dresscode: {
+            note: "Para tamu disarankan mengenakan busana batik atau kebaya nuansa sogan cokelat, gading, atau emas.",
+            colors: [
+              { label: "Sogan Cokelat", hex: "#3E2723" },
+              { label: "Emas Keraton", hex: "#92400E" },
+              { label: "Gading Halus", hex: "#F5EFE4" },
+            ],
+          },
+          giftAddress: {
+            recipient: "Sekarsari Kusumaningrum (0812-3456-7890)",
+            address: "Ndalam Prawirotaman No. 18, Mergangsan, Yogyakarta",
+          },
+          initialPrayers: [
+            { name: "Eyang Haryono", relation: "Sesepuh Keluarga", message: "Sugeng mangayubagya Bagus lan Sekar, mugi tansah atut runtut dumugi kaken-ninen." },
+            { name: "Dian Purnama", relation: "Rekan Kerja", message: "Anggun banget adat Jowone! Mugi dilancarke sadayanipun nggeh." },
+          ],
+        },
+      };
+
+    case "nikah-sunda":
+      return {
+        slug: cleanedSlug,
+        templateId: "nikah-sunda",
+        title: "Walimatul Ursy Galih & Ratna",
+        seoDescription: "Undangan pernikahan Adat Sunda Sawer Galih dan Ratna.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:nikah-sunda",
+        data: {
+          bride: {
+            nickname: "Ratna",
+            fullName: "Ratna Komalasari, S.Psi",
+            parents: "Putri ti Bapa H. Asep Suryana & Ibu Hj. Neneng Kartini",
+            photoUrl: "/demo/nikah-sunda-couple.webp",
+          },
+          groom: {
+            nickname: "Galih",
+            fullName: "Galih Pratama Hidayat, S.E.",
+            parents: "Putra ti Bapa Dedi Kusnadi & Ibu Tati Rohaeti",
+            photoUrl: "/demo/nikah-groom.webp",
+          },
+          weddingDateIso: "2027-01-24T09:00:00+07:00",
+          blessingQuote: {
+            text: "Silih asah, silih asih, silih asuh. Mugia rumah tangga salawasna aya dina panangtayungan Gusti Allah SWT.",
+            source: "Papatah Sunda & QS. Ar-Rum: 21",
+          },
+          akad: {
+            dateLabel: "Minggu, 24 Januari 2027",
+            timeLabel: "08.00 - 10.00 WIB",
+            venueName: "Bale Taman Siliwangi",
+            address: "Jl. Ir. H. Djuanda Dago No. 112, Bandung",
+            mapsUrl: "https://maps.google.com/?q=Bandung",
+          },
+          resepsi: {
+            dateLabel: "Minggu, 24 Januari 2027",
+            timeLabel: "11.00 - 14.00 WIB",
+            venueName: "Bale Taman Siliwangi",
+            address: "Jl. Ir. H. Djuanda Dago No. 112, Bandung",
+            mapsUrl: "https://maps.google.com/?q=Bandung",
+          },
+          culturalNote:
+            "Sampurasun. Kalayan nyuhunkeun pidua ti sadaya kulawargi miwah réréncangan, simkuring ngahaturanan sumping dina dinten bagja.",
+          ceremonyExtras: [
+            {
+              label: "Ngeuyeuk Seureuh",
+              detail: "Sabtu sore pukul 15.30 WIB berupa prosesi nasihat pernikahan adat Sunda di pendopo taman.",
+            },
+            {
+              label: "Sawer Panganten & Huap Lingkung",
+              detail: "Berlangsung seusai akad nikah pukul 10.00 WIB diiringi kacapi suling lan tembang sawer.",
+            },
+          ],
+          storyTimeline: [
+            { year: "2022", title: "Patepang di Bandung", description: "Berawal dari hujan sore di jalan Dago yang membuka percakapan pertama kami." },
+            { year: "2025", title: "Neundeun Omong & Seserahan", description: "Orang tua dari kedua pihak saling bersilaturahmi memantapkan niat suci." },
+            { year: "2027", title: "Ngawangun Kulawarga", description: "Siap melangkah bersama membangun rumah yang dipenuhi syukur dan kehangatan." },
+          ],
+          gallery: [
+            "/demo/nikah-sunda-couple.webp",
+            "/demo/nikah-sunda-venue.webp",
+            "/demo/nikah-gallery-2.webp",
+            "/demo/nikah-gallery-3.webp",
+          ],
+          digitalEnvelopes: [
+            { bankName: "BJB", accountNumber: "009182746100", accountHolder: "Ratna Komalasari" },
+            { bankName: "BCA", accountNumber: "7771092841", accountHolder: "Galih Pratama Hidayat" },
+          ],
+          rsvpWhatsapp: "6281234567890",
+          dresscode: {
+            note: "Tamu disarankan mengenakan busana warna hijau daun, putih bersih, atau krem lembut.",
+            colors: [
+              { label: "Hijau Daun", hex: "#14532D" },
+              { label: "Melati Putih", hex: "#FAFAF7" },
+              { label: "Emas Lembut", hex: "#A16207" },
+            ],
+          },
+          giftAddress: {
+            recipient: "Ratna Komalasari (0812-3456-7890)",
+            address: "Jl. Tubagus Ismail VIII No. 9, Coblong, Bandung",
+          },
+          initialPrayers: [
+            { name: "Kang Ridwan", relation: "Sahabat Bandung", message: "Wilujeng Galih & Ratna! Mugia sakinah mawaddah warahmah salamina." },
+            { name: "Teh Maya", relation: "Sepupu", message: "Siger melatinya manis banget, lancar sampai acara saweran!" },
           ],
         },
       };
@@ -1068,6 +1549,268 @@ export function createDefaultSiteConfig(
               question: "Bisa pesan banyak untuk acara kantor?",
               answer: "Bisa banget, untuk pesanan di atas 20 botol disarankan konfirmasi H-1 lewat WhatsApp.",
             },
+          ],
+        },
+      };
+
+    case "umkm-kuliner":
+      return {
+        slug: cleanedSlug,
+        templateId: "umkm-kuliner",
+        title: "Dapur Bunda Sari - Nasi Liwet & Katering",
+        seoDescription: "Menu masakan rumahan, nasi kotak rapat, dan tumpeng hantaran Dapur Bunda Sari langsung order WhatsApp.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "none",
+        data: {
+          businessName: "Dapur Bunda Sari",
+          categoryLabel: "Masakan Rumahan & Katering",
+          tagline: "Nasi Liwet, Tumpeng Mini & Nasi Kotak Masak Hangat Setiap Pagi",
+          description: "Masakan rumahan resep turun-temurun tanpa pengawet. Siap kirim untuk makan siang kantor, syukuran keluarga, hingga pengajian.",
+          heroImageUrl: "/demo/umkm-kuliner-hero.webp",
+          cityLabel: "Bekasi & Jakarta Timur",
+          openHoursLabel: "Setiap hari, 06.30 - 18.00 WIB",
+          whatsappNumber: "6281234567890",
+          address: "Jl. Raya Pekayon No. 27, Bekasi Selatan",
+          mapsUrl: "https://maps.google.com/?q=Bekasi+Selatan",
+          highlights: [
+            { title: "Dimasak Dadakan Subuh", description: "Sayur dan lauk selalu dimasak pagi sebelum diantar supaya tetap hangat." },
+            { title: "Hitung Porsi Acara Fleksibel", description: "Bisa pesan 10 hingga 200 kotak dengan pilihan lauk sesuai anggaran." },
+            { title: "Halal & Kemasan Higienis", description: "Bahan pasar segar dan kemasan kotak kertas aman tanpa plastik berlebih." },
+          ],
+          products: [
+            {
+              id: "liwet-box",
+              name: "Nasi Liwet Ayam Lengkuas",
+              category: "Nasi Kotak",
+              price: 35000,
+              unitLabel: "box",
+              description: "Nasi liwet wangi serai, ayam kampung lengkuas, tempe orek, lalapan, & sambal terasi.",
+              imageUrl: "/demo/umkm-kuliner-hero.webp",
+              featured: true,
+              options: ["Level Sambal Sedang", "Level Sambal Pedas", "Tanpa Sambal"],
+            },
+            {
+              id: "katering-hemat",
+              name: "Nasi Kotak Rapat Kantoran",
+              category: "Katering",
+              price: 29000,
+              unitLabel: "box",
+              description: "Nasi putih pulen, rendang daging empuk atau empal, tumis buncis, & kerupuk udang.",
+              imageUrl: "/demo/umkm-kuliner-box.webp",
+              options: ["Rendang Sapi", "Empal Serundeng"],
+            },
+            {
+              id: "tumpeng-mini",
+              name: "Tumpeng Syukuran Porsi 6 Org",
+              category: "Tumpeng",
+              price: 185000,
+              unitLabel: "nampan",
+              description: "Nasi kuning gurih komplit perkedel, urap, telur balado, & ayam panggang bumbu rujak.",
+              imageUrl: "/demo/umkm-kuliner-hero.webp",
+            },
+            {
+              id: "kue-lapis-box",
+              name: "Kotak Kue Basah 12 Potong",
+              category: "Kue Basah",
+              price: 68000,
+              unitLabel: "box",
+              description: "Campuran kue lapis pandan, risoles mayo, dan lemper ayam suwir hangat.",
+              imageUrl: "/demo/umkm-kuliner-box.webp",
+            },
+          ],
+          testimonials: [
+            { quote: "Pesan 65 nasi kotak buat rapat kantor datangnya masih ngebul hangat, sambelnya juara.", author: "Ibu Ratna", role: "Kantor Wilayah Bekasi" },
+            { quote: "Kue lapis pandannya legit banget, nggak kemanisan buat acara arisan keluarga.", author: "Mbak Siska", role: "Pelanggan Tetap" },
+          ],
+          stats: [
+            { value: "4.500+", label: "Kotak Terkirim" },
+            { value: "Min. H-1", label: "Order Katering Besar" },
+            { value: "100%", label: "Masak Pagi Segar" },
+          ],
+          promoBanner: {
+            title: "Paket Tumpeng Mini + 6 Kotak Kue Hantaran",
+            description: "Cocok buat acara syukuran keluarga atau ulang tahun kantor di rumah, bebas pilih tanggal antar.",
+            priceLabel: "Rp240.000",
+            productId: "tumpeng-mini",
+          },
+          faqs: [
+            { question: "Minimal pemesanan katering acara berapa box?", answer: "Untuk menu harian bisa order satuan, sedangkan paket katering rapat minimal 10 box." },
+          ],
+        },
+      };
+
+    case "umkm-fashion":
+      return {
+        slug: cleanedSlug,
+        templateId: "umkm-fashion",
+        title: "Atelier Noura - Linen & Hijab Modest",
+        seoDescription: "Lookbook resmi dan katalog koleksi pakaian linen wanita dan hijab Atelier Noura.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "none",
+        data: {
+          businessName: "Atelier Noura",
+          categoryLabel: "Butik Linen & Hijab",
+          tagline: "Potongan Linen Nyaman & Hijab Sutra Ringan untuk Dipakai Seharian",
+          description: "Koleksi busana harian berbahan linen rami bernapas dan silk matte jatuh, dijahit dalam jumlah terbatas dari studio lokal.",
+          heroImageUrl: "/demo/umkm-fashion-hero.webp",
+          cityLabel: "Bandung Selatan",
+          openHoursLabel: "Selasa - Minggu, 10.00 - 19.00 WIB",
+          whatsappNumber: "6281234567890",
+          address: "Jl. Buah Batu No. 94, Bandung",
+          mapsUrl: "https://maps.google.com/?q=Bandung",
+          highlights: [
+            { title: "Bahan Linen Rami Asli", description: "Adem dipakai cuaca tropis dan semakin lembut setelah dicuci." },
+            { title: "Ukuran Inklusif S sampai XL", description: "Pola potong longgar elegan mengikuti bentuk tubuh tanpa terasa sempit." },
+            { title: "Gratis Tukar Ukuran 7 Hari", description: "Salah pilih size? Tinggal chat admin untuk penukaran cepat." },
+          ],
+          products: [
+            {
+              id: "noura-tunic",
+              name: "Alya Linen Oversized Shirt",
+              category: "Atasan",
+              price: 229000,
+              unitLabel: "pcs",
+              description: "Kemeja outer longgar bahan 100% linen natural warna oatmeal yang ringan.",
+              imageUrl: "/demo/umkm-fashion-hero.webp",
+              featured: true,
+              options: ["S", "M", "L", "XL"],
+            },
+            {
+              id: "sage-tunic",
+              name: "Senja Sage Tunic Dress",
+              category: "Atasan",
+              price: 269000,
+              unitLabel: "pcs",
+              description: "Tunik panjang kantong samping berpotongan lurus warna hijau sage tenang.",
+              imageUrl: "/demo/umkm-fashion-flatlay.webp",
+              options: ["S", "M", "L", "XL"],
+            },
+            {
+              id: "espresso-pashmina",
+              name: "Silk Matte Pashmina",
+              category: "Hijab",
+              price: 89000,
+              unitLabel: "pcs",
+              description: "Pashmina jatuh tidak menerawang dan tidak licin di kepala tanpa perlu banyak jarum.",
+              imageUrl: "/demo/umkm-fashion-hero.webp",
+              options: ["Espresso", "Oatmilk", "Rosewood"],
+            },
+            {
+              id: "woven-bag",
+              name: "Kala Woven Sling Bag",
+              category: "Aksesori",
+              price: 195000,
+              unitLabel: "pcs",
+              description: "Tas selempang anyaman kulit sintetis lentur muat dompet panjang dan HP.",
+              imageUrl: "/demo/umkm-fashion-flatlay.webp",
+              options: ["Warm Tan"],
+            },
+          ],
+          testimonials: [
+            { quote: "Linen-nya tebel tapi tetep adem dipakai seharian keluar kota, nggak gampang kusut parah.", author: "Nadia Putri", role: "Pembeli Kemeja Oatmeal" },
+            { quote: "Pashmina silk-nya gampang banget diatur, udah beli tiga warna beda.", author: "Sinta Dewi", role: "Pelanggan Bandung" },
+          ],
+          stats: [
+            { value: "S - XL", label: "Ukuran Lengkap" },
+            { value: "100%", label: "Linen Rami Lokal" },
+            { value: "7 Hari", label: "Garansi Tukar Size" },
+          ],
+          promoBanner: {
+            title: "Setelan Kemeja Linen + Pashmina Silk",
+            description: "Hemat Rp28.000 setiap pembelian satu set atasan linen lengkap hijab warna serasi.",
+            priceLabel: "Rp290.000",
+            productId: "noura-tunic",
+          },
+          faqs: [
+            { question: "Apakah bisa tukar ukuran kalau kurang pas?", answer: "Bisa banget dalam 7 hari selama tag label masih terpasang rapi." },
+          ],
+        },
+      };
+
+    case "umkm-jasa":
+      return {
+        slug: cleanedSlug,
+        templateId: "umkm-jasa",
+        title: "Potong Rapi Barbershop & Studio",
+        seoDescription: "Daftar harga layanan cukur, perawatan rambut, dan reservasi jadwal langsung WhatsApp Potong Rapi.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "none",
+        data: {
+          businessName: "Potong Rapi Studio",
+          categoryLabel: "Barbershop & Grooming",
+          tagline: "Cukur Presisi, Keramas Dingin & Konsultasi Gaya Tanpa Antre Lama",
+          description: "Studio perawatan rambut pria dan remaja dengan alat selalu disterilkan setiap pelanggan selesai. Booking jam kedatangan langsung dari HP.",
+          heroImageUrl: "/demo/umkm-jasa-hero.webp",
+          cityLabel: "Jakarta Selatan",
+          openHoursLabel: "Setiap hari, 10.00 - 22.00 WIB",
+          whatsappNumber: "6281234567890",
+          address: "Jl. Tebet Utara Dalam No. 15, Jakarta Selatan",
+          mapsUrl: "https://maps.google.com/?q=Tebet+Jakarta+Selatan",
+          highlights: [
+            { title: "Booking Jam Anti-Antre", description: "Pilih layanan dan slot jam langsung terkirim ke kasir sebelum berangkat." },
+            { title: "Peralatan Selalu Steril UV", description: "Sisir, pisau silet baru sekali pakai, dan gunting dibersihkan tiap sesi." },
+            { title: "Konsultasi Bentuk Wajah", description: "Bebas tanya potongan yang cocok tanpa buru-buru sebelum gunting menyentuh rambut." },
+          ],
+          products: [
+            {
+              id: "signature-cut",
+              name: "Signature Haircut + Wash + Tonic",
+              category: "Cukur Rambut",
+              price: 65000,
+              unitLabel: "45 mnt",
+              description: "Potong rambut presisi sesuai bentuk kepala, keramas dingin, pijat pundak ringan, & hair styling.",
+              imageUrl: "/demo/umkm-jasa-hero.webp",
+              featured: true,
+              options: ["Fade", "Comma Hair", "Classic Trim"],
+            },
+            {
+              id: "beard-groom",
+              name: "Hot Towel Shave & Trim Jenggot",
+              category: "Perawatan",
+              price: 45000,
+              unitLabel: "25 mnt",
+              description: "Kompres handuk hangat aromaterapi, perapian kumis/jenggot, dan aftershave dingin.",
+              imageUrl: "/demo/umkm-jasa-tools.webp",
+            },
+            {
+              id: "combo-rapi",
+              name: "Paket Lengkap Rambut + Jenggot",
+              category: "Paket Hemat",
+              price: 95000,
+              unitLabel: "65 mnt",
+              description: "Kombinasi penuh haircut, cuci rambut, hot towel shave, serta hair tonic perawatan kulit kepala.",
+              imageUrl: "/demo/umkm-jasa-hero.webp",
+            },
+            {
+              id: "clay-pomade",
+              name: "Matte Clay Pomade 100gr",
+              category: "Produk",
+              price: 85000,
+              unitLabel: "jar",
+              description: "Pomade tahan lama hasil akhir natural matte tanpa kilap berminyak.",
+              imageUrl: "/demo/umkm-jasa-tools.webp",
+            },
+          ],
+          testimonials: [
+            { quote: "Enak banget bisa booking jam duluan lewat web, nyampe lokasi tinggal duduk langsung potong.", author: "Rama Putra", role: "Pelanggan Bulanan" },
+            { quote: "Tempatnya bersih banget, kapsternya detail pas bikin fade nggak belang.", author: "Kevin Wijaya", role: "Warga Tebet" },
+          ],
+          stats: [
+            { value: "4.9/5", label: "Rating Google Maps" },
+            { value: "100%", label: "Steril Tiap Sesi" },
+            { value: "6 Kapster", label: "Siap Melayani" },
+          ],
+          promoBanner: {
+            title: "Paket Cukur Rapi + Hair Wash Mahasiswa",
+            description: "Potongan harga khusus Senin sampai Kamis pukul 10.00 - 15.00 WIB cukup pilih slot pagi.",
+            priceLabel: "Rp55.000",
+            productId: "signature-cut",
+          },
+          faqs: [
+            { question: "Kalau telat datang lebih dari 15 menit bagaimana?", answer: "Slot digeser ke antrean kosong berikutnya atau cukup kabari admin WhatsApp." },
           ],
         },
       };

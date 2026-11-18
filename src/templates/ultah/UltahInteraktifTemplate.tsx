@@ -19,6 +19,7 @@ import {
 } from "@phosphor-icons/react";
 import { MusicPlayer } from "@/components/MusicPlayer";
 import type { UltahSiteConfig } from "@/lib/schema";
+import { playSfx } from "@/lib/sfx";
 import { cn } from "@/lib/utils";
 
 type ConfettiShape = "rect" | "circle" | "triangle" | "streamer";
@@ -225,6 +226,7 @@ export function UltahInteraktifTemplate({
     stopMicrophone();
     setMicError(null);
     setCandlesBlown(true);
+    playSfx("party-cheer");
     launchConfetti();
   }, [launchConfetti, stopMicrophone]);
 
@@ -365,7 +367,11 @@ export function UltahInteraktifTemplate({
   }, [closeLightbox, lightboxIndex, showNextPhoto, showPrevPhoto]);
 
   const handleGiftTap = () => {
-    setGiftTaps((prev) => Math.min(3, prev + 1));
+    setGiftTaps((prev) => {
+      const next = Math.min(3, prev + 1);
+      playSfx(next >= 3 ? "stamp-claim" : "paper-flip");
+      return next;
+    });
   };
 
   const toggleWishItem = (index: number) => {
@@ -732,6 +738,7 @@ export function UltahInteraktifTemplate({
       </section>
 
       {/* Section 3: 3-Tap Interactive Gift Box -> Perforated Dinner Voucher */}
+      {giftVoucher && (
       <section className="border-b-2 border-[#121212] bg-[#FFFDF7] py-16">
         <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <div className="mb-8 border-l-4 border-[#FF4D6D] pl-4">
@@ -850,10 +857,10 @@ export function UltahInteraktifTemplate({
                       Tiket Traktiran Resmi - Anti Wacana
                     </p>
                     <h3 className="font-archivo text-2xl font-extrabold tracking-tight text-[#121212] sm:text-3xl">
-                      {giftVoucher.title}
+                      {giftVoucher?.title}
                     </h3>
                     <p className="text-base font-medium leading-relaxed text-[#121212]/90">
-                      {giftVoucher.description}
+                      {giftVoucher?.description}
                     </p>
                   </div>
 
@@ -864,7 +871,7 @@ export function UltahInteraktifTemplate({
                         Cara Klaim Tiket
                       </p>
                       <p className="mt-1.5 text-sm font-bold leading-snug text-[#121212]">
-                        {giftVoucher.redeemNote}
+                        {giftVoucher?.redeemNote}
                       </p>
                     </div>
 
@@ -890,6 +897,7 @@ export function UltahInteraktifTemplate({
           </AnimatePresence>
         </div>
       </section>
+      )}
 
       {/* Section 4: Expanded 5-Photo Bento Album + Animated Lightbox */}
       <section className="border-b-2 border-[#121212] bg-[#FFFDF7] py-16">

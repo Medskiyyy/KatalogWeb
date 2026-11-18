@@ -1,0 +1,67 @@
+{
+  "slug": "sweet-nadira-19",
+  "templateId": "ultah-editorial",
+  "title": "Edisi Ulang Tahun ke-19 Nadira",
+  "seoDescription": "Jurnal ulang tahun ke-19 Nadira dengan amplop segel pita, kartu doa bolak-balik, galeri kenangan, dan catatan refleksi pribadi.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi template Ultah Jurnal Sweet Birthday Elegan",
+  "musicTrack": "builtin:romance",
+  "data": {
+    "celebrantName": "Nadira",
+    "turningAge": 19,
+    "birthDateLabel": "28 November 2026",
+    "senderName": "Keluarga & Sahabat Dekat",
+    "heroWish": "Selamat ulang tahun yang ke-19, Nadira. Semoga langkah kecilmu tahun ini selalu bertemu hari yang hangat, hati yang tenang, dan tawa yang tulus. Teruslah bertumbuh dengan ritme kamu sendiri, tanpa perlu terburu-buru mengejar hal yang bukan milikmu.",
+    "cakeImageUrl": "/demo/ultah-editorial-hero.webp",
+    "memories": [
+      {
+        "imageUrl": "/demo/ultah-editorial-hero.webp",
+        "caption": "Pagi tenang merayakan bertambahnya usia bersama secangkir teh hangat"
+      },
+      {
+        "imageUrl": "/demo/ultah-1.webp",
+        "caption": "Senyum hangat di setiap perayaan kecil yang selalu terasa berarti"
+      },
+      {
+        "imageUrl": "/demo/ultah-3.webp",
+        "caption": "Bingkisan pita sederhana yang disimpan bersama penuh doa baik"
+      },
+      {
+        "imageUrl": "/demo/ultah-4.webp",
+        "caption": "Sore santai dan obrolan panjang yang selalu dirindukan saat berjauhan"
+      }
+    ],
+    "friendWishes": [
+      {
+        "from": "Kak Hana",
+        "role": "Keluarga",
+        "message": "Barakallah fii umrik, Nadira sayang. Di usia 19 ini, semoga langkahmu selalu dimudahkan, hatimu dijaga dalam ketenangan, dan kamu selalu ingat bahwa rumah selalu jadi tempat paling aman untuk pulang."
+      },
+      {
+        "from": "Kei",
+        "role": "Sahabat SMA",
+        "message": "Happy 19th birthday, Dir! Terima kasih sudah jadi pendengar terbaik sejak seragam putih abu-abu. Semoga semua rencana kuliah dan mimpimu tahun ini pelan-pelan terwujud dengan indah."
+      },
+      {
+        "from": "Ibu & Ayah",
+        "role": "Orang Tua",
+        "message": "Selamat ulang tahun putri tercinta. Doa Ibu dan Ayah tidak pernah putus mengiringi setiap pagi yang kamu mulai. Sehat selalu, tetap rendah hati, dan bahagialah dengan caramu sendiri."
+      },
+      {
+        "from": "Laras",
+        "role": "Teman Sekelas",
+        "message": "Selamat menapaki usia sembilan belas, Nadira. Semoga di sela tugas yang padat nanti, kamu selalu sempat meluangkan sore tenang untuk membaca buku favorit dan tersenyum lega."
+      }
+    ],
+    "wishChecklist": [
+      "Menjaga ketenangan hati dan pola tidur di tengah jadwal kuliah yang padat",
+      "Menuntaskan membaca 12 buku pilihan sepanjang tahun dengan santai",
+      "Lebih sering menikmati akhir pekan tanpa rasa bersalah untuk beristirahat",
+      "Mengabadikan hal-hal kecil yang patut disyukuri di jurnal setiap pekannya"
+    ],
+    "playlistSong": {
+      "title": "Morning Piano",
+      "artist": "Musik Akustik Hangat"
+    }
+  }
+}

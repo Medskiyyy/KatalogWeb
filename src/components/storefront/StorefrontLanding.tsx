@@ -29,17 +29,17 @@ import { buildWhatsAppUrl, cn, formatRupiah } from "@/lib/utils";
 type CategoryFilter = "Semua" | TemplateCatalogItem["category"];
 
 const CATEGORY_FILTERS: { value: CategoryFilter; label: string }[] = [
-  { value: "Semua", label: "Semua Desain" },
-  { value: "Bucin", label: "Kado Pasangan" },
-  { value: "Ulang Tahun", label: "Ulang Tahun" },
-  { value: "Pernikahan", label: "Pernikahan" },
-  { value: "UMKM", label: "Website UMKM" },
+  { value: "Semua", label: `Semua Desain (${BRAND.templates.length})` },
+  { value: "Bucin", label: `Kado Pasangan (${BRAND.templates.filter((t) => t.category === "Bucin").length})` },
+  { value: "Ulang Tahun", label: `Ulang Tahun (${BRAND.templates.filter((t) => t.category === "Ulang Tahun").length})` },
+  { value: "Pernikahan", label: `Pernikahan & Adat (${BRAND.templates.filter((t) => t.category === "Pernikahan").length})` },
+  { value: "UMKM", label: `Website UMKM (${BRAND.templates.filter((t) => t.category === "UMKM").length})` },
 ];
 
 const HERO_TEMPLATE_IDS: TemplateCatalogItem["id"][] = [
   "bucin-scrapbook",
   "ultah-interaktif",
-  "nikah-garden",
+  "nikah-minang",
   "umkm-katalog",
 ];
 
@@ -49,8 +49,17 @@ const HERO_TAB_LABELS: Record<TemplateCatalogItem["id"], string> = {
   "bucin-playlist": "Vinyl Mixtape",
   "bucin-magazine": "Majalah Couple",
   "ultah-interaktif": "Kejutan Ultah",
-  "nikah-garden": "Undangan Nikah",
-  "umkm-katalog": "Website UMKM",
+  "ultah-balon": "Pesta Balon",
+  "ultah-retro": "Arcade Retro",
+  "ultah-editorial": "Jurnal Ultah",
+  "nikah-garden": "Nikah Garden",
+  "nikah-minang": "Adat Padang",
+  "nikah-jawa": "Adat Jawa",
+  "nikah-sunda": "Adat Sunda",
+  "umkm-katalog": "Kedai & Kopi",
+  "umkm-kuliner": "Katering & Resto",
+  "umkm-fashion": "Butik Fashion",
+  "umkm-jasa": "Jasa & Barber",
 };
 
 const STAGE_TINTS: Record<TemplateCatalogItem["id"], string> = {
@@ -59,8 +68,17 @@ const STAGE_TINTS: Record<TemplateCatalogItem["id"], string> = {
   "bucin-playlist": "#F5ECEA",
   "bucin-magazine": "#F4F2EE",
   "ultah-interaktif": "#FAF4DC",
+  "ultah-balon": "#FAF0F2",
+  "ultah-retro": "#F2F4EB",
+  "ultah-editorial": "#FDF2F5",
   "nikah-garden": "#ECF3EE",
+  "nikah-minang": "#FAF0EE",
+  "nikah-jawa": "#F7F1E5",
+  "nikah-sunda": "#EEF4EF",
   "umkm-katalog": "#F4EFE9",
+  "umkm-kuliner": "#FAF0EA",
+  "umkm-fashion": "#F5F3F1",
+  "umkm-jasa": "#EEF3F5",
 };
 
 const ORDER_STEPS = [
@@ -511,9 +529,8 @@ export function StorefrontLanding() {
               })}
             </div>
 
-            <div className="mt-12 space-y-16 md:space-y-20">
-              {filteredTemplates.map((item, index) => {
-                const flip = index % 2 === 1;
+            <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:gap-x-10 lg:gap-y-14">
+              {filteredTemplates.map((item) => {
                 const isCopied = copiedId === item.id;
                 return (
                   <motion.article
@@ -521,17 +538,17 @@ export function StorefrontLanding() {
                     initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: "some" }}
-                    transition={{ duration: 0.45, ease: EASE_OUT }}
-                    className="group grid grid-cols-1 items-center gap-8 md:grid-cols-[1.15fr_1fr] md:gap-14"
+                    transition={{ duration: 0.4, ease: EASE_OUT }}
+                    className="group flex flex-col border-b border-[#E5E5E1] pb-10"
                   >
                     <SubdomainLink
                       slug={item.demoSlug}
                       openInNewTab
-                      className={cn("block", flip && "md:order-2")}
+                      className="block"
                     >
                       <div
                         style={{ backgroundColor: STAGE_TINTS[item.id] }}
-                        className="flex items-end justify-center overflow-hidden rounded-2xl px-5 pt-6 transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1 sm:px-8 sm:pt-8"
+                        className="flex items-end justify-center overflow-hidden rounded-2xl px-5 pt-6 transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] group-hover:-translate-y-1 sm:px-7 sm:pt-7"
                       >
                         <div className="w-full overflow-hidden rounded-t-xl border border-b-0 border-black/10 bg-white shadow-[0_24px_48px_-24px_rgba(0,0,0,0.28)]">
                           <div className="flex h-8 items-center justify-between border-b border-[#E5E5E1] px-3.5">
@@ -550,7 +567,6 @@ export function StorefrontLanding() {
                               src={item.thumbnail}
                               alt={`Pratinjau ${item.name}`}
                               loading="eager"
-                              decoding="async"
                               className="absolute inset-0 block h-full w-full object-cover"
                             />
                           </div>
@@ -558,40 +574,42 @@ export function StorefrontLanding() {
                       </div>
                     </SubdomainLink>
 
-                    <div className={cn(flip && "md:order-1")}>
-                      <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[#E5E5E1] pb-3 text-sm">
-                        <span className="font-medium text-[#575753]">
-                          {item.category}
-                        </span>
-                        <span className="font-mono text-base font-bold text-[#121212] tabular-nums">
-                          {formatRupiah(item.price)}
-                        </span>
+                    <div className="mt-6 flex flex-1 flex-col justify-between">
+                      <div>
+                        <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-[#E5E5E1] pb-2.5 text-sm">
+                          <span className="font-medium text-[#575753]">
+                            {item.category}
+                          </span>
+                          <span className="font-mono text-base font-bold text-[#121212] tabular-nums">
+                            {formatRupiah(item.price)}
+                          </span>
+                        </div>
+
+                        <h3 className="mt-3.5 font-archivo text-xl font-bold tracking-tight text-[#121212] sm:text-2xl">
+                          {item.name}
+                        </h3>
+
+                        <p className="mt-2.5 text-sm leading-relaxed text-[#575753] sm:text-base">
+                          {item.tagline}
+                        </p>
+
+                        <ul className="mt-4 space-y-2">
+                          {item.highlights.map((highlight) => (
+                            <li
+                              key={highlight}
+                              className="flex items-start gap-2.5 text-sm text-[#121212]"
+                            >
+                              <Check
+                                size={15}
+                                weight="bold"
+                                className="mt-0.5 shrink-0 text-[#059669]"
+                                aria-hidden="true"
+                              />
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-
-                      <h3 className="mt-4 font-archivo text-2xl font-bold tracking-tight text-[#121212] sm:text-3xl">
-                        {item.name}
-                      </h3>
-
-                      <p className="mt-3 text-base leading-relaxed text-[#575753]">
-                        {item.tagline}
-                      </p>
-
-                      <ul className="mt-5 space-y-2.5">
-                        {item.highlights.map((highlight) => (
-                          <li
-                            key={highlight}
-                            className="flex items-start gap-2.5 text-sm text-[#121212]"
-                          >
-                            <Check
-                              size={16}
-                              weight="bold"
-                              className="mt-0.5 shrink-0 text-[#059669]"
-                              aria-hidden="true"
-                            />
-                            <span>{highlight}</span>
-                          </li>
-                        ))}
-                      </ul>
 
                       <div className="mt-6 flex flex-wrap items-center gap-2.5">
                         <SubdomainLink
