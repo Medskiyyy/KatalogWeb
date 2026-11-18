@@ -36,7 +36,7 @@ describe("Demo JSON configs & Zod schema", () => {
       (entry) => entry.isFile() && entry.name.endsWith(".json")
     );
 
-    expect(jsonFiles.length).toBeGreaterThanOrEqual(4);
+    expect(jsonFiles.length).toBeGreaterThanOrEqual(7);
 
     for (const file of jsonFiles) {
       const raw = await fs.readFile(path.join(sitesDir, file.name), "utf-8");
@@ -46,9 +46,12 @@ describe("Demo JSON configs & Zod schema", () => {
     }
   });
 
-  it("creates valid default configs for all 4 template IDs", () => {
+  it("creates valid default configs for all 7 template IDs", () => {
     const templateIds: TemplateId[] = [
       "bucin-scrapbook",
+      "bucin-chat",
+      "bucin-playlist",
+      "bucin-magazine",
       "ultah-interaktif",
       "nikah-garden",
       "umkm-katalog",

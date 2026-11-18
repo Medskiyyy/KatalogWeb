@@ -87,6 +87,32 @@ export const BucinDataSchema = z.object({
       })
     )
     .optional(),
+  chatThreads: z
+    .array(
+      z.object({
+        topic: z.string().min(1),
+        messages: z
+          .array(
+            z.object({
+              sender: z.enum(["one", "two"]),
+              text: z.string().min(1),
+              time: z.string().min(1),
+            })
+          )
+          .min(1),
+      })
+    )
+    .optional(),
+  quizQuestions: z
+    .array(
+      z.object({
+        question: z.string().min(1),
+        options: z.array(z.string().min(1)).min(2),
+        correctIndex: z.number().int().nonnegative(),
+        reaction: z.string().min(1),
+      })
+    )
+    .optional(),
 });
 
 export const UltahMemorySchema = z.object({
@@ -270,6 +296,21 @@ export const SiteConfigSchema = z.discriminatedUnion("templateId", [
   }),
   z.object({
     ...BaseSiteFields,
+    templateId: z.literal("bucin-chat"),
+    data: BucinDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("bucin-playlist"),
+    data: BucinDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("bucin-magazine"),
+    data: BucinDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
     templateId: z.literal("ultah-interaktif"),
     data: UltahDataSchema,
   }),
@@ -286,7 +327,17 @@ export const SiteConfigSchema = z.discriminatedUnion("templateId", [
 ]);
 
 export type SiteConfig = z.infer<typeof SiteConfigSchema>;
-export type BucinSiteConfig = Extract<SiteConfig, { templateId: "bucin-scrapbook" }>;
+export type BucinTemplateSiteConfig = Extract<
+  SiteConfig,
+  {
+    templateId:
+      | "bucin-scrapbook"
+      | "bucin-chat"
+      | "bucin-playlist"
+      | "bucin-magazine";
+  }
+>;
+export type BucinSiteConfig = BucinTemplateSiteConfig;
 export type UltahSiteConfig = Extract<SiteConfig, { templateId: "ultah-interaktif" }>;
 export type NikahSiteConfig = Extract<SiteConfig, { templateId: "nikah-garden" }>;
 export type UmkmSiteConfig = Extract<SiteConfig, { templateId: "umkm-katalog" }>;
@@ -409,6 +460,332 @@ export function createDefaultSiteConfig(
               note: "Bebas pilih film maraton di rumah sambil ngemil sepuasnya.",
             },
           ],
+        },
+      };
+
+    case "bucin-chat":
+      return {
+        slug: cleanedSlug,
+        templateId: "bucin-chat",
+        title: "Arsip Chat & Photobox Dimas & Alya",
+        seoDescription: "Putar ulang chat awal PDKT, strip photobox, mini kuis pasangan, dan voucher traktiran.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:romance",
+        data: {
+          partnerOne: "Dimas",
+          partnerTwo: "Alya",
+          anniversaryDate: "2024-08-17",
+          passcodePin: "",
+          heroHeadline: "Dari Chat Salah Kirim Sampai Jadi Orang Paling Dicari",
+          openingNote:
+            "Buat pengingat kalau awalnya kita sama-sama jaim di chat, sebelum akhirnya tiap malam ngabisin kuota buat teleponan bahas hal nggak penting.",
+          memories: [
+            {
+              imageUrl: "/demo/bucin-chat-1.webp",
+              caption: "Sesi photobox perdana yang hasilnya masih kaku banget",
+              dateLabel: "Sep 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-chat-2.webp",
+              caption: "Jajan es krim pinggir jalan habis ujan-ujanan",
+              dateLabel: "Nov 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-chat-3.webp",
+              caption: "Dua gelas favorit kita tiap nongkrong weekend",
+              dateLabel: "Jan 2025",
+            },
+            {
+              imageUrl: "/demo/bucin-1.webp",
+              caption: "Ngopi sore sepulang kerja buat cerita seharian",
+              dateLabel: "Mar 2025",
+            },
+          ],
+          loveReasons: [
+            "Selalu bales chat cepat walau cuma kirim stiker random.",
+            "Sabar nemenin muter-muter nyari tempat makan tiap kali aku bilang terserah.",
+            "Ketawa kamu gampang banget bikin capek seharian langsung ilang.",
+            "Inget pesanan minum aku bahkan sebelum aku sebut.",
+          ],
+          littleThings: [
+            {
+              label: "Stiker Paling Sering",
+              detail: "Kucing melet tiap kali baru bangun atau lagi males ngetik.",
+            },
+            {
+              label: "Jam Rawan Laper",
+              detail: "Jam sepuluh malam mendadak nanya menu makan berkuah.",
+            },
+            {
+              label: "Posisi Duduk Wajib",
+              detail: "Selalu milih pojokan kafe deket colokan biar HP aman.",
+            },
+            {
+              label: "Topik Favorit",
+              detail: "Ngegosipin kucing komplek sama rencana liburan tahun depan.",
+            },
+          ],
+          coupons: [
+            {
+              title: "Kupon Bebas Debat Makan Malam",
+              note: "Tinggal tunjuk mau makan apa hari ini, langsung berangkat tanpa protes.",
+            },
+            {
+              title: "Kupon Traktiran Kopi + Dessert",
+              note: "Kapan aja lagi bad mood kerja, tinggal screenshot kupon ini.",
+            },
+            {
+              title: "Kupon Photobox Ulang Bareng",
+              note: "Berlaku buat 2 sesi foto strip minggu ini, gayanya kamu yang atur.",
+            },
+          ],
+          chatThreads: [
+            {
+              topic: "Awal Modus",
+              messages: [
+                { sender: "one", text: "Al, file catatan kuliah kemarin masih ada di kamu nggak?", time: "19.14" },
+                { sender: "two", text: "Ada kok, bentar aku cari dulu di laptop ya. Kamu butuh yang bab mana?", time: "19.17" },
+                { sender: "one", text: "Bebas sih semuanya boleh, tapi sekalian mau nanya udah makan belum?", time: "19.18" },
+                { sender: "two", text: "Haha ketahuan banget modusnya ya dari nanya catatan ke nanya makan.", time: "19.20" },
+              ],
+            },
+            {
+              topic: "Debat Makan",
+              messages: [
+                { sender: "one", text: "Nanti sore pengen makan apa? Aku udah mau jalan jemput.", time: "16.40" },
+                { sender: "two", text: "Terserah kamu aja, aku ngikut apa aja yang penting enak.", time: "16.42" },
+                { sender: "one", text: "Pecel lele tenda depan?", time: "16.43" },
+                { sender: "two", text: "Hmm nggak lagi pengen gorengan sih, mie kuah aja gimana?", time: "16.44" },
+              ],
+            },
+          ],
+          quizQuestions: [
+            {
+              question: "Kapan pertama kali kita ngaku sama-sama grogi pas ketemu?",
+              options: ["Di parkiran kampus", "Waktu ngopi pertama", "Di depan toko buku"],
+              correctIndex: 1,
+              reaction: "Bener banget, sampai es kopi kita hampir nggak kesentuh saking gugupnya.",
+            },
+            {
+              question: "Kalau bilang terserah mau makan apa, ujungnya hampir pasti milih apa?",
+              options: ["Salad buah", "Mie kuah hangat atau bakso", "Roti tawar"],
+              correctIndex: 1,
+              reaction: "Akurat 100%, mie hangat selalu jadi penyelamat suasana.",
+            },
+          ],
+          closingLetter:
+            "Makasih ya udah betah diajak chat ngalor-ngidul tiap hari sampai sekarang. Semoga arsip kecil ini selalu bikin kamu senyum pas lagi capek.",
+          songDedication: {
+            title: "Monokrom",
+            artist: "Tulus",
+          },
+        },
+      };
+
+    case "bucin-playlist":
+      return {
+        slug: cleanedSlug,
+        templateId: "bucin-playlist",
+        title: "Mixtape & Vinyl Rehan & Salsa",
+        seoDescription: "Kumpulan track kenangan, vinyl berputar, cerita lagu, dan tiket kencan kita.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:romance",
+        data: {
+          partnerOne: "Rehan",
+          partnerTwo: "Salsa",
+          anniversaryDate: "2024-03-22",
+          passcodePin: "",
+          heroHeadline: "Side A & Side B: Lagu-Lagu yang Ngingetin ke Kamu",
+          openingNote:
+            "Dari rebutan kabel earphone di kereta sampai nyanyi fals bareng di jalanan malam, ini album kecil berisi momen yang paling sering aku putar ulang.",
+          memories: [
+            {
+              imageUrl: "/demo/bucin-vinyl-1.webp",
+              caption: "Track 01 - Nyari piringan hitam lama sambil debat selera lagu",
+              dateLabel: "Mar 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-vinyl-2.webp",
+              caption: "Track 02 - Bagi earphone sebelah di kereta pulang sore",
+              dateLabel: "Jun 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-vinyl-3.webp",
+              caption: "Track 03 - Nonton panggung akustik berdua sampai malam",
+              dateLabel: "Okt 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-2.webp",
+              caption: "Track 04 - Jalan kaki ngejar langit sore favorit kamu",
+              dateLabel: "Feb 2025",
+            },
+          ],
+          milestones: [
+            {
+              dateLabel: "Track 01",
+              title: "Earphone Sebelah di KRL",
+              description: "Awal mula tahu kalau selera lagu kita ternyata banyak cocoknya.",
+            },
+            {
+              dateLabel: "Track 02",
+              title: "Pulang Malam Kehujanan",
+              description: "Nunggu hujan reda di depan minimarket sambil dengerin playlist random.",
+            },
+            {
+              dateLabel: "Track 03",
+              title: "Karaoke di Motor",
+              description: "Salah lirik nggak masalah yang penting kompak nyanyi di lampu merah.",
+            },
+          ],
+          loveReasons: [
+            "Kamu nggak pernah protes pas aku putar lagu yang sama tiga kali berturut-turut.",
+            "Suara kamu ikut nyanyi pelan di mobil selalu lebih bagus dari lagu aslinya.",
+            "Selalu tahu lagu apa yang pas buat nenangin aku pas lagi penat.",
+            "Nemenin keliling toko kaset walau kaki udah sama-sama pegal.",
+          ],
+          littleThings: [
+            {
+              label: "Lagu Pembuka Pagi",
+              detail: "Pop akustik pelan sebelum ngopi biar nggak kaget sama deadline.",
+            },
+            {
+              label: "Aturan Audio Mobil",
+              detail: "Yang duduk di sebelah wajib jadi DJ anti-ngantuk.",
+            },
+            {
+              label: "Koleksi Favorit",
+              detail: "Selalu simpen tiket konser sama struk kopi berdua di belakang casing HP.",
+            },
+            {
+              label: "Kebiasaan Pas Denger Musik",
+              detail: "Jari tangan ikut ketuk-ketuk meja mengikuti tempo drum.",
+            },
+          ],
+          coupons: [
+            {
+              title: "VIP Pass Nonton Live Music",
+              note: "Berlaku buat nonton konser atau panggung akustik akhir pekan berdua.",
+            },
+            {
+              title: "Kendali Penuh Playlist Seharian",
+              note: "Bebas muter lagu kesukaan kamu di speaker tanpa hak veto dariku.",
+            },
+            {
+              title: "Traktiran Ngopi di Toko Vinyl",
+              note: "Pulang jalan nanti aku traktir es kopi plus camilan bebas pilih.",
+            },
+          ],
+          closingLetter:
+            "Kalau suatu hari nanti kita denger lagu lama ini lagi di mana pun, semoga rasanya tetap hangat kayak sore pertama kita bagi earphone berdua.",
+          songDedication: {
+            title: "Perahu Kertas",
+            artist: "Maudy Ayunda",
+          },
+        },
+      };
+
+    case "bucin-magazine":
+      return {
+        slug: cleanedSlug,
+        templateId: "bucin-magazine",
+        title: "Edisi Khusus Fajar & Tiara",
+        seoDescription: "Majalah digital edisi anniversary berisi artikel perjalanan cinta, spread foto, dan kupon gunting.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:romance",
+        data: {
+          partnerOne: "Fajar",
+          partnerTwo: "Tiara",
+          anniversaryDate: "2024-02-14",
+          passcodePin: "",
+          heroHeadline: "Edisi Khusus: Dua Tahun Lebih Jalan Bareng Tiara",
+          openingNote:
+            "Arsip gaya majalah untuk merangkum cerita paling seru, fakta receh yang cuma kita berdua yang paham, serta rencana-rencana kecil ke depan.",
+          memories: [
+            {
+              imageUrl: "/demo/bucin-mag-1.webp",
+              caption: "Sampul edisi pagi setelah jalan kaki keliling galeri",
+              dateLabel: "Feb 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-mag-2.webp",
+              caption: "Sarapan weekend plus bunga kecil di atas meja",
+              dateLabel: "Jun 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-mag-3.webp",
+              caption: "Jalan pagi di taman kota mumpung masih sepi",
+              dateLabel: "Nov 2024",
+            },
+            {
+              imageUrl: "/demo/bucin-1.webp",
+              caption: "Obrolan panjang tiap akhir pekan tanpa lihat jam",
+              dateLabel: "Mar 2025",
+            },
+          ],
+          milestones: [
+            {
+              dateLabel: "Bab 01",
+              title: "Pertemuan Tanpa Rencana",
+              description: "Semua dimulai dari sapaan singkat yang nggak disangka berlanjut terus sampai sekarang.",
+            },
+            {
+              dateLabel: "Bab 02",
+              title: "Jalan Pagi & Kopi Pertama",
+              description: "Mulai rutin luangin akhir pekan cuma buat jalan santai dan tukar cerita.",
+            },
+            {
+              dateLabel: "Bab 03",
+              title: "Melangkah Lebih Tenang",
+              description: "Sudah makin nyaman jadi diri sendiri tanpa perlu jaim di depan satu sama lain.",
+            },
+          ],
+          loveReasons: [
+            "Kamu bikin hari paling melelahkan tetap kerasa layak ditutup dengan senyum.",
+            "Selalu punya ide kecil yang bikin akhir pekan sederhana berasa istimewa.",
+            "Jujur dan hangat bahkan saat menyampaikan hal yang lagi bikin bete.",
+            "Sabar menunggu aku milih menu sambil tetap bercanda.",
+          ],
+          littleThings: [
+            {
+              label: "Minuman Wajib",
+              detail: "Matcha hangat atau es kopi susu less ice sebelum mulai jalan.",
+            },
+            {
+              label: "Spot Favorit",
+              detail: "Taman rindang jam 7 pagi sebelum matahari terik.",
+            },
+            {
+              label: "Kebiasaan Unik",
+              detail: "Motret bayangan kita berdua di trotoar tiap kali lagi jalan sore.",
+            },
+            {
+              label: "Resolusi Berdua",
+              detail: "Bisa lebih sering jalan ke kota baru minimal sekali setahun.",
+            },
+          ],
+          coupons: [
+            {
+              title: "Kupon Weekend Staycation Mini",
+              note: "Bebas pilih tanggal dan tempat buat rehat sejenak dari rutinitas.",
+            },
+            {
+              title: "Kupon Traktiran Brunch Minggu",
+              note: "Menu utama dan dessert bebas kamu tentukan, aku yang pesan.",
+            },
+            {
+              title: "Kupon Jasa Foto Seharian",
+              note: "Siap jadi fotografer pribadi kamu sampai dapat angle terbaik.",
+            },
+          ],
+          closingLetter:
+            "Terima kasih sudah jadi partner terbaik sekaligus pembaca nomor satu di cerita hidupku. Edisi-edisi berikutnya masih bakal terus kita tulis berdua.",
+          songDedication: {
+            title: "Kasih Putih",
+            artist: "Glenn Fredly",
+          },
         },
       };
 

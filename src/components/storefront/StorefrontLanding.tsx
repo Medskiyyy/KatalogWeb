@@ -36,8 +36,18 @@ const CATEGORY_FILTERS: { value: CategoryFilter; label: string }[] = [
   { value: "UMKM", label: "Website UMKM" },
 ];
 
+const HERO_TEMPLATE_IDS: TemplateCatalogItem["id"][] = [
+  "bucin-scrapbook",
+  "ultah-interaktif",
+  "nikah-garden",
+  "umkm-katalog",
+];
+
 const HERO_TAB_LABELS: Record<TemplateCatalogItem["id"], string> = {
   "bucin-scrapbook": "Kado Pasangan",
+  "bucin-chat": "Arsip Chat",
+  "bucin-playlist": "Vinyl Mixtape",
+  "bucin-magazine": "Majalah Couple",
   "ultah-interaktif": "Kejutan Ultah",
   "nikah-garden": "Undangan Nikah",
   "umkm-katalog": "Website UMKM",
@@ -45,6 +55,9 @@ const HERO_TAB_LABELS: Record<TemplateCatalogItem["id"], string> = {
 
 const STAGE_TINTS: Record<TemplateCatalogItem["id"], string> = {
   "bucin-scrapbook": "#F7EEEE",
+  "bucin-chat": "#EAF4EE",
+  "bucin-playlist": "#F5ECEA",
+  "bucin-magazine": "#F4F2EE",
   "ultah-interaktif": "#FAF4DC",
   "nikah-garden": "#ECF3EE",
   "umkm-katalog": "#F4EFE9",
@@ -353,7 +366,10 @@ export function StorefrontLanding() {
               className="lg:col-span-7"
             >
               <div className="flex flex-wrap items-center gap-1 border-b border-[#E5E5E1]">
-                {BRAND.templates.map((item) => {
+                {HERO_TEMPLATE_IDS.map((heroId) => {
+                  const item =
+                    BRAND.templates.find((entry) => entry.id === heroId) ??
+                    BRAND.templates[0];
                   const isActive = item.id === activeTemplate.id;
                   return (
                     <button

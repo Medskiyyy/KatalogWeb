@@ -1,5 +1,8 @@
 export type TemplateId =
   | "bucin-scrapbook"
+  | "bucin-chat"
+  | "bucin-playlist"
+  | "bucin-magazine"
   | "ultah-interaktif"
   | "nikah-garden"
   | "umkm-katalog";
@@ -127,6 +130,94 @@ export const BRAND = {
         "Surat Penutup:",
         "Judul Lagu & Penyanyi:",
         "Foto (kirim 6 foto terbaik lewat chat/Drive):",
+      ].join("\n"),
+    },
+    {
+      id: "bucin-chat",
+      name: "Arsip Chat & Photobox Kita",
+      category: "Bucin",
+      demoSlug: "dimas-alya",
+      price: 29000,
+      priceLabel: "Rp29.000",
+      thumbnail: "/demo/bucin-chat-1.webp",
+      tagline:
+        "Putar ulang chat masa PDKT, gelembung rekaman suara, strip foto ala photobox, mini kuis tentang hubungan kalian, dan voucher traktiran.",
+      highlights: [
+        "Simulasi chat masa pendekatan & voice note interaktif",
+        "Strip 6 foto ala photobox mal + mini kuis tebak kebiasaan",
+        "Kupon traktiran yang bisa diklaim + pesan penutup spesial",
+      ],
+      buyerFormTemplate: [
+        "FORMAT ORDER - ARSIP CHAT & PHOTOBOX KITA",
+        "Pilihan Nama Link Web: (contoh: dimas-alya)",
+        "Nama Kamu & Pasangan:",
+        "Tanggal Jadian (YYYY-MM-DD):",
+        "PIN Kunci 4 Digit (opsional, kosongkan jika langsung buka):",
+        "Judul Utama & Pesan Pembuka:",
+        "3 Cuplikan Chat Lucu / Masa PDKT:",
+        "3 Pertanyaan Mini Kuis Tentang Kalian:",
+        "4 Kebiasaan Kecil Pasangan & 6 Alasan Sayang:",
+        "3 Kupon Kencan & Surat Penutup:",
+        "Judul Lagu & Penyanyi:",
+        "Foto (kirim 6 foto ala photobox lewat chat/Drive):",
+      ].join("\n"),
+    },
+    {
+      id: "bucin-playlist",
+      name: "Mixtape & Vinyl Lagu Kita",
+      category: "Bucin",
+      demoSlug: "rehan-salsa",
+      price: 29000,
+      priceLabel: "Rp29.000",
+      thumbnail: "/demo/bucin-vinyl-1.webp",
+      tagline:
+        "Pemutar piringan hitam berputar, daftar lagu kenangan berisi cerita di balik tiap momen, buklet 6 foto, dan tiket kencan siap klaim.",
+      highlights: [
+        "Piringan vinyl berputar + daftar lagu kenangan interaktif",
+        "Cerita di balik tiap momen & potongan kalimat favorit",
+        "Buklet 6 foto + tiket kencan ala konser musik yang bisa diklaim",
+      ],
+      buyerFormTemplate: [
+        "FORMAT ORDER - MIXTAPE & VINYL LAGU KITA",
+        "Pilihan Nama Link Web: (contoh: rehan-salsa)",
+        "Nama Kamu & Pasangan:",
+        "Tanggal Jadian (YYYY-MM-DD):",
+        "PIN Kunci 4 Digit (opsional, kosongkan jika langsung buka):",
+        "Judul Album / Mixtape & Catatan Sampul:",
+        "Judul Lagu Utama & Penyanyi:",
+        "4-6 Momen Tracklist Kenangan (tanggal, judul, cerita):",
+        "6 Alasan Sayang & 4 Kebiasaan Kecil:",
+        "3 Tiket Kencan / Kupon Hadiah & Catatan Penutup:",
+        "Foto (kirim 6 foto terbaik lewat chat/Drive):",
+      ].join("\n"),
+    },
+    {
+      id: "bucin-magazine",
+      name: "Majalah Edisi Anniversary",
+      category: "Bucin",
+      demoSlug: "fajar-tiara",
+      price: 29000,
+      priceLabel: "Rp29.000",
+      thumbnail: "/demo/bucin-mag-1.webp",
+      tagline:
+        "Tampilan majalah edisi khusus pasangan lengkap sampul potret editorial, artikel kronologi jadian, spread 6 foto, tombol kangen, dan kupon gunting.",
+      highlights: [
+        "Sampul depan majalah anniversary & artikel perjalanan cinta",
+        "Spread 6 foto editorial + fakta receh rubrik pasangan",
+        "Tombol kangen interaktif + kupon gunting & surat redaksi",
+      ],
+      buyerFormTemplate: [
+        "FORMAT ORDER - MAJALAH EDISI ANNIVERSARY",
+        "Pilihan Nama Link Web: (contoh: fajar-tiara)",
+        "Nama Kamu & Pasangan:",
+        "Tanggal Jadian (YYYY-MM-DD):",
+        "PIN Kunci 4 Digit (opsional, kosongkan jika langsung buka):",
+        "Judul Sampul Majalah & Kata Pengantar:",
+        "4 Bab Artikel Kronologi Hubungan:",
+        "6 Alasan Sayang & 4 Fakta Kebiasaan Pasangan:",
+        "3 Kupon Gunting & Surat Penutup:",
+        "Judul Lagu & Penyanyi:",
+        "Foto (kirim 6 foto potret/candid lewat chat/Drive):",
       ].join("\n"),
     },
     {

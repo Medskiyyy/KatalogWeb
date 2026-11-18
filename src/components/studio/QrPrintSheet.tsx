@@ -18,6 +18,12 @@ function getSiteThumbnail(site: SiteConfig): string {
   switch (site.templateId) {
     case "bucin-scrapbook":
       return site.data.memories[0]?.imageUrl || "/demo/bucin-1.webp";
+    case "bucin-chat":
+      return site.data.memories[0]?.imageUrl || "/demo/bucin-chat-1.webp";
+    case "bucin-playlist":
+      return site.data.memories[0]?.imageUrl || "/demo/bucin-vinyl-1.webp";
+    case "bucin-magazine":
+      return site.data.memories[0]?.imageUrl || "/demo/bucin-mag-1.webp";
     case "ultah-interaktif":
       return site.data.memories[0]?.imageUrl || "/demo/ultah-1.webp";
     case "nikah-garden":

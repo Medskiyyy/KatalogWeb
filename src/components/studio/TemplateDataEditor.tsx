@@ -349,6 +349,299 @@ function BucinEditor({
           ))}
         </div>
       </SectionCard>
+
+      <SectionCard
+        title={`Jejak Cerita / Timeline (${(data.milestones ?? []).length})`}
+        action={
+          <AddButton
+            label="Tambah Momen"
+            onClick={() =>
+              updateData({
+                milestones: [
+                  ...(data.milestones ?? []),
+                  {
+                    dateLabel: "2026",
+                    title: "Momen Baru Berdua",
+                    description: "Cerita singkat momen berkesan kalian.",
+                  },
+                ],
+              })
+            }
+          />
+        }
+      >
+        <div className="space-y-3">
+          {(data.milestones ?? []).map((item, index) => (
+            <div
+              key={index}
+              className="space-y-2.5 rounded-lg border border-zinc-200 bg-zinc-50/70 p-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-zinc-700">
+                  Momen #{index + 1}
+                </span>
+                <RemoveButton
+                  onClick={() =>
+                    updateData({
+                      milestones: (data.milestones ?? []).filter(
+                        (_, i) => i !== index
+                      ),
+                    })
+                  }
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+                <Field label="Tanggal / Label">
+                  <input
+                    type="text"
+                    value={item.dateLabel}
+                    onChange={(e) => {
+                      const next = [...(data.milestones ?? [])];
+                      next[index] = { ...item, dateLabel: e.target.value };
+                      updateData({ milestones: next });
+                    }}
+                    className={INPUT_CLASS}
+                  />
+                </Field>
+                <div className="sm:col-span-2">
+                  <Field label="Judul Momen">
+                    <input
+                      type="text"
+                      value={item.title}
+                      onChange={(e) => {
+                        const next = [...(data.milestones ?? [])];
+                        next[index] = { ...item, title: e.target.value };
+                        updateData({ milestones: next });
+                      }}
+                      className={INPUT_CLASS}
+                    />
+                  </Field>
+                </div>
+              </div>
+              <Field label="Cerita Singkat">
+                <textarea
+                  rows={2}
+                  value={item.description}
+                  onChange={(e) => {
+                    const next = [...(data.milestones ?? [])];
+                    next[index] = { ...item, description: e.target.value };
+                    updateData({ milestones: next });
+                  }}
+                  className={TEXTAREA_CLASS}
+                />
+              </Field>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard
+        title={`Hal-Hal Receh (${(data.littleThings ?? []).length})`}
+        action={
+          <AddButton
+            label="Tambah Kebiasaan"
+            onClick={() =>
+              updateData({
+                littleThings: [
+                  ...(data.littleThings ?? []),
+                  {
+                    label: "Kebiasaan Baru",
+                    detail: "Detail kecil yang selalu diingat.",
+                  },
+                ],
+              })
+            }
+          />
+        }
+      >
+        <div className="space-y-3">
+          {(data.littleThings ?? []).map((item, index) => (
+            <div
+              key={index}
+              className="space-y-2 rounded-lg border border-zinc-200 bg-zinc-50/70 p-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-zinc-700">
+                  Item #{index + 1}
+                </span>
+                <RemoveButton
+                  onClick={() =>
+                    updateData({
+                      littleThings: (data.littleThings ?? []).filter(
+                        (_, i) => i !== index
+                      ),
+                    })
+                  }
+                />
+              </div>
+              <Field label="Judul Kebiasaan">
+                <input
+                  type="text"
+                  value={item.label}
+                  onChange={(e) => {
+                    const next = [...(data.littleThings ?? [])];
+                    next[index] = { ...item, label: e.target.value };
+                    updateData({ littleThings: next });
+                  }}
+                  className={INPUT_CLASS}
+                />
+              </Field>
+              <Field label="Detail">
+                <input
+                  type="text"
+                  value={item.detail}
+                  onChange={(e) => {
+                    const next = [...(data.littleThings ?? [])];
+                    next[index] = { ...item, detail: e.target.value };
+                    updateData({ littleThings: next });
+                  }}
+                  className={INPUT_CLASS}
+                />
+              </Field>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      <SectionCard
+        title={`Kupon / Tiket Kencan (${(data.coupons ?? []).length})`}
+        action={
+          <AddButton
+            label="Tambah Kupon"
+            onClick={() =>
+              updateData({
+                coupons: [
+                  ...(data.coupons ?? []),
+                  {
+                    title: "Kupon Jalan Berdua",
+                    note: "Berlaku kapan saja saat lagi pengen jajan.",
+                  },
+                ],
+              })
+            }
+          />
+        }
+      >
+        <div className="space-y-3">
+          {(data.coupons ?? []).map((coupon, index) => (
+            <div
+              key={index}
+              className="space-y-2 rounded-lg border border-zinc-200 bg-zinc-50/70 p-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold text-zinc-700">
+                  Kupon #{index + 1}
+                </span>
+                <RemoveButton
+                  onClick={() =>
+                    updateData({
+                      coupons: (data.coupons ?? []).filter(
+                        (_, i) => i !== index
+                      ),
+                    })
+                  }
+                />
+              </div>
+              <Field label="Judul Kupon">
+                <input
+                  type="text"
+                  value={coupon.title}
+                  onChange={(e) => {
+                    const next = [...(data.coupons ?? [])];
+                    next[index] = { ...coupon, title: e.target.value };
+                    updateData({ coupons: next });
+                  }}
+                  className={INPUT_CLASS}
+                />
+              </Field>
+              <Field label="Keterangan">
+                <input
+                  type="text"
+                  value={coupon.note}
+                  onChange={(e) => {
+                    const next = [...(data.coupons ?? [])];
+                    next[index] = { ...coupon, note: e.target.value };
+                    updateData({ coupons: next });
+                  }}
+                  className={INPUT_CLASS}
+                />
+              </Field>
+            </div>
+          ))}
+        </div>
+      </SectionCard>
+
+      {site.templateId === "bucin-chat" && (
+        <SectionCard
+          title={`Mini Kuis Pasangan (${(data.quizQuestions ?? []).length})`}
+          action={
+            <AddButton
+              label="Tambah Pertanyaan"
+              onClick={() =>
+                updateData({
+                  quizQuestions: [
+                    ...(data.quizQuestions ?? []),
+                    {
+                      question: "Pertanyaan baru seputar kebiasaan kita?",
+                      options: ["Pilihan A", "Pilihan B", "Pilihan C"],
+                      correctIndex: 0,
+                      reaction: "Betul banget, hafal banget ya sama kebiasaan kita!",
+                    },
+                  ],
+                })
+              }
+            />
+          }
+        >
+          <div className="space-y-3">
+            {(data.quizQuestions ?? []).map((quiz, index) => (
+              <div
+                key={index}
+                className="space-y-2.5 rounded-lg border border-zinc-200 bg-zinc-50/70 p-3"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-zinc-700">
+                    Soal Kuis #{index + 1}
+                  </span>
+                  <RemoveButton
+                    onClick={() =>
+                      updateData({
+                        quizQuestions: (data.quizQuestions ?? []).filter(
+                          (_, i) => i !== index
+                        ),
+                      })
+                    }
+                  />
+                </div>
+                <Field label="Pertanyaan">
+                  <input
+                    type="text"
+                    value={quiz.question}
+                    onChange={(e) => {
+                      const next = [...(data.quizQuestions ?? [])];
+                      next[index] = { ...quiz, question: e.target.value };
+                      updateData({ quizQuestions: next });
+                    }}
+                    className={INPUT_CLASS}
+                  />
+                </Field>
+                <Field label="Reaksi Jawaban Benar">
+                  <input
+                    type="text"
+                    value={quiz.reaction}
+                    onChange={(e) => {
+                      const next = [...(data.quizQuestions ?? [])];
+                      next[index] = { ...quiz, reaction: e.target.value };
+                      updateData({ quizQuestions: next });
+                    }}
+                    className={INPUT_CLASS}
+                  />
+                </Field>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      )}
     </div>
   );
 }
@@ -1502,6 +1795,9 @@ export function TemplateDataEditor({
 }: TemplateDataEditorProps) {
   switch (site.templateId) {
     case "bucin-scrapbook":
+    case "bucin-chat":
+    case "bucin-playlist":
+    case "bucin-magazine":
       return (
         <BucinEditor
           site={site}

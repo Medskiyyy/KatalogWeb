@@ -1,0 +1,235 @@
+{
+  "slug": "dimas-alya",
+  "templateId": "bucin-chat",
+  "title": "Arsip Chat & Photobox Dimas & Alya",
+  "seoDescription": "Putar ulang chat awal PDKT dari salah kirim, strip 6 foto ala photobox, mini kuis pasangan, pesan berbintang, dan voucher traktiran buat Alya.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi Arsip Chat & Photobox Kado Bucin",
+  "musicTrack": "builtin:romance",
+  "data": {
+    "partnerOne": "Dimas",
+    "partnerTwo": "Alya",
+    "anniversaryDate": "2024-08-17",
+    "passcodePin": "",
+    "heroHeadline": "Dari Chat Salah Kirim Sampai Jadi Orang Paling Dicari",
+    "openingNote": "Buat pengingat kalau awalnya kita sama-sama jaim di chat, sebelum akhirnya tiap malam ngabisin baterai HP buat ngobrolin hal nggak penting dari pecel lele sampai kucing komplek.",
+    "memories": [
+      {
+        "imageUrl": "/demo/bucin-chat-1.webp",
+        "caption": "Photobox perdana yang hasilnya masih kaku banget karena bingung mau pose apa",
+        "dateLabel": "Sep 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-chat-2.webp",
+        "caption": "Jajan es krim pinggir jalan habis kehujanan nyari tempat berteduh",
+        "dateLabel": "Nov 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-chat-3.webp",
+        "caption": "Dua gelas wajib tiap nongkrong sore biar obrolan nggak putus",
+        "dateLabel": "Jan 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-1.webp",
+        "caption": "Ngopi sepulang kerja sambil bahas chat random seharian",
+        "dateLabel": "Mar 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-2.webp",
+        "caption": "Jalan santai sore-sore nunggu langit berubah oranye",
+        "dateLabel": "Jun 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-3.webp",
+        "caption": "Ketawa lepas gara-gara kamu lupa naruh kunci motor di tas sendiri",
+        "dateLabel": "Sep 2025"
+      }
+    ],
+    "milestones": [
+      {
+        "dateLabel": "17 Agu 2024",
+        "title": "Insiden Chat Salah Kirim",
+        "description": "Niatnya mau kirim daftar belanjaan ke grup kosan, eh malah masuk ke chat kamu dan berlanjut ngobrol sampai jam satu pagi."
+      },
+      {
+        "dateLabel": "14 Sep 2024",
+        "title": "Sesi Photobox Pertama",
+        "description": "Masuk bilik foto berdua sambil keringetan karena baru lari dari parkiran, empat pose pertama masih kelihatan gugup."
+      },
+      {
+        "dateLabel": "22 Des 2024",
+        "title": "Ngemil Pecel Lele Tengah Malam",
+        "description": "Debat dua puluh menit mau makan apa, ujung-ujungnya tetap melipir ke tenda pecel lele langganan deket stasiun."
+      },
+      {
+        "dateLabel": "17 Agu 2025",
+        "title": "Setahun Tanpa Kehabisan Topik",
+        "description": "Dari yang awalnya cuma balas singkat pakai stiker seadanya, sekarang HP bunyi dikit langsung nebak itu pasti kamu."
+      }
+    ],
+    "chatThreads": [
+      {
+        "topic": "Awal Modus",
+        "messages": [
+          {
+            "sender": "one",
+            "text": "Al, maaf banget barusan daftar titipan galon nyasar ke chat kamu haha.",
+            "time": "20.11"
+          },
+          {
+            "sender": "two",
+            "text": "Hahaha aman kok, aku kirain tadi kamu mau nitip beras sekalian ke aku.",
+            "time": "20.13"
+          },
+          {
+            "sender": "one",
+            "text": "Boleh sih kalau kamu sekalian lewat, tapi btw kamu udah makan malam belum?",
+            "time": "20.14"
+          },
+          {
+            "sender": "two",
+            "text": "Nah kan, ujung-ujungnya belok nanyain makan juga. Ketahuan banget modusnya.",
+            "time": "20.16"
+          },
+          {
+            "sender": "one",
+            "text": "Namanya juga usaha dari chat nyasar biar nggak berhenti di 'oh oke'.",
+            "time": "20.17"
+          }
+        ]
+      },
+      {
+        "topic": "Debat Makan",
+        "messages": [
+          {
+            "sender": "one",
+            "text": "Aku udah di depan gang ya. Malam ini mau makan di mana nih?",
+            "time": "18.42"
+          },
+          {
+            "sender": "two",
+            "text": "Terserah kamu aja, aku ngikut yang penting nggak terlalu pedes.",
+            "time": "18.43"
+          },
+          {
+            "sender": "one",
+            "text": "Pecel lele tenda biru yang sambelnya bisa dipisah mau?",
+            "time": "18.44"
+          },
+          {
+            "sender": "two",
+            "text": "Hmm jangan gorengan deh, lagi pengen yang berkuah hangat gitu.",
+            "time": "18.45"
+          },
+          {
+            "sender": "one",
+            "text": "Oke siap, mie ayam bakso pangsit deket taman ya, aku tahu kok kode 'terserah' kamu.",
+            "time": "18.46"
+          }
+        ]
+      },
+      {
+        "topic": "Tengah Malam",
+        "messages": [
+          {
+            "sender": "two",
+            "text": "Dim, belum tidur kan? Di luar lagi gerimis terus aku mendadak laper.",
+            "time": "23.38"
+          },
+          {
+            "sender": "one",
+            "text": "Belum, baru aja mau ngecas HP. Mau aku beliin martabak atau mi tektek lewat depan?",
+            "time": "23.39"
+          },
+          {
+            "sender": "two",
+            "text": "Eh nggak usah keluar dong, udah malem banget. Cuma pengen cerita aja tadi kucing oren tidur di keset.",
+            "time": "23.41"
+          },
+          {
+            "sender": "one",
+            "text": "Haha ya udah sini telepon bentar sebelum tidur, biar kamu nggak bengong sendirian.",
+            "time": "23.42"
+          }
+        ]
+      }
+    ],
+    "quizQuestions": [
+      {
+        "question": "Pesan pertama yang bikin kita mulai chat panjang berawal dari salah kirim apa?",
+        "options": [
+          "Link tugas kuliah",
+          "Daftar titipan galon kosan",
+          "Foto struk parkir"
+        ],
+        "correctIndex": 1,
+        "reaction": "Bener banget, gara-gara galon nyasar itu obrolan kita langsung nyambung sampai tengah malam."
+      },
+      {
+        "question": "Kalau kamu bilang 'terserah' pas ditanya mau makan malam apa, biasanya berakhir ke mana?",
+        "options": [
+          "Salad sayur dingin",
+          "Mie ayam kuah atau pecel lele",
+          "Roti tawar polos"
+        ],
+        "correctIndex": 1,
+        "reaction": "Akurat 100 persen. Kata 'terserah' versi kamu hampir selalu butuh kuah hangat atau sambal terpisah."
+      },
+      {
+        "question": "Apa kebiasaan wajib kamu tiap masuk kafe buat nongkrong bareng aku?",
+        "options": [
+          "Cari meja pojok deket colokan HP",
+          "Pesan air putih panas",
+          "Duduk di teras paling depan"
+        ],
+        "correctIndex": 0,
+        "reaction": "Hafal di luar kepala. Colokan HP aman berarti sesi ngobrol kita bisa tahan sampai kafe tutup."
+      }
+    ],
+    "littleThings": [
+      {
+        "label": "Stiker Andalan",
+        "detail": "Kucing melet tiap baru bangun tidur atau lagi malas ngetik panjang di HP."
+      },
+      {
+        "label": "Jam Rawan Laper",
+        "detail": "Lewat jam sepuluh malam mendadak kepikiran mi tektek atau kuah bakso."
+      },
+      {
+        "label": "Spot Wajib Kafe",
+        "detail": "Selalu milih bangku pojok yang ada colokannya biar baterai HP aman terus."
+      },
+      {
+        "label": "Topik Sebelum Tidur",
+        "detail": "Ngegosipin tingkah kucing komplek sampai rencana kuliner akhir pekan."
+      }
+    ],
+    "loveReasons": [
+      "Selalu balas chat cepat walau cuma kirim stiker random pas lagi sibuk.",
+      "Nggak pernah bosen diajak muter-muter nyari pecel lele yang masih buka malam-malam.",
+      "Ketawa kamu gampang banget bikin capek habis kerja langsung luntur.",
+      "Inget pesanan minum aku bahkan sebelum aku buka buku menu.",
+      "Suka tiba-tiba kirim foto langit sore atau jajanan pinggir jalan sambil bilang inget aku.",
+      "Bikin obrolan receh di chat berasa jadi bagian paling ditunggu tiap hari."
+    ],
+    "coupons": [
+      {
+        "title": "Kupon Bebas Debat Makan Malam",
+        "note": "Tinggal tunjuk mau pecel lele, mie kuah, atau apa aja hari ini, langsung meluncur tanpa protes."
+      },
+      {
+        "title": "Kupon Traktiran Kopi + Es Krim",
+        "note": "Kapan aja lagi penat sama kerjaan atau kuliah, tinggal klaim buat jajan berdua sore ini."
+      },
+      {
+        "title": "Kupon Sesi Photobox Ulang",
+        "note": "Berlaku buat 2 kali cetak strip photobox minggu ini, semua gaya dan properti kamu yang atur."
+      }
+    ],
+    "closingLetter": "Makasih ya udah betah diajak chat ngalor-ngidul tiap hari sejak insiden salah kirim itu, Alya.\n\nKalau nanti ada hari yang bikin kamu capek atau suasana lagi nggak enak, buka lagi halaman arsip kecil ini ya. Ingat kalau di balik layar HP kamu selalu ada aku yang siap dengerin cerita receh kamu sampai ketiduran.",
+    "songDedication": {
+      "title": "Monokrom",
+      "artist": "Tulus"
+    }
+  }
+}

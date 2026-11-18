@@ -1,0 +1,116 @@
+{
+  "slug": "fajar-tiara",
+  "templateId": "bucin-magazine",
+  "title": "Edisi Anniversary Fajar & Tiara",
+  "seoDescription": "Majalah digital edisi khusus anniversary Fajar dan Tiara berisi kronologi cerita, spread foto pilihan, catatan redaksi, dan kupon gunting.",
+  "createdAt": "2026-11-18",
+  "orderNote": "Demo resmi Bucin Magazine Editorial",
+  "musicTrack": "builtin:romance",
+  "data": {
+    "partnerOne": "Fajar",
+    "partnerTwo": "Tiara",
+    "anniversaryDate": "2024-09-14",
+    "passcodePin": "",
+    "heroHeadline": "Dua Kepala, Satu Meja Kopi Pagi, dan Cerita yang Nggak Pernah Habis",
+    "openingNote": "Dari janjian brunch weekend yang awalnya cuma buat ngobrol santai sampai sekarang galeri HP kita penuh foto berdua. Edisi kecil ini aku susun supaya momen paling biasa pun tetap terasa layak dirayakan.",
+    "memories": [
+      {
+        "imageUrl": "/demo/bucin-mag-1.webp",
+        "caption": "Brunch weekend pertama di sudut kedai yang cahayanya paling pas buat ngobrol lama",
+        "dateLabel": "September 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-mag-2.webp",
+        "caption": "Jalan kaki sore keliling galeri seni sambil nebak-nebak arti lukisan paling abstrak",
+        "dateLabel": "Desember 2024"
+      },
+      {
+        "imageUrl": "/demo/bucin-mag-3.webp",
+        "caption": "Dua gelas kopi pagi sebelum masing-masing sibuk ngejar jadwal hari kerja",
+        "dateLabel": "Maret 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-1.webp",
+        "caption": "Nunggu hujan reda di teras kafe langganan sambil berbagi satu playlist yang sama",
+        "dateLabel": "Juni 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-3.webp",
+        "caption": "Tawa paling lepas gara-gara rebutan potongan pastry terakhir di meja",
+        "dateLabel": "Agustus 2025"
+      },
+      {
+        "imageUrl": "/demo/bucin-6.webp",
+        "caption": "Langkah santai sore-sore tanpa tujuan pasti, asal jalannya masih bareng kamu",
+        "dateLabel": "November 2025"
+      }
+    ],
+    "milestones": [
+      {
+        "dateLabel": "14 September 2024",
+        "title": "Brunch Pertama di Akhir Pekan",
+        "description": "Niatnya cuma ketemu sejam buat makan siang, eh lanjut ngopi sampai sore karena obrolan nyambung terus."
+      },
+      {
+        "dateLabel": "21 Desember 2024",
+        "title": "Tur Galeri & Hujan Mendadak",
+        "description": "Pertama kali lari-larian neduh di emperan toko sambil ketawa gara-gara sepatu sama-sama basah."
+      },
+      {
+        "dateLabel": "08 April 2025",
+        "title": "Ritual Kopi Pagi Sebelum Kerja",
+        "description": "Mulai terbiasa kirim foto cangkir kopi tiap pagi cuma buat bilang semangat sebelum rapat dimulai."
+      },
+      {
+        "dateLabel": "14 September 2025",
+        "title": "Setahun Penuh di Galeri",
+        "description": "Album foto berdua makin penuh, inside joke makin banyak, dan cara kita saling nenangin makin kebaca."
+      }
+    ],
+    "littleThings": [
+      {
+        "label": "Order Kopi Wajib",
+        "detail": "Hot oat latte tanpa gula buat kamu, americano dingin buat aku. Selalu dipesan tanpa perlu nanya lagi."
+      },
+      {
+        "label": "Agenda Brunch Weekend",
+        "detail": "Selalu cari meja dekat jendela biar dapat cahaya pagi yang hangat dan tempat ngobrol yang tenang."
+      },
+      {
+        "label": "Aturan Galeri Foto",
+        "detail": "Minimal ada satu foto candid blur di setiap tempat baru yang kita datangi, nggak boleh dihapus."
+      },
+      {
+        "label": "Penyelamat Hari Sibuk",
+        "detail": "Voice note singkat dua menit di jam makan siang cuma buat cerita hal random di kantor."
+      }
+    ],
+    "loveReasons": [
+      "Kamu selalu tahu cara bikin obrolan ringan jadi tempat paling nyaman buat pulang.",
+      "Nggak pernah lupa nyisihin waktu buat kopi pagi bareng, sesibuk apa pun jadwal minggu itu.",
+      "Sabar banget nemenin aku muter-muter galeri dan baca semua deskripsi karya satu per satu.",
+      "Selalu jadi orang pertama yang sadar kalau nada suaraku di telepon lagi kedengeran capek.",
+      "Bisa bikin rencana brunch weekend dadakan terasa kayak liburan kecil yang paling ditunggu.",
+      "Sama kamu, diam bareng di satu ruangan tanpa ngomong apa-apa pun rasanya udah cukup."
+    ],
+    "coupons": [
+      {
+        "title": "Kupon Traktir Brunch Weekend",
+        "note": "Kamu bebas pilih tempat brunch mana pun Sabtu atau Minggu ini. Aku yang jemput, aku yang bayar."
+      },
+      {
+        "title": "Kupon Keliling Galeri Seharian",
+        "note": "Satu hari penuh bebas pilih pameran, museum, atau toko buku tanpa aku buru-buruin pulang."
+      },
+      {
+        "title": "Kupon Kopi Pagi Antar Langsung",
+        "note": "Berlaku kapan saja pas kamu lagi males keluar rumah. Kopi favoritmu langsung mendarat hangat."
+      }
+    ],
+    "closingLetter": "Selamat merayakan perjalanan kita sejauh ini, Tiara.\n\nKalau lihat lagi foto-foto di galeri dari brunch weekend pertama sampai kopi pagi kemarin, rasanya lucu melihat seberapa banyak hal kecil yang pelan-pelan jadi kebiasaan kita berdua. Bukan cuma soal momen besarnya, tapi soal bagaimana hari-hari biasa selalu terasa lebih ringan pas dijalani bareng kamu.\n\nTerima kasih sudah tetap sabar, hangat, dan jadi partner ngobrol terbaikku. Semoga masih banyak edisi berikutnya yang bisa kita tulis dan rayakan berdua.",
+    "songDedication": {
+      "title": "Janji Palsu",
+      "artist": "Hindia"
+    }
+  }
+}

@@ -54,6 +54,18 @@ const TEMPLATE_META: Record<
     label: "Bucin Scrapbook",
     badgeClass: "border-rose-200 bg-rose-50 text-rose-800",
   },
+  "bucin-chat": {
+    label: "Arsip Chat & Photobox",
+    badgeClass: "border-emerald-200 bg-emerald-50 text-emerald-800",
+  },
+  "bucin-playlist": {
+    label: "Mixtape & Vinyl",
+    badgeClass: "border-red-200 bg-red-50 text-red-800",
+  },
+  "bucin-magazine": {
+    label: "Majalah Anniversary",
+    badgeClass: "border-pink-200 bg-pink-50 text-pink-800",
+  },
   "ultah-interaktif": {
     label: "Ultah Interaktif",
     badgeClass: "border-amber-200 bg-amber-50 text-amber-800",
