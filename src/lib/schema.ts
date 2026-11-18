@@ -62,6 +62,31 @@ export const BucinDataSchema = z.object({
     title: z.string().min(1),
     artist: z.string().min(1),
   }),
+  milestones: z
+    .array(
+      z.object({
+        dateLabel: z.string().min(1),
+        title: z.string().min(1),
+        description: z.string().min(1),
+      })
+    )
+    .optional(),
+  littleThings: z
+    .array(
+      z.object({
+        label: z.string().min(1),
+        detail: z.string().min(1),
+      })
+    )
+    .optional(),
+  coupons: z
+    .array(
+      z.object({
+        title: z.string().min(1),
+        note: z.string().min(1),
+      })
+    )
+    .optional(),
 });
 
 export const UltahMemorySchema = z.object({
@@ -88,6 +113,14 @@ export const UltahDataSchema = z.object({
   }),
   memories: z.array(UltahMemorySchema).min(1),
   friendWishes: z.array(UltahWishSchema).min(1),
+  cakeImageUrl: z.string().optional(),
+  wishChecklist: z.array(z.string().min(1)).optional(),
+  playlistSong: z
+    .object({
+      title: z.string().min(1),
+      artist: z.string().min(1),
+    })
+    .optional(),
 });
 
 export const NikahPersonSchema = z.object({
@@ -135,6 +168,32 @@ export const NikahDataSchema = z.object({
     )
     .min(1),
   rsvpWhatsapp: z.string().min(6),
+  dresscode: z
+    .object({
+      note: z.string().min(1),
+      colors: z.array(
+        z.object({
+          label: z.string().min(1),
+          hex: z.string().min(1),
+        })
+      ),
+    })
+    .optional(),
+  giftAddress: z
+    .object({
+      recipient: z.string().min(1),
+      address: z.string().min(1),
+    })
+    .optional(),
+  initialPrayers: z
+    .array(
+      z.object({
+        name: z.string().min(1),
+        relation: z.string().min(1),
+        message: z.string().min(1),
+      })
+    )
+    .optional(),
 });
 
 export const UmkmProductSchema = z.object({
@@ -177,6 +236,30 @@ export const UmkmDataSchema = z.object({
       })
     )
     .min(1),
+  stats: z
+    .array(
+      z.object({
+        value: z.string().min(1),
+        label: z.string().min(1),
+      })
+    )
+    .optional(),
+  promoBanner: z
+    .object({
+      title: z.string().min(1),
+      description: z.string().min(1),
+      priceLabel: z.string().min(1),
+      productId: z.string().min(1),
+    })
+    .optional(),
+  faqs: z
+    .array(
+      z.object({
+        question: z.string().min(1),
+        answer: z.string().min(1),
+      })
+    )
+    .optional(),
 });
 
 export const SiteConfigSchema = z.discriminatedUnion("templateId", [
@@ -259,11 +342,17 @@ export function createDefaultSiteConfig(
               caption: "Foto dadakan di dalam studio kecil",
               dateLabel: "November 2024",
             },
+            {
+              imageUrl: "/demo/bucin-4.webp",
+              caption: "Makan malam santai merayakan hari biasa",
+              dateLabel: "Februari 2025",
+            },
           ],
           loveReasons: [
             "Selalu sabar mendengarkan ceritaku sepulang kerja.",
             "Tahu persis menu kopi favoritku tanpa perlu ditanya.",
             "Bisa bikin suasana canggung langsung cair lewat tawa kecil.",
+            "Selalu kasih kabar ringan yang bikin hariku jauh lebih tenang.",
           ],
           closingLetter:
             "Semoga halaman sederhana ini selalu mengingatkanmu bahwa di hari apa pun, kamu selalu punya tempat pulang yang hangat.",
@@ -271,6 +360,55 @@ export function createDefaultSiteConfig(
             title: "Bertaut",
             artist: "Nadin Amizah",
           },
+          milestones: [
+            {
+              dateLabel: "12 Mei 2024",
+              title: "Pertama Kali Jalan Berdua",
+              description: "Berawal dari janji ngopi sebentar yang berlanjut sampai malam.",
+            },
+            {
+              dateLabel: "18 Oktober 2024",
+              title: "Kejutan Ulang Tahun Pertama",
+              description: "Lilin kue kecil dan tawa di sudut kedai favorit.",
+            },
+            {
+              dateLabel: "12 Mei 2025",
+              title: "Genap Satu Tahun Bersama",
+              description: "Mulai terbiasa saling menjaga dan merayakan hal-hal kecil.",
+            },
+          ],
+          littleThings: [
+            {
+              label: "Pesanan Kopi Favorit",
+              detail: "Es kopi susu less sugar, wajib tanpa kayu manis.",
+            },
+            {
+              label: "Kebiasaan Lucu",
+              detail: "Selalu mengaduk sedotan dua kali sebelum minum.",
+            },
+            {
+              label: "Makanan Andalan",
+              detail: "Mie kuah hangat saat hujan turun sore hari.",
+            },
+            {
+              label: "Jam Paling Tenang",
+              detail: "Ngobrol santai jam sembilan malam sambil dengar lagu.",
+            },
+          ],
+          coupons: [
+            {
+              title: "Kupon Pilih Tempat Makan",
+              note: "Bebas pilih menu makan malam akhir pekan ini tanpa debat.",
+            },
+            {
+              title: "Kupon Jajan & Jalan Malam",
+              note: "Keliling kota malam minggu plus es krim favoritmu.",
+            },
+            {
+              title: "Kupon Nonton Film Pilihanmu",
+              note: "Bebas pilih judul film maraton di rumah sambil ngemil.",
+            },
+          ],
         },
       };
 
@@ -290,6 +428,7 @@ export function createDefaultSiteConfig(
           senderName: "Dimas & Geng Kampus",
           heroWish:
             "Semoga di usia baru ini semua rencana baikmu berjalan mulus, sehat terus, dan makin bahagia setiap harinya.",
+          cakeImageUrl: "/demo/ultah-cake-stage.webp",
           giftVoucher: {
             title: "Voucher Traktiran Dinner Bebas Pilih",
             description: "Berlaku untuk 1 kali makan malam berdua di tempat favoritmu akhir pekan ini.",
@@ -321,6 +460,16 @@ export function createDefaultSiteConfig(
               message: "Panjang umur dan lancar terus skripsinya. Jangan lupa traktiran mie ayam.",
             },
           ],
+          wishChecklist: [
+            "Sidang skripsi lancar tanpa revisi berulang",
+            "Kesehatan dan energi selalu terjaga sepanjang tahun",
+            "Liburan singkat bareng orang-orang tersayang",
+            "Karier atau magang impian segera terwujud",
+          ],
+          playlistSong: {
+            title: "Selamat Ulang Tahun",
+            artist: "Versi Akustik Kotak Musik",
+          },
         },
       };
 
@@ -401,6 +550,30 @@ export function createDefaultSiteConfig(
             },
           ],
           rsvpWhatsapp: "6281234567890",
+          dresscode: {
+            note: "Tamu undangan disarankan mengenakan busana bernuansa hijau sage, putih gading, atau cokelat tanah.",
+            colors: [
+              { label: "Hijau Sage", hex: "#6B8E78" },
+              { label: "Putih Gading", hex: "#F5F2EB" },
+              { label: "Cokelat Pasir", hex: "#B69B74" },
+            ],
+          },
+          giftAddress: {
+            recipient: "Nadia Putri Larasati (0812-3456-7890)",
+            address: "Jl. Kemang Pratama Raya No. 14, Rawalumbu, Bekasi 17116",
+          },
+          initialPrayers: [
+            {
+              name: "Budi Santoso",
+              relation: "Keluarga Besar",
+              message: "Semoga menjadi keluarga yang sakinah, mawaddah, warahmah sampai akhir hayat.",
+            },
+            {
+              name: "Rina Kartika",
+              relation: "Sahabat Kuliah",
+              message: "Selamat Reza dan Nadia! Akhirnya berlabuh di pelaminan juga, lancar sampai hari H.",
+            },
+          ],
         },
       };
 
@@ -496,6 +669,27 @@ export function createDefaultSiteConfig(
               quote: "Croissant-nya masih renyah waktu sampai rumah, harganya ramah di kantong.",
               author: "Bagas Pradipta",
               role: "Pelanggan Tetap",
+            },
+          ],
+          stats: [
+            { value: "1.200+", label: "Botol Terjual / Bulan" },
+            { value: "100%", label: "Gula Aren Organik" },
+            { value: "<45 Mnt", label: "Kirim Instan Bekasi" },
+          ],
+          promoBanner: {
+            title: "Paket Hantaran Rapat & Keluarga (4 Botol)",
+            description: "Bebas pilih kombinasi Kopi Susu Aren dan Matcha Oat, lengkap pita serta kartu ucapan.",
+            priceLabel: "Rp85.000",
+            productId: "paket-hampers",
+          },
+          faqs: [
+            {
+              question: "Berapa lama minuman botol tahan di kulkas?",
+              answer: "Simpan di suhu kulkas 4 derajat Celsius, minuman tetap segar hingga 3 hari.",
+            },
+            {
+              question: "Apakah melayani pesanan rapat kantor jumlah besar?",
+              answer: "Ya, pemesanan di atas 20 botol atau box roti bisa dikirim lewat WhatsApp H-1.",
             },
           ],
         },
