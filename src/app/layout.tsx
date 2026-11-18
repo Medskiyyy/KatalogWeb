@@ -54,6 +54,43 @@ export const metadata: Metadata = {
   description: BRAND.tagline,
 };
 
+const DEV_RECOVERY_SCRIPT = `(function () {
+  try {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (regs) {
+        if (regs && regs.length > 0) {
+          Promise.all(regs.map(function (reg) { return reg.unregister(); })).then(function () {
+            if (window.caches && caches.keys) {
+              caches.keys().then(function (keys) {
+                return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+              }).finally(function () {
+                if (!sessionStorage.getItem("kw_sw_cleared")) {
+                  sessionStorage.setItem("kw_sw_cleared", "1");
+                  window.location.reload();
+                }
+              });
+            } else if (!sessionStorage.getItem("kw_sw_cleared")) {
+              sessionStorage.setItem("kw_sw_cleared", "1");
+              window.location.reload();
+            }
+          });
+        }
+      });
+    }
+    window.addEventListener("error", function (event) {
+      var msg = (event && event.message) || "";
+      if (/module factory is not available|ChunkLoadError/i.test(msg)) {
+        if (!sessionStorage.getItem("kw_chunk_reloaded")) {
+          sessionStorage.setItem("kw_chunk_reloaded", "1");
+          fetch(window.location.href, { cache: "reload" }).finally(function () {
+            window.location.reload();
+          });
+        }
+      }
+    });
+  } catch (e) {}
+})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -64,6 +101,11 @@ export default function RootLayout({
       lang="id"
       className={`${onest.variable} ${archivo.variable} ${jakarta.variable} ${cormorant.variable} ${caveat.variable} ${jetbrainsMono.variable}`}
     >
+      {process.env.NODE_ENV !== "production" ? (
+        <head>
+          <script dangerouslySetInnerHTML={{ __html: DEV_RECOVERY_SCRIPT }} />
+        </head>
+      ) : null}
       <body className="min-h-[100dvh] antialiased">{children}</body>
     </html>
   );

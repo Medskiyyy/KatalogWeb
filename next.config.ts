@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === "production";
@@ -12,8 +13,24 @@ const nextConfig: NextConfig = isProd
     }
   : {
       allowedDevOrigins: ["localhost", "*.localhost"],
+      turbopack: {
+        root: path.resolve(process.cwd()),
+      },
       images: {
         unoptimized: true,
+      },
+      async headers() {
+        return [
+          {
+            source: "/_next/static/:path*",
+            headers: [
+              {
+                key: "Cache-Control",
+                value: "no-store, no-cache, must-revalidate",
+              },
+            ],
+          },
+        ];
       },
       async rewrites() {
         return {
