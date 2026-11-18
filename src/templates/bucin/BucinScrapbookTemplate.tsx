@@ -519,7 +519,11 @@ export function BucinScrapbookTemplate({
         >
           <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+              initial={
+                prefersReducedMotion || embedded
+                  ? false
+                  : { opacity: 1, y: 12 }
+              }
               animate={isUnlocked ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-7"
@@ -574,7 +578,9 @@ export function BucinScrapbookTemplate({
                       type="button"
                       onClick={() => openLightbox(1)}
                       initial={
-                        prefersReducedMotion ? false : { opacity: 0, rotate: -10, y: 20 }
+                        prefersReducedMotion || embedded
+                          ? false
+                          : { opacity: 1, rotate: -10, y: 14 }
                       }
                       animate={
                         isUnlocked
@@ -593,11 +599,13 @@ export function BucinScrapbookTemplate({
                         aria-hidden="true"
                         className="absolute -top-2.5 left-1/2 h-5 w-20 -translate-x-1/2 rotate-2 border border-rose-200/75 bg-[#FDF2F8]/95 shadow-2xs"
                       />
-                      <div className="aspect-[4/4.2] w-full overflow-hidden rounded-[2px] bg-zinc-100">
+                      <div className="relative aspect-[4/4.2] w-full overflow-hidden rounded-[2px] bg-zinc-100">
                         <img
                           src={secondaryMemory.imageUrl}
                           alt={secondaryMemory.caption}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          loading="eager"
+                          decoding="async"
+                          className="absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                       </div>
                       <p className="font-handwriting mt-2.5 truncate px-1 text-lg text-[#18181B]">
@@ -610,7 +618,9 @@ export function BucinScrapbookTemplate({
                     type="button"
                     onClick={() => openLightbox(0)}
                     initial={
-                      prefersReducedMotion ? false : { opacity: 0, rotate: 6, y: 24 }
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { opacity: 1, rotate: 6, y: 16 }
                     }
                     animate={
                       isUnlocked
@@ -632,11 +642,13 @@ export function BucinScrapbookTemplate({
                       aria-hidden="true"
                       className="absolute -top-3 left-1/2 h-6 w-24 -translate-x-1/2 -rotate-2 border border-amber-200/80 bg-amber-100/85 shadow-2xs"
                     />
-                    <div className="aspect-[4/4.6] w-full overflow-hidden rounded-[2px] bg-zinc-100">
+                    <div className="relative aspect-[4/4.6] w-full overflow-hidden rounded-[2px] bg-zinc-100">
                       <img
                         src={primaryMemory.imageUrl}
                         alt={primaryMemory.caption}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="eager"
+                        decoding="async"
+                        className="absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     </div>
                     <p className="font-handwriting mt-3.5 text-2xl leading-snug text-[#18181B]">
@@ -672,7 +684,11 @@ export function BucinScrapbookTemplate({
                 {milestones.map((item, idx) => (
                   <motion.li
                     key={`${item.dateLabel}-${idx}`}
-                    initial={prefersReducedMotion ? false : { opacity: 0, x: -16 }}
+                    initial={
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { opacity: 1, x: -12 }
+                    }
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: "some" }}
                     transition={
@@ -736,7 +752,11 @@ export function BucinScrapbookTemplate({
                     key={`${memory.imageUrl}-${index}`}
                     type="button"
                     onClick={() => openLightbox(index)}
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                    initial={
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { opacity: 1, y: 14 }
+                    }
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: "some" }}
                     whileHover={
@@ -767,11 +787,13 @@ export function BucinScrapbookTemplate({
                       )}
                     />
 
-                    <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-zinc-100">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-zinc-100">
                       <img
                         src={memory.imageUrl}
                         alt={memory.caption}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                        loading="eager"
+                        decoding="async"
+                        className="absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     </div>
 
@@ -820,7 +842,11 @@ export function BucinScrapbookTemplate({
                   return (
                     <motion.article
                       key={`${item.label}-${idx}`}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+                      initial={
+                        prefersReducedMotion || embedded
+                          ? false
+                          : { opacity: 1, y: 12 }
+                      }
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: "some" }}
                       whileHover={
@@ -996,7 +1022,11 @@ export function BucinScrapbookTemplate({
                       key={`${coupon.title}-${idx}`}
                       type="button"
                       onClick={() => toggleCouponClaim(idx)}
-                      initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+                      initial={
+                        prefersReducedMotion || embedded
+                          ? false
+                          : { opacity: 1, y: 12 }
+                      }
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: "some" }}
                       whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
@@ -1118,7 +1148,11 @@ export function BucinScrapbookTemplate({
 
             {/* Lined-Paper Closing Letter */}
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+              initial={
+                prefersReducedMotion || embedded
+                  ? false
+                  : { opacity: 1, y: 12 }
+              }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: "some" }}
               transition={{ duration: 0.5 }}

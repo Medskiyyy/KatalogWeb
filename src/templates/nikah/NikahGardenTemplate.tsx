@@ -45,14 +45,6 @@ interface PrayerEntry {
 
 const LUXURY_EASE = [0.22, 1, 0.36, 1] as const;
 const VIEWPORT_ONCE = { once: true, amount: "some" } as const;
-const GALLERY_ASPECTS = [
-  "aspect-[4/5]",
-  "aspect-[4/3]",
-  "aspect-[3/4]",
-  "aspect-[4/5]",
-  "aspect-[4/3]",
-  "aspect-[3/4]",
-] as const;
 
 function getInitial(name: string): string {
   const trimmed = name.trim();
@@ -441,7 +433,8 @@ export function NikahGardenTemplate({
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
-  const fadeUpInitial = prefersReducedMotion ? false : { opacity: 0, y: 22 };
+  const fadeUpInitial =
+    prefersReducedMotion || embedded ? false : { opacity: 1, y: 14 };
   const fadeUpTarget = { opacity: 1, y: 0 };
 
   return (
@@ -616,15 +609,21 @@ export function NikahGardenTemplate({
 
             <div className="lg:col-span-5">
               <div className="overflow-hidden rounded-2xl border border-[#132A20]/10 bg-[#F2F6F3] p-2.5">
-                <div className="aspect-[4/5] overflow-hidden rounded-xl">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
                   <motion.img
                     src={coverImage}
                     alt={`Potret pasangan ${data.groom.fullName} dan ${data.bride.fullName}`}
-                    initial={prefersReducedMotion ? false : { scale: 1.05, opacity: 0.9 }}
+                    loading="eager"
+                    decoding="async"
+                    initial={
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { scale: 1.03, opacity: 1 }
+                    }
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={VIEWPORT_ONCE}
                     transition={{ duration: 0.9, ease: LUXURY_EASE }}
-                    className="h-full w-full object-cover"
+                    className="absolute inset-0 block h-full w-full object-cover"
                   />
                 </div>
               </div>
@@ -661,11 +660,13 @@ export function NikahGardenTemplate({
                 transition={{ duration: 0.65, delay: 0.08, ease: LUXURY_EASE }}
                 className="rounded-2xl border border-[#132A20]/10 bg-white p-6 sm:p-8"
               >
-                <div className="aspect-[3/4] overflow-hidden rounded-xl bg-[#F2F6F3]">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-[#F2F6F3]">
                   <img
                     src={data.groom.photoUrl}
                     alt={`Potret mempelai pria ${data.groom.fullName}`}
-                    className="h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    className="absolute inset-0 block h-full w-full object-cover"
                   />
                 </div>
                 <div className="mt-6 text-center">
@@ -691,11 +692,13 @@ export function NikahGardenTemplate({
                 transition={{ duration: 0.65, delay: 0.16, ease: LUXURY_EASE }}
                 className="rounded-2xl border border-[#132A20]/10 bg-white p-6 sm:p-8"
               >
-                <div className="aspect-[3/4] overflow-hidden rounded-xl bg-[#F2F6F3]">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-[#F2F6F3]">
                   <img
                     src={data.bride.photoUrl}
                     alt={`Potret mempelai wanita ${data.bride.fullName}`}
-                    className="h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    className="absolute inset-0 block h-full w-full object-cover"
                   />
                 </div>
                 <div className="mt-6 text-center">
@@ -985,7 +988,11 @@ export function NikahGardenTemplate({
                 {data.storyTimeline.map((item, idx) => (
                   <motion.li
                     key={`${item.year}-${item.title}`}
-                    initial={prefersReducedMotion ? false : { opacity: 0, x: -16 }}
+                    initial={
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { opacity: 1, x: -12 }
+                    }
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={VIEWPORT_ONCE}
                     transition={{
@@ -1035,40 +1042,38 @@ export function NikahGardenTemplate({
               </h2>
             </motion.div>
 
-            <div className="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3">
-              {data.gallery.map((photoUrl, index) => {
-                const aspectClass =
-                  GALLERY_ASPECTS[index % GALLERY_ASPECTS.length];
-                return (
-                  <motion.figure
-                    key={`${photoUrl}-${index}`}
-                    initial={fadeUpInitial}
-                    whileInView={fadeUpTarget}
-                    viewport={VIEWPORT_ONCE}
-                    transition={{
-                      duration: 0.55,
-                      delay: (index % 3) * 0.08,
-                      ease: LUXURY_EASE,
-                    }}
-                    className="mb-5 break-inside-avoid overflow-hidden rounded-2xl border border-[#132A20]/10 bg-[#F2F6F3] p-2"
+            <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {data.gallery.map((photoUrl, index) => (
+                <motion.figure
+                  key={`${photoUrl}-${index}`}
+                  initial={fadeUpInitial}
+                  whileInView={fadeUpTarget}
+                  viewport={VIEWPORT_ONCE}
+                  transition={{
+                    duration: 0.55,
+                    delay: (index % 3) * 0.08,
+                    ease: LUXURY_EASE,
+                  }}
+                  className="overflow-hidden rounded-2xl border border-[#132A20]/10 bg-[#F2F6F3] p-2"
+                >
+                  <button
+                    type="button"
+                    onClick={() => openLightbox(index)}
+                    aria-label={`Lihat foto prewedding ${index + 1}`}
+                    className="group block w-full cursor-pointer overflow-hidden rounded-xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#132A20]"
                   >
-                    <button
-                      type="button"
-                      onClick={() => openLightbox(index)}
-                      aria-label={`Lihat foto prewedding ${index + 1}`}
-                      className="group block w-full cursor-pointer overflow-hidden rounded-xl text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#132A20]"
-                    >
-                      <div className={cn(aspectClass, "overflow-hidden rounded-xl")}>
-                        <img
-                          src={photoUrl}
-                          alt={`Momen prewedding ${data.groom.nickname} dan ${data.bride.nickname} foto ${index + 1}`}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                    </button>
-                  </motion.figure>
-                );
-              })}
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl">
+                      <img
+                        src={photoUrl}
+                        alt={`Momen prewedding ${data.groom.nickname} dan ${data.bride.nickname} foto ${index + 1}`}
+                        loading="eager"
+                        decoding="async"
+                        className="absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  </button>
+                </motion.figure>
+              ))}
             </div>
           </div>
         </section>

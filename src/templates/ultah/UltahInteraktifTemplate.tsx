@@ -498,7 +498,9 @@ export function UltahInteraktifTemplate({
                     <img
                       src={cakeImageSrc}
                       alt={`Kue ulang tahun ke-${data.turningAge} untuk ${data.celebrantName}`}
-                      className="h-full w-full object-cover"
+                      loading="eager"
+                      decoding="async"
+                      className="absolute inset-0 block h-full w-full object-cover"
                     />
 
                     {/* 5 Natural Glowing Animated Flames aligned over the 5 candle wicks */}
@@ -507,7 +509,7 @@ export function UltahInteraktifTemplate({
                         key={leftPct}
                         style={{ left: `${leftPct}%`, top: "7.5%" }}
                         aria-hidden="true"
-                        className="pointer-events-none absolute flex h-[7.2%] w-[4.4%] -translate-x-1/2 items-end justify-center"
+                        className="pointer-events-none absolute z-10 flex h-[7.2%] w-[4.4%] -translate-x-1/2 items-end justify-center"
                       >
                         {!candlesBlown ? (
                           <div className="relative flex h-full w-full items-end justify-center">
@@ -699,9 +701,9 @@ export function UltahInteraktifTemplate({
               <motion.div
                 key={stat.label}
                 initial={
-                  prefersReducedMotion
-                    ? { opacity: 1 }
-                    : { opacity: 0, y: 18, scale: 0.96 }
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 12, scale: 0.98 }
                 }
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, amount: "some" }}
@@ -937,7 +939,9 @@ export function UltahInteraktifTemplate({
                     <img
                       src={memory.imageUrl}
                       alt={memory.caption}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      loading="eager"
+                      decoding="async"
+                      className="absolute inset-0 block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                   </button>
                   <figcaption className="flex items-start gap-3 border-t-2 border-[#121212] bg-[#FFFDF7] px-4 py-3.5 text-sm font-semibold leading-snug text-[#121212]">
@@ -1035,9 +1039,9 @@ export function UltahInteraktifTemplate({
                 <motion.article
                   key={`${wish.from}-${index}`}
                   initial={
-                    prefersReducedMotion
-                      ? { opacity: 1 }
-                      : { opacity: 0, y: 18 }
+                    prefersReducedMotion || embedded
+                      ? false
+                      : { opacity: 1, y: 12 }
                   }
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: "some" }}

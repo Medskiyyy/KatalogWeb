@@ -297,7 +297,9 @@ export function UmkmKatalogTemplate({
             <div className="lg:col-span-6">
               <motion.div
                 initial={
-                  prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 10 }
                 }
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -322,7 +324,9 @@ export function UmkmKatalogTemplate({
 
               <motion.h1
                 initial={
-                  prefersReducedMotion ? false : { opacity: 0, y: 14 }
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 12 }
                 }
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -337,7 +341,9 @@ export function UmkmKatalogTemplate({
 
               <motion.p
                 initial={
-                  prefersReducedMotion ? false : { opacity: 0, y: 14 }
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 12 }
                 }
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -352,7 +358,9 @@ export function UmkmKatalogTemplate({
 
               <motion.div
                 initial={
-                  prefersReducedMotion ? false : { opacity: 0, y: 14 }
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 12 }
                 }
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -386,7 +394,9 @@ export function UmkmKatalogTemplate({
 
               <motion.div
                 initial={
-                  prefersReducedMotion ? false : { opacity: 0, y: 10 }
+                  prefersReducedMotion || embedded
+                    ? false
+                    : { opacity: 1, y: 10 }
                 }
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -405,7 +415,9 @@ export function UmkmKatalogTemplate({
 
             <motion.div
               initial={
-                prefersReducedMotion ? false : { opacity: 0, scale: 0.98 }
+                prefersReducedMotion || embedded
+                  ? false
+                  : { opacity: 1, scale: 0.98 }
               }
               animate={{ opacity: 1, scale: 1 }}
               transition={{
@@ -415,11 +427,13 @@ export function UmkmKatalogTemplate({
               }}
               className="lg:col-span-6"
             >
-              <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#E7E5E4] bg-[#F5F5F4]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#E7E5E4] bg-[#F5F5F4]">
                 <img
                   src={data.heroImageUrl}
                   alt={`${data.businessName} - ${data.categoryLabel}`}
-                  className="h-full w-full object-cover"
+                  loading="eager"
+                  decoding="async"
+                  className="absolute inset-0 block h-full w-full object-cover"
                 />
               </div>
             </motion.div>
@@ -427,7 +441,11 @@ export function UmkmKatalogTemplate({
 
           {stats.length > 0 && (
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+              initial={
+                prefersReducedMotion || embedded
+                  ? false
+                  : { opacity: 1, y: 12 }
+              }
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: prefersReducedMotion ? 0 : 0.45,
@@ -461,7 +479,11 @@ export function UmkmKatalogTemplate({
             className="scroll-mt-16 bg-[#18181B] py-14 text-white sm:py-16"
           >
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+              initial={
+                prefersReducedMotion || embedded
+                  ? false
+                  : { opacity: 1, y: 12 }
+              }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: "some" }}
               transition={{
@@ -471,11 +493,13 @@ export function UmkmKatalogTemplate({
               className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12"
             >
               <div className="lg:col-span-5">
-                <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#27272A] bg-[#27272A]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-[#27272A] bg-[#27272A]">
                   <img
                     src={promoProduct?.imageUrl ?? "/demo/umkm-hampers.webp"}
                     alt={data.promoBanner.title}
-                    className="h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    className="absolute inset-0 block h-full w-full object-cover"
                   />
                 </div>
               </div>
@@ -645,7 +669,9 @@ export function UmkmKatalogTemplate({
                     <motion.article
                       key={product.id}
                       initial={
-                        prefersReducedMotion ? false : { opacity: 0, y: 12 }
+                        prefersReducedMotion || embedded
+                          ? false
+                          : { opacity: 1, y: 10 }
                       }
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
@@ -661,12 +687,14 @@ export function UmkmKatalogTemplate({
                         type="button"
                         onClick={() => setSelectedProduct(product)}
                         aria-label={`Lihat detail ${product.name}`}
-                        className="group aspect-square w-full overflow-hidden bg-[#F5F5F4] text-left"
+                        className="group relative block aspect-square w-full overflow-hidden bg-[#F5F5F4] text-left"
                       >
                         <img
                           src={product.imageUrl}
                           alt={product.name}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                          loading="eager"
+                          decoding="async"
+                          className="absolute inset-0 block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
                         />
                       </button>
 
@@ -766,7 +794,9 @@ export function UmkmKatalogTemplate({
               {primaryHighlight && (
                 <motion.div
                   initial={
-                    prefersReducedMotion ? false : { opacity: 0, y: 16 }
+                    prefersReducedMotion || embedded
+                      ? false
+                      : { opacity: 1, y: 12 }
                   }
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: "some" }}
@@ -795,7 +825,9 @@ export function UmkmKatalogTemplate({
                   <motion.div
                     key={item.title}
                     initial={
-                      prefersReducedMotion ? false : { opacity: 0, y: 16 }
+                      prefersReducedMotion || embedded
+                        ? false
+                        : { opacity: 1, y: 12 }
                     }
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: "some" }}
@@ -1123,11 +1155,13 @@ export function UmkmKatalogTemplate({
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-12">
-                <div className="aspect-square bg-[#F5F5F4] md:col-span-6">
+                <div className="relative aspect-square bg-[#F5F5F4] md:col-span-6">
                   <img
                     src={selectedProduct.imageUrl}
                     alt={selectedProduct.name}
-                    className="h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    className="absolute inset-0 block h-full w-full object-cover"
                   />
                 </div>
 

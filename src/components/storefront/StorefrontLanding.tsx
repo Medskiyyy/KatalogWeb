@@ -138,6 +138,13 @@ export function StorefrontLanding() {
     };
   }, []);
 
+  useEffect(() => {
+    BRAND.templates.forEach((template) => {
+      const img = new window.Image();
+      img.src = template.thumbnail;
+    });
+  }, []);
+
   async function handleCopyBuyerForm(item: TemplateCatalogItem) {
     try {
       await navigator.clipboard.writeText(item.buyerFormTemplate);
@@ -280,7 +287,7 @@ export function StorefrontLanding() {
         <section className="flex min-h-[100dvh] items-center border-b border-[#E5E5E1] bg-white pt-16 pb-14 lg:pt-20">
           <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+              initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE_OUT }}
               className="lg:col-span-5"
@@ -340,7 +347,7 @@ export function StorefrontLanding() {
             </motion.div>
 
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+              initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.08, ease: EASE_OUT }}
               className="lg:col-span-7"
@@ -408,11 +415,13 @@ export function StorefrontLanding() {
                       </span>
                     </div>
 
-                    <div className="aspect-[16/10] w-full overflow-hidden bg-zinc-100">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-100">
                       <img
                         src={activeTemplate.thumbnail}
                         alt={activeTemplate.name}
-                        className="h-full w-full object-cover"
+                        loading="eager"
+                        decoding="async"
+                        className="absolute inset-0 block h-full w-full object-cover"
                       />
                     </div>
                   </motion.div>
@@ -493,7 +502,7 @@ export function StorefrontLanding() {
                 return (
                   <motion.article
                     key={item.id}
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                    initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: "some" }}
                     transition={{ duration: 0.45, ease: EASE_OUT }}
@@ -520,11 +529,13 @@ export function StorefrontLanding() {
                             </span>
                             <span className="w-8" aria-hidden="true" />
                           </div>
-                          <div className="aspect-video w-full overflow-hidden bg-zinc-100">
+                          <div className="relative aspect-video w-full overflow-hidden bg-zinc-100">
                             <img
                               src={item.thumbnail}
                               alt={`Pratinjau ${item.name}`}
-                              className="h-full w-full object-cover"
+                              loading="eager"
+                              decoding="async"
+                              className="absolute inset-0 block h-full w-full object-cover"
                             />
                           </div>
                         </div>
@@ -621,18 +632,20 @@ export function StorefrontLanding() {
         <section id="cara-pesan" className="border-b border-[#E5E5E1] bg-[#F6F6F4] py-20">
           <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
             <motion.div
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
+              initial={prefersReducedMotion ? false : { opacity: 1, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: "some" }}
               transition={{ duration: 0.45, ease: EASE_OUT }}
               className="lg:col-span-5"
             >
               <div className="mx-auto max-w-sm -rotate-1 rounded-sm border border-[#E5E5E1] bg-white p-4 pb-5 shadow-[0_18px_40px_-18px_rgba(18,18,18,0.16)] transition-transform duration-300 hover:rotate-0">
-                <div className="aspect-[4/3] w-full overflow-hidden bg-zinc-100">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-zinc-100">
                   <img
                     src="/demo/bucin-1.webp"
                     alt="Contoh kartu Polaroid QR kado pasangan"
-                    className="h-full w-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    className="absolute inset-0 block h-full w-full object-cover"
                   />
                 </div>
 
