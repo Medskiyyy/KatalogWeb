@@ -12,7 +12,14 @@ const nextConfig: NextConfig = isProd
       },
     }
   : {
-      allowedDevOrigins: ["localhost", "*.localhost"],
+      allowedDevOrigins: [
+        "localhost",
+        "*.localhost",
+        "127.0.0.1",
+        "100.127.235.48",
+        "medpc",
+        "*.ts.net",
+      ],
       turbopack: {
         root: path.resolve(process.cwd()),
       },
