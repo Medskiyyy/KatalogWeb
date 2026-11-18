@@ -50,7 +50,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: `${BRAND.name} - Jasa Website Subdomain Murah untuk Kado, Undangan & UMKM`,
+  title: `${BRAND.name} - Jasa Website Kado, Undangan & UMKM Siap Pakai`,
   description: BRAND.tagline,
 };
 

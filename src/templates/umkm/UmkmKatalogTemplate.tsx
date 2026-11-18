@@ -463,7 +463,7 @@ export function UmkmKatalogTemplate({
             <motion.div
               initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: "some" }}
               transition={{
                 duration: prefersReducedMotion ? 0 : 0.45,
                 ease: EASE_OUT,
@@ -769,7 +769,7 @@ export function UmkmKatalogTemplate({
                     prefersReducedMotion ? false : { opacity: 0, y: 16 }
                   }
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: "some" }}
                   transition={{
                     duration: prefersReducedMotion ? 0 : 0.4,
                     ease: EASE_OUT,
@@ -798,7 +798,7 @@ export function UmkmKatalogTemplate({
                       prefersReducedMotion ? false : { opacity: 0, y: 16 }
                     }
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: true, amount: "some" }}
                     transition={{
                       duration: prefersReducedMotion ? 0 : 0.4,
                       delay: prefersReducedMotion ? 0 : (idx + 1) * 0.08,

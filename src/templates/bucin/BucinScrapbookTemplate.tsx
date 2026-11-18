@@ -674,7 +674,7 @@ export function BucinScrapbookTemplate({
                     key={`${item.dateLabel}-${idx}`}
                     initial={prefersReducedMotion ? false : { opacity: 0, x: -16 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                    viewport={{ once: true, amount: "some" }}
                     transition={
                       prefersReducedMotion
                         ? { duration: 0.1 }
@@ -738,7 +738,7 @@ export function BucinScrapbookTemplate({
                     onClick={() => openLightbox(index)}
                     initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.15 }}
+                    viewport={{ once: true, amount: "some" }}
                     whileHover={
                       prefersReducedMotion
                         ? undefined
@@ -822,7 +822,7 @@ export function BucinScrapbookTemplate({
                       key={`${item.label}-${idx}`}
                       initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.2 }}
+                      viewport={{ once: true, amount: "some" }}
                       whileHover={
                         prefersReducedMotion
                           ? undefined
@@ -998,7 +998,7 @@ export function BucinScrapbookTemplate({
                       onClick={() => toggleCouponClaim(idx)}
                       initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.2 }}
+                      viewport={{ once: true, amount: "some" }}
                       whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
                       transition={
                         prefersReducedMotion
@@ -1120,7 +1120,7 @@ export function BucinScrapbookTemplate({
             <motion.div
               initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true, amount: "some" }}
               transition={{ duration: 0.5 }}
               className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-[#FFFDF9] p-7 shadow-[0_14px_38px_rgba(24,24,27,0.06)] sm:p-10"
             >

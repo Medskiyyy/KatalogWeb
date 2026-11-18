@@ -40,7 +40,7 @@ function collectDemoPaths(value: unknown, out: Set<string>): void {
 }
 
 describe("Anti-slop & asset integrity checks", () => {
-  it("contains zero em-dashes, zero en-dashes, zero animate-ping, and zero lucide-react imports across src and content", async () => {
+  it("enforces zero em/en dashes, zero animate-ping, zero lucide-react, and zero Gemini Sparkle icons/glyphs across src and content", async () => {
     const srcFiles = await walkFiles(
       path.join(ROOT_DIR, "src"),
       new Set([".ts", ".tsx", ".css"])
@@ -63,7 +63,29 @@ describe("Anti-slop & asset integrity checks", () => {
       expect(content, `${rel} imports lucide-react`).not.toContain(
         "lucide-react"
       );
+      expect(content, `${rel} uses Sparkle icon`).not.toMatch(/\bSparkles?\b/);
+      expect(content, `${rel} uses 4-point star glyph`).not.toMatch(
+        /[\u2726\u2727\u2728]/
+      );
     }
+  });
+
+  it("keeps StorefrontLanding free of technical subdomain jargon and generic SaaS blue", async () => {
+    const landingPath = path.join(
+      ROOT_DIR,
+      "src",
+      "components",
+      "storefront",
+      "StorefrontLanding.tsx"
+    );
+    const content = await fs.readFile(landingPath, "utf-8");
+
+    expect(content, "StorefrontLanding mentions subdomain word").not.toMatch(
+      /\bsubdomain\b/i
+    );
+    expect(content, "StorefrontLanding uses generic SaaS blue").not.toMatch(
+      /#1d4ed8|#eff6ff|\bblue-/i
+    );
   });
 
   it("ensures all referenced /demo/ images exist on disk under public/", async () => {
@@ -79,7 +101,7 @@ describe("Anti-slop & asset integrity checks", () => {
       }
     }
 
-    expect(referenced.size).toBeGreaterThanOrEqual(15);
+    expect(referenced.size).toBeGreaterThanOrEqual(25);
 
     for (const assetUrl of referenced) {
       const diskPath = path.join(ROOT_DIR, "public", assetUrl.replace(/^\//, ""));

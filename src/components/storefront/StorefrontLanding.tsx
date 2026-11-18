@@ -495,7 +495,7 @@ export function StorefrontLanding() {
                     key={item.id}
                     initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.15 }}
+                    viewport={{ once: true, amount: "some" }}
                     transition={{ duration: 0.45, ease: EASE_OUT }}
                     className="group grid grid-cols-1 items-center gap-8 md:grid-cols-[1.15fr_1fr] md:gap-14"
                   >
@@ -623,7 +623,7 @@ export function StorefrontLanding() {
             <motion.div
               initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: "some" }}
               transition={{ duration: 0.45, ease: EASE_OUT }}
               className="lg:col-span-5"
             >

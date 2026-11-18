@@ -44,7 +44,7 @@ interface PrayerEntry {
 }
 
 const LUXURY_EASE = [0.22, 1, 0.36, 1] as const;
-const VIEWPORT_ONCE = { once: true, amount: 0.15 } as const;
+const VIEWPORT_ONCE = { once: true, amount: "some" } as const;
 const GALLERY_ASPECTS = [
   "aspect-[4/5]",
   "aspect-[4/3]",

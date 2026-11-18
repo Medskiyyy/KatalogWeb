@@ -704,15 +704,15 @@ export function UltahInteraktifTemplate({
                     : { opacity: 0, y: 18, scale: 0.96 }
                 }
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.25 }}
+                viewport={{ once: true, amount: "some" }}
                 transition={
                   prefersReducedMotion
                     ? { duration: 0.1 }
                     : {
                         type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                        delay: idx * 0.08,
+                        stiffness: 280,
+                        damping: 22,
+                        delay: idx * 0.03,
                       }
                 }
                 className="border-2 border-[#121212] bg-[#FFFDF7] p-5 shadow-[4px_4px_0_#121212]"
@@ -1040,7 +1040,7 @@ export function UltahInteraktifTemplate({
                       : { opacity: 0, y: 18 }
                   }
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  viewport={{ once: true, amount: "some" }}
                   transition={
                     prefersReducedMotion
                       ? { duration: 0.1 }
