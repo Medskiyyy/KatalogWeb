@@ -450,7 +450,7 @@ export const BRAND = {
       demoSlug: "adit-kirana",
       price: 79000,
       priceLabel: "Rp79.000",
-      thumbnail: "/demo/nikah-jawa-couple.webp",
+      thumbnail: "/demo/motion/pendopo-sky.webp",
       tagline:
         "Undangan pernikahan sinematik dengan animasi gerbang bunga mekar saat dibuka, pendopo & wayang berayun, kupu-kupu terbang, serta personalisasi nama tamu.",
       highlights: [
