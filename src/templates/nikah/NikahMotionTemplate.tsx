@@ -42,7 +42,7 @@ interface WishEntry {
   message: string;
 }
 
-const MOTION_EASE = [0.22, 1, 0.36, 1] as const;
+const CINEMATIC_EASE = [0.22, 1, 0.36, 1] as const;
 const VIEWPORT_ONCE = { once: true, amount: "some" } as const;
 
 function padTwo(value: number): string {
@@ -92,98 +92,88 @@ function buildGoogleCalendarUrl(params: {
   return `https://calendar.google.com/calendar/render?${query.toString()}`;
 }
 
-function FloralClusterSvg({
+/* Rimbun semak bunga Bougainvillea / Mawar Maroon bertumpuk */
+function LushBougainvilleaSvg({
   className,
-  variant = "maroon",
+  flip = false,
 }: {
   className?: string;
-  variant?: "maroon" | "blush" | "leaf";
+  flip?: boolean;
 }) {
-  const mainPetal = variant === "blush" ? "#D48894" : "#7A1C2C";
-  const midPetal = variant === "blush" ? "#EBB5BE" : "#9E2A3B";
-  const lightPetal = variant === "blush" ? "#F7DCE1" : "#E6B4BC";
-  const centerGold = "#D4A359";
+  const clusters = [
+    { cx: 48, cy: 52, r: 22, c: "#6A1B2B" },
+    { cx: 74, cy: 38, r: 19, c: "#882438" },
+    { cx: 34, cy: 84, r: 24, c: "#7B1E30" },
+    { cx: 68, cy: 76, r: 26, c: "#9A3045" },
+    { cx: 102, cy: 62, r: 21, c: "#B5485D" },
+    { cx: 52, cy: 118, r: 28, c: "#6E1828" },
+    { cx: 92, cy: 104, r: 25, c: "#A4384E" },
+    { cx: 128, cy: 92, r: 18, c: "#C76B7D" },
+    { cx: 36, cy: 152, r: 26, c: "#832134" },
+    { cx: 76, cy: 142, r: 24, c: "#B1475B" },
+    { cx: 112, cy: 132, r: 19, c: "#D48897" },
+    { cx: 58, cy: 180, r: 22, c: "#6B1929" },
+    { cx: 94, cy: 168, r: 18, c: "#C97283" },
+  ];
+
+  const blossoms = [
+    { x: 64, y: 46, s: 1.0, c: "#E8B7C0" },
+    { x: 96, y: 74, s: 0.9, c: "#F2D2D8" },
+    { x: 46, y: 108, s: 1.1, c: "#DF9AA6" },
+    { x: 84, y: 128, s: 0.95, c: "#F5DFE3" },
+    { x: 118, y: 108, s: 0.85, c: "#EBBAC3" },
+    { x: 66, y: 162, s: 1.0, c: "#E6A8B4" },
+    { x: 40, y: 66, s: 0.8, c: "#F3D7DC" },
+  ];
 
   return (
     <svg
       aria-hidden="true"
-      viewBox="0 0 220 220"
+      viewBox="0 0 200 240"
       fill="none"
-      className={className}
+      className={cn(flip && "-scale-x-100", className)}
     >
-      {/* Banana & tropical leaves */}
+      {/* Branches & back foliage */}
       <path
-        d="M16 198C20 132 54 78 118 46C96 98 68 150 28 202Z"
-        fill="#4E6B50"
-        opacity="0.92"
-      />
-      <path
-        d="M36 206C62 152 108 118 176 96C142 140 98 178 44 210Z"
-        fill="#6A8969"
-        opacity="0.88"
-      />
-      <path
-        d="M10 154C24 102 52 58 84 22C82 68 58 118 20 162Z"
-        fill="#7E9B79"
-        opacity="0.85"
-      />
-      {/* Leaf veins */}
-      <path
-        d="M24 192C48 142 74 100 108 58"
-        stroke="#A4BE9E"
-        strokeWidth="1.4"
+        d="M8 220C22 162 46 108 112 36"
+        stroke="#5A4336"
+        strokeWidth="4"
         strokeLinecap="round"
-        opacity="0.65"
       />
       <path
-        d="M46 200C86 164 124 134 164 106"
-        stroke="#A4BE9E"
-        strokeWidth="1.4"
+        d="M32 150C68 134 102 122 146 94"
+        stroke="#5A4336"
+        strokeWidth="2.5"
         strokeLinecap="round"
-        opacity="0.65"
       />
+      <ellipse cx="96" cy="48" rx="22" ry="11" transform="rotate(-32 96 48)" fill="#557256" opacity="0.88" />
+      <ellipse cx="132" cy="78" rx="24" ry="12" transform="rotate(-14 132 78)" fill="#6B8A6B" opacity="0.85" />
+      <ellipse cx="122" cy="144" rx="22" ry="11" transform="rotate(18 122 144)" fill="#4D6B4F" opacity="0.88" />
+      <ellipse cx="26" cy="118" rx="20" ry="10" transform="rotate(-48 26 118)" fill="#5D7B5E" opacity="0.85" />
 
-      {/* Main Peony / Rose */}
-      <g transform="translate(88 124)">
-        <circle cx="0" cy="0" r="34" fill={mainPetal} />
-        <ellipse cx="-16" cy="-12" rx="18" ry="14" transform="rotate(-24 -16 -12)" fill={midPetal} />
-        <ellipse cx="16" cy="-10" rx="18" ry="13" transform="rotate(28 16 -10)" fill={midPetal} />
-        <ellipse cx="-12" cy="14" rx="17" ry="13" transform="rotate(18 -12 14)" fill={midPetal} />
-        <ellipse cx="14" cy="14" rx="16" ry="12" transform="rotate(-20 14 14)" fill={midPetal} />
-        <circle cx="0" cy="0" r="14" fill={lightPetal} opacity="0.72" />
-        <circle cx="0" cy="0" r="6" fill={centerGold} />
-      </g>
+      {/* Dense Bougainvillea clusters */}
+      {clusters.map((cl, idx) => (
+        <g key={idx}>
+          <circle cx={cl.cx} cy={cl.cy} r={cl.r} fill={cl.c} opacity="0.93" />
+          <circle cx={cl.cx - 4} cy={cl.cy - 4} r={cl.r * 0.55} fill="#C45C70" opacity="0.35" />
+        </g>
+      ))}
 
-      {/* Secondary Blush Orchid */}
-      <g transform="translate(148 156)">
-        <ellipse cx="-14" cy="-6" rx="14" ry="10" transform="rotate(-30 -14 -6)" fill="#F3D6DB" />
-        <ellipse cx="14" cy="-6" rx="14" ry="10" transform="rotate(30 14 -6)" fill="#F3D6DB" />
-        <ellipse cx="0" cy="-16" rx="10" ry="14" fill="#FAF0F2" />
-        <ellipse cx="-10" cy="12" rx="11" ry="13" transform="rotate(15 -10 12)" fill="#E7B3BC" />
-        <ellipse cx="10" cy="12" rx="11" ry="13" transform="rotate(-15 10 12)" fill="#E7B3BC" />
-        <circle cx="0" cy="2" r="5.5" fill={mainPetal} />
-        <circle cx="0" cy="2" r="2.2" fill={centerGold} />
-      </g>
-
-      {/* Upper Jasmine / Melati Sprig */}
-      <g transform="translate(52 68)">
-        <circle cx="0" cy="0" r="11" fill="#FBF6EE" />
-        <circle cx="16" cy="-14" r="9" fill="#FBF6EE" />
-        <circle cx="-12" cy="18" r="8" fill="#F5E9D6" />
-        <circle cx="0" cy="0" r="3" fill={centerGold} />
-        <circle cx="16" cy="-14" r="2.5" fill={centerGold} />
-        <circle cx="-12" cy="18" r="2.2" fill={centerGold} />
-      </g>
-
-      {/* Accent Buds */}
-      <circle cx="176" cy="118" r="6" fill={midPetal} />
-      <circle cx="188" cy="108" r="4" fill={lightPetal} />
-      <circle cx="114" cy="54" r="5.5" fill="#F6E8EC" />
+      {/* Highlight petal blossoms */}
+      {blossoms.map((b, idx) => (
+        <g key={idx} transform={`translate(${b.x} ${b.y}) scale(${b.s})`}>
+          <ellipse cx="-6" cy="-4" rx="7" ry="5" transform="rotate(-25 -6 -4)" fill={b.c} />
+          <ellipse cx="6" cy="-4" rx="7" ry="5" transform="rotate(25 6 -4)" fill={b.c} />
+          <ellipse cx="0" cy="6" rx="6" ry="7" fill={b.c} />
+          <circle cx="0" cy="0" r="2.2" fill="#F8E7B9" />
+        </g>
+      ))}
     </svg>
   );
 }
 
-function WayangSilhouetteSvg({
+/* Daun Pisang Tropis Lebar */
+function TropicalBananaLeafSvg({
   className,
   flip = false,
 }: {
@@ -193,29 +183,169 @@ function WayangSilhouetteSvg({
   return (
     <svg
       aria-hidden="true"
-      viewBox="0 0 120 220"
+      viewBox="0 0 220 220"
       fill="none"
       className={cn(flip && "-scale-x-100", className)}
     >
-      {/* Ornate Gunungan / Wayang profile silhouette */}
+      {/* Back large banana leaf */}
       <path
-        d="M28 214C28 176 34 148 44 126C36 114 38 92 50 80C46 66 54 50 66 44C62 32 70 18 82 14C78 30 84 44 92 56C104 70 100 94 88 108C98 132 102 168 96 214H28Z"
-        fill="#704B28"
-        opacity="0.88"
+        d="M12 208C18 142 52 72 132 18C144 46 130 92 98 134C138 112 164 82 184 54C166 116 112 178 24 214Z"
+        fill="#5E7B5F"
+        opacity="0.94"
+      />
+      {/* Mid rib */}
+      <path
+        d="M16 208C48 150 90 92 142 32"
+        stroke="#A3BF9B"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      {/* Front lighter banana leaf */}
+      <path
+        d="M6 196C42 152 104 126 196 114C168 152 118 188 18 208Z"
+        fill="#799777"
+        opacity="0.9"
       />
       <path
-        d="M42 206C44 174 50 148 58 132C68 148 74 176 76 206H42Z"
-        fill="#D6B67D"
-        opacity="0.45"
-      />
-      <circle cx="72" cy="64" r="5" fill="#F3ECE1" opacity="0.6" />
-      <path
-        d="M52 104C62 96 76 96 86 104"
-        stroke="#E4C892"
+        d="M16 200C70 168 124 146 184 126"
+        stroke="#B9D1B1"
         strokeWidth="2"
         strokeLinecap="round"
-        opacity="0.6"
+        opacity="0.7"
       />
+      {/* Subtle leaf ribs */}
+      <path d="M56 156L84 114" stroke="#93B08D" strokeWidth="1.1" opacity="0.55" />
+      <path d="M74 134L108 92" stroke="#93B08D" strokeWidth="1.1" opacity="0.55" />
+      <path d="M88 168L134 152" stroke="#93B08D" strokeWidth="1.1" opacity="0.55" />
+    </svg>
+  );
+}
+
+/* Garland Rangkaian Mawar Maroon, Anggrek Bulan & Melati untuk Border Penuh */
+function OrchidRoseGarlandSvg({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 420 150"
+      fill="none"
+      className={className}
+    >
+      {/* Sage & olive leaves base */}
+      <ellipse cx="48" cy="108" rx="34" ry="14" transform="rotate(-28 48 108)" fill="#526F53" />
+      <ellipse cx="104" cy="118" rx="36" ry="15" transform="rotate(-10 104 118)" fill="#6C8B6C" />
+      <ellipse cx="210" cy="122" rx="44" ry="16" fill="#4D6A4F" />
+      <ellipse cx="316" cy="118" rx="36" ry="15" transform="rotate(10 316 118)" fill="#6C8B6C" />
+      <ellipse cx="372" cy="108" rx="34" ry="14" transform="rotate(28 372 108)" fill="#526F53" />
+
+      {/* Left Orchid */}
+      <g transform="translate(56 82)">
+        <ellipse cx="-18" cy="-8" rx="18" ry="12" transform="rotate(-24 -18 -8)" fill="#F3DCE0" />
+        <ellipse cx="18" cy="-8" rx="18" ry="12" transform="rotate(24 18 -8)" fill="#F3DCE0" />
+        <ellipse cx="0" cy="-20" rx="12" ry="17" fill="#FCF6F7" />
+        <ellipse cx="-12" cy="14" rx="13" ry="15" transform="rotate(15 -12 14)" fill="#E7BAC2" />
+        <ellipse cx="12" cy="14" rx="13" ry="15" transform="rotate(-15 12 14)" fill="#E7BAC2" />
+        <circle cx="0" cy="2" r="7" fill="#7D1E2E" />
+        <circle cx="0" cy="2" r="3" fill="#E6BE74" />
+      </g>
+
+      {/* Left-Center Maroon Peony */}
+      <g transform="translate(132 94)">
+        <circle cx="0" cy="0" r="32" fill="#6D1727" />
+        <ellipse cx="-14" cy="-10" rx="16" ry="12" transform="rotate(-20 -14 -10)" fill="#8E2438" />
+        <ellipse cx="14" cy="-10" rx="16" ry="12" transform="rotate(20 14 -10)" fill="#8E2438" />
+        <ellipse cx="-10" cy="12" rx="15" ry="11" transform="rotate(16 -10 12)" fill="#A33349" />
+        <ellipse cx="12" cy="12" rx="15" ry="11" transform="rotate(-16 12 12)" fill="#A33349" />
+        <circle cx="0" cy="0" r="12" fill="#D98B98" opacity="0.7" />
+        <circle cx="0" cy="0" r="5" fill="#E6BE74" />
+      </g>
+
+      {/* Center Cream & Gold Rose */}
+      <g transform="translate(210 88)">
+        <circle cx="0" cy="0" r="34" fill="#F4E7D8" />
+        <ellipse cx="-14" cy="-10" rx="16" ry="12" transform="rotate(-24 -14 -10)" fill="#FAF4EC" />
+        <ellipse cx="14" cy="-10" rx="16" ry="12" transform="rotate(24 14 -10)" fill="#FAF4EC" />
+        <ellipse cx="0" cy="12" rx="17" ry="12" fill="#EAD4C0" />
+        <circle cx="0" cy="0" r="12" fill="#D59A9E" opacity="0.65" />
+        <circle cx="0" cy="0" r="5" fill="#D9A84E" />
+      </g>
+
+      {/* Right-Center Maroon Peony */}
+      <g transform="translate(288 94)">
+        <circle cx="0" cy="0" r="32" fill="#6D1727" />
+        <ellipse cx="-14" cy="-10" rx="16" ry="12" transform="rotate(-20 -14 -10)" fill="#8E2438" />
+        <ellipse cx="14" cy="-10" rx="16" ry="12" transform="rotate(20 14 -10)" fill="#8E2438" />
+        <ellipse cx="-10" cy="12" rx="15" ry="11" transform="rotate(16 -10 12)" fill="#A33349" />
+        <ellipse cx="12" cy="12" rx="15" ry="11" transform="rotate(-16 12 12)" fill="#A33349" />
+        <circle cx="0" cy="0" r="12" fill="#D98B98" opacity="0.7" />
+        <circle cx="0" cy="0" r="5" fill="#E6BE74" />
+      </g>
+
+      {/* Right Orchid */}
+      <g transform="translate(364 82)">
+        <ellipse cx="-18" cy="-8" rx="18" ry="12" transform="rotate(-24 -18 -8)" fill="#F3DCE0" />
+        <ellipse cx="18" cy="-8" rx="18" ry="12" transform="rotate(24 18 -8)" fill="#F3DCE0" />
+        <ellipse cx="0" cy="-20" rx="12" ry="17" fill="#FCF6F7" />
+        <ellipse cx="-12" cy="14" rx="13" ry="15" transform="rotate(15 -12 14)" fill="#E7BAC2" />
+        <ellipse cx="12" cy="14" rx="13" ry="15" transform="rotate(-15 12 14)" fill="#E7BAC2" />
+        <circle cx="0" cy="2" r="7" fill="#7D1E2E" />
+        <circle cx="0" cy="2" r="3" fill="#E6BE74" />
+      </g>
+
+      {/* Melati & baby buds */}
+      <circle cx="94" cy="64" r="9" fill="#FFFDF8" />
+      <circle cx="94" cy="64" r="3" fill="#D9A84E" />
+      <circle cx="172" cy="66" r="8" fill="#FFFDF8" />
+      <circle cx="172" cy="66" r="2.6" fill="#D9A84E" />
+      <circle cx="248" cy="66" r="8" fill="#FFFDF8" />
+      <circle cx="248" cy="66" r="2.6" fill="#D9A84E" />
+      <circle cx="326" cy="64" r="9" fill="#FFFDF8" />
+      <circle cx="326" cy="64" r="3" fill="#D9A84E" />
+    </svg>
+  );
+}
+
+function WayangSilhouetteSvg({
+  className,
+  flip = false,
+  tone = "gold",
+}: {
+  className?: string;
+  flip?: boolean;
+  tone?: "gold" | "ivory";
+}) {
+  const fillBody = tone === "ivory" ? "#E8DFCE" : "#6D4724";
+  const fillAccent = tone === "ivory" ? "#B89D6D" : "#DFBE82";
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 130 230"
+      fill="none"
+      className={cn(flip && "-scale-x-100", className)}
+    >
+      <path
+        d="M28 224C26 184 34 152 46 130C36 116 38 92 52 78C46 62 56 46 68 38C64 24 72 10 86 8C80 26 88 42 96 54C110 70 106 96 92 112C104 138 108 176 100 224H28Z"
+        fill={fillBody}
+        opacity="0.92"
+      />
+      <path
+        d="M42 214C44 180 50 154 60 136C70 154 76 180 78 214H42Z"
+        fill={fillAccent}
+        opacity="0.48"
+      />
+      <path
+        d="M52 102C64 92 78 92 88 102"
+        stroke={fillAccent}
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <circle cx="74" cy="60" r="5" fill={fillAccent} opacity="0.75" />
     </svg>
   );
 }
@@ -231,12 +361,12 @@ function ButterflySvg({ className }: { className?: string }) {
       <path
         d="M24 20C17 7 4 4 3 14C2 22 12 24 22 22Z"
         fill="#B95D6D"
-        className="origin-right animate-[wingFlap_0.45s_ease-in-out_infinite_alternate]"
+        className="origin-right animate-[wingFlap_0.38s_ease-in-out_infinite_alternate]"
       />
       <path
         d="M24 20C31 7 44 4 45 14C46 22 36 24 26 22Z"
         fill="#D48491"
-        className="origin-left animate-[wingFlap_0.45s_ease-in-out_infinite_alternate]"
+        className="origin-left animate-[wingFlap_0.38s_ease-in-out_infinite_alternate]"
       />
       <path
         d="M23 22C15 24 8 30 12 35C16 38 22 31 23 24Z"
@@ -364,7 +494,7 @@ export function NikahMotionTemplate({
     if (!isGateVisible) return;
     const timer = window.setTimeout(() => {
       setIsGateVisible(false);
-    }, 1750);
+    }, 3600);
     return () => window.clearTimeout(timer);
   }, [isGateVisible, gateBurstKey]);
 
@@ -416,7 +546,6 @@ export function NikahMotionTemplate({
 
   return (
     <main className="relative min-h-screen w-full overflow-x-hidden bg-[#F3ECE1] text-[#3B1F1E] selection:bg-[#7A1C2C] selection:text-white">
-      {/* Custom lightweight CSS keyframes for organic wind sway & wing flap */}
       <style>{`
         @keyframes floralSwayLeft {
           0% { transform: rotate(-2.8deg) translateY(0px); }
@@ -426,12 +555,16 @@ export function NikahMotionTemplate({
           0% { transform: rotate(2.6deg) translateY(0px); }
           100% { transform: rotate(-2.8deg) translateY(-3px); }
         }
+        @keyframes floralSwaySlow {
+          0% { transform: rotate(-1.6deg) scale(1); }
+          100% { transform: rotate(1.6deg) scale(1.015); }
+        }
         @keyframes wingFlap {
           0% { transform: scaleX(1); }
           100% { transform: scaleX(0.32); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .motion-sway-left, .motion-sway-right { animation: none !important; }
+          .motion-sway-left, .motion-sway-right, .motion-sway-slow { animation: none !important; }
         }
         .motion-sway-left {
           transform-origin: bottom left;
@@ -440,6 +573,10 @@ export function NikahMotionTemplate({
         .motion-sway-right {
           transform-origin: bottom right;
           animation: floralSwayRight 5.8s ease-in-out infinite alternate;
+        }
+        .motion-sway-slow {
+          transform-origin: bottom center;
+          animation: floralSwaySlow 6.8s ease-in-out infinite alternate;
         }
       `}</style>
 
@@ -456,38 +593,26 @@ export function NikahMotionTemplate({
           <motion.section
             key="cover-gate"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.7, ease: MOTION_EASE } }}
+            exit={{ opacity: 0, transition: { duration: 0.9, ease: CINEMATIC_EASE } }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-[#EFE6D8] px-5 py-8"
           >
-            {/* Subtle Kawung Background */}
             <KawungWatermarkSvg className="pointer-events-none absolute inset-0 h-full w-full opacity-35" />
 
-            {/* Cover Swaying Florals */}
-            <FloralClusterSvg
-              variant="maroon"
-              className="motion-sway-left pointer-events-none absolute -bottom-8 -left-10 h-56 w-56 sm:h-72 sm:w-72"
-            />
-            <FloralClusterSvg
-              variant="blush"
-              className="motion-sway-right pointer-events-none absolute -bottom-8 -right-10 h-56 w-56 -scale-x-100 sm:h-72 sm:w-72"
-            />
-            <FloralClusterSvg
-              variant="blush"
-              className="motion-sway-left pointer-events-none absolute -left-12 -top-10 h-44 w-44 rotate-90 opacity-90 sm:h-56 sm:w-56"
-            />
-            <FloralClusterSvg
-              variant="maroon"
-              className="motion-sway-right pointer-events-none absolute -right-12 -top-10 h-44 w-44 -rotate-90 -scale-x-100 opacity-90 sm:h-56 sm:w-56"
-            />
+            {/* Full Lush Cover Frame */}
+            <LushBougainvilleaSvg className="motion-sway-left pointer-events-none absolute -left-8 top-6 h-64 w-56 sm:h-80 sm:w-68" />
+            <LushBougainvilleaSvg flip className="motion-sway-right pointer-events-none absolute -right-8 top-6 h-64 w-56 sm:h-80 sm:w-68" />
+            <TropicalBananaLeafSvg className="motion-sway-left pointer-events-none absolute -bottom-10 -left-10 h-60 w-60 sm:h-72 sm:w-72" />
+            <TropicalBananaLeafSvg flip className="motion-sway-right pointer-events-none absolute -bottom-10 -right-10 h-60 w-60 sm:h-72 sm:w-72" />
+            <OrchidRoseGarlandSvg className="motion-sway-slow pointer-events-none absolute -bottom-3 left-1/2 w-[118%] max-w-lg -translate-x-1/2" />
+            <OrchidRoseGarlandSvg className="motion-sway-slow pointer-events-none absolute -top-5 left-1/2 w-[115%] max-w-lg -translate-x-1/2 rotate-180" />
 
             {/* Center Cover Card */}
             <motion.div
               initial={shouldReduceMotion ? false : { y: 18, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.7, ease: MOTION_EASE }}
-              className="relative z-10 flex w-full max-w-sm flex-col items-center rounded-[2rem] border border-[#C6A77D]/60 bg-[#FAF6EE]/95 px-6 py-8 text-center shadow-xl backdrop-blur-sm"
+              transition={{ duration: 0.75, ease: CINEMATIC_EASE }}
+              className="relative z-10 flex w-full max-w-sm flex-col items-center rounded-[2rem] border border-[#C6A77D]/70 bg-[#FAF6EE]/95 px-6 py-8 text-center shadow-2xl backdrop-blur-sm"
             >
-              {/* Arched Couple Portrait */}
               <div className="mb-5 h-52 w-40 overflow-hidden rounded-t-full rounded-b-2xl border-4 border-[#7A1C2C]/85 bg-[#E6DAC8] p-1 shadow-md">
                 <img
                   src={coverPortrait}
@@ -523,44 +648,68 @@ export function NikahMotionTemplate({
         )}
       </AnimatePresence>
 
-      {/* FLORAL CURTAIN GATE TRANSITION (Plays when opening or replaying!) */}
+      {/* CINEMATIC MULTI-LAYER FLORAL CURTAIN GATE (0s -> 3.4s) */}
       <AnimatePresence>
         {isGateVisible && !shouldReduceMotion && (
           <div
             key={`floral-gate-${gateBurstKey}`}
             className="pointer-events-none fixed inset-0 z-40 overflow-hidden"
           >
-            {/* Top floral arch parting upward */}
+            {/* Layer 1: Midground Floral Garland parting up & down */}
             <motion.div
               initial={{ y: "0%", scale: 1.05, opacity: 1 }}
-              animate={{ y: "-110%", scale: 1.35, opacity: 0 }}
-              transition={{ duration: 1.45, ease: MOTION_EASE }}
-              className="absolute inset-x-0 -top-12 flex justify-between"
+              animate={{ y: "-120%", scale: 1.65, opacity: 0 }}
+              transition={{ duration: 2.7, delay: 0.35, ease: CINEMATIC_EASE }}
+              className="absolute inset-x-0 top-0 flex justify-center"
             >
-              <FloralClusterSvg variant="maroon" className="h-64 w-64 rotate-90 sm:h-80 sm:w-80" />
-              <FloralClusterSvg variant="blush" className="h-64 w-64 -rotate-90 -scale-x-100 sm:h-80 sm:w-80" />
+              <OrchidRoseGarlandSvg className="w-[140%] max-w-2xl rotate-180" />
             </motion.div>
 
-            {/* Left floral curtain parting left & zooming past camera */}
             <motion.div
-              initial={{ x: "-5%", y: "0%", scale: 1.1, opacity: 1 }}
-              animate={{ x: "-115%", y: "10%", scale: 1.55, opacity: 0 }}
-              transition={{ duration: 1.55, ease: MOTION_EASE }}
-              className="absolute inset-y-0 -left-12 flex flex-col justify-center"
+              initial={{ y: "0%", scale: 1.05, opacity: 1 }}
+              animate={{ y: "120%", scale: 1.7, opacity: 0 }}
+              transition={{ duration: 2.7, delay: 0.35, ease: CINEMATIC_EASE }}
+              className="absolute inset-x-0 bottom-0 flex justify-center"
             >
-              <FloralClusterSvg variant="maroon" className="h-80 w-80 sm:h-[26rem] sm:w-[26rem]" />
-              <FloralClusterSvg variant="blush" className="-mt-32 h-72 w-72 sm:h-96 sm:w-96" />
+              <OrchidRoseGarlandSvg className="w-[140%] max-w-2xl" />
             </motion.div>
 
-            {/* Right floral curtain parting right & zooming past camera */}
+            {/* Layer 2: Lush Bougainvillea Left & Right parting outward */}
             <motion.div
-              initial={{ x: "5%", y: "0%", scale: 1.1, opacity: 1 }}
-              animate={{ x: "115%", y: "10%", scale: 1.55, opacity: 0 }}
-              transition={{ duration: 1.55, ease: MOTION_EASE }}
-              className="absolute inset-y-0 -right-12 flex flex-col justify-center"
+              initial={{ x: "8%", y: "0%", scale: 1.15, opacity: 1 }}
+              animate={{ x: "-125%", y: "-8%", scale: 1.85, opacity: 0 }}
+              transition={{ duration: 2.9, delay: 0.15, ease: CINEMATIC_EASE }}
+              className="absolute inset-y-0 left-0 flex flex-col justify-center"
             >
-              <FloralClusterSvg variant="maroon" className="h-80 w-80 -scale-x-100 sm:h-[26rem] sm:w-[26rem]" />
-              <FloralClusterSvg variant="blush" className="-mt-32 h-72 w-72 -scale-x-100 sm:h-96 sm:w-96" />
+              <LushBougainvilleaSvg className="h-[26rem] w-[22rem] sm:h-[34rem] sm:w-[28rem]" />
+            </motion.div>
+
+            <motion.div
+              initial={{ x: "-8%", y: "0%", scale: 1.15, opacity: 1 }}
+              animate={{ x: "125%", y: "-8%", scale: 1.85, opacity: 0 }}
+              transition={{ duration: 2.9, delay: 0.15, ease: CINEMATIC_EASE }}
+              className="absolute inset-y-0 right-0 flex flex-col justify-center"
+            >
+              <LushBougainvilleaSvg flip className="h-[26rem] w-[22rem] sm:h-[34rem] sm:w-[28rem]" />
+            </motion.div>
+
+            {/* Layer 3: Foreground Giant Banana Leaves sweeping past camera */}
+            <motion.div
+              initial={{ x: "15%", y: "10%", scale: 1.25, opacity: 1 }}
+              animate={{ x: "-135%", y: "25%", scale: 2.1, opacity: 0 }}
+              transition={{ duration: 2.2, ease: CINEMATIC_EASE }}
+              className="absolute bottom-0 left-0"
+            >
+              <TropicalBananaLeafSvg className="h-80 w-80 sm:h-[28rem] sm:w-[28rem]" />
+            </motion.div>
+
+            <motion.div
+              initial={{ x: "-15%", y: "10%", scale: 1.25, opacity: 1 }}
+              animate={{ x: "135%", y: "25%", scale: 2.1, opacity: 0 }}
+              transition={{ duration: 2.2, ease: CINEMATIC_EASE }}
+              className="absolute bottom-0 right-0"
+            >
+              <TropicalBananaLeafSvg flip className="h-80 w-80 sm:h-[28rem] sm:w-[28rem]" />
             </motion.div>
           </div>
         )}
@@ -568,130 +717,192 @@ export function NikahMotionTemplate({
 
       {/* MAIN INVITATION CONTENT */}
       <div className="mx-auto max-w-md bg-[#FAF5EC] pb-24 shadow-2xl sm:my-6 sm:rounded-[2rem] sm:border sm:border-[#DFCFB6]">
-        {/* SECTION 1: PENDOPO HERO STAGE */}
+        {/* SECTION 1: GRAND PENDOPO HERO STAGE (8.5s Choreographed Entrance) */}
         <section
           id="hero"
-          className="relative flex min-h-[86vh] flex-col items-center justify-between overflow-hidden bg-[#EFE5D4] px-5 pt-14 pb-10 text-center sm:rounded-t-[2rem]"
+          className="relative flex min-h-[90vh] flex-col items-center justify-between overflow-hidden bg-[#EFE5D4] px-5 pt-14 pb-12 text-center sm:rounded-t-[2rem]"
         >
-          {/* Pendopo Backdrop with Gentle Zoom-Out */}
+          {/* 1. Pendopo Backdrop: Long Cinematic Push-In (0.8s -> 6.0s) */}
           <motion.div
             key={`pendopo-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { scale: 1.16 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2.2, ease: MOTION_EASE }}
+            initial={shouldReduceMotion ? false : { scale: 1.28, opacity: 0.7 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 5.2, delay: 0.4, ease: CINEMATIC_EASE }}
             className="pointer-events-none absolute inset-0"
           >
             <img
               src={heroVenueBg}
               alt="Pendopo Joglo"
-              className="h-full w-full object-cover object-bottom opacity-85"
+              className="h-full w-full object-cover object-bottom opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#F4ECE0] via-[#F4ECE0]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F4ECE0] via-[#F4ECE0]/72 to-transparent" />
           </motion.div>
 
-          {/* Drifting Cloud Layer */}
+          {/* 2. Drifting Cloud Mist */}
           {!shouldReduceMotion && (
             <motion.div
-              animate={{ x: [-18, 18, -18] }}
-              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", type: "tween" }}
-              className="pointer-events-none absolute inset-x-0 top-10 h-32 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.65)_0%,transparent_70%)] opacity-75"
+              animate={{ x: [-24, 24, -24] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+              className="pointer-events-none absolute inset-x-0 top-12 h-36 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.72)_0%,transparent_70%)] opacity-80"
             />
           )}
 
-          {/* Batik Kawung Fade-In */}
+          {/* 3. Batik Kawung Sky Fade-In (3.4s -> 5.6s) */}
           <motion.div
             key={`kawung-${gateBurstKey}`}
             initial={shouldReduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 0.3 }}
-            transition={{ duration: 1.8, delay: 0.4 }}
-            className="pointer-events-none absolute inset-x-0 top-0 h-72"
+            animate={{ opacity: 0.34 }}
+            transition={{ duration: 2.2, delay: 3.4 }}
+            className="pointer-events-none absolute inset-x-0 top-0 h-80"
           >
             <KawungWatermarkSvg className="h-full w-full" />
           </motion.div>
 
-          {/* Animated Butterflies */}
+          {/* 4. Three Butterflies Sweeping Across Scene */}
           {!shouldReduceMotion && (
             <>
               <motion.div
+                key={`bf-1-${gateBurstKey}`}
+                initial={{ x: -50, y: 120, opacity: 0 }}
                 animate={{
-                  x: [0, 36, 12, -24, 0],
-                  y: [0, -28, -48, -18, 0],
+                  x: [0, 48, 18, -30, 0],
+                  y: [0, -34, -64, -24, 0],
+                  opacity: [0, 1, 1, 1, 1],
                 }}
-                transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                transition={{ duration: 10, delay: 2.4, repeat: Infinity, ease: "easeInOut", type: "tween" }}
                 className="pointer-events-none absolute left-1/4 top-1/3 z-20"
+              >
+                <ButterflySvg className="h-8 w-8" />
+              </motion.div>
+              <motion.div
+                key={`bf-2-${gateBurstKey}`}
+                initial={{ x: 50, y: 140, opacity: 0 }}
+                animate={{
+                  x: [0, -40, -10, 28, 0],
+                  y: [0, -28, -52, -18, 0],
+                  opacity: [0, 1, 1, 1, 1],
+                }}
+                transition={{ duration: 12, delay: 3.0, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                className="pointer-events-none absolute right-1/4 top-[42%] z-20"
               >
                 <ButterflySvg className="h-7 w-7" />
               </motion.div>
               <motion.div
+                key={`bf-3-${gateBurstKey}`}
+                initial={{ y: 80, opacity: 0 }}
                 animate={{
-                  x: [0, -32, -8, 22, 0],
-                  y: [0, -22, -40, -14, 0],
+                  x: [0, 26, -18, 14, 0],
+                  y: [0, -40, -70, -30, 0],
+                  opacity: [0, 0.9, 0.9, 0.9, 0.9],
                 }}
-                transition={{ duration: 11, delay: 1.2, repeat: Infinity, ease: "easeInOut", type: "tween" }}
-                className="pointer-events-none absolute right-1/4 top-1/2 z-20"
+                transition={{ duration: 13, delay: 3.8, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                className="pointer-events-none absolute left-1/2 top-[28%] z-20"
               >
-                <ButterflySvg className="h-6 w-6" />
+                <ButterflySvg className="h-5 w-5" />
               </motion.div>
             </>
           )}
 
-          {/* Staggered Wayang Left & Right */}
+          {/* 5. Wayang Left & Right Dramatic Slide-In (3.6s -> 5.8s) */}
           <motion.div
             key={`wayang-l-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: -70, opacity: 0 }}
-            animate={{ x: 0, opacity: 0.9 }}
-            transition={{ duration: 1.1, delay: 0.55, ease: MOTION_EASE }}
-            className="motion-sway-left pointer-events-none absolute bottom-12 -left-4 z-10"
+            initial={shouldReduceMotion ? false : { x: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 0.95 }}
+            transition={{ duration: 2.0, delay: 3.6, ease: CINEMATIC_EASE }}
+            className="motion-sway-left pointer-events-none absolute bottom-16 -left-5 z-10"
           >
-            <WayangSilhouetteSvg className="h-44 w-24 sm:h-52 sm:w-28" />
+            <WayangSilhouetteSvg tone="ivory" className="h-52 w-28 sm:h-60 sm:w-32" />
           </motion.div>
 
           <motion.div
             key={`wayang-r-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: 70, opacity: 0 }}
-            animate={{ x: 0, opacity: 0.9 }}
-            transition={{ duration: 1.1, delay: 0.55, ease: MOTION_EASE }}
-            className="motion-sway-right pointer-events-none absolute bottom-12 -right-4 z-10"
+            initial={shouldReduceMotion ? false : { x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 0.95 }}
+            transition={{ duration: 2.0, delay: 3.6, ease: CINEMATIC_EASE }}
+            className="motion-sway-right pointer-events-none absolute bottom-16 -right-5 z-10"
           >
-            <WayangSilhouetteSvg flip className="h-44 w-24 sm:h-52 sm:w-28" />
+            <WayangSilhouetteSvg flip tone="gold" className="h-52 w-28 sm:h-60 sm:w-32" />
           </motion.div>
 
-          {/* Swaying Corner Florals Framing Hero */}
-          <FloralClusterSvg
-            variant="maroon"
-            className="motion-sway-left pointer-events-none absolute -bottom-6 -left-8 z-20 h-44 w-44"
-          />
-          <FloralClusterSvg
-            variant="maroon"
-            className="motion-sway-right pointer-events-none absolute -bottom-6 -right-8 z-20 h-44 w-44 -scale-x-100"
-          />
-          <FloralClusterSvg
-            variant="blush"
-            className="motion-sway-left pointer-events-none absolute -left-10 -top-8 z-20 h-36 w-36 rotate-90"
-          />
-          <FloralClusterSvg
-            variant="blush"
-            className="motion-sway-right pointer-events-none absolute -right-10 -top-8 z-20 h-36 w-36 -rotate-90 -scale-x-100"
-          />
+          {/* 6. Full Lush Botanical Frame Blooming In (2.0s -> 5.2s) */}
+          <motion.div
+            key={`boug-l-${gateBurstKey}`}
+            initial={shouldReduceMotion ? false : { x: -60, scale: 0.72, opacity: 0 }}
+            animate={{ x: 0, scale: 1, opacity: 1 }}
+            transition={{ duration: 2.2, delay: 2.0, ease: CINEMATIC_EASE }}
+            className="motion-sway-left pointer-events-none absolute -left-8 top-12 z-20"
+          >
+            <LushBougainvilleaSvg className="h-60 w-48 sm:h-68 sm:w-56" />
+          </motion.div>
+
+          <motion.div
+            key={`boug-r-${gateBurstKey}`}
+            initial={shouldReduceMotion ? false : { x: 60, scale: 0.72, opacity: 0 }}
+            animate={{ x: 0, scale: 1, opacity: 1 }}
+            transition={{ duration: 2.2, delay: 2.0, ease: CINEMATIC_EASE }}
+            className="motion-sway-right pointer-events-none absolute -right-8 top-12 z-20"
+          >
+            <LushBougainvilleaSvg flip className="h-60 w-48 sm:h-68 sm:w-56" />
+          </motion.div>
+
+          <motion.div
+            key={`leaf-l-${gateBurstKey}`}
+            initial={shouldReduceMotion ? false : { x: -50, y: 40, opacity: 0 }}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ duration: 2.0, delay: 2.5, ease: CINEMATIC_EASE }}
+            className="motion-sway-left pointer-events-none absolute -bottom-8 -left-10 z-20"
+          >
+            <TropicalBananaLeafSvg className="h-52 w-52" />
+          </motion.div>
+
+          <motion.div
+            key={`leaf-r-${gateBurstKey}`}
+            initial={shouldReduceMotion ? false : { x: 50, y: 40, opacity: 0 }}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ duration: 2.0, delay: 2.5, ease: CINEMATIC_EASE }}
+            className="motion-sway-right pointer-events-none absolute -bottom-8 -right-10 z-20"
+          >
+            <TropicalBananaLeafSvg flip className="h-52 w-52" />
+          </motion.div>
+
+          <motion.div
+            key={`garland-top-${gateBurstKey}`}
+            initial={shouldReduceMotion ? false : { y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 2.1, delay: 2.8, ease: CINEMATIC_EASE }}
+            className="motion-sway-slow pointer-events-none absolute -top-5 left-1/2 z-20 w-[118%] -translate-x-1/2"
+          >
+            <OrchidRoseGarlandSvg className="w-full rotate-180" />
+          </motion.div>
+
+          <motion.div
+            key={`garland-bot-${gateBurstKey}`}
+            initial={shouldReduceMotion ? false : { y: 60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 2.2, delay: 3.1, ease: CINEMATIC_EASE }}
+            className="motion-sway-slow pointer-events-none absolute -bottom-3 left-1/2 z-20 w-[122%] -translate-x-1/2"
+          >
+            <OrchidRoseGarlandSvg className="w-full" />
+          </motion.div>
 
           {/* Replay Entrance Button */}
           <div className="relative z-30 flex w-full justify-end">
             <button
               type="button"
               onClick={triggerEntrance}
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#7A1C2C]/30 bg-white/80 px-3 py-1.5 text-[11px] font-medium text-[#7A1C2C] shadow-sm backdrop-blur-sm transition hover:bg-white"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#7A1C2C]/30 bg-white/85 px-3 py-1.5 text-[11px] font-medium text-[#7A1C2C] shadow-sm backdrop-blur-sm transition hover:bg-white"
             >
               <Play size={12} weight="fill" />
               Putar Ulang Animasi
             </button>
           </div>
 
-          {/* Staggered Hero Title */}
+          {/* 7. Final Staggered Title Reveal (5.2s -> 7.6s) */}
           <motion.div
             key={`title-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { y: 24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.95, delay: 0.8, ease: MOTION_EASE }}
+            initial={shouldReduceMotion ? false : { y: 28, scale: 0.94, opacity: 0 }}
+            animate={{ y: 0, scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 5.0, ease: CINEMATIC_EASE }}
             className="relative z-20 my-auto pt-4"
           >
             <p className="text-[11px] font-semibold tracking-[0.28em] text-[#7A1C2C] uppercase">
@@ -707,7 +918,7 @@ export function NikahMotionTemplate({
             </p>
           </motion.div>
 
-          <div className="relative z-20 h-16" />
+          <div className="relative z-20 h-20" />
         </section>
 
         {/* SECTION 2: QUOTE / DOA */}
@@ -715,7 +926,7 @@ export function NikahMotionTemplate({
           initial={shouldReduceMotion ? false : { y: 24, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.7, ease: MOTION_EASE }}
+          transition={{ duration: 0.7, ease: CINEMATIC_EASE }}
           className="relative mx-4 mt-6 overflow-hidden rounded-3xl border border-[#DFCFB6] bg-[#6B1826] px-6 py-8 text-center text-[#FAF5EC] shadow-md"
         >
           <p className="font-serif text-sm italic leading-relaxed text-[#F7E8EC]">
@@ -747,12 +958,15 @@ export function NikahMotionTemplate({
                 initial={shouldReduceMotion ? false : { y: 22, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={VIEWPORT_ONCE}
-                transition={{ duration: 0.65, delay: idx * 0.1, ease: MOTION_EASE }}
+                transition={{ duration: 0.65, delay: idx * 0.1, ease: CINEMATIC_EASE }}
                 className="relative overflow-hidden rounded-3xl border border-[#DFCFB6] bg-white px-5 py-7 text-center shadow-sm"
               >
-                <FloralClusterSvg
-                  variant={idx === 0 ? "blush" : "maroon"}
-                  className="motion-sway-left pointer-events-none absolute -bottom-8 -left-8 h-32 w-32 opacity-75"
+                <LushBougainvilleaSvg
+                  flip={idx === 1}
+                  className={cn(
+                    "pointer-events-none absolute -bottom-10 h-40 w-36 opacity-55",
+                    idx === 0 ? "motion-sway-left -left-8" : "motion-sway-right -right-8"
+                  )}
                 />
                 <div className="mx-auto h-40 w-32 overflow-hidden rounded-t-full rounded-b-xl border-2 border-[#C6A77D] bg-[#EFE5D4] p-1">
                   <img
@@ -780,7 +994,7 @@ export function NikahMotionTemplate({
           initial={shouldReduceMotion ? false : { y: 22, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.65, ease: MOTION_EASE }}
+          transition={{ duration: 0.65, ease: CINEMATIC_EASE }}
           className="relative mx-4 mt-8 overflow-hidden rounded-3xl border border-[#DFCFB6] bg-[#6B1826] px-5 py-7 text-center text-white shadow-md"
         >
           <p className="text-[11px] font-semibold tracking-[0.25em] text-[#E6C58B] uppercase">
@@ -845,19 +1059,16 @@ export function NikahMotionTemplate({
                 initial={shouldReduceMotion ? false : { y: 22, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={VIEWPORT_ONCE}
-                transition={{ duration: 0.65, delay: idx * 0.1, ease: MOTION_EASE }}
+                transition={{ duration: 0.65, delay: idx * 0.1, ease: CINEMATIC_EASE }}
                 className={cn(
-                  "relative overflow-hidden rounded-3xl border px-6 py-7 text-center shadow-sm",
+                  "relative overflow-hidden rounded-3xl border px-6 py-8 text-center shadow-sm",
                   item.dark
                     ? "border-[#5E1320] bg-[#4A0E19] text-[#FAF5EC]"
                     : "border-[#DFCFB6] bg-white text-[#3B1F1E]"
                 )}
               >
-                <FloralClusterSvg
-                  variant={item.dark ? "blush" : "maroon"}
-                  className="motion-sway-right pointer-events-none absolute -right-8 -top-8 h-28 w-28 -rotate-90 -scale-x-100 opacity-75"
-                />
-                <h4 className="font-serif text-2xl italic">{item.title}</h4>
+                <OrchidRoseGarlandSvg className="motion-sway-slow pointer-events-none absolute -top-4 left-1/2 w-[112%] -translate-x-1/2 rotate-180 opacity-85" />
+                <h4 className="pt-4 font-serif text-2xl italic">{item.title}</h4>
                 <div className="mt-4 space-y-2 text-xs">
                   <p className="inline-flex items-center justify-center gap-1.5 font-semibold">
                     <CalendarHeart size={15} weight="fill" />
@@ -1027,7 +1238,6 @@ export function NikahMotionTemplate({
               </div>
             </form>
 
-            {/* Wishes List */}
             <div className="mt-6 max-h-60 space-y-2.5 overflow-y-auto pr-1">
               {wishes.map((w, i) => (
                 <div
