@@ -124,7 +124,7 @@ export const MIDNIGHT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
   createMidnightTheme({
     id: "nikah-midnight-black",
     musicTrack: "builtin:nocturne-chopin-c",
-    openSfx: "quiz-ding",
+    openSfx: "midnight-celesta",
     assetKey: "midnight-black",
     name: "Midnight Black",
     shortLabel: "Midnight Black",
@@ -186,7 +186,7 @@ export const MIDNIGHT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
   createMidnightTheme({
     id: "nikah-midnight-navy",
     musicTrack: "builtin:nocturne-chopin-g",
-    openSfx: "quiz-ding",
+    openSfx: "midnight-celesta",
     assetKey: "midnight-navy",
     name: "Midnight Navy",
     shortLabel: "Midnight Navy",
@@ -248,7 +248,7 @@ export const MIDNIGHT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
   createMidnightTheme({
     id: "nikah-midnight-burgundy",
     musicTrack: "builtin:nocturne-chopin-f",
-    openSfx: "quiz-ding",
+    openSfx: "midnight-celesta",
     assetKey: "midnight-burgundy",
     name: "Midnight Burgundy",
     shortLabel: "Midnight Wine",
@@ -310,7 +310,7 @@ export const MIDNIGHT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
   createMidnightTheme({
     id: "nikah-midnight-emerald",
     musicTrack: "builtin:nocturne-chopin-g",
-    openSfx: "quiz-ding",
+    openSfx: "midnight-celesta",
     assetKey: "midnight-emerald",
     name: "Midnight Emerald",
     shortLabel: "Midnight Emerald",
@@ -372,7 +372,7 @@ export const MIDNIGHT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
   createMidnightTheme({
     id: "nikah-ethereal-moonfall",
     musicTrack: "builtin:nocturne-chopin-f",
-    openSfx: "quiz-ding",
+    openSfx: "midnight-celesta",
     assetKey: "ethereal-moonfall",
     name: "Ethereal Moonfall",
     shortLabel: "Moonfall",

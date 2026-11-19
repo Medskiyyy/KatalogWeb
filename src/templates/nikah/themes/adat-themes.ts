@@ -41,12 +41,12 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Detail prosesi Pawiwahan, Mabyakala, dan tata krama undangan Bali",
       "Link nama tamu pribadi, peta Maps, amplop 1 klik, & RSVP WA",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-bali",
     theme: {
       id: "bali",
       assets: motionAssets("bali"),
       watermark: "bali-patra",
-      openSfx: "paper-flip",
+      openSfx: "rindik-bali",
       palette: {
         outerBg: "#EFE3C6",
         canvasBg: "#5B3B13",
@@ -152,7 +152,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Jadwal Pemberkatan Kudus, Mangulosi, & Pesta Unjuk Adat",
       "Link nama tamu pribadi per WA, galeri, peta, & amplop digital",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-batak",
     theme: {
       id: "batak",
       assets: motionAssets("batak"),
@@ -262,7 +262,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Jadwal Palang Pintu, Akad Nikah, dan Resepsi khas Batavia",
       "Personalisasi nama tamu, Maps gedung, rekening 1 klik, & RSVP WA",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-betawi",
     theme: {
       id: "betawi",
       assets: motionAssets("betawi"),
@@ -371,7 +371,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Jadwal Malam Mappacci, Akad Nikah, dan Resepsi Adat Bugis",
       "Undangan personal per link WA, galeri, amplop digital, & Maps",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-bugis",
     theme: {
       id: "bugis",
       assets: motionAssets("bugis"),
@@ -480,7 +480,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Detail prosesi Ngobeng, Aesan Gede, Akad, & Resepsi Sriwijaya",
       "Nama tamu otomatis di sampul, peta gedung, & amplop 1 klik",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-palembang",
     theme: {
       id: "palembang",
       assets: motionAssets("palembang"),
@@ -589,7 +589,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Rangkaian Bapingit, Akad Nikah, & Resepsi Baarak Pengantin",
       "Link nama tamu per WA, peta Maps, amplop digital, & buku doa",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-banjar",
     theme: {
       id: "banjar",
       assets: motionAssets("banjar"),
@@ -698,7 +698,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Jadwal Pemberkatan & Resepsi Adat Dayak penuh sukacita",
       "Nama tamu pribadi di sampul, Maps akurat, & amplop digital",
     ],
-    musicTrack: "builtin:romance",
+    musicTrack: "builtin:nikah-dayak",
     theme: {
       id: "dayak",
       assets: motionAssets("dayak"),
@@ -807,7 +807,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Prosesi Berinai Curi, Akad Nikah, & Bersanding Tepung Tawar",
       "Link tamu WA otomatis, galeri, peta lokasi, & amplop 1 klik",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-melayu",
     theme: {
       id: "melayu",
       assets: motionAssets("melayu"),
@@ -916,7 +916,7 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Rangkaian Boh Gaca, Peusijuek, Akad, & Intat Linto Baro",
       "Nama tamu otomatis di sampul, Google Maps, amplop 1 klik, & RSVP WA",
     ],
-    musicTrack: "builtin:wedding",
+    musicTrack: "builtin:nikah-aceh",
     theme: {
       id: "aceh",
       assets: motionAssets("aceh"),
@@ -1025,12 +1025,12 @@ export const ADAT_NIKAH_THEMES: ExtendedNikahThemeSpec[] = [
       "Lengkap jadwal Sangjit, Tea Pai (Teh Adat), Pemberkatan, & Dinner",
       "Nama tamu otomatis di sampul, Maps gedung, & angpao digital 1 klik",
     ],
-    musicTrack: "builtin:romance",
+    musicTrack: "builtin:nikah-chinese",
     theme: {
       id: "chinese",
       assets: motionAssets("chinese"),
       watermark: "chinese-lattice",
-      openSfx: "paper-flip",
+      openSfx: "gong-chinese",
       palette: {
         outerBg: "#F4DBD9",
         canvasBg: "#740E17",

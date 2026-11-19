@@ -1,6 +1,6 @@
 # Audio credits (files added for per-theme music)
 
-All files below are real recordings, trimmed to 80-85 s, loudness normalised (about -18 LUFS), 96 kbps MP3 with fade-in and fade-out. Source recordings are from Musopen, released under CC0 1.0 / Public Domain Dedication and mirrored on archive.org (the item's licenseurl is CC0 1.0).
+All files below are real recordings, trimmed to 80-85 s, loudness normalised (about -18 LUFS), 96 kbps MP3 with fade-in and fade-out. Source recordings come from Musopen / archive.org (CC0 1.0), Wikimedia Commons (Public domain and CC BY-SA 4.0), and Freesound (CC BY 4.0).
 
 | File | Title | Composer / performer | License | Source URL |
 | --- | --- | --- | --- | --- |
@@ -9,3 +9,16 @@ All files below are real recordings, trimmed to 80-85 s, loudness normalised (ab
 | music/nocturne-chopin-c.mp3 | Nocturne in C minor, B. 108 (first 80 s) | Frederic Chopin, Musopen recording | CC0 1.0 | https://archive.org/details/parso-0376f076666a403745bbb1c79277856a9f5ef9d4 |
 | music/nocturne-chopin-f.mp3 | Nocturne in F minor, Op. 55 No. 1 (first 85 s) | Frederic Chopin, Musopen recording | CC0 1.0 | https://archive.org/details/parso-2baabd827af86a852bb54f058dbceba9edc4ec00 |
 | music/nocturne-chopin-g.mp3 | Nocturne in G major, Op. 37 No. 2 (first 85 s) | Frederic Chopin, performed by Olga Gurevich (Musopen) | CC0 1.0 | https://archive.org/details/parso-1c53a71e4ef6f47591ab605d801bc3780b27824a |
+| music/nikah-bali.mp3 | Gender Wayang of Kuta (Odeon recording, 1928), 0:20 to 1:45 | Gender wayang ensemble of Kuta, directed by I Wayan Lotring | Public domain (recording older than 50 years; marked Public domain on Wikimedia Commons as "File:Gendér Wayang (1928).ogg") | https://archive.org/details/gamelan_202003 |
+| music/nikah-batak.mp3 | Sumatera Utara - Sigulempong (WikiDendang, 0:02 to 1:26) | Traditional; recorded by Duoviotheo / Wikimedia Indonesia (WikiDendang) | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:Sumatera_Utara_-_Sigulempong.wav |
+| music/nikah-betawi.mp3 | DKI Jakarta - Kicir-Kicir (WikiDendang, 0:01 to 1:25) | Traditional; recorded by Duoviotheo / Wikimedia Indonesia (WikiDendang) | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:DKI_Jakarta_-_Kicir-Kicir.wav |
+| music/nikah-bugis.mp3 | Pakacaping Music 2 - Makassar, Indonesia (first 85 s) | Traditional Bugis/Makassar kacapi & chant; recorded by RTB45 | CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) | https://freesound.org/people/RTB45/sounds/253617/ |
+| music/nikah-palembang.mp3 | Lagu Nuri Terbang Malam (1903, 0:02 to 1:27) | Traditional; sung by Qasim, recorded by Fred Gaisberg & George Dillnutt (1903) | Public domain | https://commons.wikimedia.org/wiki/File:Lagu_Nuri_Terbang_Malam_(1903).ogg |
+| music/nikah-banjar.mp3 | Musik Pengiring Tari Baksa Kembang (first 85 s) | Gamelan Banjar ensemble; recorded by Ardzun (WikiNusantara 2023) | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:Musik_Pengiring_Tari_Baksa_Kembang.ogg |
+| music/nikah-dayak.mp3 | Karungut instrument (first 85 s) | Traditional Dayak instrumental; recorded by Ardon Koling | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:Karungut_instrument.ogg |
+| music/nikah-melayu.mp3 | Riau - Soleram (WikiDendang, 0:01 to 1:25) | Traditional; recorded by Duoviotheo / Wikimedia Indonesia (WikiDendang) | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:Riau_-_Soleram.wav |
+| music/nikah-aceh.mp3 | Aceh - Bungong Jeumpa (WikiDendang, 0:01 to 1:25) | Traditional; recorded by Duoviotheo / Wikimedia Indonesia (WikiDendang) | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:Aceh_-_Bungong_Jeumpa.wav |
+| music/nikah-chinese.mp3 | Lianhuan Kou - Cantonese Gaohu Solo (0:01 to 1:26) | Composed by Yan Laolie; performed by Zhang Peijian; recorded by David290 | CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) | https://commons.wikimedia.org/wiki/File:%E8%BF%9E%E7%8E%AF%E6%89%A3.ogg |
+| sfx/rindik-bali.mp3 | Bali xylophone (rindik bamboo ensemble, 0:50 to 0:53.5) | thedialogueproject | CC0 1.0 | https://commons.wikimedia.org/wiki/File:Bali_xylophone.ogg |
+| sfx/gong-chinese.mp3 | Chinese gong finish session (0:01.35 to 0:05.15) | the_very_Real_Horst | CC0 1.0 | https://commons.wikimedia.org/wiki/File:240382_the-very-real-horst_chinese-gong-finish-session-2014-06-10-29-143.wav |
+| sfx/midnight-celesta.mp3 | Cascading arpeggios on celesta from Dance of the Sugar Plum Fairy (0:00 to 0:03.8) | P. I. Tchaikovsky | Public domain | https://commons.wikimedia.org/wiki/File:Cascading_arpeggios_on_celesta_from_Sugar_Plum_Fairy.wav |

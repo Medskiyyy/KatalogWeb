@@ -6,7 +6,10 @@ export type SfxName =
   | "vinyl-needle"
   | "quiz-ding"
   | "party-cheer"
-  | "gong-jawa";
+  | "gong-jawa"
+  | "rindik-bali"
+  | "gong-chinese"
+  | "midnight-celesta";
 
 const SFX_URLS: Record<SfxName, string> = {
   "chat-pop": "/audio/sfx/chat-pop.mp3",
@@ -17,6 +20,9 @@ const SFX_URLS: Record<SfxName, string> = {
   "quiz-ding": "/audio/sfx/quiz-ding.mp3",
   "party-cheer": "/audio/sfx/party-cheer.mp3",
   "gong-jawa": "/audio/sfx/gong-jawa.mp3",
+  "rindik-bali": "/audio/sfx/rindik-bali.mp3",
+  "gong-chinese": "/audio/sfx/gong-chinese.mp3",
+  "midnight-celesta": "/audio/sfx/midnight-celesta.mp3",
 };
 
 const SFX_VOLUMES: Record<SfxName, number> = {
@@ -28,6 +34,9 @@ const SFX_VOLUMES: Record<SfxName, number> = {
   "quiz-ding": 0.44,
   "party-cheer": 0.45,
   "gong-jawa": 0.55,
+  "rindik-bali": 0.52,
+  "gong-chinese": 0.55,
+  "midnight-celesta": 0.5,
 };
 
 const sfxCache = new Map<SfxName, HTMLAudioElement>();
