@@ -105,6 +105,10 @@ const TEMPLATE_META: Record<
     label: "Nikah Adat Sunda",
     badgeClass: "border-teal-200 bg-teal-50 text-teal-800",
   },
+  "nikah-motion": {
+    label: "Nikah Motion Bunga",
+    badgeClass: "border-rose-300 bg-rose-50 text-rose-900",
+  },
   "umkm-katalog": {
     label: "UMKM Kedai Kopi",
     badgeClass: "border-sky-200 bg-sky-50 text-sky-800",

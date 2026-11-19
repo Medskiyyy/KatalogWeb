@@ -60,12 +60,13 @@ describe("Demo JSON configs & Zod schema", () => {
       "nikah-minang",
       "nikah-jawa",
       "nikah-sunda",
+      "nikah-motion",
       "umkm-katalog",
       "umkm-kuliner",
       "umkm-fashion",
       "umkm-jasa",
     ];
-    expect(BRAND.templates).toHaveLength(16);
+    expect(BRAND.templates).toHaveLength(17);
     for (const templateId of templateIds) {
       const config = createDefaultSiteConfig(templateId, `demo-${templateId}`);
       expect(() => SiteConfigSchema.parse(config)).not.toThrow();

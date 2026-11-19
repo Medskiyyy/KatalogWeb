@@ -11,6 +11,7 @@ export type TemplateId =
   | "nikah-minang"
   | "nikah-jawa"
   | "nikah-sunda"
+  | "nikah-motion"
   | "umkm-katalog"
   | "umkm-kuliner"
   | "umkm-fashion"
@@ -440,6 +441,31 @@ export const BRAND = {
         "Prosesi Adat Sunda (Ngeuyeuk Seureuh, Mapag Panganten, Sawer):",
         "Cerita Cinta, Rekening Amplop, Alamat Kado, & Nomor WA:",
         "Foto Prewedding Adat Sunda (4-6 foto lewat chat/Drive):",
+      ].join("\n"),
+    },
+    {
+      id: "nikah-motion",
+      name: "Undangan Motion Gerbang Bunga",
+      category: "Pernikahan",
+      demoSlug: "adit-kirana",
+      price: 79000,
+      priceLabel: "Rp79.000",
+      thumbnail: "/demo/nikah-jawa-couple.webp",
+      tagline:
+        "Undangan pernikahan sinematik dengan animasi gerbang bunga mekar saat dibuka, pendopo & wayang berayun, kupu-kupu terbang, serta personalisasi nama tamu.",
+      highlights: [
+        "Animasi gerbang bunga mekar & zoom-in pendopo saat tombol Buka Undangan diklik",
+        "Bunga & daun goyang tertiup angin, kupu-kupu terbang, + motif batik kawung",
+        "Hitung mundur Save The Date, galeri lightbox, amplop digital, & RSVP WA",
+      ],
+      buyerFormTemplate: [
+        "FORMAT ORDER - UNDANGAN MOTION GERBANG BUNGA",
+        "Pilihan Nama Link Web: (contoh: adit-kirana)",
+        "Mempelai Putri (panggilan, nama lengkap, putri dari Bapak/Ibu):",
+        "Mempelai Putra (panggilan, nama lengkap, putra dari Bapak/Ibu):",
+        "Jadwal Akad Nikah & Resepsi (tanggal, jam, tempat, link Maps):",
+        "Love Story Singkat & Rekening Amplop Digital:",
+        "Nomor WhatsApp Konfirmasi Hadir & Foto Prewedding (4-6 foto):",
       ].join("\n"),
     },
     {

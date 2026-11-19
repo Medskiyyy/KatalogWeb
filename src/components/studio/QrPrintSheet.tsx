@@ -36,6 +36,7 @@ function getSiteThumbnail(site: SiteConfig): string {
     case "nikah-minang":
     case "nikah-jawa":
     case "nikah-sunda":
+    case "nikah-motion":
       return site.data.gallery[0] || site.data.bride.photoUrl;
     case "umkm-katalog":
     case "umkm-kuliner":

@@ -365,6 +365,11 @@ export const SiteConfigSchema = z.discriminatedUnion("templateId", [
   }),
   z.object({
     ...BaseSiteFields,
+    templateId: z.literal("nikah-motion"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
     templateId: z.literal("umkm-katalog"),
     data: UmkmDataSchema,
   }),
@@ -414,7 +419,8 @@ export type NikahSiteConfig = Extract<
       | "nikah-garden"
       | "nikah-minang"
       | "nikah-jawa"
-      | "nikah-sunda";
+      | "nikah-sunda"
+      | "nikah-motion";
   }
 >;
 export type UmkmSiteConfig = Extract<
@@ -1431,6 +1437,89 @@ export function createDefaultSiteConfig(
           initialPrayers: [
             { name: "Kang Ridwan", relation: "Sahabat Bandung", message: "Wilujeng Galih & Ratna! Mugia sakinah mawaddah warahmah salamina." },
             { name: "Teh Maya", relation: "Sepupu", message: "Siger melatinya manis banget, lancar sampai acara saweran!" },
+          ],
+        },
+      };
+
+    case "nikah-motion":
+      return {
+        slug: cleanedSlug,
+        templateId: "nikah-motion",
+        title: "The Wedding of Kirana & Adit",
+        seoDescription: "Undangan pernikahan digital interaktif dengan animasi gerbang bunga mekar Kirana dan Adit.",
+        createdAt: today,
+        orderNote: "Order baru Shopee",
+        musicTrack: "builtin:nikah-jawa",
+        data: {
+          bride: {
+            nickname: "Kirana",
+            fullName: "Kirana Larasati Putri, S.Ars",
+            parents: "Putri pertama dari Bapak Hendra Wijaya & Ibu Ratna Dewi",
+            photoUrl: "/demo/nikah-bride.webp",
+          },
+          groom: {
+            nickname: "Adit",
+            fullName: "Aditya Pratama Putra, S.T",
+            parents: "Putra kedua dari Bapak Bambang Suryono & Ibu Sari Indah",
+            photoUrl: "/demo/nikah-groom.webp",
+          },
+          weddingDateIso: "2027-02-14T09:00:00+07:00",
+          blessingQuote: {
+            text: "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan-pasangan dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya.",
+            source: "QS. Ar-Rum : 21",
+          },
+          akad: {
+            dateLabel: "Minggu, 14 Februari 2027",
+            timeLabel: "08.00 - 10.00 WIB",
+            venueName: "Pendopo Agung Taman Sari",
+            address: "Jl. Kemang Selatan No. 48, Jakarta Selatan",
+            mapsUrl: "https://maps.google.com/?q=Jakarta+Selatan",
+          },
+          resepsi: {
+            dateLabel: "Minggu, 14 Februari 2027",
+            timeLabel: "11.00 - 14.30 WIB",
+            venueName: "Pendopo Agung Taman Sari",
+            address: "Jl. Kemang Selatan No. 48, Jakarta Selatan",
+            mapsUrl: "https://maps.google.com/?q=Jakarta+Selatan",
+          },
+          culturalNote:
+            "Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri hari bahagia pernikahan kami.",
+          ceremonyExtras: [
+            {
+              label: "Prosesi Temu Manten",
+              detail: "Dilaksanakan pukul 10.15 WIB di pelataran pendopo setelah Akad Nikah selesai.",
+            },
+          ],
+          storyTimeline: [
+            { year: "2022", title: "Awal Pertemuan", description: "Pertama kali bertemu saat berkolaborasi dalam proyek pameran desain di Jakarta." },
+            { year: "2025", title: "Lamaran Keluarga", description: "Kedua keluarga bertemu dan menyepakati niat baik menuju jenjang pernikahan." },
+            { year: "2027", title: "Menuju Pelaminan", description: "Memulai lembaran baru sebagai keluarga dengan doa dan restu orang-orang tercinta." },
+          ],
+          gallery: [
+            "/demo/nikah-jawa-couple.webp",
+            "/demo/nikah-gallery-1.webp",
+            "/demo/nikah-gallery-2.webp",
+            "/demo/nikah-gallery-3.webp",
+          ],
+          digitalEnvelopes: [
+            { bankName: "BCA", accountNumber: "4210078130", accountHolder: "Kirana Larasati Putri" },
+            { bankName: "Mandiri", accountNumber: "133008941205", accountHolder: "Aditya Pratama Putra" },
+          ],
+          rsvpWhatsapp: "6281234567890",
+          dresscode: {
+            note: "Busana formal atau batik nuansa maroon, gading, atau cokelat hangat.",
+            colors: [
+              { label: "Maroon", hex: "#7A1C2C" },
+              { label: "Gading", hex: "#FAF5EC" },
+              { label: "Emas", hex: "#9E783B" },
+            ],
+          },
+          giftAddress: {
+            recipient: "Kirana Larasati Putri (0812-3456-7890)",
+            address: "Jl. Melati Indah Blok B2 No. 14, Bekasi",
+          },
+          initialPrayers: [
+            { name: "Keluarga Besar Hendra", relation: "Keluarga", message: "Selamat menempuh hidup baru, semoga sakinah mawaddah warahmah." },
           ],
         },
       };

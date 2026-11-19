@@ -13,6 +13,7 @@ import { NikahGardenTemplate } from "@/templates/nikah/NikahGardenTemplate";
 import { NikahMinangTemplate } from "@/templates/nikah/NikahMinangTemplate";
 import { NikahJawaTemplate } from "@/templates/nikah/NikahJawaTemplate";
 import { NikahSundaTemplate } from "@/templates/nikah/NikahSundaTemplate";
+import { NikahMotionTemplate } from "@/templates/nikah/NikahMotionTemplate";
 import { UmkmKatalogTemplate } from "@/templates/umkm/UmkmKatalogTemplate";
 import { UmkmKulinerTemplate } from "@/templates/umkm/UmkmKulinerTemplate";
 import { UmkmFashionTemplate } from "@/templates/umkm/UmkmFashionTemplate";
@@ -49,6 +50,8 @@ export function TemplateRenderer({ site, embedded = false }: TemplateRendererPro
       return <NikahJawaTemplate site={site} embedded={embedded} />;
     case "nikah-sunda":
       return <NikahSundaTemplate site={site} embedded={embedded} />;
+    case "nikah-motion":
+      return <NikahMotionTemplate site={site} embedded={embedded} />;
     case "umkm-katalog":
       return <UmkmKatalogTemplate site={site} embedded={embedded} />;
     case "umkm-kuliner":

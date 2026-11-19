@@ -1842,6 +1842,7 @@ export function TemplateDataEditor({
     case "nikah-minang":
     case "nikah-jawa":
     case "nikah-sunda":
+    case "nikah-motion":
       return (
         <NikahEditor
           site={site}
