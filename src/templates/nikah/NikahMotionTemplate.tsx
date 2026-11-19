@@ -1,10 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  type MotionValue,
 } from "motion/react";
 import {
   ArrowSquareOut,
@@ -18,10 +22,10 @@ import {
   Gift,
   Heart,
   Images,
+  CaretUp,
   MapPin,
   Package,
   Palette,
-  Play,
   Users,
   WhatsappLogo,
   X,
@@ -46,8 +50,42 @@ interface WishEntry {
 }
 
 const CINEMATIC_EASE = [0.22, 1, 0.36, 1] as const;
-const CURTAIN_EASE = [0.42, 0, 0.2, 1] as const;
 const VIEWPORT_ONCE = { once: true, amount: "some" } as const;
+const VIEWPORT_REVEAL = { once: true, amount: 0.3 } as const;
+
+function ParallaxImage({
+  src,
+  alt,
+  className,
+  enabled,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  enabled: boolean;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-9%", "9%"]);
+
+  return (
+    <div ref={ref} className={cn("relative overflow-hidden", className)}>
+      <motion.img
+        src={src}
+        alt={alt}
+        style={enabled ? { y, scale: 1.2 } : undefined}
+        className="h-full w-full object-cover"
+      />
+    </div>
+  );
+}
+
+function useStage(progress: MotionValue<number>, range: [number, number]) {
+  return useTransform(progress, range, [0, 1], { clamp: true });
+}
 
 function padTwo(value: number): string {
   return String(Math.max(0, value)).padStart(2, "0");
@@ -173,8 +211,51 @@ export function NikahMotionTemplate({
   const shouldReduceMotion = Boolean(useReducedMotion());
 
   const [isOpen, setIsOpen] = useState(false);
-  const [gateBurstKey, setGateBurstKey] = useState(0);
-  const [isGateVisible, setIsGateVisible] = useState(false);
+  const scrub = !shouldReduceMotion && !embedded;
+
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroRaw } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end end"],
+  });
+  const heroProgress = useSpring(heroRaw, {
+    stiffness: 140,
+    damping: 30,
+    restDelta: 0.0005,
+  });
+
+  const gateOpen = useStage(heroProgress, [0.02, 0.5]);
+  const cueFade = useTransform(heroProgress, [0, 0.08], [1, 0]);
+  const pendopoScale = useTransform(heroProgress, [0, 0.6], [1.45, 1]);
+  const pendopoY = useTransform(heroProgress, [0, 0.6], ["9%", "0%"]);
+
+  const treeLX = useTransform(gateOpen, [0, 1], ["6%", "0%"]);
+  const treeRX = useTransform(gateOpen, [0, 1], ["-6%", "0%"]);
+  const treeScale = useTransform(gateOpen, [0, 1], [1.38, 1]);
+  const leafLX = useTransform(gateOpen, [0, 1], ["4%", "0%"]);
+  const leafRX = useTransform(gateOpen, [0, 1], ["-4%", "0%"]);
+  const leafY = useTransform(gateOpen, [0, 1], ["-12%", "0%"]);
+  const leafScale = useTransform(gateOpen, [0, 1], [1.6, 1]);
+  const garlandY = useTransform(gateOpen, [0, 1], ["-14%", "0%"]);
+  const garlandScale = useTransform(gateOpen, [0, 1], [1.22, 1]);
+
+  const wayangIn = useStage(heroProgress, [0.42, 0.7]);
+  const wayangLX = useTransform(wayangIn, [0, 1], [-80, 0]);
+  const wayangRX = useTransform(wayangIn, [0, 1], [80, 0]);
+  const skyIn = useStage(heroProgress, [0.45, 0.75]);
+  const kawungOpacity = useTransform(skyIn, [0, 1], [0, 0.25]);
+
+  const subIn = useStage(heroProgress, [0.4, 0.55]);
+  const brideIn = useStage(heroProgress, [0.46, 0.62]);
+  const ampIn = useStage(heroProgress, [0.52, 0.66]);
+  const groomIn = useStage(heroProgress, [0.56, 0.72]);
+  const dateIn = useStage(heroProgress, [0.64, 0.8]);
+  const subY = useTransform(subIn, [0, 1], [18, 0]);
+  const brideY = useTransform(brideIn, [0, 1], [18, 0]);
+  const groomY = useTransform(groomIn, [0, 1], [18, 0]);
+  const dateY = useTransform(dateIn, [0, 1], [18, 0]);
+  const ampScale = useTransform(ampIn, [0, 1], [0.7, 1]);
+
   const [guestName, setGuestName] = useState("Tamu Undangan");
   const [copiedBank, setCopiedBank] = useState<string | null>(null);
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
@@ -244,18 +325,9 @@ export function NikahMotionTemplate({
 
   const triggerEntrance = useCallback(() => {
     playSfx("gong-jawa");
+    if (!embedded) window.scrollTo({ top: 0 });
     setIsOpen(true);
-    setGateBurstKey((k) => k + 1);
-    setIsGateVisible(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isGateVisible) return;
-    const timer = window.setTimeout(() => {
-      setIsGateVisible(false);
-    }, 3000);
-    return () => window.clearTimeout(timer);
-  }, [isGateVisible, gateBurstKey]);
+  }, [embedded]);
 
   const coverPortrait =
     data.gallery[0] ?? data.bride.photoUrl ?? "/demo/nikah-jawa-couple.webp";
@@ -318,7 +390,7 @@ export function NikahMotionTemplate({
   ]);
 
   return (
-    <main className="relative min-h-screen w-full overflow-x-hidden bg-[#D9D0BE] text-[#3B1F1E] font-[family-name:var(--font-jakarta)] selection:bg-[#7A1C2C] selection:text-white">
+    <main className="relative min-h-screen w-full overflow-x-clip bg-[#D9D0BE] text-[#3B1F1E] font-[family-name:var(--font-jakarta)] selection:bg-[#7A1C2C] selection:text-white">
       <style>{`
         @keyframes floralSwayA {
           0% { transform: rotate(-2.2deg) translateY(0px); }
@@ -340,8 +412,13 @@ export function NikahMotionTemplate({
           0% { transform: rotateY(0deg); }
           100% { transform: rotateY(-64deg); }
         }
+        @keyframes cueBob {
+          0% { transform: translateY(3px); }
+          100% { transform: translateY(-3px); }
+        }
+        .motion-cue-bob { animation: cueBob 0.9s ease-in-out infinite alternate; }
         @media (prefers-reduced-motion: reduce) {
-          .motion-sway-a, .motion-sway-b, .motion-sway-c { animation: none !important; }
+          .motion-sway-a, .motion-sway-b, .motion-sway-c, .motion-cue-bob { animation: none !important; }
         }
         .motion-sway-a {
           transform-origin: bottom left;
@@ -437,7 +514,7 @@ export function NikahMotionTemplate({
             exit={{ opacity: 0, transition: { duration: 0.75, ease: CINEMATIC_EASE } }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-[#D9D0BE]/55 backdrop-blur-[2px]"
           >
-            <div className="relative flex h-full w-full max-w-[430px] flex-col items-center justify-center overflow-hidden bg-[#EFE8D9] px-6 py-8 shadow-2xl md:border-x md:border-[#C8AB78]">
+            <div className="relative flex h-full w-full max-w-[430px] flex-col items-center justify-center overflow-hidden bg-[#EFE8D9] px-5 py-6 shadow-2xl md:border-x md:border-[#C8AB78]">
               <KawungWatermarkSvg className="pointer-events-none absolute inset-0 h-full w-full opacity-30" />
 
               {/* Lush Edge-to-Edge Watercolor Cover Florals */}
@@ -481,11 +558,11 @@ export function NikahMotionTemplate({
                 initial={shouldReduceMotion ? false : { y: 16, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.75, ease: CINEMATIC_EASE }}
-                className="relative z-10 mb-14 flex w-full max-w-[310px] flex-col items-center rounded-t-[190px] rounded-b-[2rem] border border-[#C8AB78] bg-[#F7F1E4]/95 px-6 pt-8 pb-9 text-center shadow-xl"
+                className="relative z-10 mb-[6svh] flex w-full max-w-[310px] flex-col items-center rounded-t-[190px] rounded-b-[2rem] border border-[#C8AB78] bg-[#F7F1E4]/95 px-5 pt-[min(2rem,4svh)] pb-[min(2.25rem,4.5svh)] text-center shadow-xl"
               >
                 <div className="pointer-events-none absolute inset-2 rounded-t-[182px] rounded-b-[1.6rem] border border-[#C8AB78]/60" />
 
-                <div className="relative h-48 w-36 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-[#C8AB78] bg-[#E5D8C1] p-1 shadow-md">
+                <div className="relative aspect-[3/4] h-[min(12rem,26svh)] overflow-hidden rounded-t-full rounded-b-2xl border-2 border-[#C8AB78] bg-[#E5D8C1] p-1 shadow-md">
                   <img
                     src={coverPortrait}
                     alt={`${data.bride.nickname} & ${data.groom.nickname}`}
@@ -497,7 +574,7 @@ export function NikahMotionTemplate({
                 <p className="mt-5 text-[10px] font-semibold tracking-[0.28em] text-[#7A1C2C] uppercase">
                   Wedding Invitation
                 </p>
-                <h1 className="mt-2 font-[family-name:var(--font-cormorant)] text-4xl font-semibold italic tracking-wide text-[#4A0E19]">
+                <h1 className="mt-2 font-[family-name:var(--font-cormorant)] text-[clamp(1.9rem,9vw,2.25rem)] font-semibold italic leading-tight tracking-wide text-[#4A0E19]">
                   {data.bride.nickname} &amp; {data.groom.nickname}
                 </h1>
 
@@ -524,80 +601,6 @@ export function NikahMotionTemplate({
         )}
       </AnimatePresence>
 
-      {/* STAGE-SCOPED 0s -> 2.9s THROUGH-THE-GARDEN FLORAL CURTAIN SWEEP */}
-      <AnimatePresence>
-        {isGateVisible && !shouldReduceMotion && (
-          <div
-            key={`floral-gate-${gateBurstKey}`}
-            className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center"
-          >
-            <div className="relative h-full w-full max-w-[430px] overflow-hidden">
-              {/* Top floral valance lifting upward */}
-              <motion.img
-                src="/demo/motion/floral-bottom-garland.webp"
-                alt=""
-                loading="eager"
-                initial={{ y: "6%", scale: 1.35, rotate: 180, opacity: 1 }}
-                animate={{ y: "-125%", scale: 1.65, rotate: 180, opacity: 0 }}
-                transition={{ duration: 2.6, ease: CURTAIN_EASE }}
-                className="absolute -top-6 left-1/2 w-[145%] -translate-x-1/2 object-contain"
-              />
-
-              {/* Mid-level overhanging bougainvillea covering center-left & center-right */}
-              <motion.img
-                src="/demo/motion/floral-tree-side.webp"
-                alt=""
-                loading="eager"
-                initial={{ x: "18%", y: "4%", scale: 1.32, opacity: 1 }}
-                animate={{ x: "-118%", y: "26%", scale: 2.05, opacity: 0 }}
-                transition={{ duration: 2.8, ease: CURTAIN_EASE }}
-                className="absolute left-0 top-12 w-[92%] object-contain"
-              />
-              <motion.img
-                src="/demo/motion/floral-tree-side.webp"
-                alt=""
-                loading="eager"
-                initial={{ x: "-18%", y: "4%", scaleX: -1.32, scaleY: 1.32, opacity: 1 }}
-                animate={{ x: "118%", y: "26%", scaleX: -2.05, scaleY: 2.05, opacity: 0 }}
-                transition={{ duration: 2.8, ease: CURTAIN_EASE }}
-                className="absolute right-0 top-12 w-[92%] object-contain"
-              />
-
-              {/* Foreground giant banana leaves crossing center then sweeping past camera */}
-              <motion.img
-                src="/demo/motion/banana-leaves.webp"
-                alt=""
-                loading="eager"
-                initial={{ x: "22%", y: "-6%", scale: 1.35, opacity: 1 }}
-                animate={{ x: "-125%", y: "62%", scale: 2.2, opacity: 0 }}
-                transition={{ duration: 2.5, ease: CURTAIN_EASE }}
-                className="absolute bottom-14 left-0 w-[92%] object-contain"
-              />
-              <motion.img
-                src="/demo/motion/banana-leaves.webp"
-                alt=""
-                loading="eager"
-                initial={{ x: "-22%", y: "-6%", scaleX: -1.35, scaleY: 1.35, opacity: 1 }}
-                animate={{ x: "125%", y: "62%", scaleX: -2.2, scaleY: 2.2, opacity: 0 }}
-                transition={{ duration: 2.5, ease: CURTAIN_EASE }}
-                className="absolute bottom-14 right-0 w-[92%] object-contain"
-              />
-
-              {/* Lower floral garland dipping down & zooming past */}
-              <motion.img
-                src="/demo/motion/floral-bottom-garland.webp"
-                alt=""
-                loading="eager"
-                initial={{ y: "-12%", scale: 1.32, opacity: 1 }}
-                animate={{ y: "98%", scale: 2.1, opacity: 0 }}
-                transition={{ duration: 2.7, ease: CURTAIN_EASE }}
-                className="absolute bottom-0 left-1/2 w-[145%] -translate-x-1/2 object-contain"
-              />
-            </div>
-          </div>
-        )}
-      </AnimatePresence>
-
       {/* CENTERED MOBILE-FIRST INVITATION CANVAS */}
       <div
         className={cn(
@@ -605,304 +608,214 @@ export function NikahMotionTemplate({
           !isOpen && "h-[100dvh] overflow-hidden pb-0 md:my-0 md:rounded-none"
         )}
       >
-        {/* SECTION 1: 10-SECOND CHOREOGRAPHED PENDOPO HERO STAGE */}
+        {/* SECTION 1: SCROLL-DRIVEN FLORAL GATE OVER THE PENDOPO */}
         <section
           id="hero"
-          className="relative flex min-h-[92vh] flex-col items-center justify-between overflow-hidden bg-[#E6DEC9] px-5 pt-12 pb-12 text-center md:rounded-t-[2rem]"
+          ref={heroRef}
+          className={cn("relative", scrub ? "h-[260svh]" : "h-[100svh]")}
         >
-          {/* Stage 1 (0.2s -> 4.6s): Watercolor Joglo Pendopo Camera Pull-Back */}
-          <motion.div
-            key={`pendopo-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { scale: 1.55, y: "14%" }}
-            animate={{ scale: 1, y: "0%" }}
-            transition={{ duration: 4.4, delay: 0.2, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute inset-0"
-          >
-            <img
-              src="/demo/motion/pendopo-sky.webp"
-              alt="Pendopo Joglo Nusantara"
-              loading="eager"
-              className="h-full w-full object-cover object-bottom"
-            />
-          </motion.div>
-
-          {/* Drifting Cloud Mist */}
-          {!shouldReduceMotion && (
+          <div className="sticky top-0 h-[100svh] min-h-[560px] overflow-hidden bg-[#E6DEC9] text-center md:rounded-t-[2rem]">
             <motion.div
-              animate={{ x: [-26, 26, -26] }}
-              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", type: "tween" }}
-              className="pointer-events-none absolute inset-x-0 top-10 h-44 bg-[radial-gradient(ellipse_at_center,rgba(255,252,244,0.68)_0%,transparent_72%)]"
-            />
-          )}
+              style={scrub ? { scale: pendopoScale, y: pendopoY } : undefined}
+              className="pointer-events-none absolute inset-0"
+            >
+              <img
+                src="/demo/motion/pendopo-sky.webp"
+                alt="Pendopo Joglo Nusantara"
+                loading="eager"
+                className="h-full w-full object-cover object-bottom"
+              />
+            </motion.div>
 
-          {/* Stage 3 (3.2s -> 5.2s): Batik Kawung Upper Sky Fade-In */}
-          <motion.div
-            key={`kawung-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 0.25 }}
-            transition={{ duration: 2.0, delay: 3.2 }}
-            className="pointer-events-none absolute inset-x-0 top-0 h-72"
-          >
-            <KawungWatermarkSvg className="h-full w-full" />
-          </motion.div>
-
-          {/* Stage 2a (1.4s -> 4.2s): 3 Watercolor Butterflies Fluttering Above Joglo Roof (below typography!) */}
-          {!shouldReduceMotion && (
-            <>
+            {!shouldReduceMotion && (
               <motion.div
-                key={`bf-1-${gateBurstKey}`}
-                initial={{ x: -30, y: 80, opacity: 0 }}
-                animate={{
-                  x: [0, 38, 12, -22, 0],
-                  y: [0, -24, -44, -14, 0],
-                  opacity: [0, 1, 1, 1, 1],
-                }}
-                transition={{
-                  duration: 10,
-                  delay: 1.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  type: "tween",
-                }}
-                className="pointer-events-none absolute left-[18%] top-[53%] z-20"
-              >
-                <WatercolorButterfly className="h-9 w-9" flapSeconds={0.28} />
-              </motion.div>
+                animate={{ x: [-26, 26, -26] }}
+                transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                className="pointer-events-none absolute inset-x-0 top-10 h-44 bg-[radial-gradient(ellipse_at_center,rgba(255,252,244,0.68)_0%,transparent_72%)]"
+              />
+            )}
 
+            <motion.div
+              style={{ opacity: scrub ? kawungOpacity : 0.25 }}
+              className="pointer-events-none absolute inset-x-0 top-0 h-72"
+            >
+              <KawungWatermarkSvg className="h-full w-full" />
+            </motion.div>
+
+            {!shouldReduceMotion && (
               <motion.div
-                key={`bf-2-${gateBurstKey}`}
-                initial={{ x: 40, y: 70, opacity: 0 }}
-                animate={{
-                  x: [0, -34, -8, 24, 0],
-                  y: [0, -20, -40, -12, 0],
-                  opacity: [0, 1, 1, 1, 1],
-                }}
-                transition={{
-                  duration: 12,
-                  delay: 2.1,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  type: "tween",
-                }}
-                className="pointer-events-none absolute right-[16%] top-[56%] z-20"
+                style={scrub ? { opacity: skyIn } : undefined}
+                className="pointer-events-none absolute inset-0 z-20"
               >
-                <WatercolorButterfly className="h-8 w-8" flapSeconds={0.34} />
+                <motion.div
+                  animate={{ x: [0, 38, 12, -22, 0], y: [0, -24, -44, -14, 0] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                  className="absolute left-[16%] top-[52%]"
+                >
+                  <WatercolorButterfly className="h-9 w-9" flapSeconds={0.28} />
+                </motion.div>
+                <motion.div
+                  animate={{ x: [0, -34, -8, 24, 0], y: [0, -20, -40, -12, 0] }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                  className="absolute right-[16%] top-[56%]"
+                >
+                  <WatercolorButterfly className="h-8 w-8" flapSeconds={0.34} />
+                </motion.div>
+                <motion.div
+                  animate={{ x: [0, 22, -16, 10, 0], y: [0, -22, -42, -16, 0] }}
+                  transition={{ duration: 13.5, repeat: Infinity, ease: "easeInOut", type: "tween" }}
+                  className="absolute left-[46%] top-[48%]"
+                >
+                  <WatercolorButterfly className="h-6 w-6" flapSeconds={0.38} />
+                </motion.div>
               </motion.div>
+            )}
 
-              <motion.div
-                key={`bf-3-${gateBurstKey}`}
-                initial={{ y: 60, opacity: 0 }}
-                animate={{
-                  x: [0, 22, -16, 10, 0],
-                  y: [0, -22, -42, -16, 0],
-                  opacity: [0, 0.9, 0.9, 0.9, 0.9],
-                }}
-                transition={{
-                  duration: 13.5,
-                  delay: 2.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  type: "tween",
-                }}
-                className="pointer-events-none absolute left-[46%] top-[50%] z-20"
-              >
-                <WatercolorButterfly className="h-6 w-6" flapSeconds={0.38} />
-              </motion.div>
-            </>
-          )}
+            <motion.div
+              style={scrub ? { x: wayangLX, opacity: wayangIn } : undefined}
+              className="pointer-events-none absolute bottom-[9%] -left-6 z-10 w-[33%]"
+            >
+              <img
+                src="/demo/motion/wayang-left.webp"
+                alt=""
+                loading="eager"
+                className="motion-sway-c w-full object-contain"
+              />
+            </motion.div>
+            <motion.div
+              style={scrub ? { x: wayangRX, opacity: wayangIn } : undefined}
+              className="pointer-events-none absolute bottom-[9%] -right-6 z-10 w-[33%]"
+            >
+              <img
+                src="/demo/motion/wayang-right.webp"
+                alt=""
+                loading="eager"
+                className="motion-sway-c w-full object-contain"
+              />
+            </motion.div>
 
-          {/* Stage 2b (1.8s -> 4.4s): Overhanging Watercolor Tree Canopy & Banana Leaves */}
-          <motion.div
-            key={`tree-l-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: -75, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 2.1, delay: 1.8, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute -left-8 -top-4 z-10 w-[50%]"
-          >
-            <img
-              src="/demo/motion/floral-tree-side.webp"
-              alt=""
-              loading="eager"
-              className="motion-sway-a w-full object-contain"
-            />
-          </motion.div>
-
-          <motion.div
-            key={`tree-r-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: 75, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 2.1, delay: 1.8, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute -right-8 -top-4 z-10 w-[50%]"
-          >
-            <div className="motion-sway-b w-full">
+            {/* Gate doors: start closed edge-to-edge, open into the corner frame */}
+            <motion.div
+              style={scrub ? { x: treeLX, scale: treeScale } : undefined}
+              className="pointer-events-none absolute -left-8 -top-4 z-30 w-[50%] origin-top-left"
+            >
               <img
                 src="/demo/motion/floral-tree-side.webp"
                 alt=""
                 loading="eager"
-                className="w-full -scale-x-100 object-contain"
+                className="motion-sway-a w-full object-contain"
               />
-            </div>
-          </motion.div>
+            </motion.div>
+            <motion.div
+              style={scrub ? { x: treeRX, scale: treeScale } : undefined}
+              className="pointer-events-none absolute -right-8 -top-4 z-30 w-[50%] origin-top-right"
+            >
+              <div className="motion-sway-b w-full">
+                <img
+                  src="/demo/motion/floral-tree-side.webp"
+                  alt=""
+                  loading="eager"
+                  className="w-full -scale-x-100 object-contain"
+                />
+              </div>
+            </motion.div>
 
-          <motion.div
-            key={`leaf-l-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: -65, y: 35, opacity: 0 }}
-            animate={{ x: 0, y: 0, opacity: 0.95 }}
-            transition={{ duration: 2.0, delay: 2.2, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute bottom-12 -left-14 z-10 w-[52%]"
-          >
-            <img
-              src="/demo/motion/banana-leaves.webp"
-              alt=""
-              loading="eager"
-              className="motion-sway-a w-full object-contain"
-            />
-          </motion.div>
-
-          <motion.div
-            key={`leaf-r-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: 65, y: 35, opacity: 0 }}
-            animate={{ x: 0, y: 0, opacity: 0.95 }}
-            transition={{ duration: 2.0, delay: 2.2, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute bottom-12 -right-14 z-10 w-[52%]"
-          >
-            <div className="motion-sway-b w-full">
+            <motion.div
+              style={scrub ? { x: leafLX, y: leafY, scale: leafScale } : undefined}
+              className="pointer-events-none absolute bottom-[8%] -left-14 z-20 w-[52%] origin-bottom-left opacity-95"
+            >
               <img
                 src="/demo/motion/banana-leaves.webp"
                 alt=""
                 loading="eager"
-                className="w-full -scale-x-100 object-contain"
+                className="motion-sway-a w-full object-contain"
               />
-            </div>
-          </motion.div>
+            </motion.div>
+            <motion.div
+              style={scrub ? { x: leafRX, y: leafY, scale: leafScale } : undefined}
+              className="pointer-events-none absolute bottom-[8%] -right-14 z-20 w-[52%] origin-bottom-right opacity-95"
+            >
+              <div className="motion-sway-b w-full">
+                <img
+                  src="/demo/motion/banana-leaves.webp"
+                  alt=""
+                  loading="eager"
+                  className="w-full -scale-x-100 object-contain"
+                />
+              </div>
+            </motion.div>
 
-          {/* Stage 3b (3.4s -> 5.6s): Wayang Kulit Procession Behind Bottom Garland */}
-          <motion.div
-            key={`wayang-l-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: -95, opacity: 0 }}
-            animate={{ x: 0, opacity: 0.96 }}
-            transition={{ duration: 2.1, delay: 3.4, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute bottom-16 -left-6 z-10 w-[33%]"
-          >
-            <img
-              src="/demo/motion/wayang-left.webp"
-              alt=""
-              loading="eager"
-              className="motion-sway-c w-full object-contain"
-            />
-          </motion.div>
+            <motion.div
+              style={scrub ? { y: garlandY, scale: garlandScale } : undefined}
+              className="pointer-events-none absolute -bottom-2 left-1/2 z-30 w-[112%] -translate-x-1/2 origin-bottom"
+            >
+              <img
+                src="/demo/motion/floral-bottom-garland.webp"
+                alt=""
+                loading="eager"
+                className="motion-sway-c w-full object-contain"
+              />
+            </motion.div>
 
-          <motion.div
-            key={`wayang-r-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { x: 95, opacity: 0 }}
-            animate={{ x: 0, opacity: 0.96 }}
-            transition={{ duration: 2.1, delay: 3.4, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute bottom-16 -right-6 z-10 w-[33%]"
-          >
-            <img
-              src="/demo/motion/wayang-right.webp"
-              alt=""
-              loading="eager"
-              className="motion-sway-c w-full object-contain"
-            />
-          </motion.div>
-
-          {/* Stage 2c (2.5s -> 4.5s): Full-Width Bottom Floral Garland Border */}
-          <motion.div
-            key={`garland-bot-${gateBurstKey}`}
-            initial={shouldReduceMotion ? false : { y: 75, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 2.0, delay: 2.5, ease: CINEMATIC_EASE }}
-            className="pointer-events-none absolute -bottom-2 left-1/2 z-20 w-[112%] -translate-x-1/2"
-          >
-            <img
-              src="/demo/motion/floral-bottom-garland.webp"
-              alt=""
-              loading="eager"
-              className="motion-sway-c w-full object-contain"
-            />
-          </motion.div>
-
-          {/* Replay Entrance Button */}
-          <div className="relative z-30 flex w-full justify-end">
-            {isOpen && (
-              <button
-                type="button"
-                onClick={triggerEntrance}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[#7A1C2C]/30 bg-[#FAF5EC]/90 px-3 py-1.5 text-[11px] font-medium text-[#7A1C2C] shadow-sm backdrop-blur-sm transition hover:bg-white"
+            {scrub && isOpen && (
+              <motion.a
+                href="#mempelai"
+                onClick={(e) => {
+                  e.preventDefault();
+                  heroRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
+                }}
+                style={{ opacity: cueFade }}
+                className="absolute inset-x-0 top-1/2 z-40 mx-auto flex w-max -translate-y-1/2 flex-col items-center gap-1 rounded-2xl bg-[#FAF5EC]/85 px-5 py-3 text-[#681624] shadow-lg backdrop-blur-sm"
               >
-                <Play size={12} weight="fill" />
-                Putar Ulang Animasi
-              </button>
+                <CaretUp size={18} weight="bold" className="motion-cue-bob" />
+                <span className="font-[family-name:var(--font-cormorant)] text-lg font-semibold italic">
+                  Geser ke atas
+                </span>
+                <span className="text-[10px] tracking-[0.2em] uppercase">
+                  untuk membuka gerbang
+                </span>
+              </motion.a>
             )}
+
+            <div className="relative z-20 flex flex-col items-center px-6 pt-[max(3rem,11svh)]">
+              <motion.p
+                style={scrub ? { opacity: subIn, y: subY } : undefined}
+                className="text-[11px] font-semibold tracking-[0.3em] text-[#681624] uppercase"
+              >
+                The Wedding Of
+              </motion.p>
+              <motion.h2
+                style={scrub ? { opacity: brideIn, y: brideY } : undefined}
+                className="mt-3 font-[family-name:var(--font-cormorant)] text-[clamp(2.3rem,11.5vw,2.75rem)] font-semibold italic leading-none text-[#4A0E19]"
+              >
+                {data.bride.nickname}
+              </motion.h2>
+              <motion.span
+                style={scrub ? { opacity: ampIn, scale: ampScale } : undefined}
+                className="my-1 font-[family-name:var(--font-cormorant)] text-2xl font-medium text-[#8E6A34]"
+              >
+                &amp;
+              </motion.span>
+              <motion.h2
+                style={scrub ? { opacity: groomIn, y: groomY } : undefined}
+                className="font-[family-name:var(--font-cormorant)] text-[clamp(2.3rem,11.5vw,2.75rem)] font-semibold italic leading-none text-[#4A0E19]"
+              >
+                {data.groom.nickname}
+              </motion.h2>
+              <motion.div
+                style={scrub ? { opacity: dateIn, y: dateY } : undefined}
+                className="flex flex-col items-center"
+              >
+                <p className="mt-4 rounded-full border border-[#C6A77D] bg-[#FAF5EC]/90 px-4 py-1 text-[11px] font-medium tracking-[0.2em] text-[#5E3A2E]">
+                  {data.akad.dateLabel}
+                </p>
+                <span className="mt-3 inline-flex items-center gap-1 text-[10px] font-medium tracking-widest text-[#681624] uppercase opacity-80">
+                  Terus geser
+                  <CaretDown size={12} />
+                </span>
+              </motion.div>
+            </div>
           </div>
-
-          {/* Stage 4 (4.2s -> 7.0s): Line-by-Line Stately Typography in Open Upper Sky */}
-          <div className="relative z-20 mt-4 mb-auto flex flex-col items-center px-4 pt-2">
-            <motion.p
-              key={`t-sub-${gateBurstKey}`}
-              initial={shouldReduceMotion ? false : { y: 12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.9, delay: 4.2, ease: CINEMATIC_EASE }}
-              className="text-[11px] font-semibold tracking-[0.3em] text-[#681624] uppercase"
-            >
-              The Wedding Of
-            </motion.p>
-
-            <motion.h2
-              key={`t-bride-${gateBurstKey}`}
-              initial={shouldReduceMotion ? false : { y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.0, delay: 4.7, ease: CINEMATIC_EASE }}
-              className="mt-3 font-[family-name:var(--font-cormorant)] text-[2.75rem] font-semibold italic leading-none text-[#4A0E19]"
-            >
-              {data.bride.nickname}
-            </motion.h2>
-
-            <motion.span
-              key={`t-amp-${gateBurstKey}`}
-              initial={shouldReduceMotion ? false : { scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 5.05, ease: CINEMATIC_EASE }}
-              className="my-1 font-[family-name:var(--font-cormorant)] text-2xl font-medium text-[#8E6A34]"
-            >
-              &amp;
-            </motion.span>
-
-            <motion.h2
-              key={`t-groom-${gateBurstKey}`}
-              initial={shouldReduceMotion ? false : { y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1.0, delay: 5.3, ease: CINEMATIC_EASE }}
-              className="font-[family-name:var(--font-cormorant)] text-[2.75rem] font-semibold italic leading-none text-[#4A0E19]"
-            >
-              {data.groom.nickname}
-            </motion.h2>
-
-            <motion.p
-              key={`t-date-${gateBurstKey}`}
-              initial={shouldReduceMotion ? false : { y: 12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.9, delay: 5.8, ease: CINEMATIC_EASE }}
-              className="mt-4 rounded-full border border-[#C6A77D] bg-[#FAF5EC]/90 px-4 py-1 text-[11px] font-medium tracking-[0.2em] text-[#5E3A2E]"
-            >
-              {data.akad.dateLabel}
-            </motion.p>
-
-            <motion.a
-              href="#mempelai"
-              key={`t-cue-${gateBurstKey}`}
-              initial={shouldReduceMotion ? false : { opacity: 0 }}
-              animate={{ opacity: 0.8 }}
-              transition={{ duration: 0.9, delay: 6.4 }}
-              className="mt-4 inline-flex items-center gap-1 text-[10px] font-medium tracking-widest text-[#681624] uppercase hover:opacity-100"
-            >
-              Scroll ke bawah
-              <CaretDown size={12} />
-            </motion.a>
-          </div>
-
-          <div className="relative z-20 h-40" />
         </section>
 
         {/* SECTION 2: FEATURE PORTRAIT + BLESSING QUOTE */}
@@ -913,13 +826,12 @@ export function NikahMotionTemplate({
           transition={{ duration: 0.7, ease: CINEMATIC_EASE }}
           className="relative mx-4 mt-6 overflow-hidden rounded-3xl border border-[#C8AB78]/45 bg-[#EFE7D8] p-4 text-center shadow-lg"
         >
-          <div className="overflow-hidden rounded-2xl border border-[#C8AB78]/50">
-            <img
-              src={featurePortrait}
-              alt={`${data.bride.nickname} & ${data.groom.nickname}`}
-              className="aspect-[4/3] w-full object-cover"
-            />
-          </div>
+          <ParallaxImage
+            src={featurePortrait}
+            alt={`${data.bride.nickname} & ${data.groom.nickname}`}
+            enabled={!shouldReduceMotion}
+            className="aspect-[4/3] w-full rounded-2xl border border-[#C8AB78]/50"
+          />
           <div className="px-2 pt-5 pb-3">
             <p className="font-[family-name:var(--font-cormorant)] text-base italic leading-relaxed text-[#4A0E19]">
               &ldquo;{data.blessingQuote.text}&rdquo;
@@ -933,10 +845,14 @@ export function NikahMotionTemplate({
         {/* SECTION 3: BRIDE & GROOM PARCHMENT ARCH PANEL */}
         <section id="mempelai" className="px-4 pt-8">
           <div className="relative overflow-hidden rounded-t-[190px] rounded-b-3xl border border-[#C8AB78] bg-[#EFE7D8] px-5 pt-36 pb-8 text-center shadow-lg">
-            <img
+            <motion.img
               src="/demo/motion/floral-bottom-garland.webp"
               alt=""
-              className="pointer-events-none absolute -top-2 left-1/2 w-[104%] -translate-x-1/2 rotate-180 object-contain opacity-95"
+              initial={shouldReduceMotion ? false : { scale: 0.55, opacity: 0, y: -30 }}
+              whileInView={{ scale: 1, opacity: 0.95, y: 0 }}
+              viewport={VIEWPORT_REVEAL}
+              transition={{ duration: 1.1, ease: CINEMATIC_EASE }}
+              className="pointer-events-none absolute -top-2 left-1/2 w-[104%] -translate-x-1/2 rotate-180 origin-center object-contain"
             />
 
             <p className="relative z-10 text-[11px] font-semibold tracking-[0.26em] text-[#7A1C2C] uppercase">
@@ -953,10 +869,10 @@ export function NikahMotionTemplate({
               ].map((item, idx) => (
                 <motion.div
                   key={item.role}
-                  initial={shouldReduceMotion ? false : { y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={VIEWPORT_ONCE}
-                  transition={{ duration: 0.65, delay: idx * 0.1, ease: CINEMATIC_EASE }}
+                  initial={shouldReduceMotion ? false : { x: idx === 0 ? -48 : 48, opacity: 0, rotate: idx === 0 ? -3 : 3 }}
+                  whileInView={{ x: 0, opacity: 1, rotate: 0 }}
+                  viewport={VIEWPORT_REVEAL}
+                  transition={{ duration: 0.8, ease: CINEMATIC_EASE }}
                   className="rounded-3xl border border-[#DFCFB6] bg-[#FAF5EC] px-5 py-6 shadow-sm"
                 >
                   <div className="mx-auto h-44 w-34 overflow-hidden rounded-t-full rounded-b-xl border-2 border-[#C8AB78] bg-[#EFE5D4] p-1">
@@ -990,10 +906,11 @@ export function NikahMotionTemplate({
           className="relative mx-4 mt-8 overflow-hidden rounded-3xl border border-[#C8AB78]/50 bg-[#3B0B14] text-center text-white shadow-lg"
         >
           <div className="relative h-56 overflow-hidden">
-            <img
+            <ParallaxImage
               src={saveDatePhoto}
               alt="Save The Date"
-              className="h-full w-full object-cover opacity-85"
+              enabled={!shouldReduceMotion}
+              className="h-full w-full opacity-85"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#3B0B14] via-[#3B0B14]/35 to-transparent" />
             <div className="absolute inset-x-0 bottom-3 px-4">
@@ -1070,15 +987,23 @@ export function NikahMotionTemplate({
                 transition={{ duration: 0.65, delay: idx * 0.1, ease: CINEMATIC_EASE }}
                 className="relative overflow-hidden rounded-t-[170px] rounded-b-3xl border border-[#C8AB78] bg-[#EFE7D8] px-6 pt-40 pb-44 text-center text-[#3B1F1E] shadow-lg"
               >
-                <img
+                <motion.img
                   src="/demo/motion/floral-bottom-garland.webp"
                   alt=""
-                  className="pointer-events-none absolute -top-2 left-1/2 w-[104%] -translate-x-1/2 rotate-180 object-contain opacity-95"
+                  initial={shouldReduceMotion ? false : { scale: 0.55, opacity: 0, y: -30 }}
+                  whileInView={{ scale: 1, opacity: 0.95, y: 0 }}
+                  viewport={VIEWPORT_REVEAL}
+                  transition={{ duration: 1.1, ease: CINEMATIC_EASE }}
+                  className="pointer-events-none absolute -top-2 left-1/2 w-[104%] -translate-x-1/2 rotate-180 object-contain"
                 />
-                <img
+                <motion.img
                   src="/demo/motion/floral-bottom-garland.webp"
                   alt=""
-                  className="pointer-events-none absolute -bottom-2 left-1/2 w-[104%] -translate-x-1/2 object-contain opacity-95"
+                  initial={shouldReduceMotion ? false : { scale: 0.55, opacity: 0, y: 30 }}
+                  whileInView={{ scale: 1, opacity: 0.95, y: 0 }}
+                  viewport={VIEWPORT_REVEAL}
+                  transition={{ duration: 1.1, delay: 0.2, ease: CINEMATIC_EASE }}
+                  className="pointer-events-none absolute -bottom-2 left-1/2 w-[104%] -translate-x-1/2 origin-bottom object-contain"
                 />
 
                 <div className="relative z-10">
@@ -1148,7 +1073,14 @@ export function NikahMotionTemplate({
 
               <div className="mt-6 space-y-5 border-l-2 border-[#C8AB78] pl-5">
                 {data.storyTimeline.map((story) => (
-                  <div key={`${story.year}-${story.title}`} className="relative">
+                  <motion.div
+                    key={`${story.year}-${story.title}`}
+                    initial={shouldReduceMotion ? false : { x: -28, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={VIEWPORT_REVEAL}
+                    transition={{ duration: 0.7, ease: CINEMATIC_EASE }}
+                    className="relative"
+                  >
                     <span className="absolute -left-[27px] top-1 h-3 w-3 rounded-full border-2 border-[#EFE7D8] bg-[#7A1C2C]" />
                     <p className="text-[11px] font-bold tracking-wider text-[#9E783B]">
                       {story.year}
@@ -1159,7 +1091,7 @@ export function NikahMotionTemplate({
                     <p className="mt-1 text-xs leading-relaxed text-[#6E4F45]">
                       {story.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -1180,9 +1112,13 @@ export function NikahMotionTemplate({
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               {data.gallery.map((photo, idx) => (
-                <button
+                <motion.button
                   key={`${photo}-${idx}`}
                   type="button"
+                  initial={shouldReduceMotion ? false : { y: 40, scale: 0.92, opacity: 0 }}
+                  whileInView={{ y: 0, scale: 1, opacity: 1 }}
+                  viewport={VIEWPORT_REVEAL}
+                  transition={{ duration: 0.75, delay: (idx % 2) * 0.12, ease: CINEMATIC_EASE }}
                   onClick={() => setLightboxSrc(photo)}
                   className={cn(
                     "group relative overflow-hidden rounded-2xl border border-[#C8AB78]/60 bg-[#3B0B14]",
@@ -1194,7 +1130,7 @@ export function NikahMotionTemplate({
                     alt={`Galeri ${idx + 1}`}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
-                </button>
+                </motion.button>
               ))}
             </div>
           </section>
@@ -1400,10 +1336,14 @@ export function NikahMotionTemplate({
               {data.bride.nickname} &amp; {data.groom.nickname}
             </p>
 
-            <img
+            <motion.img
               src="/demo/motion/floral-bottom-garland.webp"
               alt=""
-              className="pointer-events-none absolute -bottom-2 left-1/2 w-[108%] -translate-x-1/2 object-contain opacity-95"
+              initial={shouldReduceMotion ? false : { scale: 0.55, opacity: 0, y: 30 }}
+              whileInView={{ scale: 1, opacity: 0.95, y: 0 }}
+              viewport={VIEWPORT_REVEAL}
+              transition={{ duration: 1.1, ease: CINEMATIC_EASE }}
+              className="pointer-events-none absolute -bottom-2 left-1/2 w-[108%] -translate-x-1/2 origin-bottom object-contain"
             />
           </div>
         </footer>
