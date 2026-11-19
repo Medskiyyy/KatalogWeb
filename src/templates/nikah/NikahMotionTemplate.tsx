@@ -226,6 +226,9 @@ export function NikahMotionTemplate({
 
   const gateOpen = useStage(heroProgress, [0.02, 0.5]);
   const cueFade = useTransform(heroProgress, [0, 0.08], [1, 0]);
+  const portraitFade = useTransform(heroProgress, [0.18, 0.4], [1, 0]);
+  const portraitScale = useTransform(heroProgress, [0, 0.4], [1, 0.82]);
+  const portraitY = useTransform(heroProgress, [0, 0.4], ["0%", "-12%"]);
   const pendopoScale = useTransform(heroProgress, [0, 0.6], [1.45, 1]);
   const pendopoY = useTransform(heroProgress, [0, 0.6], ["9%", "0%"]);
 
@@ -757,24 +760,43 @@ export function NikahMotionTemplate({
               />
             </motion.div>
 
-            {scrub && isOpen && (
-              <motion.a
-                href="#mempelai"
-                onClick={(e) => {
-                  e.preventDefault();
-                  heroRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
-                }}
-                style={{ opacity: cueFade }}
-                className="absolute inset-x-0 top-1/2 z-40 mx-auto flex w-max -translate-y-1/2 flex-col items-center gap-1 rounded-2xl bg-[#FAF5EC]/85 px-5 py-3 text-[#681624] shadow-lg backdrop-blur-sm"
+            {scrub && (
+              <div
+                style={{ top: "47%", zIndex: 25 }}
+                className="pointer-events-none absolute inset-x-0 flex -translate-y-1/2 flex-col items-center"
               >
-                <CaretUp size={18} weight="bold" className="motion-cue-bob" />
-                <span className="font-[family-name:var(--font-cormorant)] text-lg font-semibold italic">
-                  Geser ke atas
-                </span>
-                <span className="text-[10px] tracking-[0.2em] uppercase">
-                  untuk membuka gerbang
-                </span>
-              </motion.a>
+                <motion.div
+                  style={{ opacity: portraitFade, scale: portraitScale, y: portraitY, height: "min(18rem, 38svh)" }}
+                  className="aspect-[3/4] rounded-t-full rounded-b-3xl border-2 border-[#C8AB78] bg-[#F7F1E4] p-1.5 shadow-2xl"
+                >
+                  <img
+                    src={coverPortrait}
+                    alt={`${data.bride.nickname} & ${data.groom.nickname}`}
+                    loading="eager"
+                    className="h-full w-full rounded-t-full rounded-b-[1.2rem] object-cover"
+                  />
+                </motion.div>
+
+                {isOpen && (
+                  <motion.a
+                    href="#mempelai"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      heroRef.current?.nextElementSibling?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    style={{ opacity: cueFade }}
+                    className="pointer-events-auto mt-4 flex flex-col items-center gap-0.5 rounded-2xl bg-[#FAF5EC]/85 px-5 py-2.5 text-[#681624] shadow-lg backdrop-blur-sm"
+                  >
+                    <CaretUp size={16} weight="bold" className="motion-cue-bob" />
+                    <span className="font-[family-name:var(--font-cormorant)] text-base font-semibold italic">
+                      Geser ke atas
+                    </span>
+                    <span className="text-[9px] tracking-[0.2em] uppercase">
+                      untuk membuka gerbang
+                    </span>
+                  </motion.a>
+                )}
+              </div>
             )}
 
             <div className="relative z-20 flex flex-col items-center px-6 pt-[max(3rem,11svh)]">
