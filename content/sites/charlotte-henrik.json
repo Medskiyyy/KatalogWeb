@@ -1,0 +1,119 @@
+{
+  "slug": "charlotte-henrik",
+  "title": "The Wedding of Charlotte & Henrik",
+  "seoDescription": "Victorian Bloomhouse - Undangan pernikahan digital Charlotte dan Henrik.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-victorian-bloomhouse",
+  "data": {
+    "bride": {
+      "nickname": "Charlotte",
+      "fullName": "Charlotte Aurelia Gunawan",
+      "parents": "Putri Bapak Herman Gunawan & Ibu Theresa",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Henrik",
+      "fullName": "Henrik Adiputra Wijaya",
+      "parents": "Putra Bapak Markus Wijaya & Ibu Veronica",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-06-06T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Under glass arches filled with sunlight and tea roses, our forever takes root gently.",
+      "source": "Bloomhouse Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 6 Juni 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Glasshouse Conservatory, Bogor",
+      "address": "Jl. Ir. H. Juanda No. 13, Kota Bogor",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 6 Juni 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Glasshouse Conservatory, Bogor",
+      "address": "Jl. Ir. H. Juanda No. 13, Kota Bogor",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Charlotte Aurelia Gunawan"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Henrik Adiputra Wijaya"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Warm tea-rose, champagne cream, or soft sage tailoring.",
+      "colors": [
+        {
+          "label": "Tea Rose",
+          "hex": "#C58D64"
+        },
+        {
+          "label": "Chestnut",
+          "hex": "#794124"
+        },
+        {
+          "label": "Ivory Lace",
+          "hex": "#FCF7F0"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Charlotte & Henrik (0812-3456-7890)",
+      "address": "Jl. Ir. H. Juanda No. 13, Kota Bogor"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "slug": "tengku-wan",
+  "title": "The Wedding of Wan Aulia & Tengku Hafiz",
+  "seoDescription": "Melayu Heritage - Undangan pernikahan digital Wan Aulia dan Tengku Hafiz.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-minang",
+  "templateId": "nikah-melayu",
+  "data": {
+    "bride": {
+      "nickname": "Wan Aulia",
+      "fullName": "Wan Aulia Syafiqah, S.E.",
+      "parents": "Putri Datuk Wan Zainal Abidin & Datin Wan Noraini",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Tengku Hafiz",
+      "fullName": "Tengku Hafizudin Al-Muhtadi, M.B.A.",
+      "parents": "Putra Tengku Iskandar Syah & Tengku Fatimah",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-08-22T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Biarlah kasih ini bertaut seperti sirih pulang ke gagang, meneduhkan hati sepanjang hayat.",
+      "source": "Ungkapan Adat Melayu"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 22 Agustus 2027",
+      "timeLabel": "08.30 - 10.30 WIB",
+      "venueName": "Balai Adat Melayu Riau",
+      "address": "Jl. Diponegoro No. 40, Pekanbaru",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 22 Agustus 2027",
+      "timeLabel": "11.30 - 15.30 WIB",
+      "venueName": "Grand Pangeran Hall Pekanbaru",
+      "address": "Jl. Jend. Sudirman No. 371, Pekanbaru",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Wan Aulia Syafiqah, S.E."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Tengku Hafizudin Al-Muhtadi, M.B.A."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Baju Kurung, Teluk Belanga, atau batik bernuansa kuning diraja & hijau zamrud.",
+      "colors": [
+        {
+          "label": "Kuning Diraja",
+          "hex": "#C89B1E"
+        },
+        {
+          "label": "Hijau Sireh",
+          "hex": "#1F4428"
+        },
+        {
+          "label": "Krem Sutera",
+          "hex": "#FCF9EA"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Wan Aulia & Tengku Hafiz (0812-3456-7890)",
+      "address": "Jl. Jend. Sudirman No. 371, Pekanbaru"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan segala hormat dan takzim, kami mengundang Datuk, Datin, Encik, Puan, dan sahabat menghadiri majlis perkahwinan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Tepuk Tepung Tawar",
+        "detail": "Dilaksanakan di pelaminan utama pukul 12.00 WIB diiringi kompang Melayu."
+      }
+    ]
+  }
+}

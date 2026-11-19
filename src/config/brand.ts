@@ -1,3 +1,8 @@
+import {
+  EXTENDED_NIKAH_CATALOG_ITEMS,
+  type ExtendedNikahTemplateId,
+} from "@/templates/nikah/themes";
+
 export type TemplateId =
   | "bucin-scrapbook"
   | "bucin-chat"
@@ -12,6 +17,7 @@ export type TemplateId =
   | "nikah-jawa"
   | "nikah-sunda"
   | "nikah-motion"
+  | ExtendedNikahTemplateId
   | "umkm-katalog"
   | "umkm-kuliner"
   | "umkm-fashion"
@@ -89,7 +95,7 @@ export const BRAND = {
       features: [
         "Link undangan pasangan aktif 1 tahun penuh",
         "Nama tamu tampil pribadi di sampul undangan sesuai link sebar",
-        "Pilihan tema Garden, Adat Minang, Adat Jawa Keraton, atau Adat Sunda",
+        "Pilihan 30 tema: Adat Nusantara, Castle & Garden Floral, hingga Midnight Luxury",
         "Amplop digital salin rekening 1 klik dan konfirmasi hadir WhatsApp",
       ],
     },
@@ -468,6 +474,7 @@ export const BRAND = {
         "Nomor WhatsApp Konfirmasi Hadir & Foto Prewedding (4-6 foto):",
       ].join("\n"),
     },
+    ...EXTENDED_NIKAH_CATALOG_ITEMS,
     {
       id: "umkm-katalog",
       name: "Katalog Kedai Kopi & Minuman",

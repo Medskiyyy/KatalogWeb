@@ -1,0 +1,119 @@
+{
+  "slug": "kevin-meilin",
+  "title": "The Wedding of Meilin & Kevin",
+  "seoDescription": "Chinese Heritage - Undangan pernikahan digital Meilin dan Kevin.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-chinese",
+  "data": {
+    "bride": {
+      "nickname": "Meilin",
+      "fullName": "Meilin Tanuwijaya, B.Des.",
+      "parents": "Putri Bapak Hendra Tanuwijaya & Ibu Liana Wijaya",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Kevin",
+      "fullName": "Kevin Hartono Kusuma, M.Sc.",
+      "parents": "Putra Bapak Rudy Kusuma & Ibu Lanny Susanto",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-09-19T10:00:00+07:00",
+    "blessingQuote": {
+      "text": "Bai nian hao he. Semoga cinta mengikat dua hati sepanjang masa, membawa kehangatan, kesetiaan, dan kebahagiaan ganda bagi kedua keluarga.",
+      "source": "Ucapan Pernikahan Tionghoa"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 19 September 2027",
+      "timeLabel": "10.00 - 12.00 WIB",
+      "venueName": "Grand Jade Hall, PIK Avenue",
+      "address": "Jl. Pantai Indah Kapuk Boulevard, Jakarta Utara",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 19 September 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Imperial Ballroom, Dharmawangsa",
+      "address": "Jl. Brawijaya Raya No. 26, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Meilin Tanuwijaya, B.Des."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Kevin Hartono Kusuma, M.Sc."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Busana formal atau cheongsam bernuansa merah marun keberuntungan, emas sampanye, atau gading.",
+      "colors": [
+        {
+          "label": "Crimson Silk",
+          "hex": "#AD1520"
+        },
+        {
+          "label": "Imperial Gold",
+          "hex": "#D4A028"
+        },
+        {
+          "label": "Porcelain",
+          "hex": "#FDF4F2"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Meilin & Kevin (0812-3456-7890)",
+      "address": "Jl. Brawijaya Raya No. 26, Jakarta Selatan"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Bersama keluarga yang berbahagia, kami mengundang Anda merayakan Tea Pai dan Jamuan Makan Malam pernikahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Upacara Tea Pai Pagi Hari",
+        "detail": "Dilaksanakan pukul 08.30 WIB di Jade Family Suite sebelum Pemberkatan."
+      }
+    ]
+  }
+}

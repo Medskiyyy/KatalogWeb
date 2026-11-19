@@ -1,0 +1,119 @@
+{
+  "slug": "sienna-jonathan",
+  "title": "The Wedding of Sienna & Jonathan",
+  "seoDescription": "Pine Pavilion - Undangan pernikahan digital Sienna dan Jonathan.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:indie",
+  "templateId": "nikah-pine-pavilion",
+  "data": {
+    "bride": {
+      "nickname": "Sienna",
+      "fullName": "Sienna Putri Natasya",
+      "parents": "Putri Bapak Albert Natasya & Ibu Maya",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Jonathan",
+      "fullName": "Jonathan Bagaskara",
+      "parents": "Putra Bapak Paulus Bagaskara & Ibu Grace",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-07-25T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Rooted deep like mountain pines, sheltered by grace through calm and storm alike.",
+      "source": "Woodland Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 25 Juli 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Pinewood Amphitheater, Dago Pakar",
+      "address": "Jl. Dago Pakar Raya No. 45, Dago, Bandung",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 25 Juli 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Pinewood Amphitheater, Dago Pakar",
+      "address": "Jl. Dago Pakar Raya No. 45, Dago, Bandung",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Sienna Putri Natasya"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Jonathan Bagaskara"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Forest pine, warm taupe, cedar wood, or off-white.",
+      "colors": [
+        {
+          "label": "Pine Forest",
+          "hex": "#325C43"
+        },
+        {
+          "label": "Cedar Wood",
+          "hex": "#8A7652"
+        },
+        {
+          "label": "Mist",
+          "hex": "#F4F7F3"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Sienna & Jonathan (0812-3456-7890)",
+      "address": "Jl. Dago Pakar Raya No. 45, Dago, Bandung"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

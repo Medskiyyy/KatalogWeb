@@ -1,0 +1,119 @@
+{
+  "slug": "putu-ayuning",
+  "title": "The Wedding of Ayuning & Mahendra",
+  "seoDescription": "Bali Heritage - Undangan pernikahan digital Ayuning dan Mahendra.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-jawa",
+  "templateId": "nikah-bali",
+  "data": {
+    "bride": {
+      "nickname": "Ayuning",
+      "fullName": "Ni Putu Ayuning Dewi",
+      "parents": "Putri pertama I Made Wijaya & Ni Ketut Sari",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Mahendra",
+      "fullName": "Ida Bagus Putu Mahendra",
+      "parents": "Putra pertama Ida Bagus Rai & Anak Agung Istri Ratih",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-03-21T09:00:00+08:00",
+    "blessingQuote": {
+      "text": "Ihaiva stam ma vi yaustam, visvam ayur vyasnutam. Bersatulah kalian di dunia ini dalam kasih sayang dan kebahagiaan sepanjang masa.",
+      "source": "Rgveda X.85.42"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 21 Maret 2027",
+      "timeLabel": "09.00 - 11.30 WITA",
+      "venueName": "Griya Agung Ubud",
+      "address": "Jl. Raya Campuhan No. 18, Ubud, Gianyar, Bali",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 21 Maret 2027",
+      "timeLabel": "16.00 - 20.00 WITA",
+      "venueName": "Pendopo Taman Saraswati, Ubud",
+      "address": "Jl. Kajeng No. 22, Ubud, Gianyar, Bali",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Ni Putu Ayuning Dewi"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Ida Bagus Putu Mahendra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Kebaya, endek Bali, atau busana formal bernuansa gading & emas hangat.",
+      "colors": [
+        {
+          "label": "Emas Kunyit",
+          "hex": "#C8962E"
+        },
+        {
+          "label": "Gading",
+          "hex": "#FAF5E6"
+        },
+        {
+          "label": "Perunggu",
+          "hex": "#7C4C09"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Ayuning & Mahendra (0812-3456-7890)",
+      "address": "Jl. Kajeng No. 22, Ubud, Gianyar, Bali"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan asung kerta wara nugraha Ida Sang Hyang Widhi Wasa, kami mengundang kehadiran semeton serta sahabat pada upacara Pawiwahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Mabyakala & Natab",
+        "detail": "Dilaksanakan pukul 08.30 WITA di Natar Griya Agung sebelum upacara Pawiwahan dimulai."
+      }
+    ]
+  }
+}

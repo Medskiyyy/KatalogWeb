@@ -1,0 +1,119 @@
+{
+  "slug": "bianca-matteo",
+  "title": "The Wedding of Bianca & Matteo",
+  "seoDescription": "Cyan Fountain - Undangan pernikahan digital Bianca dan Matteo.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:wedding",
+  "templateId": "nikah-cyan-fountain",
+  "data": {
+    "bride": {
+      "nickname": "Bianca",
+      "fullName": "Bianca Aurelia Wijaya",
+      "parents": "Putri Bapak Mario Wijaya & Ibu Carla",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Matteo",
+      "fullName": "Matteo Adhyaksa Putra",
+      "parents": "Putra Bapak Nico Putra & Ibu Sofia",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-08-29T09:00:00+08:00",
+    "blessingQuote": {
+      "text": "Joy flows gently like clear courtyard springs, refreshing every day we share together.",
+      "source": "Fountain Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 29 Agustus 2027",
+      "timeLabel": "09.00 - 11.00 WITA",
+      "venueName": "Courtyard Fountain Villa, Uluwatu",
+      "address": "Jl. Goa Lempeh No. 16, Pecatu, Bali",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 29 Agustus 2027",
+      "timeLabel": "18.30 - 21.30 WITA",
+      "venueName": "Courtyard Fountain Villa, Uluwatu",
+      "address": "Jl. Goa Lempeh No. 16, Pecatu, Bali",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Bianca Aurelia Wijaya"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Matteo Adhyaksa Putra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Aqua mist, crisp white, or dusty teal cocktail attire.",
+      "colors": [
+        {
+          "label": "Seafoam Cyan",
+          "hex": "#187B82"
+        },
+        {
+          "label": "Aqua Mist",
+          "hex": "#84D5DA"
+        },
+        {
+          "label": "Marble White",
+          "hex": "#F2FBFB"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Bianca & Matteo (0812-3456-7890)",
+      "address": "Jl. Goa Lempeh No. 16, Pecatu, Bali"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

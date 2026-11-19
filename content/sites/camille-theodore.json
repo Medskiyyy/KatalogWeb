@@ -1,0 +1,119 @@
+{
+  "slug": "camille-theodore",
+  "title": "The Wedding of Camille & Theodore",
+  "seoDescription": "Midnight Emerald - Undangan pernikahan digital Camille dan Theodore.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-midnight-emerald",
+  "data": {
+    "bride": {
+      "nickname": "Camille",
+      "fullName": "Camille Larissa Putri",
+      "parents": "Putri Bapak Johan Putera & Ibu Nadine",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Theodore",
+      "fullName": "Theodore Bagus Mahendra",
+      "parents": "Putra Bapak Victor Mahendra & Ibu Karina",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-11-20T16:30:00+07:00",
+    "blessingQuote": {
+      "text": "Deep within moonlit conservatory leaves, our love blooms quietly and endures all seasons.",
+      "source": "Garden Nocturne"
+    },
+    "akad": {
+      "dateLabel": "Sabtu, 20 November 2027",
+      "timeLabel": "16.30 - 18.00 WIB",
+      "venueName": "Emerald Botanical Glasshouse",
+      "address": "Jl. Taman Kemang No. 30, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Sabtu, 20 November 2027",
+      "timeLabel": "19.00 - 22.00 WIB",
+      "venueName": "Emerald Botanical Glasshouse",
+      "address": "Jl. Taman Kemang No. 30, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Camille Larissa Putri"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Theodore Bagus Mahendra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Dark emerald velvet, forest black, or antique gold accents.",
+      "colors": [
+        {
+          "label": "Dark Emerald",
+          "hex": "#0F2D21"
+        },
+        {
+          "label": "Brass Gold",
+          "hex": "#CFAB5E"
+        },
+        {
+          "label": "Moon Ivory",
+          "hex": "#F2F7F2"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Camille & Theodore (0812-3456-7890)",
+      "address": "Jl. Taman Kemang No. 30, Jakarta Selatan"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon berkat Tuhan Yang Maha Kuasa, kami mengundang Anda menghadiri malam gala pernikahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Black-Tie Cocktail Hour",
+        "detail": "Tamu disambut alunan string quartet di serambi utama mulai pukul 18.30 WIB."
+      }
+    ]
+  }
+}

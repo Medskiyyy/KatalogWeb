@@ -1,0 +1,119 @@
+{
+  "slug": "amara-julian",
+  "title": "The Wedding of Amara & Julian",
+  "seoDescription": "Royal Garden - Undangan pernikahan digital Amara dan Julian.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:wedding",
+  "templateId": "nikah-royal-garden",
+  "data": {
+    "bride": {
+      "nickname": "Amara",
+      "fullName": "Amara Kirani Santoso",
+      "parents": "Putri Bapak Drs. Santoso & Ibu Marisa",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Julian",
+      "fullName": "Julian Pratama Halim",
+      "parents": "Putra Bapak Hendri Halim & Ibu Melati",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-06-20T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Graceful as marble colonnades and golden afternoon light, we walk into one shared legacy.",
+      "source": "Classic Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 20 Juni 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Orangerie Grand Ballroom, Senayan",
+      "address": "Jl. Asia Afrika No. 1, Jakarta Pusat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 20 Juni 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Orangerie Grand Ballroom, Senayan",
+      "address": "Jl. Asia Afrika No. 1, Jakarta Pusat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Amara Kirani Santoso"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Julian Pratama Halim"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Black-tie optional or champagne gold, ivory, and olive moss.",
+      "colors": [
+        {
+          "label": "Antique Gold",
+          "hex": "#BE9B44"
+        },
+        {
+          "label": "Warm Bronze",
+          "hex": "#695011"
+        },
+        {
+          "label": "Ivory",
+          "hex": "#FCF9EE"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Amara & Julian (0812-3456-7890)",
+      "address": "Jl. Asia Afrika No. 1, Jakarta Pusat"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

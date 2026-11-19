@@ -21,6 +21,11 @@ export const BUILTIN_MUSIC_URLS: Record<string, string> = {
   "builtin:nikah-minang": "/audio/music/nikah-minang.mp3",
   "builtin:nikah-jawa": "/audio/music/nikah-jawa.mp3",
   "builtin:nikah-sunda": "/audio/music/nikah-sunda.mp3",
+  "builtin:classic-valse": "/audio/music/classic-valse.mp3",
+  "builtin:nocturne-chopin-g": "/audio/music/nocturne-chopin-g.mp3",
+  "builtin:nocturne-chopin-f": "/audio/music/nocturne-chopin-f.mp3",
+  "builtin:classic-waltz-gentle": "/audio/music/classic-waltz-gentle.mp3",
+  "builtin:nocturne-chopin-c": "/audio/music/nocturne-chopin-c.mp3",
 };
 
 export function resolveMusicTrackUrl(track: string): string | null {

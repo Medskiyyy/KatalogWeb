@@ -1,0 +1,119 @@
+{
+  "slug": "gusti-galuh",
+  "title": "The Wedding of Galuh Intan & Gusti Rizky",
+  "seoDescription": "Banjar Heritage - Undangan pernikahan digital Galuh Intan dan Gusti Rizky.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-jawa",
+  "templateId": "nikah-banjar",
+  "data": {
+    "bride": {
+      "nickname": "Galuh Intan",
+      "fullName": "Galuh Intan Permatasari",
+      "parents": "Putri H. Anang Suhaimi & Hj. Masnah",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Gusti Rizky",
+      "fullName": "Gusti Rizky Mahesa",
+      "parents": "Putra Gusti H. Mahfudz & Gusti Hj. Noorlaila",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-07-18T09:00:00+08:00",
+    "blessingQuote": {
+      "text": "Ya Tuhan kami, anugerahkanlah kepada kami pasangan kami dan keturunan kami sebagai penyenang hati kami.",
+      "source": "QS. Al-Furqan : 74"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 18 Juli 2027",
+      "timeLabel": "08.30 - 10.30 WITA",
+      "venueName": "Rumah Banjar Balairung Agung",
+      "address": "Jl. Lambung Mangkurat No. 25, Banjarmasin Tengah",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 18 Juli 2027",
+      "timeLabel": "11.00 - 15.00 WITA",
+      "venueName": "Grand Mahligai Hotel, Banjarmasin",
+      "address": "Jl. A. Yani Km. 4,5, Banjarmasin",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Galuh Intan Permatasari"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Gusti Rizky Mahesa"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Kain Sasirangan atau busana sopan bernuansa tembaga, gading, & cokelat hangat.",
+      "colors": [
+        {
+          "label": "Tembaga",
+          "hex": "#8F4F1C"
+        },
+        {
+          "label": "Emas Banjar",
+          "hex": "#BE8342"
+        },
+        {
+          "label": "Krem Gading",
+          "hex": "#FAF4ED"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Galuh Intan & Gusti Rizky (0812-3456-7890)",
+      "address": "Jl. A. Yani Km. 4,5, Banjarmasin"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur kami mengundang pian dan keluarga untuk berhadir pada acara pernikahan putra-putri kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Bausung Pengantin",
+        "detail": "Pengantin disambut dengan sinoman hadrah dan bausung pukul 11.00 WITA."
+      }
+    ]
+  }
+}

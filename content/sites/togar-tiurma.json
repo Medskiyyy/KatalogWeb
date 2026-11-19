@@ -1,0 +1,119 @@
+{
+  "slug": "togar-tiurma",
+  "title": "The Wedding of Tiurma & Togar",
+  "seoDescription": "Batak Heritage - Undangan pernikahan digital Tiurma dan Togar.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:wedding",
+  "templateId": "nikah-batak",
+  "data": {
+    "bride": {
+      "nickname": "Tiurma",
+      "fullName": "Tiurmauli Br. Sinaga, S.E.",
+      "parents": "Putri Bapak Mangatur Sinaga & Ibu Dameana Br. Sirait",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Togar",
+      "fullName": "Togar Maruli Tua Tampubolon, S.T.",
+      "parents": "Putra Bapak Hotman Tampubolon & Ibu Rismauli Br. Pane",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-04-10T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia.",
+      "source": "Matius 19 : 6"
+    },
+    "akad": {
+      "dateLabel": "Sabtu, 10 April 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "HKBP Menteng Jakarta",
+      "address": "Jl. Jambu No. 46, Menteng, Jakarta Pusat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Sabtu, 10 April 2027",
+      "timeLabel": "12.00 - 17.00 WIB",
+      "venueName": "Sopo Godang Mulia Raja",
+      "address": "Jl. Pemuda Kav. 12, Rawamangun, Jakarta Timur",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Tiurmauli Br. Sinaga, S.E."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Togar Maruli Tua Tampubolon, S.T."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Paduan ulos Batak atau busana resmi bernuansa merah maroon, putih, & hitam elegan.",
+      "colors": [
+        {
+          "label": "Merah Ulos",
+          "hex": "#8E1A22"
+        },
+        {
+          "label": "Krem Gading",
+          "hex": "#FAF4F2"
+        },
+        {
+          "label": "Hitam Arang",
+          "hex": "#2E0E10"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Tiurma & Togar (0812-3456-7890)",
+      "address": "Jl. Pemuda Kav. 12, Rawamangun, Jakarta Timur"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan sukacita dan ucapan syukur kepada Tuhan Yang Maha Esa, kami mengundang Bapak/Ibu/Saudara/i menghadiri Pemberkatan dan Pesta Unjuk kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Mangulosi",
+        "detail": "Dilaksanakan di Sopo Godang usai santap siang bersama Hula-hula dan Boru."
+      }
+    ]
+  }
+}

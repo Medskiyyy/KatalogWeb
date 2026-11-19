@@ -40,10 +40,35 @@ export type CulturalWatermarkKind =
   | "pucuk-rebung"
   | "parang-truntum"
   | "mega-mendung"
-  | "botanical-trellis";
+  | "botanical-trellis"
+  | "bali-patra"
+  | "batak-gorga"
+  | "betawi-gigi-balang"
+  | "bugis-lontara"
+  | "palembang-songket"
+  | "melayu-awan-larat"
+  | "banjar-sasirangan"
+  | "dayak-kalalawit"
+  | "aceh-pinto"
+  | "chinese-lattice"
+  | "castle-turret"
+  | "gothic-tracery"
+  | "fleur-de-lis"
+  | "ship-wheel"
+  | "scallop-fountain"
+  | "rose-damask"
+  | "iris-bloom"
+  | "pine-lattice"
+  | "glasshouse-arch"
+  | "keyhole-ivy"
+  | "art-deco-fan"
+  | "star-crescent"
+  | "baroque-scroll"
+  | "nouveau-whiplash"
+  | "moon-phases";
 
 export interface NikahMotionTheme {
-  id: "minang" | "jawa" | "sunda" | "garden";
+  id: string;
   assets: {
     sky: string;
     floralGarland: string;
@@ -73,6 +98,10 @@ export interface NikahMotionTheme {
     lightAccent: string;
     watermarkStroke: string;
     selectionBg: string;
+    heroEyebrowColor?: string;
+    buttonTextColor?: string;
+    canvasHeadingColor?: string;
+    isDark?: boolean;
   };
   labels: {
     coverEyebrow: string;
@@ -265,6 +294,238 @@ function CulturalWatermarkSvg({
             <ellipse cx="10" cy="20" rx="9" ry="6" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
             <ellipse cx="30" cy="20" rx="9" ry="6" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
             <circle cx="20" cy="20" r="1.8" fill={stroke} opacity="0.38" />
+          </pattern>
+        )}
+        {kind === "bali-patra" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M22 3C34 8 34 16 22 22C10 28 10 36 22 41" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <path d="M22 22C32 20 38 26 35 32C33 35 29 34 30 31" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M22 22C12 24 6 18 9 12C11 9 15 10 14 13" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <circle cx="22" cy="22" r="1.6" fill={stroke} opacity="0.36" />
+          </pattern>
+        )}
+        {kind === "batak-gorga" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M22 22C22 12 8 12 8 22C8 28 15 28 15 23C15 20 11 20 11 22" stroke={stroke} strokeWidth="1" opacity="0.34" />
+            <path d="M22 22C22 32 36 32 36 22C36 16 29 16 29 21C29 24 33 24 33 22" stroke={stroke} strokeWidth="1" opacity="0.34" />
+            <path d="M0 44L5.5 37L11 44L16.5 37L22 44L27.5 37L33 44L38.5 37L44 44" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M0 5H44" stroke={stroke} strokeWidth="0.7" opacity="0.24" />
+          </pattern>
+        )}
+        {kind === "betawi-gigi-balang" && (
+          <pattern id={patternId} width="36" height="36" patternUnits="userSpaceOnUse">
+            <path d="M0 6H36" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <path d="M0 6L6 18L12 6M12 6L18 18L24 6M24 6L30 18L36 6" stroke={stroke} strokeWidth="0.95" opacity="0.34" />
+            <path d="M0 22H36" stroke={stroke} strokeWidth="0.7" opacity="0.24" />
+            <path d="M6 22L12 34L18 22M18 22L24 34L30 22M30 22L36 34M0 34L0 22" stroke={stroke} strokeWidth="0.8" opacity="0.26" />
+            <circle cx="6" cy="24" r="0.9" fill={stroke} opacity="0.3" />
+            <circle cx="18" cy="10" r="0.9" fill={stroke} opacity="0.3" />
+          </pattern>
+        )}
+        {kind === "bugis-lontara" && (
+          <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
+            <rect x="3" y="3" width="34" height="34" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <path d="M20 3V37M3 20H37" stroke={stroke} strokeWidth="0.7" opacity="0.22" />
+            <path d="M20 9L26 20L20 31L14 20Z" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <path d="M8 8Q11 5 14 8M26 32Q29 35 32 32" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <circle cx="20" cy="20" r="1.3" fill={stroke} opacity="0.38" />
+          </pattern>
+        )}
+        {kind === "palembang-songket" && (
+          <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M20 3L37 20L20 37L3 20Z" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <path d="M20 9L31 20L20 31L9 20Z" stroke={stroke} strokeWidth="0.7" opacity="0.24" />
+            <ellipse cx="20" cy="15.5" rx="1.7" ry="3.3" transform="rotate(0 20 20)" stroke={stroke} strokeWidth="0.7" opacity="0.3" />
+            <ellipse cx="20" cy="15.5" rx="1.7" ry="3.3" transform="rotate(45 20 20)" stroke={stroke} strokeWidth="0.7" opacity="0.3" />
+            <ellipse cx="20" cy="15.5" rx="1.7" ry="3.3" transform="rotate(90 20 20)" stroke={stroke} strokeWidth="0.7" opacity="0.3" />
+            <ellipse cx="20" cy="15.5" rx="1.7" ry="3.3" transform="rotate(135 20 20)" stroke={stroke} strokeWidth="0.7" opacity="0.3" />
+            <circle cx="20" cy="20" r="1.4" fill={stroke} opacity="0.4" />
+            <circle cx="3" cy="3" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="37" cy="3" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="3" cy="37" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="37" cy="37" r="1.1" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "melayu-awan-larat" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M4 30C4 20 14 18 18 24C20 28 16 31 14 28" stroke={stroke} strokeWidth="0.95" opacity="0.32" />
+            <path d="M18 24C22 20 26 18 30 20C36 23 40 18 40 12C40 8 36 8 36 11" stroke={stroke} strokeWidth="0.95" opacity="0.32" />
+            <path d="M22 30C26 36 32 38 36 34C34 36 30 32 28 30" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <path d="M10 10C14 6 20 6 24 10C20 12 14 12 10 10Z" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <circle cx="22" cy="22" r="1.3" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "banjar-sasirangan" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M11 0C21 11 1 33 11 44" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <path d="M33 0C23 11 43 33 33 44" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <path d="M11 0C1 11 21 33 11 44" stroke={stroke} strokeWidth="0.75" opacity="0.24" />
+            <path d="M33 0C43 11 23 33 33 44" stroke={stroke} strokeWidth="0.75" opacity="0.24" />
+            <circle cx="22" cy="22" r="1.4" fill={stroke} opacity="0.34" />
+            <circle cx="0" cy="22" r="1.4" fill={stroke} opacity="0.34" />
+            <circle cx="44" cy="22" r="1.4" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "dayak-kalalawit" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M22 22C22 18 26 18 26 22C26 28 18 28 18 22C18 14 30 14 30 22C30 32 14 32 14 22" stroke={stroke} strokeWidth="0.95" opacity="0.32" />
+            <path d="M30 22C34 22 38 20 40 16M14 22C10 22 6 24 4 28" stroke={stroke} strokeWidth="0.85" opacity="0.28" />
+            <path d="M40 16C42 12 38 10 37 13M4 28C2 32 6 34 7 31" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <circle cx="22" cy="22" r="1.4" fill={stroke} opacity="0.4" />
+          </pattern>
+        )}
+        {kind === "aceh-pinto" && (
+          <pattern id={patternId} width="42" height="44" patternUnits="userSpaceOnUse">
+            <path d="M7 40V26H12V18H17V11L21 4L25 11V18H30V26H35V40Z" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M16 40V31Q21 24 26 31V40" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <path d="M21 4V0" stroke={stroke} strokeWidth="0.7" opacity="0.24" />
+            <circle cx="21" cy="16" r="1.2" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "chinese-lattice" && (
+          <pattern id={patternId} width="40" height="40" patternUnits="userSpaceOnUse">
+            <rect x="3" y="3" width="34" height="34" stroke={stroke} strokeWidth="0.8" opacity="0.26" />
+            <path d="M8 32V8H32V28H14V14H26V22" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <circle cx="20" cy="22" r="1" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "castle-turret" && (
+          <pattern id={patternId} width="40" height="48" patternUnits="userSpaceOnUse">
+            <path d="M9 46V16H13V11H17V16H23V11H27V16H31V46" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M9 16H31" stroke={stroke} strokeWidth="0.7" opacity="0.24" />
+            <path d="M17 46V36Q20 31 23 36V46" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <path d="M18 24H22" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <path d="M20 11V4L26 6L20 8" stroke={stroke} strokeWidth="0.7" opacity="0.28" />
+          </pattern>
+        )}
+        {kind === "gothic-tracery" && (
+          <pattern id={patternId} width="40" height="48" patternUnits="userSpaceOnUse">
+            <path d="M6 46V25C6 14 14 8 20 2C26 8 34 14 34 25V46" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M12 46V27C12 20 16 15 20 11C24 15 28 20 28 27V46" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <circle cx="20" cy="25" r="3.2" stroke={stroke} strokeWidth="0.75" opacity="0.3" />
+            <path d="M20 28V46" stroke={stroke} strokeWidth="0.7" opacity="0.22" />
+          </pattern>
+        )}
+        {kind === "fleur-de-lis" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M22 4C29 11 29 20 22 28C15 20 15 11 22 4Z" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <path d="M21 26C15 26 6 24 6 14C12 12 18 16 19 22" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M23 26C29 26 38 24 38 14C32 12 26 16 25 22" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M14 31H30M18 35H26M22 28V40" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <circle cx="22" cy="38" r="1.2" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "ship-wheel" && (
+          <pattern id={patternId} width="48" height="48" patternUnits="userSpaceOnUse">
+            <circle cx="24" cy="24" r="10" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <circle cx="24" cy="24" r="4" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <path d="M28.0 24.0L41.0 24.0 M26.8 26.8L36.0 36.0 M24.0 28.0L24.0 41.0 M21.2 26.8L12.0 36.0 M20.0 24.0L7.0 24.0 M21.2 21.2L12.0 12.0 M24.0 20.0L24.0 7.0 M26.8 21.2L36.0 12.0" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <circle cx="43.0" cy="24.0" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="37.4" cy="37.4" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="24.0" cy="43.0" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="10.6" cy="37.4" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="5.0" cy="24.0" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="10.6" cy="10.6" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="24.0" cy="5.0" r="1.1" fill={stroke} opacity="0.34" />
+            <circle cx="37.4" cy="10.6" r="1.1" fill={stroke} opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "scallop-fountain" && (
+          <pattern id={patternId} width="40" height="44" patternUnits="userSpaceOnUse">
+            <path d="M6 38A14 14 0 0 1 34 38Z" stroke={stroke} strokeWidth="0.9" opacity="0.3" />
+            <path d="M20 38L9 29M20 38L14 25M20 38L20 24M20 38L26 25M20 38L31 29" stroke={stroke} strokeWidth="0.7" opacity="0.26" />
+            <path d="M20 6C23 10 23 12 20 14C17 12 17 10 20 6Z" stroke={stroke} strokeWidth="0.75" opacity="0.3" />
+            <path d="M8 12C10 15 10 17 8 18C6 17 6 15 8 12Z" stroke={stroke} strokeWidth="0.7" opacity="0.26" />
+            <path d="M32 12C34 15 34 17 32 18C30 17 30 15 32 12Z" stroke={stroke} strokeWidth="0.7" opacity="0.26" />
+          </pattern>
+        )}
+        {kind === "rose-damask" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <circle cx="22" cy="22" r="2" stroke={stroke} strokeWidth="0.75" opacity="0.3" />
+            <path d="M22 18C26 18 27 23 23 25C18 26 16 20 20 16C25 13 31 18 29 24C27 30 19 31 15 26" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <path d="M22 2C26 6 26 10 22 13C18 10 18 6 22 2Z" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <path d="M22 42C26 38 26 34 22 31C18 34 18 38 22 42Z" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <path d="M2 22C6 18 10 18 13 22C10 26 6 26 2 22Z" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <path d="M42 22C38 18 34 18 31 22C34 26 38 26 42 22Z" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+          </pattern>
+        )}
+        {kind === "iris-bloom" && (
+          <pattern id={patternId} width="44" height="52" patternUnits="userSpaceOnUse">
+            <path d="M22 4C27 10 27 17 22 23C17 17 17 10 22 4Z" stroke={stroke} strokeWidth="0.9" opacity="0.32" />
+            <path d="M21 23C15 20 9 20 6 26C10 30 16 29 21 26" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M23 23C29 20 35 20 38 26C34 30 28 29 23 26" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M22 26V50" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <path d="M22 44C14 42 10 36 12 30M22 46C30 43 34 38 32 32" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <circle cx="22" cy="24" r="1" fill={stroke} opacity="0.4" />
+          </pattern>
+        )}
+        {kind === "pine-lattice" && (
+          <pattern id={patternId} width="38" height="38" patternUnits="userSpaceOnUse">
+            <path d="M19 4L28 18H10L19 4Z" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <path d="M19 14L31 32H7L19 14Z" stroke={stroke} strokeWidth="0.75" opacity="0.24" />
+          </pattern>
+        )}
+        {kind === "glasshouse-arch" && (
+          <pattern id={patternId} width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M4 46V25C4 13 13 5 24 5C35 5 44 13 44 25V46" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M12 46V26C12 18 17 13 24 13C31 13 36 18 36 26V46" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+            <path d="M24 5V46M4 28H44" stroke={stroke} strokeWidth="0.7" opacity="0.22" />
+            <circle cx="24" cy="2" r="1.6" stroke={stroke} strokeWidth="0.8" opacity="0.34" />
+          </pattern>
+        )}
+        {kind === "keyhole-ivy" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <circle cx="22" cy="14" r="4" stroke={stroke} strokeWidth="0.85" opacity="0.32" />
+            <path d="M20 17L17 30H27L24 17" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M4 42C10 40 14 36 14 30" stroke={stroke} strokeWidth="0.8" opacity="0.26" />
+            <path d="M14 30C10 28 10 24 14 23C18 24 17 28 14 30Z" stroke={stroke} strokeWidth="0.75" opacity="0.28" />
+            <path d="M40 42C34 40 30 36 30 30" stroke={stroke} strokeWidth="0.8" opacity="0.26" />
+            <path d="M30 30C26 28 26 24 30 23C34 24 33 28 30 30Z" stroke={stroke} strokeWidth="0.75" opacity="0.28" />
+          </pattern>
+        )}
+        {kind === "art-deco-fan" && (
+          <pattern id={patternId} width="40" height="20" patternUnits="userSpaceOnUse">
+            <path d="M2 20A18 18 0 0 1 38 20M8 20A12 12 0 0 1 32 20M14 20A6 6 0 0 1 26 20" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M20 20L7.3 7.3M20 20V2M20 20L32.7 7.3" stroke={stroke} strokeWidth="0.7" opacity="0.24" />
+            <path d="M0 20A20 20 0 0 1 20 0M40 20A20 20 0 0 0 20 0" stroke={stroke} strokeWidth="0.6" opacity="0.2" />
+          </pattern>
+        )}
+        {kind === "star-crescent" && (
+          <pattern id={patternId} width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M20 8A10 10 0 1 0 20 28A8 8 0 1 1 20 8Z" stroke={stroke} strokeWidth="0.85" opacity="0.3" />
+            <path d="M37.0 29.0L38.2 32.4L41.8 32.5L38.9 34.6L39.9 38.0L37.0 36.0L34.1 38.0L35.1 34.6L32.2 32.5L35.8 32.4Z" stroke={stroke} strokeWidth="0.75" opacity="0.32" />
+            <circle cx="40" cy="10" r="1.3" fill={stroke} opacity="0.45" />
+            <circle cx="8" cy="38" r="1.1" fill={stroke} opacity="0.4" />
+            <circle cx="28" cy="40" r="1" fill={stroke} opacity="0.36" />
+          </pattern>
+        )}
+        {kind === "baroque-scroll" && (
+          <pattern id={patternId} width="44" height="44" patternUnits="userSpaceOnUse">
+            <path d="M22 5C34 5 38 17 30 21C24 24 22 17 27 16" stroke={stroke} strokeWidth="0.9" opacity="0.3" />
+            <path d="M22 5C10 5 6 17 14 21C20 24 22 17 17 16" stroke={stroke} strokeWidth="0.9" opacity="0.3" />
+            <path d="M22 5V13" stroke={stroke} strokeWidth="0.8" opacity="0.26" />
+            <path d="M22 39C34 39 38 27 30 23C24 20 22 27 27 28" stroke={stroke} strokeWidth="0.8" opacity="0.24" />
+            <path d="M22 39C10 39 6 27 14 23C20 20 22 27 17 28" stroke={stroke} strokeWidth="0.8" opacity="0.24" />
+          </pattern>
+        )}
+        {kind === "nouveau-whiplash" && (
+          <pattern id={patternId} width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M6 44C6 26 22 30 24 16C25 8 32 5 40 10" stroke={stroke} strokeWidth="0.95" opacity="0.32" />
+            <path d="M24 24C32 21 38 24 40 31C32 33 26 31 24 24Z" stroke={stroke} strokeWidth="0.8" opacity="0.28" />
+            <path d="M26 26C31 26 35 28 38 30" stroke={stroke} strokeWidth="0.6" opacity="0.22" />
+            <path d="M14 34C8 32 6 26 10 22C14 24 15 29 14 34Z" stroke={stroke} strokeWidth="0.75" opacity="0.26" />
+          </pattern>
+        )}
+        {kind === "moon-phases" && (
+          <pattern id={patternId} width="56" height="36" patternUnits="userSpaceOnUse">
+            <circle cx="7" cy="18" r="5.5" stroke={stroke} strokeWidth="0.8" opacity="0.3" />
+            <path d="M21 12.5A5.5 5.5 0 1 0 21 23.5A4 5.5 0 0 1 21 12.5Z" stroke={stroke} strokeWidth="0.8" opacity="0.34" />
+            <circle cx="35" cy="18" r="5.5" fill={stroke} fillOpacity="0.22" stroke={stroke} strokeWidth="0.8" opacity="0.34" />
+            <path d="M49 12.5A5.5 5.5 0 1 1 49 23.5A4 5.5 0 0 0 49 12.5Z" stroke={stroke} strokeWidth="0.8" opacity="0.34" />
+            <circle cx="14" cy="5" r="0.9" fill={stroke} opacity="0.4" />
+            <circle cx="42" cy="31" r="0.9" fill={stroke} opacity="0.4" />
+            <circle cx="28" cy="4" r="0.9" fill={stroke} opacity="0.36" />
+            <circle cx="0" cy="34" r="0.9" fill={stroke} opacity="0.36" />
           </pattern>
         )}
       </defs>
@@ -761,8 +1022,11 @@ export function NikahMotionShell({
                 <button
                   type="button"
                   onClick={triggerEntrance}
-                  className="relative z-20 mt-5 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-semibold tracking-wide text-white shadow-lg transition hover:brightness-90 active:scale-95"
-                  style={{ backgroundColor: palette.accentDark }}
+                  className="relative z-20 mt-5 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-semibold tracking-wide shadow-lg transition hover:brightness-90 active:scale-95"
+                  style={{
+                    backgroundColor: palette.accentDark,
+                    color: palette.buttonTextColor ?? "#FFFFFF",
+                  }}
                 >
                   <DoorOpen size={16} weight="fill" />
                   {labels.openButton}
@@ -810,7 +1074,12 @@ export function NikahMotionShell({
               <motion.div
                 animate={{ x: [-26, 26, -26] }}
                 transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", type: "tween" }}
-                className="pointer-events-none absolute inset-x-0 top-10 h-44 bg-[radial-gradient(ellipse_at_center,rgba(255,252,244,0.68)_0%,transparent_72%)]"
+                className={cn(
+                  "pointer-events-none absolute inset-x-0 top-10 h-44",
+                  palette.isDark
+                    ? "bg-[radial-gradient(ellipse_at_center,rgba(8,10,20,0.68)_0%,transparent_72%)]"
+                    : "bg-[radial-gradient(ellipse_at_center,rgba(255,252,244,0.68)_0%,transparent_72%)]"
+                )}
               />
             )}
 
@@ -995,7 +1264,11 @@ export function NikahMotionShell({
             {/* Open Sky Title Reveal */}
             <div className="relative z-20 flex flex-col items-center px-6 pt-[max(3rem,11svh)]">
               <motion.p
-                style={scrub ? { opacity: subIn, y: subY, color: palette.accentDark } : { color: palette.accentDark }}
+                style={
+                  scrub
+                    ? { opacity: subIn, y: subY, color: palette.heroEyebrowColor ?? palette.accentDark }
+                    : { color: palette.heroEyebrowColor ?? palette.accentDark }
+                }
                 className="max-w-[190px] text-[11px] font-semibold leading-relaxed tracking-[0.26em] uppercase"
               >
                 {labels.heroEyebrow}
@@ -1034,7 +1307,7 @@ export function NikahMotionShell({
                 </p>
                 <span
                   className="mt-3 inline-flex items-center gap-1 text-[10px] font-medium tracking-widest uppercase opacity-80"
-                  style={{ color: palette.accentDark }}
+                  style={{ color: palette.heroEyebrowColor ?? palette.accentDark }}
                 >
                   {labels.continueScrollCue}
                   <CaretDown size={12} />
@@ -1252,8 +1525,10 @@ export function NikahMotionShell({
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold shadow transition hover:brightness-105"
               style={{
-                backgroundColor: palette.lightCardBg,
-                color: palette.canvasBg,
+                backgroundColor: palette.isDark ? palette.accentDark : palette.lightCardBg,
+                color: palette.isDark
+                  ? palette.buttonTextColor ?? "#14110E"
+                  : palette.canvasBg,
               }}
             >
               <CalendarPlus size={16} weight="bold" />
@@ -1273,7 +1548,7 @@ export function NikahMotionShell({
             </p>
             <h3
               className="mt-1 font-[family-name:var(--font-cormorant)] text-3xl italic"
-              style={{ color: palette.creamSurface }}
+              style={{ color: palette.canvasHeadingColor ?? palette.creamSurface }}
             >
               {labels.eventsTitle}
             </h3>
@@ -1356,8 +1631,11 @@ export function NikahMotionShell({
                     href={item.event.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-xs font-semibold text-white shadow transition hover:brightness-90"
-                    style={{ backgroundColor: palette.accentDark }}
+                    className="mt-5 inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-xs font-semibold shadow transition hover:brightness-90"
+                    style={{
+                      backgroundColor: palette.accentDark,
+                      color: palette.buttonTextColor ?? "#FFFFFF",
+                    }}
                   >
                     <MapPin size={14} weight="fill" />
                     Petunjuk Lokasi
@@ -1374,7 +1652,7 @@ export function NikahMotionShell({
               style={{
                 borderColor: `${palette.borderGold}75`,
                 backgroundColor: palette.darkCardBg,
-                color: palette.creamSurface,
+                color: palette.lightText,
               }}
             >
               {data.ceremonyExtras.map((extra) => (
@@ -1479,7 +1757,7 @@ export function NikahMotionShell({
               </p>
               <h3
                 className="mt-1 font-[family-name:var(--font-cormorant)] text-3xl italic"
-                style={{ color: palette.creamSurface }}
+                style={{ color: palette.canvasHeadingColor ?? palette.creamSurface }}
               >
                 {labels.galleryTitle}
               </h3>
@@ -1606,8 +1884,11 @@ export function NikahMotionShell({
               <div className="flex flex-col gap-2 pt-1 sm:flex-row">
                 <button
                   type="submit"
-                  className="flex-1 rounded-full px-4 py-2.5 text-xs font-semibold text-white transition hover:brightness-90"
-                  style={{ backgroundColor: palette.accentDark }}
+                  className="flex-1 rounded-full px-4 py-2.5 text-xs font-semibold transition hover:brightness-90"
+                  style={{
+                    backgroundColor: palette.accentDark,
+                    color: palette.buttonTextColor ?? "#FFFFFF",
+                  }}
                 >
                   Kirim Ucapan
                 </button>
@@ -1721,8 +2002,11 @@ export function NikahMotionShell({
                       <button
                         type="button"
                         onClick={() => handleCopyAccount(env.accountNumber)}
-                        className="mt-3 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-semibold text-white transition hover:brightness-90"
-                        style={{ backgroundColor: palette.accentDark }}
+                        className="mt-3 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[11px] font-semibold transition hover:brightness-90"
+                        style={{
+                          backgroundColor: palette.accentDark,
+                          color: palette.buttonTextColor ?? "#FFFFFF",
+                        }}
                       >
                         {copiedBank === env.accountNumber ? (
                           <>
@@ -1778,7 +2062,7 @@ export function NikahMotionShell({
                 style={{
                   borderColor: `${palette.borderGold}75`,
                   backgroundColor: palette.darkCardBg,
-                  color: palette.creamSurface,
+                  color: palette.lightText,
                 }}
               >
                 <p

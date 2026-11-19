@@ -1,0 +1,119 @@
+{
+  "slug": "raka-siti-betawi",
+  "title": "The Wedding of Siti & Raka",
+  "seoDescription": "Betawi Heritage - Undangan pernikahan digital Siti dan Raka.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-sunda",
+  "templateId": "nikah-betawi",
+  "data": {
+    "bride": {
+      "nickname": "Siti",
+      "fullName": "Siti Rahma Nuraini, S.Pd.",
+      "parents": "Putri Bapak H. Syarifudin & Ibu Hj. Rohayati",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Raka",
+      "fullName": "Raka Fadillah Pratama, S.Kom.",
+      "parents": "Putra Bapak H. Ridwan Kamilan & Ibu Hj. Maimunah",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-05-02T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Dan segala sesuatu Kami ciptakan berpasang-pasangan agar kamu mengingat kebesaran Allah.",
+      "source": "QS. Adz-Dzariyat : 49"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 2 Mei 2027",
+      "timeLabel": "08.30 - 10.30 WIB",
+      "venueName": "Bale Agung Setu Babakan",
+      "address": "Jl. RM Kahfi II No. 32, Jagakarsa, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 2 Mei 2027",
+      "timeLabel": "11.00 - 15.00 WIB",
+      "venueName": "Pendopo Budaya Betawi, Jagakarsa",
+      "address": "Jl. RM Kahfi II No. 32, Jagakarsa, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Siti Rahma Nuraini, S.Pd."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Raka Fadillah Pratama, S.Kom."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Busana encim/batik Betawi bernuansa hijau pandan, kuning mangga, & krem gading.",
+      "colors": [
+        {
+          "label": "Hijau Pandan",
+          "hex": "#286D3A"
+        },
+        {
+          "label": "Kuning Emas",
+          "hex": "#D4A017"
+        },
+        {
+          "label": "Krem Gading",
+          "hex": "#F9FAF0"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Siti & Raka (0812-3456-7890)",
+      "address": "Jl. RM Kahfi II No. 32, Jagakarsa, Jakarta Selatan"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan mengharap berkah Allah SWT, izinkan kami mengundang Encang, Encing, serta handai taulan menghadiri resepsi pernikahan putra-putri kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Atraksi Palang Pintu",
+        "detail": "Penyambutan rombongan mempelai pria dengan pantun jenaka dan silat Betawi pukul 08.00 WIB sebelum Akad Nikah."
+      }
+    ]
+  }
+}

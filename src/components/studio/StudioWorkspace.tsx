@@ -32,6 +32,10 @@ import { TemplateRenderer } from "@/templates/TemplateRenderer";
 import { TemplateDataEditor } from "@/components/studio/TemplateDataEditor";
 import { AudioUploadField } from "@/components/studio/AudioUploadField";
 import { QrPrintSheet } from "@/components/studio/QrPrintSheet";
+import {
+  EXTENDED_NIKAH_THEMES,
+  type ExtendedNikahTemplateId,
+} from "@/templates/nikah/themes";
 
 interface StudioWorkspaceProps {
   initialSites: SiteConfig[];
@@ -50,6 +54,11 @@ const MUSIC_PRESETS = [
   { value: "builtin:nikah-minang", label: "Musik Sambutan Adat Minang (Bawaan)" },
   { value: "builtin:nikah-jawa", label: "Ketawang Gamelan Jawa (Bawaan)" },
   { value: "builtin:nikah-sunda", label: "Kacapi Laras Degung Sunda (Bawaan)" },
+  { value: "builtin:classic-valse", label: "Valse Chopin Pesta Istana (Bawaan)" },
+  { value: "builtin:classic-waltz-gentle", label: "Waltz Chopin Lembut (Bawaan)" },
+  { value: "builtin:nocturne-chopin-c", label: "Nocturne Chopin C Minor (Bawaan)" },
+  { value: "builtin:nocturne-chopin-f", label: "Nocturne Chopin F Minor (Bawaan)" },
+  { value: "builtin:nocturne-chopin-g", label: "Nocturne Chopin G Mayor (Bawaan)" },
   { value: "none", label: "Tanpa Musik" },
 ];
 
@@ -109,6 +118,12 @@ const TEMPLATE_META: Record<
     label: "Nikah Motion Bunga",
     badgeClass: "border-rose-300 bg-rose-50 text-rose-900",
   },
+  ...(Object.fromEntries(
+    EXTENDED_NIKAH_THEMES.map((item) => [
+      item.id,
+      { label: item.shortLabel, badgeClass: item.badgeClass },
+    ])
+  ) as Record<ExtendedNikahTemplateId, { label: string; badgeClass: string }>),
   "umkm-katalog": {
     label: "UMKM Kedai Kopi",
     badgeClass: "border-sky-200 bg-sky-50 text-sky-800",

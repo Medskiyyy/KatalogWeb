@@ -1,0 +1,119 @@
+{
+  "slug": "bintang-bulan",
+  "title": "The Wedding of Bulan & Bintang",
+  "seoDescription": "Dayak Heritage - Undangan pernikahan digital Bulan dan Bintang.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-dayak",
+  "data": {
+    "bride": {
+      "nickname": "Bulan",
+      "fullName": "Bulan Kartika Putri, S.H.",
+      "parents": "Putri Bapak Damang Yohanes & Ibu Sinta Ningsih",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Bintang",
+      "fullName": "Bintang Pradana Wijaya, S.T.",
+      "parents": "Putra Bapak Paulus Lawing & Ibu Martha Leny",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-08-08T10:00:00+07:00",
+    "blessingQuote": {
+      "text": "Kasih itu sabar; kasih itu murah hati; ia tidak cemburu. Ia tidak memegahkan diri dan tidak sombong.",
+      "source": "1 Korintus 13 : 4"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 8 Agustus 2027",
+      "timeLabel": "09.30 - 11.30 WIB",
+      "venueName": "Gereja Katedral Palangka Raya",
+      "address": "Jl. Tjilik Riwut Km. 1, Palangka Raya",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 8 Agustus 2027",
+      "timeLabel": "13.00 - 17.00 WIB",
+      "venueName": "Balai Adat Betang Tambun Bungai",
+      "address": "Jl. RTA Milono No. 10, Palangka Raya",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Bulan Kartika Putri, S.H."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Bintang Pradana Wijaya, S.T."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Tenun manik Dayak atau batik bernuansa terakota, krem, & hitam.",
+      "colors": [
+        {
+          "label": "Merah Terakota",
+          "hex": "#96331E"
+        },
+        {
+          "label": "Emas Enggang",
+          "hex": "#DF9C52"
+        },
+        {
+          "label": "Krem Kayu",
+          "hex": "#F7F3ED"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Bulan & Bintang (0812-3456-7890)",
+      "address": "Jl. RTA Milono No. 10, Palangka Raya"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan mengucap syukur kepada Tuhan Yang Maha Kasih, kami mengundang segenap keluarga dan sahabat menghadiri pesta adat pernikahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Tampung Tawar & Tari Enggang",
+        "detail": "Dilaksanakan pada pembukaan resepsi pukul 13.00 WIB di Balai Adat."
+      }
+    ]
+  }
+}

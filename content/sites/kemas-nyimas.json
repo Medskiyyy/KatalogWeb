@@ -1,0 +1,119 @@
+{
+  "slug": "kemas-nyimas",
+  "title": "The Wedding of Nyimas & Kemas",
+  "seoDescription": "Palembang Heritage - Undangan pernikahan digital Nyimas dan Kemas.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-minang",
+  "templateId": "nikah-palembang",
+  "data": {
+    "bride": {
+      "nickname": "Nyimas",
+      "fullName": "Nyimas Kemalasari, S.Psi.",
+      "parents": "Putri Kemas H. Abdurrahman & Nyimas Hj. Kartini",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Kemas",
+      "fullName": "Kemas Ahmad Fauzi, S.H.",
+      "parents": "Putra Kemas H. Iskandar & Nyimas Hj. Aminah",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-07-04T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan untukmu agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.",
+      "source": "QS. Ar-Rum : 21"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 4 Juli 2027",
+      "timeLabel": "08.30 - 10.30 WIB",
+      "venueName": "Rumah Limas Griya Agung",
+      "address": "Jl. Demang Lebar Daun No. 14, Ilir Barat I, Palembang",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 4 Juli 2027",
+      "timeLabel": "11.30 - 15.30 WIB",
+      "venueName": "Gedung Puri Musi Sriwijaya",
+      "address": "Jl. Kapten A. Rivai No. 88, Palembang",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Nyimas Kemalasari, S.Psi."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Kemas Ahmad Fauzi, S.H."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Songket Palembang atau kebaya/batik nuansa merah marun, gading, & emas.",
+      "colors": [
+        {
+          "label": "Delima Sriwijaya",
+          "hex": "#981629"
+        },
+        {
+          "label": "Emas Songket",
+          "hex": "#CFA03D"
+        },
+        {
+          "label": "Gading",
+          "hex": "#FCF4F0"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Nyimas & Kemas (0812-3456-7890)",
+      "address": "Jl. Kapten A. Rivai No. 88, Palembang"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon rahmat Allah SWT, kami mengundang Bapak/Ibu/Saudara/i hadir dalam acara pernikahan putra-putri kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Cacap-Cacapan & Tari Pagar Pengantin",
+        "detail": "Dilaksanakan saat penyambutan pengantin di pelaminan pukul 11.45 WIB."
+      }
+    ]
+  }
+}

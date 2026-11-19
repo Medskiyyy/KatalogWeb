@@ -1,0 +1,119 @@
+{
+  "slug": "celine-tristan",
+  "title": "The Wedding of Celine & Tristan",
+  "seoDescription": "Rosewood Romance - Undangan pernikahan digital Celine dan Tristan.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-rosewood-romance",
+  "data": {
+    "bride": {
+      "nickname": "Celine",
+      "fullName": "Celine Margaretha",
+      "parents": "Putri Bapak Johan Setiawan & Ibu Clarissa",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Tristan",
+      "fullName": "Tristan Mahendra",
+      "parents": "Putra Bapak Budi Mahendra & Ibu Dewi",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-05-09T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Where two hearts grow side by side like old vineyard roses, every season blooms richer than the last.",
+      "source": "Rosewood Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 9 Mei 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Villa Rosewood Heritage, Bandung",
+      "address": "Jl. Dr. Setiabudi No. 92, Bandung",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 9 Mei 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Villa Rosewood Heritage, Bandung",
+      "address": "Jl. Dr. Setiabudi No. 92, Bandung",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Celine Margaretha"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Tristan Mahendra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Rosewood, terracotta, champagne, atau gading hangat.",
+      "colors": [
+        {
+          "label": "Rosewood",
+          "hex": "#8E3E3B"
+        },
+        {
+          "label": "Copper",
+          "hex": "#B88464"
+        },
+        {
+          "label": "Warm Cream",
+          "hex": "#FAF2EF"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Celine & Tristan (0812-3456-7890)",
+      "address": "Jl. Dr. Setiabudi No. 92, Bandung"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

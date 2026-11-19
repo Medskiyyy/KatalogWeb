@@ -5,6 +5,7 @@ import { Check, Printer, QrCode } from "@phosphor-icons/react";
 import { BRAND, getSubdomainHost, getSubdomainUrl } from "@/config/brand";
 import { toQrSvgDataUri } from "@/lib/qr";
 import type { SiteConfig } from "@/lib/schema";
+import { isExtendedNikahSite } from "@/templates/nikah/themes";
 
 interface QrPrintSheetProps {
   sites: SiteConfig[];
@@ -15,6 +16,10 @@ interface QrPrintSheetProps {
 type CardStyle = "polaroid" | "minimalis";
 
 function getSiteThumbnail(site: SiteConfig): string {
+  if (isExtendedNikahSite(site)) {
+    return site.data.gallery[0] || site.data.bride.photoUrl;
+  }
+
   switch (site.templateId) {
     case "bucin-scrapbook":
       return site.data.memories[0]?.imageUrl || "/demo/bucin-1.webp";

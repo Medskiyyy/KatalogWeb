@@ -1,0 +1,119 @@
+{
+  "slug": "estelle-christian",
+  "title": "The Wedding of Estelle & Christian",
+  "seoDescription": "Midnight Navy - Undangan pernikahan digital Estelle dan Christian.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-midnight-navy",
+  "data": {
+    "bride": {
+      "nickname": "Estelle",
+      "fullName": "Estelle Clarissa Tan",
+      "parents": "Putri Bapak Benny Tan & Ibu Ingrid",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Christian",
+      "fullName": "Christian Hadinata Putra",
+      "parents": "Putra Bapak Yanto Putra & Ibu Veronica",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-10-23T16:30:00+07:00",
+    "blessingQuote": {
+      "text": "Constant as midnight stars over deep sapphire waters, our hearts find home in one another.",
+      "source": "Sapphire Promise"
+    },
+    "akad": {
+      "dateLabel": "Sabtu, 23 Oktober 2027",
+      "timeLabel": "16.30 - 18.00 WIB",
+      "venueName": "Starlight Hall, St. Regis Jakarta",
+      "address": "Jl. HR Rasuna Said, Kuningan, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Sabtu, 23 Oktober 2027",
+      "timeLabel": "19.00 - 22.00 WIB",
+      "venueName": "Starlight Hall, St. Regis Jakarta",
+      "address": "Jl. HR Rasuna Said, Kuningan, Jakarta Selatan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Estelle Clarissa Tan"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Christian Hadinata Putra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Midnight navy tuxedo, silver silk, or deep sapphire evening gown.",
+      "colors": [
+        {
+          "label": "Midnight Navy",
+          "hex": "#111D3B"
+        },
+        {
+          "label": "Sapphire Mist",
+          "hex": "#8BAEE8"
+        },
+        {
+          "label": "Pale Gold",
+          "hex": "#D6B772"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Estelle & Christian (0812-3456-7890)",
+      "address": "Jl. HR Rasuna Said, Kuningan, Jakarta Selatan"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon berkat Tuhan Yang Maha Kuasa, kami mengundang Anda menghadiri malam gala pernikahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Black-Tie Cocktail Hour",
+        "detail": "Tamu disambut alunan string quartet di serambi utama mulai pukul 18.30 WIB."
+      }
+    ]
+  }
+}

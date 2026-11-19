@@ -25,14 +25,60 @@ import {
 } from "@/config/brand";
 import { toQrSvgDataUri } from "@/lib/qr";
 import { buildWhatsAppUrl, cn, formatRupiah } from "@/lib/utils";
+import {
+  EXTENDED_NIKAH_MAP,
+  EXTENDED_NIKAH_THEMES,
+  isExtendedNikahTemplateId,
+  type ExtendedNikahGroup,
+} from "@/templates/nikah/themes";
 
 type CategoryFilter = "Semua" | TemplateCatalogItem["category"];
+type WeddingSubFilter = "all" | ExtendedNikahGroup;
+
+const ADAT_BASE_IDS = new Set<TemplateCatalogItem["id"]>([
+  "nikah-minang",
+  "nikah-jawa",
+  "nikah-sunda",
+]);
+const ROMANTIC_BASE_IDS = new Set<TemplateCatalogItem["id"]>([
+  "nikah-garden",
+  "nikah-motion",
+]);
+
+function getWeddingGroup(
+  id: TemplateCatalogItem["id"]
+): ExtendedNikahGroup | null {
+  if (ADAT_BASE_IDS.has(id)) return "adat";
+  if (ROMANTIC_BASE_IDS.has(id)) return "romantic";
+  if (isExtendedNikahTemplateId(id)) return EXTENDED_NIKAH_MAP[id].group;
+  return null;
+}
+
+const ALL_WEDDING_TEMPLATES = BRAND.templates.filter(
+  (t) => t.category === "Pernikahan"
+);
+
+const WEDDING_SUBFILTERS: { value: WeddingSubFilter; label: string }[] = [
+  { value: "all", label: `Semua Pernikahan (${ALL_WEDDING_TEMPLATES.length})` },
+  {
+    value: "adat",
+    label: `Adat & Heritage (${ALL_WEDDING_TEMPLATES.filter((t) => getWeddingGroup(t.id) === "adat").length})`,
+  },
+  {
+    value: "romantic",
+    label: `Castle, Floral & Garden (${ALL_WEDDING_TEMPLATES.filter((t) => getWeddingGroup(t.id) === "romantic").length})`,
+  },
+  {
+    value: "midnight",
+    label: `Midnight Luxury (${ALL_WEDDING_TEMPLATES.filter((t) => getWeddingGroup(t.id) === "midnight").length})`,
+  },
+];
 
 const CATEGORY_FILTERS: { value: CategoryFilter; label: string }[] = [
   { value: "Semua", label: `Semua Desain (${BRAND.templates.length})` },
   { value: "Bucin", label: `Kado Pasangan (${BRAND.templates.filter((t) => t.category === "Bucin").length})` },
   { value: "Ulang Tahun", label: `Ulang Tahun (${BRAND.templates.filter((t) => t.category === "Ulang Tahun").length})` },
-  { value: "Pernikahan", label: `Pernikahan & Adat (${BRAND.templates.filter((t) => t.category === "Pernikahan").length})` },
+  { value: "Pernikahan", label: `Pernikahan & Adat (${ALL_WEDDING_TEMPLATES.length})` },
   { value: "UMKM", label: `Website UMKM (${BRAND.templates.filter((t) => t.category === "UMKM").length})` },
 ];
 
@@ -57,6 +103,12 @@ const HERO_TAB_LABELS: Record<TemplateCatalogItem["id"], string> = {
   "nikah-jawa": "Adat Jawa",
   "nikah-sunda": "Adat Sunda",
   "nikah-motion": "Motion Bunga",
+  ...(Object.fromEntries(
+    EXTENDED_NIKAH_THEMES.map((item) => [item.id, item.shortLabel])
+  ) as Record<
+    (typeof EXTENDED_NIKAH_THEMES)[number]["id"],
+    string
+  >),
   "umkm-katalog": "Kedai & Kopi",
   "umkm-kuliner": "Katering & Resto",
   "umkm-fashion": "Butik Fashion",
@@ -77,6 +129,12 @@ const STAGE_TINTS: Record<TemplateCatalogItem["id"], string> = {
   "nikah-jawa": "#F7F1E5",
   "nikah-sunda": "#EEF4EF",
   "nikah-motion": "#F4ECE0",
+  ...(Object.fromEntries(
+    EXTENDED_NIKAH_THEMES.map((item) => [item.id, item.stageTint])
+  ) as Record<
+    (typeof EXTENDED_NIKAH_THEMES)[number]["id"],
+    string
+  >),
   "umkm-katalog": "#F4EFE9",
   "umkm-kuliner": "#FAF0EA",
   "umkm-fashion": "#F5F3F1",
@@ -143,6 +201,8 @@ export function StorefrontLanding() {
   );
   const [selectedCategory, setSelectedCategory] =
     useState<CategoryFilter>("Semua");
+  const [weddingSubFilter, setWeddingSubFilter] =
+    useState<WeddingSubFilter>("all");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [openFaqId, setOpenFaqId] = useState<string | null>(FAQS[0].id);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -152,10 +212,15 @@ export function StorefrontLanding() {
     BRAND.templates.find((item) => item.id === activeHeroId) ??
     BRAND.templates[0];
 
-  const filteredTemplates =
-    selectedCategory === "Semua"
-      ? BRAND.templates
-      : BRAND.templates.filter((item) => item.category === selectedCategory);
+  const filteredTemplates = BRAND.templates.filter((item) => {
+    if (selectedCategory !== "Semua" && item.category !== selectedCategory) {
+      return false;
+    }
+    if (selectedCategory === "Pernikahan" && weddingSubFilter !== "all") {
+      return getWeddingGroup(item.id) === weddingSubFilter;
+    }
+    return true;
+  });
 
   useEffect(() => {
     let active = true;
@@ -172,9 +237,12 @@ export function StorefrontLanding() {
   }, []);
 
   useEffect(() => {
-    BRAND.templates.forEach((template) => {
-      const img = new window.Image();
-      img.src = template.thumbnail;
+    HERO_TEMPLATE_IDS.forEach((heroId) => {
+      const template = BRAND.templates.find((t) => t.id === heroId);
+      if (template) {
+        const img = new window.Image();
+        img.src = template.thumbnail;
+      }
     });
   }, []);
 
@@ -506,7 +574,10 @@ export function StorefrontLanding() {
                   <button
                     key={category.value}
                     type="button"
-                    onClick={() => setSelectedCategory(category.value)}
+                    onClick={() => {
+                      setSelectedCategory(category.value);
+                      setWeddingSubFilter("all");
+                    }}
                     className={cn(
                       "relative cursor-pointer px-4 py-3 text-sm font-medium whitespace-nowrap transition-colors",
                       isActive
@@ -530,6 +601,29 @@ export function StorefrontLanding() {
                 );
               })}
             </div>
+
+            {selectedCategory === "Pernikahan" && (
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                {WEDDING_SUBFILTERS.map((sub) => {
+                  const isSubActive = weddingSubFilter === sub.value;
+                  return (
+                    <button
+                      key={sub.value}
+                      type="button"
+                      onClick={() => setWeddingSubFilter(sub.value)}
+                      className={cn(
+                        "cursor-pointer rounded-md border px-3.5 py-1.5 text-xs font-medium whitespace-nowrap transition-colors sm:text-sm",
+                        isSubActive
+                          ? "border-[#121212] bg-[#121212] font-semibold text-white"
+                          : "border-[#E5E5E1] bg-white text-[#575753] hover:border-[#121212]/40 hover:text-[#121212]"
+                      )}
+                    >
+                      {sub.label}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
 
             <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:gap-x-10 lg:gap-y-14">
               {filteredTemplates.map((item) => {
@@ -568,7 +662,7 @@ export function StorefrontLanding() {
                             <img
                               src={item.thumbnail}
                               alt={`Pratinjau ${item.name}`}
-                              loading="eager"
+                              loading="lazy"
                               className="absolute inset-0 block h-full w-full object-cover"
                             />
                           </div>

@@ -1,0 +1,119 @@
+{
+  "slug": "daeng-tenri",
+  "title": "The Wedding of Tenri & Daeng Naba",
+  "seoDescription": "Bugis Heritage - Undangan pernikahan digital Tenri dan Daeng Naba.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-minang",
+  "templateId": "nikah-bugis",
+  "data": {
+    "bride": {
+      "nickname": "Tenri",
+      "fullName": "Andi Tenri Angka, S.Farm.",
+      "parents": "Putri Andi Mappewali & Andi Besse Fatimah",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Daeng Naba",
+      "fullName": "Muhammad Daeng Naba, S.T.",
+      "parents": "Putra H. Syamsuddin Daeng Bella & Hj. Rosmini",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-06-12T10:00:00+08:00",
+    "blessingQuote": {
+      "text": "Sipakatau, sipakalebbi, sipakainge: saling memanusiakan, saling memuliakan, dan saling mengingatkan dalam membina rumah tangga.",
+      "source": "Falsafah Hidup Bugis"
+    },
+    "akad": {
+      "dateLabel": "Sabtu, 12 Juni 2027",
+      "timeLabel": "09.00 - 11.00 WITA",
+      "venueName": "Saoraja Gedung Adat Makassar",
+      "address": "Jl. Sultan Hasanuddin No. 11, Somba Opu, Gowa",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Sabtu, 12 Juni 2027",
+      "timeLabel": "13.00 - 17.00 WITA",
+      "venueName": "Ballroom Sutera Makassar",
+      "address": "Jl. Metro Tanjung Bunga No. 20, Makassar",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Andi Tenri Angka, S.Farm."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Muhammad Daeng Naba, S.T."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Baju Bodo, Jas Tutu, atau batik bernuansa hijau zamrud & emas.",
+      "colors": [
+        {
+          "label": "Hijau Sutera",
+          "hex": "#1C6245"
+        },
+        {
+          "label": "Emas Lontara",
+          "hex": "#C59A38"
+        },
+        {
+          "label": "Gading",
+          "hex": "#F4F8F4"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Tenri & Daeng Naba (0812-3456-7890)",
+      "address": "Jl. Metro Tanjung Bunga No. 20, Makassar"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon ridho Allah SWT, kami mengundang keluarga dan handai taulan hadir memberi restu di hari pernikahan putra-putri kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Malam Mappacci",
+        "detail": "Dilaksanakan Jumat malam pukul 19.30 WITA sebagai doa restu keluarga dekat."
+      }
+    ]
+  }
+}

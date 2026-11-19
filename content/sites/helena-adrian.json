@@ -1,0 +1,119 @@
+{
+  "slug": "helena-adrian",
+  "title": "The Wedding of Helena & Adrian",
+  "seoDescription": "Iris Cottage - Undangan pernikahan digital Helena dan Adrian.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-iris-cottage",
+  "data": {
+    "bride": {
+      "nickname": "Helena",
+      "fullName": "Helena Putri Kartika",
+      "parents": "Putri Bapak Arifin & Ibu Dian",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Adrian",
+      "fullName": "Adrian Kusuma Negara",
+      "parents": "Putra Bapak Suryo & Ibu Ratna",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-08-15T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "In the quiet of lavender fields and warm cottage light, our simplest moments feel eternal.",
+      "source": "Meadow Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 15 Agustus 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Lavender Meadow Barn, Puncak",
+      "address": "Jl. Raya Puncak Km. 77, Cisarua, Bogor",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 15 Agustus 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Lavender Meadow Barn, Puncak",
+      "address": "Jl. Raya Puncak Km. 77, Cisarua, Bogor",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Helena Putri Kartika"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Adrian Kusuma Negara"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Soft lilac, plum, dusty sage, or cream linen.",
+      "colors": [
+        {
+          "label": "Royal Iris",
+          "hex": "#6C4A94"
+        },
+        {
+          "label": "Lavender",
+          "hex": "#B59AD4"
+        },
+        {
+          "label": "Cloud",
+          "hex": "#FAF6FD"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Helena & Adrian (0812-3456-7890)",
+      "address": "Jl. Raya Puncak Km. 77, Cisarua, Bogor"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

@@ -1,5 +1,10 @@
 import { z } from "zod";
 import type { TemplateId } from "@/config/brand";
+import {
+  buildExtendedNikahSiteConfig,
+  isExtendedNikahTemplateId,
+  type ExtendedNikahTemplateId,
+} from "@/templates/nikah/themes";
 
 export const RESERVED_SLUGS = new Set([
   "www",
@@ -370,6 +375,131 @@ export const SiteConfigSchema = z.discriminatedUnion("templateId", [
   }),
   z.object({
     ...BaseSiteFields,
+    templateId: z.literal("nikah-bali"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-batak"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-betawi"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-bugis"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-palembang"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-banjar"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-dayak"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-melayu"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-aceh"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-chinese"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-pink-castle"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-azure-castle"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-rosewood-romance"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-sailing-blossoms"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-victorian-bloomhouse"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-royal-garden"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-secret-garden"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-pine-pavilion"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-iris-cottage"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-cyan-fountain"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-midnight-black"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-midnight-navy"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-midnight-burgundy"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-midnight-emerald"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
+    templateId: z.literal("nikah-ethereal-moonfall"),
+    data: NikahDataSchema,
+  }),
+  z.object({
+    ...BaseSiteFields,
     templateId: z.literal("umkm-katalog"),
     data: UmkmDataSchema,
   }),
@@ -420,7 +550,8 @@ export type NikahSiteConfig = Extract<
       | "nikah-minang"
       | "nikah-jawa"
       | "nikah-sunda"
-      | "nikah-motion";
+      | "nikah-motion"
+      | ExtendedNikahTemplateId;
   }
 >;
 export type UmkmSiteConfig = Extract<
@@ -450,6 +581,10 @@ export function createDefaultSiteConfig(
 ): SiteConfig {
   const cleanedSlug = slugifyInput(slugInput) || "order-baru";
   const today = new Date().toISOString().slice(0, 10);
+
+  if (isExtendedNikahTemplateId(templateId)) {
+    return buildExtendedNikahSiteConfig(templateId, cleanedSlug);
+  }
 
   switch (templateId) {
     case "bucin-scrapbook":

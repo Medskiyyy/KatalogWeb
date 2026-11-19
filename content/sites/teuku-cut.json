@@ -1,0 +1,119 @@
+{
+  "slug": "teuku-cut",
+  "title": "The Wedding of Cut Nabila & Teuku Faris",
+  "seoDescription": "Aceh Heritage - Undangan pernikahan digital Cut Nabila dan Teuku Faris.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:nikah-minang",
+  "templateId": "nikah-aceh",
+  "data": {
+    "bride": {
+      "nickname": "Cut Nabila",
+      "fullName": "Cut Nabila Meutia, S.Ked.",
+      "parents": "Putri Teuku H. Iskandar & Cut Hj. Nurhayati",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Teuku Faris",
+      "fullName": "Teuku Muhammad Faris, S.T.",
+      "parents": "Putra Teuku H. Saifullah & Cut Hj. Marlina",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-09-05T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan untukmu agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang.",
+      "source": "QS. Ar-Rum : 21"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 5 September 2027",
+      "timeLabel": "08.30 - 10.30 WIB",
+      "venueName": "Bale Meuseraya Aceh",
+      "address": "Jl. T. Nyak Arief No. 19, Banda Aceh",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 5 September 2027",
+      "timeLabel": "11.30 - 15.30 WIB",
+      "venueName": "Hermes Palace Hall Banda Aceh",
+      "address": "Jl. T. Panglima Nyak Makam, Banda Aceh",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Cut Nabila Meutia, S.Ked."
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Teuku Muhammad Faris, S.T."
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Busana muslim/formal bernuansa hijau Serambi Mekkah, putih jeumpa, & emas.",
+      "colors": [
+        {
+          "label": "Hijau Aceh",
+          "hex": "#215A38"
+        },
+        {
+          "label": "Putih Jeumpa",
+          "hex": "#F3F8F3"
+        },
+        {
+          "label": "Emas Pinto",
+          "hex": "#B8943A"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Cut Nabila & Teuku Faris (0812-3456-7890)",
+      "address": "Jl. T. Panglima Nyak Makam, Banda Aceh"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i menghadiri Khanduri Perkawinan dan Peusijuek putra-putri kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Prosesi Peusijuek",
+        "detail": "Peusijuek Dara Baro dan Linto Baro dilaksanakan sesaat setelah Akad Nikah."
+      }
+    ]
+  }
+}

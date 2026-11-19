@@ -11,6 +11,7 @@ import type {
 } from "@/lib/schema";
 import { ImageUploadField } from "@/components/studio/ImageUploadField";
 import { AudioUploadField } from "@/components/studio/AudioUploadField";
+import { isExtendedNikahSite } from "@/templates/nikah/themes";
 
 interface TemplateDataEditorProps {
   site: SiteConfig;
@@ -1815,6 +1816,16 @@ export function TemplateDataEditor({
   studioConnected,
   onChange,
 }: TemplateDataEditorProps) {
+  if (isExtendedNikahSite(site)) {
+    return (
+      <NikahEditor
+        site={site}
+        studioConnected={studioConnected}
+        onChange={onChange}
+      />
+    );
+  }
+
   switch (site.templateId) {
     case "bucin-scrapbook":
     case "bucin-chat":

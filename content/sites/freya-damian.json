@@ -1,0 +1,119 @@
+{
+  "slug": "freya-damian",
+  "title": "The Wedding of Freya & Damian",
+  "seoDescription": "Secret Garden - Undangan pernikahan digital Freya dan Damian.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:wedding",
+  "templateId": "nikah-secret-garden",
+  "data": {
+    "bride": {
+      "nickname": "Freya",
+      "fullName": "Freya Melodia Tania",
+      "parents": "Putri Bapak Daniel Tania & Ibu Laras",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Damian",
+      "fullName": "Damian Ardiansyah Putra",
+      "parents": "Putra Bapak Irawan & Ibu Nadia",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-07-11T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "Behind every quiet garden gate waits a bloom meant only for patient hearts.",
+      "source": "Garden Vow"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 11 Juli 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Hidden Arboretum Lawn, Lembang",
+      "address": "Jl. Sersan Bajuri No. 88, Lembang, Bandung Barat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 11 Juli 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Hidden Arboretum Lawn, Lembang",
+      "address": "Jl. Sersan Bajuri No. 88, Lembang, Bandung Barat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Freya Melodia Tania"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Damian Ardiansyah Putra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Moss green, soft wisteria lilac, or garden cream.",
+      "colors": [
+        {
+          "label": "Ivy Moss",
+          "hex": "#3A6B4C"
+        },
+        {
+          "label": "Wisteria",
+          "hex": "#7C6FA6"
+        },
+        {
+          "label": "Petal Mist",
+          "hex": "#F4F9F5"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Freya & Damian (0812-3456-7890)",
+      "address": "Jl. Sersan Bajuri No. 88, Lembang, Bandung Barat"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

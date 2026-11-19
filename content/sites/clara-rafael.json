@@ -1,0 +1,119 @@
+{
+  "slug": "clara-rafael",
+  "title": "The Wedding of Clara & Rafael",
+  "seoDescription": "Pink Castle - Undangan pernikahan digital Clara dan Rafael.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:wedding",
+  "templateId": "nikah-pink-castle",
+  "data": {
+    "bride": {
+      "nickname": "Clara",
+      "fullName": "Clara Anastasia Wijaya",
+      "parents": "Putri pertama Bapak Gunawan & Ibu Evelyn",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Rafael",
+      "fullName": "Rafael Daniswara Putra",
+      "parents": "Putra pertama Bapak Hartono & Ibu Michelle",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-03-14T09:00:00+07:00",
+    "blessingQuote": {
+      "text": "You are every lovely dream turned real, a fairytale written for just the two of us.",
+      "source": "Fairytale Promise"
+    },
+    "akad": {
+      "dateLabel": "Minggu, 14 Maret 2027",
+      "timeLabel": "09.00 - 11.00 WIB",
+      "venueName": "Fairytale Glass Pavilion, Menteng",
+      "address": "Jl. Taman Suropati No. 8, Jakarta Pusat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Minggu, 14 Maret 2027",
+      "timeLabel": "18.30 - 21.30 WIB",
+      "venueName": "Fairytale Glass Pavilion, Menteng",
+      "address": "Jl. Taman Suropati No. 8, Jakarta Pusat",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Clara Anastasia Wijaya"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Rafael Daniswara Putra"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Pastel blush, champagne ivory, or soft rose attire.",
+      "colors": [
+        {
+          "label": "Rose Blush",
+          "hex": "#D6829B"
+        },
+        {
+          "label": "Soft Ivory",
+          "hex": "#FFF7F9"
+        },
+        {
+          "label": "Mauve Plum",
+          "hex": "#872E4C"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Clara & Rafael (0812-3456-7890)",
+      "address": "Jl. Taman Suropati No. 8, Jakarta Pusat"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan penuh rasa syukur dan kebahagiaan, kami mengundang Anda menjadi saksi penyatuan janji suci kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Welcome Drink & Sesi Foto",
+        "detail": "Tamu undangan dipersilakan menikmati sajian pembuka setengah jam sebelum resepsi dimulai."
+      }
+    ]
+  }
+}

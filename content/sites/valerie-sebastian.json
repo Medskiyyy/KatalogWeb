@@ -1,0 +1,119 @@
+{
+  "slug": "valerie-sebastian",
+  "title": "The Wedding of Valerie & Sebastian",
+  "seoDescription": "Midnight Burgundy - Undangan pernikahan digital Valerie dan Sebastian.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-midnight-burgundy",
+  "data": {
+    "bride": {
+      "nickname": "Valerie",
+      "fullName": "Valerie Angelica Liem",
+      "parents": "Putri Bapak Edward Liem & Ibu Priscilla",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Sebastian",
+      "fullName": "Sebastian Aditya Jaya",
+      "parents": "Putra Bapak Lukman Jaya & Ibu Patricia",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-11-06T16:30:00+07:00",
+    "blessingQuote": {
+      "text": "As rich as vintage wine and warm candlelight, our love grows deeper through every quiet hour.",
+      "source": "Evening Toast"
+    },
+    "akad": {
+      "dateLabel": "Sabtu, 6 November 2027",
+      "timeLabel": "16.30 - 18.00 WIB",
+      "venueName": "Velvet Grand Hall, Raffles Jakarta",
+      "address": "Jl. Prof. DR. Satrio Kav. 3, Kuningan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Sabtu, 6 November 2027",
+      "timeLabel": "19.00 - 22.00 WIB",
+      "venueName": "Velvet Grand Hall, Raffles Jakarta",
+      "address": "Jl. Prof. DR. Satrio Kav. 3, Kuningan",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Valerie Angelica Liem"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Sebastian Aditya Jaya"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Velvet burgundy, deep plum, copper bronze, or formal evening black.",
+      "colors": [
+        {
+          "label": "Deep Wine",
+          "hex": "#4D1528"
+        },
+        {
+          "label": "Rose Gold",
+          "hex": "#D69C72"
+        },
+        {
+          "label": "Silk Ivory",
+          "hex": "#FDF2F0"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Valerie & Sebastian (0812-3456-7890)",
+      "address": "Jl. Prof. DR. Satrio Kav. 3, Kuningan"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon berkat Tuhan Yang Maha Kuasa, kami mengundang Anda menghadiri malam gala pernikahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Black-Tie Cocktail Hour",
+        "detail": "Tamu disambut alunan string quartet di serambi utama mulai pukul 18.30 WIB."
+      }
+    ]
+  }
+}

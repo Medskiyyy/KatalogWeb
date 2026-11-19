@@ -14,6 +14,8 @@ import { NikahMinangTemplate } from "@/templates/nikah/NikahMinangTemplate";
 import { NikahJawaTemplate } from "@/templates/nikah/NikahJawaTemplate";
 import { NikahSundaTemplate } from "@/templates/nikah/NikahSundaTemplate";
 import { NikahMotionTemplate } from "@/templates/nikah/NikahMotionTemplate";
+import { NikahThemedTemplate } from "@/templates/nikah/NikahThemedTemplate";
+import { isExtendedNikahSite } from "@/templates/nikah/themes";
 import { UmkmKatalogTemplate } from "@/templates/umkm/UmkmKatalogTemplate";
 import { UmkmKulinerTemplate } from "@/templates/umkm/UmkmKulinerTemplate";
 import { UmkmFashionTemplate } from "@/templates/umkm/UmkmFashionTemplate";
@@ -25,6 +27,10 @@ interface TemplateRendererProps {
 }
 
 export function TemplateRenderer({ site, embedded = false }: TemplateRendererProps) {
+  if (isExtendedNikahSite(site)) {
+    return <NikahThemedTemplate site={site} embedded={embedded} />;
+  }
+
   switch (site.templateId) {
     case "bucin-scrapbook":
       return <BucinScrapbookTemplate site={site} embedded={embedded} />;

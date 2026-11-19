@@ -1,0 +1,119 @@
+{
+  "slug": "selena-alvaro",
+  "title": "The Wedding of Selena & Alvaro",
+  "seoDescription": "Ethereal Moonfall - Undangan pernikahan digital Selena dan Alvaro.",
+  "createdAt": "2026-11-19",
+  "orderNote": "Order baru Shopee",
+  "musicTrack": "builtin:romance",
+  "templateId": "nikah-ethereal-moonfall",
+  "data": {
+    "bride": {
+      "nickname": "Selena",
+      "fullName": "Selena Maharani Putri",
+      "parents": "Putri Bapak Ardiansyah & Ibu Melisa",
+      "photoUrl": "/demo/nikah-bride.webp"
+    },
+    "groom": {
+      "nickname": "Alvaro",
+      "fullName": "Alvaro Damar Kusuma",
+      "parents": "Putra Bapak Hendra Kusuma & Ibu Cynthia",
+      "photoUrl": "/demo/nikah-groom.webp"
+    },
+    "weddingDateIso": "2027-12-04T16:30:00+08:00",
+    "blessingQuote": {
+      "text": "By the silver glow of the rising moon, two wandering souls finally share one sky.",
+      "source": "Celestial Vow"
+    },
+    "akad": {
+      "dateLabel": "Sabtu, 4 Desember 2027",
+      "timeLabel": "16.30 - 18.00 WITA",
+      "venueName": "Moonfall Cliff Sanctuary, Uluwatu",
+      "address": "Jl. Pura Batu Pageh No. 9, Bali",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "resepsi": {
+      "dateLabel": "Sabtu, 4 Desember 2027",
+      "timeLabel": "19.00 - 22.00 WITA",
+      "venueName": "Moonfall Cliff Sanctuary, Uluwatu",
+      "address": "Jl. Pura Batu Pageh No. 9, Bali",
+      "mapsUrl": "https://maps.google.com/?q=-6.2088,106.8456"
+    },
+    "storyTimeline": [
+      {
+        "year": "2023",
+        "title": "Pertemuan Pertama",
+        "description": "Perkenalan singkat yang mempertemukan dua keluarga dan menumbuhkan rasa saling percaya."
+      },
+      {
+        "year": "2025",
+        "title": "Melangkah ke Jenjang Serius",
+        "description": "Dengan restu orang tua, kedua belah pihak bersepakat menentukan langkah menuju pelaminan."
+      },
+      {
+        "year": "2027",
+        "title": "Ikatan Suci Pernikahan",
+        "description": "Merayakan hari bahagia bersama keluarga besar dan sahabat tercinta dalam suasana penuh syukur."
+      }
+    ],
+    "gallery": [
+      "/demo/nikah-couple.webp",
+      "/demo/nikah-gallery-1.webp",
+      "/demo/nikah-gallery-2.webp",
+      "/demo/nikah-gallery-3.webp",
+      "/demo/nikah-gallery-4.webp"
+    ],
+    "digitalEnvelopes": [
+      {
+        "bankName": "BCA",
+        "accountNumber": "5480192837",
+        "accountHolder": "Selena Maharani Putri"
+      },
+      {
+        "bankName": "Mandiri",
+        "accountNumber": "1230094857123",
+        "accountHolder": "Alvaro Damar Kusuma"
+      }
+    ],
+    "rsvpWhatsapp": "6281234567890",
+    "dresscode": {
+      "note": "Midnight indigo, opal lilac, mist silver, or dark plum evening attire.",
+      "colors": [
+        {
+          "label": "Twilight Indigo",
+          "hex": "#1D183B"
+        },
+        {
+          "label": "Moonstone Lilac",
+          "hex": "#B5A8E8"
+        },
+        {
+          "label": "Pearl",
+          "hex": "#F5F3FC"
+        }
+      ]
+    },
+    "giftAddress": {
+      "recipient": "Selena & Alvaro (0812-3456-7890)",
+      "address": "Jl. Pura Batu Pageh No. 9, Bali"
+    },
+    "initialPrayers": [
+      {
+        "name": "Keluarga Besar",
+        "relation": "Keluarga",
+        "message": "Selamat menempuh hidup baru, semoga selalu dilimpahi kebahagiaan, rukun, dan berkah selamanya."
+      },
+      {
+        "name": "Rekan & Sahabat",
+        "relation": "Sahabat",
+        "message": "Turut berbahagia melihat kalian bersatu. Lancar terus sampai hari H!"
+      }
+    ],
+    "culturalNote": "Dengan memohon berkat Tuhan Yang Maha Kuasa, kami mengundang Anda menghadiri malam gala pernikahan kami.",
+    "ceremonyExtras": [
+      {
+        "label": "Black-Tie Cocktail Hour",
+        "detail": "Tamu disambut alunan string quartet di serambi utama mulai pukul 18.30 WITA."
+      }
+    ]
+  }
+}
